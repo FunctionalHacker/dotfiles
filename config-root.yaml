@@ -1,0 +1,139 @@
+config:
+  backup: true
+  banner: true
+  create: true
+  dotpath: root
+  ignoreempty: false
+  keepdot: true
+  link_dotfile_default: nolink
+  link_on_import: nolink
+  longkey: false
+  showdiff: false
+  workdir: ~/.config/sdotdrop
+dotfiles:
+  f_60-uinput-permissions.rules:
+    dst: /etc/udev/rules.d/60-uinput-permissions.rules
+    src: etc/udev/rules.d/60-uinput-permissions.rules
+  d_bin:
+    dst: /usr/local/bin
+    src: usr/local/bin
+  f_99-sysctl.conf:
+    dst: /etc/sysctl.d/99-sysctl.conf
+    src: etc/sysctl.d/99-sysctl.conf
+  f_adb.service:
+    dst: /etc/systemd/system/adb.service
+    src: etc/systemd/system/adb.service
+  f_clamd.conf:
+    dst: /etc/clamav/clamd.conf
+    src: etc/clamav/clamd.conf
+  f_cryptissue:
+    dst: /etc/cryptissue
+    src: etc/cryptissue
+  f_default.pa:
+    dst: /etc/pulse/default.pa
+    src: etc/pulse/default.pa
+  f_detected.sh:
+    dst: /etc/clamav/detected.sh
+    src: etc/clamav/detected.sh
+  f_environment:
+    dst: /etc/environment
+    src: etc/environment
+  f_freetype2.sh:
+    dst: /etc/profile.d/freetype2.sh
+    src: etc/profile.d/freetype2.sh
+  f_iwd@.service:
+    dst: /etc/systemd/system/iwd@.service
+    src: etc/systemd/system/iwd@.service
+  f_loader.conf:
+    dst: /boot/loader/loader.conf
+    src: boot/loader/loader.conf
+  f_fonts.conf:
+    dst: /etc/fonts/local.conf
+    src: etc/fonts/local.conf
+  f_locale.conf:
+    dst: /etc/locale.conf
+    src: etc/locale.conf
+  f_locale.gen:
+    dst: /etc/locale.gen
+    src: etc/locale.gen
+  f_logind.conf:
+    dst: /etc/systemd/logind.conf
+    src: etc/systemd/logind.conf
+  f_bluetooth.conf:
+    dst: /etc/bluetooth/main.conf
+    src: etc/bluetooth/main.conf
+  f_pacman.conf:
+    dst: /etc/pacman.conf
+    src: etc/pacman.conf
+  f_pacserve.service.conf:
+    dst: /etc/pacserve/pacserve.service.conf
+    src: etc/pacserve/pacserve.service.conf
+  f_qemu.conf:
+    dst: /etc/libvirt/qemu.conf
+    src: etc/libvirt/qemu.conf
+  f_resolved.conf:
+    dst: /etc/systemd/resolved.conf
+    src: etc/systemd/resolved.conf
+  f_sshd_config:
+    dst: /etc/ssh/sshd_config
+    src: etc/ssh/sshd_config
+  f_timesyncd.conf:
+    dst: /etc/systemd/timesyncd.conf
+    src: etc/systemd/timesyncd.conf
+  f_welcomemessage.conf:
+    dst: /etc/welcomemessage.conf
+    src: etc/welcomemessage.conf
+  f_wifi_backend.conf:
+    dst: /etc/NetworkManager/conf.d/wifi_backend.conf
+    src: etc/NetworkManager/conf.d/wifi_backend.conf
+  f_override.conf:
+    src: etc/systemd/system/getty@tty1.service.d/override.conf
+    dst: /etc/systemd/system/getty@tty1.service.d/override.conf
+  f_rc-manager.conf:
+    src: etc/NetworkManager/conf.d/rc-manager.conf
+    dst: /etc/NetworkManager/conf.d/rc-manager.conf
+profiles:
+  locale:
+    dotfiles:
+    - f_locale.conf
+    - f_locale.gen
+  pacman:
+    dotfiles:
+    - f_pacman.conf
+    - f_pacserve.service.conf
+  Mirkwood:
+    dotfiles:
+    - f_environment
+    - f_cryptissue
+    - f_welcomemessage.conf
+    - f_clamd.conf
+    - f_detected.sh
+    - d_bin
+    - f_adb.service
+    - f_bluetooth.conf
+    - f_resolved.conf
+    - f_qemu.conf
+    - f_default.pa
+    - f_iwd@.service
+    - f_loader.conf
+    - f_sshd_config
+    - f_logind.conf
+    - f_60-uinput-permissions.rules
+    - f_freetype2.sh
+    - f_fonts.conf
+    - f_timesyncd.conf
+    - f_99-sysctl.conf
+    - f_override.conf
+    - f_rc-manager.conf
+    include:
+    - locale
+    - pacman
+  Rivendell:
+    include:
+    - locale
+    - pacman
+    dotfiles:
+    - f_bluetooth.conf
+    - f_60-uinput-permissions.rules
+    - f_timesyncd.conf
+    - f_sshd_config

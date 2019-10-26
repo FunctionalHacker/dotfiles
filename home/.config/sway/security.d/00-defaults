@@ -1,0 +1,43 @@
+# DO NOT CHANGE THIS FILE. Override these defaults by writing new files in
+# /etc/sway/security.d/*
+
+# Configures enabled compositor features for specific programs
+permit * fullscreen keyboard mouse
+permit /usr/bin/swaylock lock
+permit /usr/bin/swaybg background
+permit /usr/bin/swaybar panel
+
+# Configures enabled IPC features for specific programs
+ipc /usr/bin/swaymsg {
+    * enabled
+
+    events {
+        * disabled
+    }
+}
+
+ipc /usr/bin/swaybar {
+    bar-config enabled
+    outputs enabled
+    workspaces enabled
+    command enabled
+
+    events {
+        workspace enabled
+        mode enabled
+    }
+}
+
+ipc /usr/bin/swaylock {
+    outputs enabled
+}
+
+# Limits the contexts from which certain commands are permitted
+commands {
+    * all
+
+    fullscreen binding criteria
+    bindsym config
+    exit binding
+    kill binding
+}

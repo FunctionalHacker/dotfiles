@@ -1,0 +1,13 @@
+[Unit]
+Description=rTorrent in tmux
+After=network.target
+
+[Service]
+User=rtorrent
+WorkingDirectory=/home/rtorrent
+Environment="TERM=linux"
+Type=forking
+ExecStart=/bin/bash -c "/usr/bin/tmux -2u -L rtps-%u new-session -s rtps-%u -n rT-PS -d /bin/bash -c rtorrent"
+
+[Install]
+WantedBy=default.target

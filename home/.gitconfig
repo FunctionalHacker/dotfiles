@@ -1,0 +1,7 @@
+[user]
+	email = marko.korhonen@reekynet.com
+	name = Marko Korhonen
+	signingkey = C514037F1EFF4FA6
+[commit]
+	signoff = true
+	gpgsign = true

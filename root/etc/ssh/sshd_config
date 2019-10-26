@@ -1,0 +1,10 @@
+# Remove socket for gpg agent forwarding
+StreamLocalBindUnlink yes
+
+X11Forwarding yes
+AuthorizedKeysFile	.ssh/authorized_keys
+PasswordAuthentication no
+ChallengeResponseAuthentication no
+UsePAM yes
+PrintMotd no # pam does that
+Subsystem	sftp	/usr/lib/ssh/sftp-server

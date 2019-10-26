@@ -1,0 +1,120 @@
+// vim: ft=jsonc
+{
+	"layer": "bottom", // Waybar at top layer
+	"height": 22, // Waybar height
+	"modules-left": ["sway/workspaces", "sway/mode", "custom/playerctl"],
+	"modules-center": ["sway/window"],
+	"modules-right": [
+		"idle_inhibitor",
+		"pulseaudio",
+		"network",
+		"cpu",
+		"memory",
+		"battery",
+		"clock",
+		"tray"
+	],
+	// Modules configuration
+	"sway/workspaces": {
+		"disable-scroll": true,
+		"all-outputs": true,
+		"format": "{icon}",
+		"format-icons": {
+			"1": "",
+			"2": "",
+			"3": "",
+			"4": "",
+			"5": "",
+			"urgent": "",
+			"focused": "",
+			"default": ""
+		}
+	},
+	"sway/mode": {
+		"format": "<span style=\"italic\">{}</span>"
+	},
+	"idle_inhibitor": {
+		"tooltip": false,
+		"format": "{icon}",
+		"format-icons": {
+			"activated": "",
+			"deactivated": ""
+		}
+	},
+	"tray": {
+		// "icon-size": 21,
+		"spacing": 10
+	},
+	"clock": {
+		"tooltip": false,
+		"format": "{:%Y-%m-%d %H:%M}"
+	},
+	"cpu": {
+		"tooltip": false,
+		"format": "{usage}% CPU"
+	},
+	"memory": {
+		"tooltip": false,
+		"format": "{}% RAM"
+	},
+	"backlight": {
+		// "device": "acpi_video1",
+		"format": "{percent}% {icon}",
+		"format-icons": ["", ""]
+	},
+	"battery": {
+		"tooltip": false,
+		"states": {
+			// "good": 95,
+			"warning": 30,
+			"critical": 15
+		},
+		"format": "{capacity}% {icon}",
+		// "format-good": "", // An empty format will hide the module
+		// "format-full": "",
+		"format-icons": ["", "", "", "", ""]
+	},
+	"battery#bat2": {
+		"bat": "BAT2"
+	},
+	"network": {
+		"tooltip": false,
+		"interface": "wg0",
+		"format-ethernet": "VPN Connected",
+		"format-disconnected": "VPN disconnected ⚠",
+		"on-click": "sudo systemctl start wg-quick@wg0.service",
+		"on-click-right": "sudo systemctl stop wg-quick@wg0.service",
+		"interval": 10
+	},
+	"pulseaudio": {
+		"tooltip": false,
+		//"scroll-step": 1,
+		"format": "{volume}% {icon}",
+		"format-bluetooth": "{volume}% {icon}",
+		"format-muted": "",
+		"format-icons": {
+			"headphones": "",
+			"handsfree": "",
+			"headset": "",
+			"phone": "",
+			"portable": "",
+			"car": "",
+			"default": ["", ""]
+		},
+		"on-click": "pulseaudio-ctl mute",
+		"on-click-right": "pavucontrol",
+		"on-scroll-up": "pulseaudio-ctl up",
+		"on-scroll-down": "pulseaudio-ctl down"
+	},
+	"custom/playerctl": {
+		"tooltip": false,
+		"format": "{}",
+		"exec": "$HOME/Scripts/metadata.sh",
+		"interval": 2,
+		"max-length": 40,
+		"on-click": "playerctl play-pause",
+		"on-click-right": "playerctl next",
+		"on-scroll-up": "playerctl volume 0.05+",
+		"on-scroll-down": "playerctl volume 0.05-"
+	}
+}

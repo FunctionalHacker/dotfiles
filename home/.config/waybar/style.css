@@ -1,0 +1,111 @@
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "Noto Sans Display", "Font Awesome 5 Free";
+    font-size: 13px;
+    min-height: 0;
+}
+
+window#waybar {
+    background: #282828;
+    color: white;
+}
+
+/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+#workspaces button {
+    padding: 0 5px;
+    background: transparent;
+    color: white;
+}
+
+#workspaces button.focused {
+    background: #64727D;
+}
+
+#mode {
+    background: #64727D;
+}
+
+#clock, #battery, #cpu, #memory, #backlight, #network, #pulseaudio, #custom-playerctl, #tray, #mode, #idle_inhibitor {
+    padding: 0 10px;
+    margin: 0 5px;
+}
+
+#clock {
+    background-color: #64727D;
+}
+
+#battery {
+    background-color: #ffffff;
+    color: black;
+}
+
+#battery.charging {
+    color: black;
+    background-color: #a3be8c;
+}
+
+@keyframes blink {
+    to {
+        background-color: #ffffff;
+        color: black;
+    }
+}
+
+#battery.critical:not(.charging) {
+    background: #bf616a;
+    color: white;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#cpu {
+    background: #2ecc71;
+    color: #000000;
+}
+
+#memory {
+	color: black;
+    background: #b48ead;
+}
+
+#backlight {
+    background: #90b1b1;
+}
+
+#network {
+	color: black;
+    background: #81a1c1;
+}
+
+#network.disconnected {
+    background: #f53c3c;
+}
+
+#pulseaudio {
+    background: #88c0d0;
+    color: black;
+}
+
+#pulseaudio.muted {
+    background: #90b1b1;
+    color: #2a5c45;
+}
+
+#custom-playerctl {
+    background: #a3be8c;
+    color: #2a5c45;
+}
+
+#tray {
+    background-color: #282828;
+}
+
+#idle_inhibitor {
+    background-color: #8fbcbb;
+	color: #000000;
+}
+

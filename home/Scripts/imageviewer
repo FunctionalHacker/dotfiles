@@ -1,0 +1,29 @@
+#!/bin/bash
+
+if [ @# -eq 1 ]; then
+	DIR=/tmp/images
+	IMGNAME=$(basename $1)
+	
+	if [ ! -d $DIR ]; then
+		mkdir $DIR
+	fi
+
+	if [ ! -f $DIR/$IMGNAME ]; then
+		wget $1 -O $DIR/$IMGNAME
+	fi
+
+	mimeo $DIR/$IMGNAME
+
+else
+	DIR=/tmp/images/$(basename $1)
+
+	if [ ! -d $]; then
+		mkdir -p $DIR
+	fi
+
+	if [ ! -f $DIR/$IMGNAME ]; then
+		wget -P $DIR $@
+	fi
+
+	mimeo $DIR/*
+fi

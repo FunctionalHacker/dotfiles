@@ -10,7 +10,7 @@ I'm using [dotdrop](https://github.com/deadc0de6/dotdrop) to manage and ease dep
 This repository lives at [ReekyNET Git](https://git.reekynet.com/ReekyMarko/dotfiles), but it is also mirrored to:
 - [GitLab](https://gitlab.com/ReekyMarko/dotfiles)
 - [GitHub](https://github.com/ReekyMarko/dotfiles)
-- [Bitbucket](https://bitbucket.org/ReekyMarko/dotfiles).
-- [codeberg](https://codeberg.org/ReekyMarko/dotfiles).
+- [Bitbucket](https://bitbucket.org/ReekyMarko/dotfiles)
+- [codeberg](https://codeberg.org/ReekyMarko/dotfiles)
 
 If you have any ideas for improvements, questions or anything of this sort, you can open an issue or a pull request in either ReekyNET Git (registrations open for anyone), or any of the mirrors.

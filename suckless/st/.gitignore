@@ -1,0 +1,5 @@
+*
+!.gitignore
+!PKGBUILD
+!config.h
+!st.desktop

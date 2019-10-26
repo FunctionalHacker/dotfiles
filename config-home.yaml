@@ -1,0 +1,227 @@
+actions:
+  vim-plug: nvim +PlugInstall +qall
+  zplug: zplug install
+config:
+  backup: true
+  banner: true
+  create: true
+  dotpath: home
+  ignoreempty: false
+  keepdot: true
+  link_dotfile_default: nolink
+  link_on_import: nolink
+  longkey: false
+  showdiff: false
+  workdir: ~/.config/dotdrop
+dotfiles:
+  d_systemd:
+    dst: ~/.config/systemd/user
+    src: .config/systemd/user
+  d_mpv:
+    dst: ~/.config/mpv
+    src: .config/mpv
+  d_nvim_config:
+    actions:
+    - vim-plug
+    dst: ~/.config/nvim/conf.d
+    src: .config/nvim/conf.d
+  d_scripts:
+    dst: ~/Scripts
+    src: Scripts
+  d_sway:
+    dst: ~/.config/sway
+    src: .config/sway
+  d_ticons:
+    dst: ~/.local/share/TelegramDesktop/tdata/ticons
+    src: .local/share/TelegramDesktop/tdata/ticons
+  d_waybar:
+    dst: ~/.config/waybar
+    src: .config/waybar
+  f_abcde.conf:
+    dst: ~/.abcde.conf
+    src: .abcde.conf
+  f_alacritty.yml:
+    dst: ~/.config/alacritty/alacritty.yml
+    src: .config/alacritty/alacritty.yml
+  f_authorized_keys:
+    dst: ~/.ssh/authorized_keys
+    src: .ssh/authorized_keys
+  f_beets_config:
+    dst: ~/.config/beets/config.yaml
+    src: .config/beets/config.yaml
+  f_beets_whitelist:
+    dst: ~/.config/beets/whitelist
+    src: .config/beets/whitelist
+  f_bspwmrc:
+    dst: ~/.config/bspwm/bspwmrc
+    src: .config/bspwm/bspwmrc
+  f_coc-settings.json:
+    dst: ~/.config/nvim/coc-settings.json
+    src: .config/nvim/coc-settings.json
+  f_efm-langserver.yaml:
+    dst: ~/.config/efm-langserver/config.yaml
+    src: .config/efm-langserver/config.yaml
+  f_gitconfig:
+    dst: ~/.gitconfig
+    src: .gitconfig
+  f_init.vim:
+    dst: ~/.config/nvim/init.vim
+    src: .config/nvim/init.vim
+  f_libra_config:
+    dst: ~/.config/libra/config.toml
+    src: .config/libra/config.toml
+  f_mailcap:
+    dst: ~/.mailcap
+    src: .mailcap
+  f_makepkg.conf:
+    dst: ~/.config/pacman/makepkg.conf
+    src: .config/pacman/makepkg.conf
+  f_mako_config:
+    dst: ~/.config/mako/config
+    src: .config/mako/config
+  f_mimeo_associations.txt:
+    dst: ~/.config/mimeo/associations.txt
+    src: .config/mimeo/associations.txt
+  f_mpd.conf:
+    dst: ~/.config/mpd/mpd.conf
+    src: .config/mpd/mpd.conf
+  f_mpdris2.conf:
+    dst: ~/.config/mpDris2/mpDris2.conf
+    src: .config/mpDris2/mpDris2.conf
+  f_mpdscribble.conf:
+    dst: ~/.mpdscribble/mpdscribble.conf
+    src: .mpdscribble/mpdscribble.conf
+  f_ncmpcpp_bindings:
+    dst: ~/.config/ncmpcpp/bindings
+    src: .config/ncmpcpp/bindings
+  f_ranger.conf:
+    dst: ~/.config/ranger/rc.conf
+    src: .config/ranger/rc.conf
+  f_ranger_commands.py:
+    dst: ~/.config/ranger/commands.py
+    src: .config/ranger/commands.py
+  f_redshift.conf:
+    dst: ~/.config/redshift/redshift.conf
+    src: .config/redshift/redshift.conf
+  f_rofi-pass.conf:
+    dst: ~/.config/rofi-pass/config
+    src: .config/rofi-pass/config
+  f_rtv.cfg:
+    dst: ~/.config/rtv/rtv.cfg
+    src: .config/rtv/rtv.cfg
+  f_ssh.conf:
+    dst: ~/.ssh/config
+    src: .ssh/config
+  f_steam-native.desktop:
+    dst: ~/.local/share/applications/steam-native.desktop
+    src: .local/share/applications/steam-native.desktop
+  f_tdesktop_lang.strings:
+    dst: ~/.config/telegram-desktop/lang.strings
+    src: .config/telegram-desktop/lang.strings
+  f_tmux.conf:
+    dst: ~/.tmux.conf
+    src: .tmux.conf
+  f_yay_config.json:
+    dst: ~/.config/yay/config.json
+    src: .config/yay/config.json
+  f_youtube-dl_config:
+    dst: ~/.config/youtube-dl/config
+    src: .config/youtube-dl/config
+  f_youtube-viewer.conf:
+    dst: ~/.config/youtube-viewer/youtube-viewer.conf
+    src: .config/youtube-viewer/youtube-viewer.conf
+  f_zathurarc:
+    dst: ~/.config/zathura/zathurarc
+    src: .config/zathura/zathurarc
+  f_zprofile:
+    dst: ~/.zprofile
+    src: .zprofile
+  f_zshrc:
+    dst: ~/.zshrc
+    src: .zshrc
+  d_rofi:
+    src: .config/rofi
+    dst: ~/.config/rofi
+  d_zsh:
+    src: .config/zsh
+    dst: ~/.config/zsh
+  f_fonts.conf:
+    src: .config/fontconfig/fonts.conf
+    dst: ~/.config/fontconfig/fonts.conf
+  f_ignore:
+    src: .ignore
+    dst: ~/.ignore
+  f_nvimpager_init.vim:
+    src: .config/nvimpager/init.vim
+    dst: ~/.config/nvimpager/init.vim
+profiles:
+  Media:
+    dotfiles:
+    - f_beets_config
+    - f_beets_whitelist
+    - f_abcde.conf
+    - d_mpv
+    - f_youtube-dl_config
+    - f_mpd.conf
+  Sway:
+    dotfiles:
+    - d_sway
+    - d_waybar
+    - d_rofi
+    - f_mako_config
+    - f_redshift.conf
+    - f_rofi-pass.conf
+  Pacman:
+    dotfiles:
+    - f_yay_config.json
+    - f_makepkg.conf
+  Mirkwood:
+    dotfiles:
+    - d_systemd
+    - f_tdesktop_lang.strings
+    - f_gitconfig
+    - f_mailcap
+    - f_zprofile
+    - f_mimeo_associations.txt
+    - f_mpdscribble.conf
+    - f_mpdris2.conf
+    - f_ranger_commands.py
+    - f_libra_config
+    - f_ncmpcpp_bindings
+    - f_zathurarc
+    - f_youtube-viewer.conf
+    - f_efm-langserver.yaml
+    - f_fonts.conf
+    include:
+    - Terminal
+    - Media
+    - Sway
+    - Pacman
+  ReekyRaspberry:
+    include:
+    - Terminal
+  Rivendell:
+    include:
+    - Terminal
+    - Media
+    - Pacman
+  Terminal:
+    dotfiles:
+    - f_nvimpager_init.vim
+    - f_ignore
+    - f_rtv.cfg
+    - d_zsh
+    - f_zshrc
+    - f_tmux.conf
+    - f_ranger.conf
+    - f_ssh.conf
+    - f_authorized_keys
+    - d_scripts
+    - d_nvim_config
+    - f_init.vim
+    - f_coc-settings.json
+    - f_gitconfig
+    - f_alacritty.yml
+  AnittaPC:
+    include:
+    - Terminal

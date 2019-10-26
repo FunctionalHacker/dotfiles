@@ -1,0 +1,5 @@
+# vim: filetype=muttrc
+
+set sidebar_visible = yes
+set sidebar_indent_string = '  '
+sidebar_whitelist '~/.mail/<>/INBOX'

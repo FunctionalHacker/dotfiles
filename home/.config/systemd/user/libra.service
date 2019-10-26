@@ -1,0 +1,9 @@
+[Unit]
+Description=Listenbrainz scrobbler for MPD
+After=mpd.service
+
+[Service]
+ExecStart=%h/.bin/go/bin/libra
+
+[Install]
+WantedBy=default.target

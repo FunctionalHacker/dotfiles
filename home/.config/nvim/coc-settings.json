@@ -1,0 +1,45 @@
+{
+	"python.jediEnabled": false,
+	"python.setLinter": "pylint",
+	"suggest.noselect": false,
+	"suggest.echodocSupport": true,
+	"suggest.maxCompleteItemCount": 20,
+	"coc.preferences.formatOnSaveFiletypes": [
+		"javascript",
+		"typescript",
+		"typescriptreact",
+		"json",
+		"javascriptreact"
+	],
+	"eslint.filetypes": [
+		"javascript",
+		"typescript",
+		"typescriptreact",
+		"javascriptreact"
+	],
+	"eslint.autoFixOnSave": false,
+	"prettier.singleQuote": true,
+	"diagnostic.errorSign": "•",
+	"diagnostic.warningSign": "•",
+	"diagnostic.infoSign": "•",
+	"suggest.snippetIndicator": "~",
+	"languageserver": {
+		"bash": {
+			"command": "bash-language-server",
+			"args": ["start"],
+			"filetypes": ["sh"],
+			"ignoredRootPaths": ["~"]
+		},
+		"xml": {
+			"command": "xml-language-server",
+			"args": ["start"],
+			"filetypes": ["xml"],
+			"ignoredRootPaths": ["~"]
+		},
+		"efm": {
+			"command": "~/.bin/go/bin/efm-langserver",
+			"args": [],
+			"filetypes": ["markdown"]
+		}
+	}
+}

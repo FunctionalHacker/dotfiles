@@ -1,0 +1,6 @@
+#!/bin/bash
+if [ $# -eq 1 ]; then
+	/usr/bin/alacritty -e "nvim $1"
+else
+	/usr/bin/alacritty -e "$@"
+fi

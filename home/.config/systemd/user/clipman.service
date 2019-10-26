@@ -1,0 +1,10 @@
+[Unit]
+Description=A simple clipboard manager for Wayland
+PartOf=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/clipman -d
+
+[Install]
+WantedBy=sway-session.target

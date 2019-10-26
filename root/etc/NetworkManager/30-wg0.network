@@ -1,0 +1,10 @@
+[Match]
+Name = wg0
+
+[Network]
+Address = 10.0.0.3/32
+DNS = 10.0.0.1
+
+[Route]
+Gateway = 10.0.0.1
+Destination = 10.0.0.0/24

@@ -1,0 +1,16 @@
+#!/bin/bash
+
+source $DOTREPO/secrets/env
+
+cat <<SECRET > $DOTREPO/secrets/secrets
+export PASS_LIBREFM="$PASS_LIBREFM"
+export PASS_MUSICBRAINZ="$PASS_MUSICBRAINZ"
+export PASS_LISTENBRAINZ="$PASS_LISTENBRAINZ"
+export PASS_MUSPY="$PASS_MUSPY"
+export PASS_ARIA2="$PASS_ARIA2"
+export PASS_MPD="$PASS_MPD"
+
+export ME_FULLNAME="$ME_FULLNAME"
+export ME_ADDRESS="$ME_ADDRESS"
+export ME_PHONE="$ME_PHONE"
+SECRET

@@ -1,0 +1,41 @@
+mpvq %U
+  ^https?://invidio.us/.*
+  
+mpvq %U
+  ^https?://(m.)?(www.)?youtube.com/watch\?.*v=
+
+mpvq %U
+  ^https?://(www.)?youtube.com/playlist\?.*list=
+
+mpvq %U
+  ^https?://(www.)?youtu.be/
+
+mpvq %U
+  ^https?://(www.)?(m.)?twitch.tv/
+
+mpvq %U
+  ^https?://(?:[a-z0-9\-]+\.)+[a-z]{2,6}(?:/[^/#?]+)+\.(?:mp4|mkv|webm|avi|3gp|gif|gifv)
+
+mpvq %U
+  ^https?://www.facebook.com/.*/videos/
+
+mpvq %U
+  ^https?://gfycat.com/.*
+
+mpvq %U
+  ^https?://vimeo.com/.*
+
+mpvq %U
+  ^https?://v.redd.it/.*
+
+imgurviewer %U
+  ^https?://(www.)?imgur.com/a/
+
+imgurviewer %U
+  ^https?://(www.)?imgur.com/gallery/
+
+imageviewer %U
+  ^https?://(?:[a-z0-9\-]+\.)+[a-z]{2,6}(?:/[^/#?]+)+\.(?:jpg|jpeg|png|svg)
+
+zathura %U
+  ^https?://(?:[a-z0-9\-]+\.)+[a-z]{2,6}(?:/[^/#?]+)+\.(?:pdf)

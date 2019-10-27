@@ -36,6 +36,7 @@ services:
       DECONZ_VNC_PORT: 5901
       DECONZ_VNC_MODE: 1
       DECONZ_VNC_PASSWORD: "${DECONZ_VNC_PASSWORD}"
+      DEBUG_OTAU: 1
     network_mode: host
     volumes:
       - /etc/localtime:/etc/localtime:ro

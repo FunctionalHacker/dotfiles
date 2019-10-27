@@ -4,10 +4,10 @@ services:
     environment:
       TZ: "Europe/Helsinki"
     container_name: home-assistant
+    restart: always
     image: homeassistant/home-assistant
     volumes:
       - /homeautomation-config/home-assistant:/config
-    restart: always
     network_mode: host
     depends_on:
       - mariadb
@@ -16,7 +16,7 @@ services:
   mariadb:
     image: mariadb/server:10.3
     container_name: mariadb
-    restart: unless-stopped
+    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
       MYSQL_DATABASE: ha_db
@@ -48,6 +48,9 @@ services:
   node-red:
     container_name: node-red
     image: nodered/node-red
+    restart: always
+    environment:
+      TZ: "Europe/Helsinki"
     network_mode: host
     ports:
       - "1880:1880"
@@ -55,13 +58,11 @@ services:
       - /homeautomation-config/node-red:/data
     depends_on:
       - home-assistant
-    environment:
-      TZ: "Europe/Helsinki"
-    restart: unless-stopped
 
   portainer:
     container_name: portainer
     image: portainer/portainer
+    restart: always
     ports:
       - "9000:9000"
     volumes:

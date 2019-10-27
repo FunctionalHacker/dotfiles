@@ -66,3 +66,11 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /homeautomation-config/portainer:/data
+
+  mosquitto:
+    container_name: mosquitto
+    image: eclipse-mosquitto
+    restart: always
+    network_mode: host
+    volumes:
+      - /homeautomation-config/mosquitto:/mosquitto

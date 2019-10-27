@@ -92,6 +92,9 @@ dotfiles:
   f_rc-manager.conf:
     src: etc/NetworkManager/conf.d/rc-manager.conf
     dst: /etc/NetworkManager/conf.d/rc-manager.conf
+  f_99-conbee-usb-serial.rules:
+    src: etc/udev/rules.d/99-conbee-usb-serial.rules
+    dst: /etc/udev/rules.d/99-conbee-usb-serial.rules
 profiles:
   locale:
     dotfiles:
@@ -125,6 +128,7 @@ profiles:
     - f_99-sysctl.conf
     - f_override.conf
     - f_rc-manager.conf
+    - f_99-conbee-usb-serial.rules
     include:
     - locale
     - pacman

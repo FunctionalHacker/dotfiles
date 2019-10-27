@@ -46,7 +46,7 @@ services:
       - /dev/ttyACM0
 
   node-red:
-    container_name: nodered
+    container_name: node-red
     image: nodered/node-red
     network_mode: host
     ports:

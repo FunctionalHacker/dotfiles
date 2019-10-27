@@ -31,14 +31,12 @@ services:
     image: marthoc/deconz
     restart: always
     environment:
-      DECONZ_VNC_MODE: 0
+      DECONZ_WEB_PORT: 8083
+      DECONZ_WS_PORT: 8084
       DECONZ_VNC_PORT: 5901
+      DECONZ_VNC_MODE: 1
       DECONZ_VNC_PASSWORD: "${DECONZ_VNC_PASSWORD}"
     network_mode: host
-    ports:
-      - "8083:80"
-      - "8084:443"
-      - "5901:5901"
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /homeautomation-config/deconz:/root/.local/share/dresden-elektronik/deCONZ

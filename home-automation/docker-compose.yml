@@ -1,0 +1,59 @@
+version: '3'
+services:
+  home-assistant:
+    container_name: home-assistant
+    image: homeassistant/home-assistant
+    volumes:
+      - /homeautomation-config/home-assistant:/config
+      - /etc/localtime:/etc/localtime:ro
+    restart: unless-stopped
+    network_mode: host
+    depends_on:
+      - mariadb
+      - deconz
+
+  mariadb:
+    image: mariadb/server:10.3
+    container_name: mariadb
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+      MYSQL_DATABASE: ha_db
+      MYSQL_PASSWORD: "${HA_MYSQL_PASSWORD}"
+    volumes:
+      - /homeautomation-config/mariadb:/var/lib/mysql
+    ports:
+      - "3306:3306"
+
+  deconz:
+    container_name: deconz
+    image: marthoc/deconz
+    restart: always
+    network_mode: host
+    environment:
+      DECONZ_VNC_MODE: 1
+      DECONZ_VNC_PORT: 5950
+      DECONZ_VNC_PASSWORD: "${DECONZ_VNC_PASSWORD}"
+    ports:
+      - "8083:80"
+      - "8084:443"
+      - "5900:5950"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /homeautomation-config/deconz:/root/.local/share/dresden-elektronik/deCONZ
+    devices:
+      - "/dev/ttyACM0"
+
+  nodered:
+    container_name: nodered
+    image: nodered/node-red
+    ports:
+      - "1880:1880"
+    volumes:
+      # Local path where all Node-RED config will be stored.
+      - /homeautomation-config/node-red:/data
+    depends_on:
+      - home-assistant
+    environment:
+      TZ: "Europe/Helsinki"
+    restart: unless-stopped

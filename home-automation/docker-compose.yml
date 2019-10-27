@@ -1,12 +1,13 @@
 version: '3'
 services:
   home-assistant:
+    environment:
+      TZ: "Europe/Helsinki"
     container_name: home-assistant
     image: homeassistant/home-assistant
     volumes:
       - /homeautomation-config/home-assistant:/config
-      - /etc/localtime:/etc/localtime:ro
-    restart: unless-stopped
+    restart: always
     network_mode: host
     depends_on:
       - mariadb
@@ -23,37 +24,46 @@ services:
     volumes:
       - /homeautomation-config/mariadb:/var/lib/mysql
     ports:
-      - "3306:3306"
+      - "8036:3306"
 
   deconz:
     container_name: deconz
     image: marthoc/deconz
     restart: always
-    network_mode: host
     environment:
-      DECONZ_VNC_MODE: 1
-      DECONZ_VNC_PORT: 5950
+      DECONZ_VNC_MODE: 0
+      DECONZ_VNC_PORT: 5901
       DECONZ_VNC_PASSWORD: "${DECONZ_VNC_PASSWORD}"
+    network_mode: host
     ports:
       - "8083:80"
       - "8084:443"
-      - "5900:5950"
+      - "5901:5901"
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /homeautomation-config/deconz:/root/.local/share/dresden-elektronik/deCONZ
     devices:
-      - "/dev/ttyACM0"
+      - /dev/ttyACM0
 
-  nodered:
+  node-red:
     container_name: nodered
     image: nodered/node-red
+    network_mode: host
     ports:
       - "1880:1880"
     volumes:
-      # Local path where all Node-RED config will be stored.
       - /homeautomation-config/node-red:/data
     depends_on:
       - home-assistant
     environment:
       TZ: "Europe/Helsinki"
     restart: unless-stopped
+
+  portainer:
+    container_name: portainer
+    image: portainer/portainer
+    ports:
+      - "9000:9000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /homeautomation-config/portainer:/data

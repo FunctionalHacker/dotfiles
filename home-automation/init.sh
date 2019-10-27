@@ -9,4 +9,4 @@ HA_MYSQL_PASSWORD="$(pass reekynet/docker-home-automation | rg 'HA_MYSQL_PASSWOR
 DECONZ_VNC_PASSWORD="$(pass reekynet/docker-home-automation | rg 'DECONZ_VNC_PASSWORD' | cut -d' ' -f2-)"
 ENV
 
-docker-compose up
+docker-compose up -d

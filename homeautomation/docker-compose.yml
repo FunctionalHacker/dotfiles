@@ -13,19 +13,6 @@ services:
       - mariadb
       - deconz
 
-  mariadb:
-    image: mariadb/server:10.3
-    container_name: mariadb
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
-      MYSQL_DATABASE: ha_db
-      MYSQL_PASSWORD: "${HA_MYSQL_PASSWORD}"
-    volumes:
-      - /homeautomation-config/mariadb:/var/lib/mysql
-    ports:
-      - "8036:3306"
-
   deconz:
     container_name: deconz
     image: marthoc/deconz

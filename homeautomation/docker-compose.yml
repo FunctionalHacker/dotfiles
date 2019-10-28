@@ -10,8 +10,8 @@ services:
       - /homeautomation-config/home-assistant:/config
     network_mode: host
     depends_on:
-      - mariadb
       - deconz
+      - mosquitto
 
   deconz:
     container_name: deconz

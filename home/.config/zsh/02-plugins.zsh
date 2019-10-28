@@ -7,11 +7,11 @@ fi
 source ~/.zplugin/bin/zplugin.zsh
 
 # pure prompt
-zplugin ice lucid pick'async.zsh' src'pure.zsh' onlight'prompt_pure_setup'
+zplugin ice load multisrc'{async,pure}.zsh' atload'!prompt_pure_precmd'
 zplugin light sindresorhus/pure
 
 # substring search
-zplugin ice wait'1' lucid
+zplugin ice lucid
 zplugin light zsh-users/zsh-history-substring-search
 
 zplugin ice wait'1' lucid
@@ -34,7 +34,7 @@ zplugin ice wait'1' lucid as'completion'
 zplugin snippet https://raw.githubusercontent.com/docker/compose/master/contrib/completion/zsh/_docker-compose
 
 # syntax highlighting
-zplugin ice wait'1' lucid atinit'zpcompinit'
+zplugin ice lucid atinit'zpcompinit'
 zplugin light zdharma/fast-syntax-highlighting
 
 # use fzf with zsh

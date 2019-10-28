@@ -7,7 +7,7 @@ fi
 source ~/.zplugin/bin/zplugin.zsh
 
 # pure prompt
-zplugin ice load multisrc'{async,pure}.zsh' atload'!prompt_pure_precmd'
+zplugin ice load multisrc'{async,pure}.zsh'
 zplugin light sindresorhus/pure
 
 # substring search

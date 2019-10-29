@@ -63,7 +63,7 @@ clean() {
 	SPACEBEFORE=$(eval "$DFCMD")
 	trash-empty 10
 	sudo journalctl --vacuum-size=500M
-	yay -Sc --noconfirm
+	yay -Sc
 	SPACEAFTER=$(eval "$DFCMD")
 	echo "Saved $(calc $SPACEAFTER - $SPACEBEFORE)G of space"
 }
@@ -136,7 +136,56 @@ tether() { adb shell su -c "service call connectivity 33 i32 1 s16 me" > /dev/nu
 reflect() { sudo reflector --latest 200 --threads 8 --verbose --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist }
 
 # better ls
-ls() { ls_extended $@ }
+ls() { lsd $@ }
 
 # default icon for notify-send
 notify-send() { /usr/bin/notify-send --icon=alarm $@ }
+
+# colorise output
+cvs() { grc cvs $@ }
+df() { grc df $@ }
+digg() { grc digg $@ }
+gcc() { grc gcc $@ }
+g++() { grc g++ $@ }
+ifconfig() { grc ifconfig $@ }
+make() { grc make $@ }
+mount() { grc mount $@ }
+mtr() { grc mtr $@ }
+netstat() { grc mount $@ }
+ping() { grc ping $@ }
+ps() { grc ps $@ }
+tail() { grc ping $@ }
+traceroute() { grc traceroute $@ }
+wdiff() { grc wdiff $@ }
+blkid() { grc blkid $@ }
+du() { grc du $@ }
+dnf() { grc dnf $@ }
+docker() { grc docker $@ }
+docke-machine() { grc docker-machine $@ }
+env() { grc env $@ }
+id() { grc id $@ }
+ip() { grc ip $@ }
+iostat() { grc iostat $@ }
+last() { grc last $@ }
+lsattr() { grc lsattr $@ }
+lsblk() { grc lsblk $@ }
+lspci() { grc lspci $@ }
+lsmod() { grc lsmod $@ }
+lsof() { grc lsof $@ }
+getfacl() { grc getfacl $@ }
+getsebool() { grc getsebool $@ }
+ulimit() { grc ulimit $@ }
+uptime() { grc uptime $@ }
+nmap() { grc nmap $@ }
+fdisk() { grc fdisk $@ }
+findmnt() { grc findmnt $@ }
+free() { grc free $@ }
+semanage() { grc semanage $@ }
+sar() { grc sar $@ }
+ss() { grc ss $@ }
+sysctl() { grc sysctl $@ }
+systemctl() { grc systemctl $@ }
+stat() { grc stat $@ }
+showmount() { grc showmount $@ }
+tune2fs() { grc tune2fs $@ }
+tcpdum() { grc tcpdum $@ }

@@ -154,6 +154,9 @@ dotfiles:
   f_nvimpager_init.vim:
     src: .config/nvimpager/init.vim
     dst: ~/.config/nvimpager/init.vim
+  f_flashfocus.yml:
+    src: .config/flashfocus/flashfocus.yml
+    dst: ~/.config/flashfocus/flashfocus.yml
 profiles:
   Media:
     dotfiles:
@@ -192,6 +195,7 @@ profiles:
     - f_youtube-viewer.conf
     - f_efm-langserver.yaml
     - f_fonts.conf
+    - f_flashfocus.yml
     include:
     - Terminal
     - Media

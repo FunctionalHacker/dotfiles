@@ -24,9 +24,6 @@ set smartcase
 " Format on paste
 set paste
 
-" Automatically change working directory
-set autochdir
-
 " Nerdtree settings
 let NERDTreeMinimalUI = 1 "remove press ? for help"
 let NERDTreeAutoDeleteBuffer = 1 " delete buffer when file is deleted

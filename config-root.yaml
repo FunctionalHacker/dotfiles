@@ -95,6 +95,9 @@ dotfiles:
   f_99-conbee-usb-serial.rules:
     src: etc/udev/rules.d/99-conbee-usb-serial.rules
     dst: /etc/udev/rules.d/99-conbee-usb-serial.rules
+  f_99-lowbat.rules:
+    src: etc/udev/rules.d/99-lowbat.rules
+    dst: /etc/udev/rules.d/99-lowbat.rules
 profiles:
   locale:
     dotfiles:
@@ -129,6 +132,7 @@ profiles:
     - f_override.conf
     - f_rc-manager.conf
     - f_99-conbee-usb-serial.rules
+    - f_99-lowbat.rules
     include:
     - locale
     - pacman

@@ -3,7 +3,7 @@ _JAVA_AWT_WM_NONREPARENTING=1
 _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
 
 # Enable qt5 theming and wayland support
-QT_QPA_PLATFORMTHEME=gnome
+QT_QPA_PLATFORMTHEME=qt5ct
 QT_QPA_PLATFORM=wayland-egl
 QT_WAYLAND_DISABLE_WINDOWDECORATION=1
 

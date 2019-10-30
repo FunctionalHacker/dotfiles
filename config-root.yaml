@@ -98,6 +98,9 @@ dotfiles:
   f_99-lowbat.rules:
     src: etc/udev/rules.d/99-lowbat.rules
     dst: /etc/udev/rules.d/99-lowbat.rules
+  f_sleep.conf:
+    src: etc/systemd/sleep.conf
+    dst: /etc/systemd/sleep.conf
 profiles:
   locale:
     dotfiles:
@@ -133,6 +136,7 @@ profiles:
     - f_rc-manager.conf
     - f_99-conbee-usb-serial.rules
     - f_99-lowbat.rules
+    - f_sleep.conf
     include:
     - locale
     - pacman

@@ -229,3 +229,8 @@ profiles:
   AnittaPC:
     include:
     - Terminal
+    - Pacman
+  TakamakiPC:
+    include:
+    - Terminal
+    - Pacman

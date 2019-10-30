@@ -1,3 +1,7 @@
+" Change leader to space
+nnoremap <SPACE> <Nop>
+let mapleader = ' '
+
 " Toggle nerdtree
 map <silent> <C-t> :NERDTreeToggle<CR>
 

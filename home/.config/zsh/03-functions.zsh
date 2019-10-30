@@ -154,7 +154,7 @@ mtr() { grc mtr $@ }
 netstat() { grc mount $@ }
 ping() { grc ping $@ }
 ps() { grc ps $@ }
-tail() { grc ping $@ }
+tail() { grc tail $@ }
 traceroute() { grc traceroute $@ }
 wdiff() { grc wdiff $@ }
 blkid() { grc blkid $@ }

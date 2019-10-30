@@ -136,7 +136,7 @@ tether() { adb shell su -c "service call connectivity 33 i32 1 s16 me" > /dev/nu
 reflect() { sudo reflector --latest 200 --threads 8 --verbose --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist }
 
 # better ls
-ls() { lsd $@ }
+ls() { ls_extended $@ }
 
 # default icon for notify-send
 notify-send() { /usr/bin/notify-send --icon=alarm $@ }

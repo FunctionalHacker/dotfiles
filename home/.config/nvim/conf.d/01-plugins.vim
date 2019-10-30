@@ -23,14 +23,12 @@ call plug#begin()
 " Make editing passwords safer
 Plug 'https://git.zx2c4.com/password-store', { 'rtp': 'contrib/vim/redact_pass.vim' }
 
-" Pandoc live preview
-Plug 'ReekyMarko/pandoc-preview.vim'
-
 " Spelling
 Plug 'vim-scripts/Vimchant'
 
-" Pandoc plugin
+" Pandoc plugins
 Plug 'vim-pandoc/vim-pandoc'
+Plug 'conornewton/vim-pandoc-markdown-preview'
 
 " Fuzzy finder
 Plug 'junegunn/fzf'

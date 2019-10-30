@@ -101,6 +101,9 @@ dotfiles:
   f_sleep.conf:
     src: etc/systemd/sleep.conf
     dst: /etc/systemd/sleep.conf
+  d_sudoers.d:
+    src: etc/sudoers.d
+    dst: /etc/sudoers.d
 profiles:
   locale:
     dotfiles:
@@ -137,6 +140,7 @@ profiles:
     - f_99-conbee-usb-serial.rules
     - f_99-lowbat.rules
     - f_sleep.conf
+    - d_sudoers.d
     include:
     - locale
     - pacman

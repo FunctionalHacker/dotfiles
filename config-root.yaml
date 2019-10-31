@@ -104,6 +104,9 @@ dotfiles:
   d_sudoers.d:
     src: etc/sudoers.d
     dst: /etc/sudoers.d
+  f_fstab:
+    src: etc/fstab
+    dst: /etc/fstab
 profiles:
   locale:
     dotfiles:
@@ -141,6 +144,7 @@ profiles:
     - f_99-lowbat.rules
     - f_sleep.conf
     - d_sudoers.d
+    - f_fstab
     include:
     - locale
     - pacman

@@ -1,21 +1,17 @@
-# <filesystem>   <dir>                           <type>  <options>                                                                                                  <dump>  <pass>
-# EFI system partition
-LABEL=EFI       /boot                           vfat    rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=iso8859-1,shortname=mixed,utf8,errors=remount-ro  0       2
-
-# Root subvolumes
-LABEL=system    /                               btrfs   rw,noatime,compress=zstd:3,ssd,space_cache,subvolid=256,subvol=/root,subvol=root                           0       0
-LABEL=system    /home                           btrfs   rw,noatime,compress=zstd:3,ssd,space_cache,subvolid=258,subvol=/home,subvol=home                           0       0
-LABEL=system    /var/cache                      btrfs   rw,noatime,compress=zstd:3,ssd,space_cache,subvolid=325,subvol=/cache,subvol=cache                         0       0
-LABEL=system    /var/tmp                        btrfs   rw,noatime,compress=zstd:3,ssd,space_cache,subvolid=339,subvol=/tmp,subvol=tmp                             0       0
-
-# User subvolumes
-LABEL=system    /home/frodo/.cache              btrfs   rw,noatime,compress=zstd:3,ssd,space_cache,subvolid=328,subvol=/frodo-cache,subvol=frodo-cache             0       0
-LABEL=system    /home/frodo/.local/share/Steam  btrfs   rw,noatime,compress=zstd:3,ssd,space_cache,subvolid=327,subvol=/steam,subvol=steam                         0       0
-
-# Snapshots
-LABEL=system    /.snapshots                     btrfs   rw,noatime,compress=zstd:3,ssd,space_cache,subvolid=337,subvol=/snapshots/root,subvol=snapshots/root       0       0
-LABEL=system    /home/.snapshots                btrfs   rw,noatime,compress=zstd:3,ssd,space_cache,subvolid=338,subvol=/snapshots/home,subvol=snapshots/home       0       0
-
-# Swap
-LABEL=system    /swap                           btrfs   defaults,nodatacow,compress=no,subvol=swap                                                                 0       0
-/swap/swapfile  none                            swap    defaults,pri=100                                                                                           0       0
+#<filesystem>        <dir>                           <type>  <options>                                                                                                  <dump>  <pass>
+# EFI system partition                                                                                                                                                             
+LABEL=EFI            /boot                           vfat    rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=iso8859-1,shortname=mixed,utf8,errors=remount-ro  0       2
+# Root subvolumes                                                                                                                                                                 
+LABEL=system         /                               btrfs   rw,noatime,compress=zstd:3,ssd,space_cache,subvolid=256,subvol=/root,subvol=root                           0       0
+LABEL=system         /home                           btrfs   rw,noatime,compress=zstd:3,ssd,space_cache,subvolid=258,subvol=/home,subvol=home                           0       0
+LABEL=system         /var/cache                      btrfs   rw,noatime,compress=zstd:3,ssd,space_cache,subvolid=325,subvol=/cache,subvol=cache                         0       0
+LABEL=system         /var/tmp                        btrfs   rw,noatime,compress=zstd:3,ssd,space_cache,subvolid=339,subvol=/tmp,subvol=tmp                             0       0
+# User subvolumes                                                                                                                                                                 
+LABEL=system         /home/frodo/.cache              btrfs   rw,noatime,compress=zstd:3,ssd,space_cache,subvolid=328,subvol=/frodo-cache,subvol=frodo-cache             0       0
+LABEL=system         /home/frodo/.local/share/Steam  btrfs   rw,noatime,compress=zstd:3,ssd,space_cache,subvolid=327,subvol=/steam,subvol=steam                         0       0
+# Snapshots                                                                                                                                                                      
+LABEL=system         /.snapshots                     btrfs   rw,noatime,compress=zstd:3,ssd,space_cache,subvolid=337,subvol=/snapshots/root,subvol=snapshots/root       0       0
+LABEL=system         /home/.snapshots                btrfs   rw,noatime,compress=zstd:3,ssd,space_cache,subvolid=338,subvol=/snapshots/home,subvol=snapshots/home       0       0
+# Swap                                                                                                                                                                           
+LABEL=system         /swap                           btrfs   defaults,nodatacow,compress=no,subvol=swap                                                                 0       0
+/swap/swapfile       none                            swap    defaults,pri=100                                                                                           0       0

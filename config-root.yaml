@@ -29,9 +29,6 @@ dotfiles:
   f_cryptissue:
     dst: /etc/cryptissue
     src: etc/cryptissue
-  f_default.pa:
-    dst: /etc/pulse/default.pa
-    src: etc/pulse/default.pa
   f_detected.sh:
     dst: /etc/clamav/detected.sh
     src: etc/clamav/detected.sh
@@ -68,12 +65,6 @@ dotfiles:
   f_pacserve.service.conf:
     dst: /etc/pacserve/pacserve.service.conf
     src: etc/pacserve/pacserve.service.conf
-  f_qemu.conf:
-    dst: /etc/libvirt/qemu.conf
-    src: etc/libvirt/qemu.conf
-  f_resolved.conf:
-    dst: /etc/systemd/resolved.conf
-    src: etc/systemd/resolved.conf
   f_sshd_config:
     dst: /etc/ssh/sshd_config
     src: etc/ssh/sshd_config
@@ -83,15 +74,9 @@ dotfiles:
   f_welcomemessage.conf:
     dst: /etc/welcomemessage.conf
     src: etc/welcomemessage.conf
-  f_wifi_backend.conf:
-    dst: /etc/NetworkManager/conf.d/wifi_backend.conf
-    src: etc/NetworkManager/conf.d/wifi_backend.conf
   f_override.conf:
     src: etc/systemd/system/getty@tty1.service.d/override.conf
     dst: /etc/systemd/system/getty@tty1.service.d/override.conf
-  f_rc-manager.conf:
-    src: etc/NetworkManager/conf.d/rc-manager.conf
-    dst: /etc/NetworkManager/conf.d/rc-manager.conf
   f_99-conbee-usb-serial.rules:
     src: etc/udev/rules.d/99-conbee-usb-serial.rules
     dst: /etc/udev/rules.d/99-conbee-usb-serial.rules
@@ -123,9 +108,6 @@ profiles:
     - d_bin
     - f_adb.service
     - f_bluetooth.conf
-    - f_resolved.conf
-    - f_qemu.conf
-    - f_default.pa
     - f_iwd@.service
     - f_loader.conf
     - f_sshd_config
@@ -136,11 +118,9 @@ profiles:
     - f_timesyncd.conf
     - f_99-sysctl.conf
     - f_override.conf
-    - f_rc-manager.conf
     - f_99-conbee-usb-serial.rules
     - f_99-lowbat.rules
     - f_sleep.conf
-    - d_sudoers.d
     - f_fstab
     include:
     - locale

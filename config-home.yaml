@@ -157,6 +157,9 @@ dotfiles:
   f_flashfocus.yml:
     src: .config/flashfocus/flashfocus.yml
     dst: ~/.config/flashfocus/flashfocus.yml
+  f_config:
+    src: .config/ncmpcpp/config
+    dst: ~/.config/ncmpcpp/config
 profiles:
   Media:
     dotfiles:
@@ -196,6 +199,7 @@ profiles:
     - f_efm-langserver.yaml
     - f_fonts.conf
     - f_flashfocus.yml
+    - f_config
     include:
     - Terminal
     - Media

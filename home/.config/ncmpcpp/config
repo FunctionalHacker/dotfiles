@@ -1,0 +1,1 @@
+mpd_host = {{@@ env['PASS_MPD'] @@}}@localhost

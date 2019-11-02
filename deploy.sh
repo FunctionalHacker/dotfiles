@@ -1,78 +1,52 @@
 #!/bin/bash
 
-# Short url for this file: bit.ly/reekydots
-
 # to run this, execute
-# bash <(curl -sL bit.ly/reekydots)
-
+# bash <(curl -sL git.reekynet.com/ReekyMarko/dotfiles/raw/branch/master/deploy.sh)
 
 # Run this to install my dotfiles on a fresh Arch Linux installation.
-# This should work on any fresh Arch Linux install with an internet connection
+# This should work on any Arch Linux install with an internet connection
+# and sudo rights
 
 # When asked a hostname, make sure it's already in the dotrop config,
 # otherwise dotdrop won't install anything
 
 export DOTREPO="$HOME/Git/dotfiles"
+export HOSTNAME="$(hostnamectl | head -n 1 | sed 's/ //g' | cut -d':' -f2-)"
+export DISTRO="$(lsb_release -ds | sed 's/"//g')"
 
-read -p "Hostname: " hostname
-read -p "Install pkglist-extra? [y/n]: " extra
+if [ "$DISTRO" -ne "Arch Linux" ]; then
+	print "Not running on Arch Linux"
+	print "Other distros not supported, exiting..."
+	exit 1
+fi
+
+read -p "Hostname [$HOSTNAME]: " -i $HOSTNAME NEWHOSTNAME
+if [ "$HOSTNAME -ne $NEWHOSTNAME" ]; then
+	sudo hostnamectl set-hostname $NEWHOSTNAME	
+fi
+HOSTNAME=$NEWHOSTNAME
 
 # install yay
-sudo pacman -Syu --needed --noconfirm git wget base-devel python python-jinja python-pyaml python-docopt
-cd ~
-wget https://aur.archlinux.org/cgit/aur.git/snapshot/yay-bin.tar.gz
-tar xfv yay-bin.tar.gz
-cd yay-bin
-makepkg -sic --noconfirm
-cd ..
-rm -r yay-bin*
-yay -S --noconfirm --combinedupgrade --sudoloop --pgpfetch reflector
-printf "\nUpdating mirrorlists, this might take a while"
-sudo reflector --latest 200 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+if ! [ -x "$(command -v yay)" ]; then
+	read -p "Install yay? [Y/n] " -i "y" IYAY
+	if [ "$(tr '[:upper:]' ':lower:' $IYAY)" -eq "y" ]; then
+		print "Installing yay"
+	fi
+	sudo pacman -Syu --needed --noconfirm git wget base-devel
+	cd
+	wget https://aur.archlinux.org/cgit/aur.git/snapshot/yay.tar.gz
+	tar xfv yay.tar.gz
+	cd yay-bin
+	makepkg -si --noconfirm
+	cd ..
+	rm -r yay-bin*
+fi
 
-# install dotfiles
 mkdir ~/Git
-git clone https://gitlab.com/ReekyMarko/dotfiles.git ~/Git/dotfiles
+git clone https://git.reekynet.com/ReekyMarko/dotfiles.git $DOTREPO
 cd ~/Git/dotfiles
 git submodule init
 git submodule update
-./dotdrop.sh -p "$hostname" install
-sudo $DOTREPO/dotdrop.sh -p "$hostname" --cfg=$DOTREPO/global-config.yaml install
-
-# setup locale
-yay -S --noconfirm locale-en_xx
-sudo locale-gen
-
-# set network, timezone and hostname
-sudo su -c " echo "$hostname" > /etc/hostname"
-yay -S --noconfirm tzupdate 
-sudo timedatectl set-ntp true
-sudo tzupdate
-
-# install essentials
-yay -S --needed - < pkglist
-
-# install all other packages
-if [[ "$extra" == "y" ]]; then
-	yay -S --noconfirm nodejs-lts-carbon
-	yay -S --needed - < pkglist-extra
-fi
-
-# install zplugin
-mkdir ~/.zplugin
-git clone https://github.com/zdharma/zplugin.git ~/.zplugin/bin
-
-# install tmux plugin manager
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-
-# change shell
+$DOTREPO/dotdrop.sh --cfg=$DOTREPO/config-home.yaml install
 chsh -s /bin/zsh
-
-# enable autologin for the current user
-mkdir /etc/systemd/system/getty@tty1.service.d
-sudo su -c "cat <<CONFIG > /etc/systemd/system/getty@tty1.service.d/override.conf
-ExecStart=
-ExecStart=-/usr/bin/agetty --autologin $(who | sed 's/ .*//') --noclear %I $TERM
-CONFIG"
-
-printf "\nEverything done. Install display drivers and reboot"
+zsh -c "source ~/.zshrc; sdotdrop install"

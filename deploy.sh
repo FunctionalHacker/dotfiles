@@ -36,10 +36,10 @@ if ! [ -x "$(command -v yay)" ]; then
 	cd
 	wget https://aur.archlinux.org/cgit/aur.git/snapshot/yay.tar.gz
 	tar xfv yay.tar.gz
-	cd yay-bin
+	cd yay
 	makepkg -si --noconfirm
 	cd ..
-	rm -r yay-bin*
+	rm -r yay*
 fi
 
 mkdir ~/Git

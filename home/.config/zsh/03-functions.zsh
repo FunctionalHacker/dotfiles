@@ -118,7 +118,7 @@ dotsync() { cd $DOTREPO && gpull && ga && gc && gpush && cd $OLDPWD }
 passync() { pass git pull && pass git push && updatesecrets }
 
 # update stuff
-plugupdate() { vim +PlugUpgrade +PlugUpdate +qa && zplug update }
+plugupdate() { vim +PlugUpgrade +PlugUpdate +qa && zplugin update }
 dotupdate() { dotgit submodule update --init --recursive && dotgit submodule update --remote dotdrop && dotsync }
 update() { yay -Syu firefox-nightly; flatpak update }
 updateall() { update; plugupdate; dotupdate; passync; sudo awman-update }

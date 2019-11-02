@@ -93,10 +93,6 @@ i() { iwctl station wlan $@ }
 # download firefox customizations
 ffcustom() { wget "https://gist.githubusercontent.com/Sporif/db6b3440fba0b1bcf5477afacf93f875/raw/2a1be65a12f8f0c88ba84a69697e542ad62d4624/userChrome.css" "https://gist.github.com/mrkwatz/277fb19d210a7539304ca2388f24d8e3/raw/d5b47f4089a3ef29cc719ecb9f3bc0d333ab866a/userChrome.js" "https://gist.github.com/mrkwatz/277fb19d210a7539304ca2388f24d8e3/raw/d5b47f4089a3ef29cc719ecb9f3bc0d333ab866a/userChrome.xml" }
 
-# nvim ftw!
-vim() { nvim $@ }
-v() { nvim $@ }
-
 # change cpu power settings
 performanceg() { sudo cpupower frequency-set -g performance }
 powersaveg() { sudo cpupower frequency-set -g powersave }

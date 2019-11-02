@@ -108,7 +108,7 @@ ultimatepowersave() { powersave && sudo ryzenadj --stapm-limit=25000 --fast-limi
 cpufreq() { watch -n 1 eval "cat /proc/cpuinfo |grep MHz" }
 
 # dotdrop
-updatesecrets() { bash $DOTREPO/secrets/secrets.sh }
+updatesecrets() { bash $DOTREPO/secrets/secrets.sh; chmod 600 $DOTREPO/secrets/secrets }
 dotdrop() { source $DOTREPO/secrets/secrets && $DOTREPO/dotdrop/dotdrop.sh --cfg=$DOTREPO/config-home.yaml $@ }
 sdotdrop() { source $DOTREPO/secrets/secrets && sudo -E $DOTREPO/dotdrop/dotdrop.sh --cfg=$DOTREPO/config-root.yaml $@ }
 dotgit() { git -C $DOTREPO $@ }

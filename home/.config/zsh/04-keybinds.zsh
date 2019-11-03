@@ -41,3 +41,6 @@ fi
 # use <ESC> e to open command in editor
 autoload edit-command-line; zle -N edit-command-line
 bindkey -M vicmd e edit-command-line
+
+# bind delete in normal mode
+bindkey -M vicmd '^[[3~' delete-char

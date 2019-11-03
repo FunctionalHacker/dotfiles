@@ -6,17 +6,18 @@ endif
 
 " Set coc extensions
 let g:coc_global_extensions = [
-  \ 'coc-tsserver',
-  \ 'coc-html',
-  \ 'coc-tsserver',
-  \ 'coc-json',
-  \ 'coc-yaml',
-  \ 'coc-highlight',
-  \ 'coc-vimtex',
-  \ 'coc-prettier',
-  \ 'coc-python',
-  \ 'coc-emmet'
-  \ ]
+			\ 'coc-tsserver',
+			\ 'coc-html',
+			\ 'coc-tsserver',
+			\ 'coc-json',
+			\ 'coc-yaml',
+			\ 'coc-highlight',
+			\ 'coc-vimtex',
+			\ 'coc-prettier',
+			\ 'coc-python',
+			\ 'coc-emmet',
+			\ 'coc-rls'
+			\ ]
 
 call plug#begin()
 

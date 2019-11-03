@@ -17,12 +17,9 @@ set cmdheight=1
 " Set pandoc preview program
 let g:pandoc_preview_pdf_cmd = "zathura"
 
-" Case insensitive seatch
+" Case insensitive search
 set ignorecase
 set smartcase
-
-" Format on paste
-set paste
 
 " Nerdtree settings
 let NERDTreeMinimalUI = 1 "remove press ? for help"

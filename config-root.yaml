@@ -92,45 +92,45 @@ dotfiles:
 profiles:
   locale:
     dotfiles:
-    - f_locale.conf
-    - f_locale.gen
+      - f_locale.conf
+      - f_locale.gen
   pacman:
     dotfiles:
-    - f_pacman.conf
-    - f_pacserve.service.conf
+      - f_pacman.conf
+      - f_pacserve.service.conf
   Mirkwood:
     dotfiles:
-    - f_environment
-    - f_cryptissue
-    - f_welcomemessage.conf
-    - f_clamd.conf
-    - f_detected.sh
-    - d_bin
-    - f_adb.service
-    - f_bluetooth.conf
-    - f_iwd@.service
-    - f_loader.conf
-    - f_sshd_config
-    - f_logind.conf
-    - f_60-uinput-permissions.rules
-    - f_freetype2.sh
-    - f_fonts.conf
-    - f_timesyncd.conf
-    - f_99-sysctl.conf
-    - f_override.conf
-    - f_99-conbee-usb-serial.rules
-    - f_99-lowbat.rules
-    - f_sleep.conf
-    - f_fstab
+      - f_environment
+      - f_cryptissue
+      - f_welcomemessage.conf
+      - f_clamd.conf
+      - f_detected.sh
+      - d_bin
+      - f_adb.service
+      - f_bluetooth.conf
+      - f_iwd@.service
+      - f_loader.conf
+      - f_sshd_config
+      - f_logind.conf
+      - f_60-uinput-permissions.rules
+      - f_freetype2.sh
+      - f_fonts.conf
+      - f_timesyncd.conf
+      - f_99-sysctl.conf
+      - f_override.conf
+      - f_99-conbee-usb-serial.rules
+      - f_99-lowbat.rules
+      - f_sleep.conf
+      - f_fstab
     include:
-    - locale
-    - pacman
+      - locale
+      - pacman
   Rivendell:
     include:
-    - locale
-    - pacman
+      - locale
+      - pacman
     dotfiles:
-    - f_bluetooth.conf
-    - f_60-uinput-permissions.rules
-    - f_timesyncd.conf
-    - f_sshd_config
+      - f_bluetooth.conf
+      - f_60-uinput-permissions.rules
+      - f_timesyncd.conf
+      - f_sshd_config

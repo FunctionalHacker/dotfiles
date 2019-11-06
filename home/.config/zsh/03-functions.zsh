@@ -9,6 +9,7 @@ git() {
 
 # git shorthands
 gc() { git commit $@ }
+gac() { ga && gc }
 gpull() { git pull $@ }
 gpush() { git push $@ }
 

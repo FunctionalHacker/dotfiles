@@ -34,10 +34,6 @@ zplugin snippet /usr/share/fzf/completion.zsh
 zplugin ice wait'1' lucid as'completion'
 zplugin snippet $DOTREPO/dotdrop/completion/_dotdrop-completion.zsh
 
-# docker completion
-zplugin ice wait'1' lucid as'completion'
-zplugin snippet https://raw.githubusercontent.com/docker/machine/master/contrib/completion/zsh/_docker-machine
-
 # docker-compose completion
 zplugin ice wait'1' lucid as'completion'
 zplugin snippet https://raw.githubusercontent.com/docker/compose/master/contrib/completion/zsh/_docker-compose

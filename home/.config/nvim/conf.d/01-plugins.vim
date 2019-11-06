@@ -11,7 +11,6 @@ let g:coc_global_extensions = [
 			\ 'coc-tsserver',
 			\ 'coc-json',
 			\ 'coc-yaml',
-			\ 'coc-highlight',
 			\ 'coc-vimtex',
 			\ 'coc-prettier',
 			\ 'coc-python',
@@ -23,6 +22,9 @@ call plug#begin()
 
 " Make editing passwords safer
 Plug 'https://git.zx2c4.com/password-store', { 'rtp': 'contrib/vim/redact_pass.vim' }
+
+" Colorize color words
+Plug 'norcalli/nvim-colorizer.lua'
 
 " Spelling
 Plug 'vim-scripts/Vimchant'

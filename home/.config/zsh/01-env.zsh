@@ -5,7 +5,6 @@ export KEYTIMEOUT=1
 export HISTFILE=~/.zsh_history
 export HISTSIZE=1000
 export SAVEHIST=1000
-export setopt appendhistory
 
 # go path
 export GOPATH=~/.bin/go

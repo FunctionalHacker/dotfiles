@@ -26,6 +26,10 @@ zplugin light wfxr/forgit
 zplugin ice wait'1' lucid as'completion'
 zplugin light zsh-users/zsh-completions
 
+# fzf completions
+zplugin ice wait'1' lucid as'completion'
+zplugin snippet /usr/share/fzf/completion.zsh
+
 # dotdrop completion
 zplugin ice wait'1' lucid as'completion'
 zplugin snippet $DOTREPO/dotdrop/completion/_dotdrop-completion.zsh

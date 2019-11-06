@@ -5,3 +5,6 @@
 .gnupg/
 .subversion/
 .cache/
+.cargo/
+.zplugin/
+.config/nvim/plugged/

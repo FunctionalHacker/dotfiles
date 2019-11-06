@@ -6,5 +6,6 @@
 .subversion/
 .cache/
 .cargo/
+.rustup/
 .zplugin/
 .config/nvim/plugged/

@@ -1,4 +1,4 @@
-# install zplugin if it's not
+# install zplugin if it's not already installed
 if [ ! -f ~/.zplugin/bin/zplugin.zsh ]; then
 	mkdir ~/.zplugin
 	git clone https://github.com/zdharma/zplugin.git ~/.zplugin/bin
@@ -14,12 +14,17 @@ zplugin light sindresorhus/pure
 zplugin ice lucid
 zplugin light zsh-users/zsh-history-substring-search
 
-zplugin ice wait'1' lucid
+# omz tab completion etc
+zplugin ice lucid
 zplugin snippet OMZ::lib/completion.zsh
 
 # fzf git awesomeness
 zplugin ice wait'1' lucid atload'source $HOME/.config/zsh/03-functions.zsh'
 zplugin light wfxr/forgit
+
+# lots of completions
+zplugin ice wait'1' lucid as'completion'
+zplugin light zsh-users/zsh-completions
 
 # dotdrop completion
 zplugin ice wait'1' lucid as'completion'

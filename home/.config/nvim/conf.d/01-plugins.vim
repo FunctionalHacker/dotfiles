@@ -15,7 +15,7 @@ let g:coc_global_extensions = [
 			\ 'coc-prettier',
 			\ 'coc-python',
 			\ 'coc-emmet',
-			\ 'coc-rls'
+			\ 'coc-rust-analyzer'
 			\ ]
 
 call plug#begin()
@@ -36,9 +36,6 @@ Plug 'conornewton/vim-pandoc-markdown-preview'
 " Fuzzy finder
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
-
-" This is so I can use vim as a diff pager
-Plug 'powerman/vim-plugin-AnsiEsc'
 
 " Airline statusline
 Plug 'vim-airline/vim-airline'

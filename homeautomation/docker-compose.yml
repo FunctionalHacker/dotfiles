@@ -2,7 +2,7 @@ version: '3'
 services:
   home-assistant:
     environment:
-      TZ: "Europe/Helsinki"
+      TZ: 'Europe/Helsinki'
     container_name: home-assistant
     restart: always
     image: homeassistant/home-assistant
@@ -22,7 +22,7 @@ services:
       DECONZ_WS_PORT: 8084
       DECONZ_VNC_PORT: 5901
       DECONZ_VNC_MODE: 1
-      DECONZ_VNC_PASSWORD: "${DECONZ_VNC_PASSWORD}"
+      DECONZ_VNC_PASSWORD: '${DECONZ_VNC_PASSWORD}'
       DEBUG_OTAU: 1
     network_mode: host
     volumes:
@@ -36,10 +36,10 @@ services:
     image: nodered/node-red
     restart: always
     environment:
-      TZ: "Europe/Helsinki"
+      TZ: 'Europe/Helsinki'
     network_mode: host
     ports:
-      - "1880:1880"
+      - '1880:1880'
     volumes:
       - /homeautomation-config/node-red:/data
     depends_on:
@@ -61,3 +61,14 @@ services:
     network_mode: host
     volumes:
       - /homeautomation-config/mosquitto:/mosquitto
+
+  snips:
+    container_name: snips
+    image: dYalib/snips-docker
+    restart: always
+    ports: 76477:1883
+    volumes:
+      - /homeautomation-config/snips/log/:/var/log
+      - /homeautomation-config/snips/snips.toml:/etc/snips.toml
+      - /homeautomation-config/snips/mosquitto.conf:/etc/mosquitto/mosquitto.conf
+      - /homeautomation-config/snips/assistant:/usr/share/snips

@@ -73,3 +73,12 @@ services:
       - /homeautomation-config/snips/log/:/var/log
       - /homeautomation-config/snips/snips.toml:/etc/snips.toml
       - /homeautomation-config/snips/assistant:/usr/share/snips
+
+  mariadb:
+    container_name: snips
+    image: mariadb
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    ports:
+      - '3308:3306'

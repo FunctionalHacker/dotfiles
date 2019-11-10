@@ -67,7 +67,7 @@ services:
     image: snipsdocker/platform
     restart: always
     ports:
-      - '76477:1883'
+      - '7647:1883'
     volumes:
       - /homeautomation-config/snips/log/:/var/log
       - /homeautomation-config/snips/snips.toml:/etc/snips.toml

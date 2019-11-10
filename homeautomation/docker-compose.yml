@@ -64,7 +64,7 @@ services:
 
   snips:
     container_name: snips
-    image: dYalib/snips-docker
+    image: snipsdocker/platform
     restart: always
     ports:
       - '76477:1883'

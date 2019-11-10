@@ -75,7 +75,7 @@ services:
       - /homeautomation-config/snips/assistant:/usr/share/snips
 
   mariadb:
-    container_name: snips
+    container_name: mariadb
     image: mariadb
     restart: always
     environment:

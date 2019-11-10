@@ -64,7 +64,7 @@ services:
 
   snips:
     container_name: snips
-    image: snipsdocker/platform
+    image: reekymarko/snips
     restart: always
     ports:
       - '7647:1883'

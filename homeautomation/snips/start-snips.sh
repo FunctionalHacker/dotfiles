@@ -42,7 +42,7 @@ cd /
 
 #start own mqtt service.
 if [ $ENABLE_MQTT == yes ]; then
-	mosquitto -d
+	mosquitto -c /etc/mosquitto/mosquitto.conf -d
 fi
 
 #start Snips analytics service

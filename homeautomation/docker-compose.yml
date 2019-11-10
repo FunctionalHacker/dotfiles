@@ -66,10 +66,10 @@ services:
     container_name: snips
     image: reekymarko/snips
     restart: always
-    ports:
-      - '7647:1883'
+    environment:
+      ENABLE_MQTT: 'no'
+      ENABLE_HOTWORD_SERVICE: 'no'
     volumes:
       - /homeautomation-config/snips/log/:/var/log
       - /homeautomation-config/snips/snips.toml:/etc/snips.toml
-      - /homeautomation-config/snips/mosquitto.conf:/etc/mosquitto/mosquitto.conf
       - /homeautomation-config/snips/assistant:/usr/share/snips

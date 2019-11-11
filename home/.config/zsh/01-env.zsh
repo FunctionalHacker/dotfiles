@@ -1,6 +1,10 @@
 # zsh key timeout
 export KEYTIMEOUT=1
 
+# prompt customization
+export PURE_PROMPT_SYMBOL="λ"
+export PURE_PROMPT_VICMD_SYMBOL="y"
+
 # zsh history settings
 export HISTFILE=~/.zsh_history
 export HISTSIZE=1000

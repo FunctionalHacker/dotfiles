@@ -138,6 +138,9 @@ ls() { ls_extended $@ }
 # default icon for notify-send
 notify-send() { /usr/bin/notify-send --icon=alarm $@ }
 
+# Burn bootable iso
+#burniso() { dd if=$1 | pv -s $(du -h $1 | awk '{print $1;}' | dd of=$2 bs=4M }
+
 # colorise output
 cvs() { grc cvs $@ }
 df() { grc df $@ }

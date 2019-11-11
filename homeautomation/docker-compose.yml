@@ -37,7 +37,6 @@ services:
     restart: always
     environment:
       TZ: 'Europe/Helsinki'
-    network_mode: host
     ports:
       - '1880:1880'
     volumes:
@@ -49,7 +48,8 @@ services:
     container_name: portainer
     image: portainer/portainer
     restart: always
-    network_mode: host
+    ports:
+      - '9000:9000'
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /homeautomation-config/portainer:/data
@@ -82,3 +82,5 @@ services:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
     ports:
       - '3308:3306'
+    volumes:
+      - /homeautomation-config/mariadb:/var/lib/mysql

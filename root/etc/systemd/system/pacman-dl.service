@@ -1,0 +1,10 @@
+[Unit]
+Description=Download package updates
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/pacman -Syuw --noconfirm
+
+[Install]
+WantedBy=network-online.target

@@ -7,7 +7,7 @@
 	"modules-right": [
 		"idle_inhibitor",
 		"pulseaudio",
-		"network",
+		"custom/yay",
 		"cpu",
 		"memory",
 		"battery",
@@ -116,5 +116,12 @@
 		"on-click-right": "playerctl next",
 		"on-scroll-up": "playerctl volume 0.05+",
 		"on-scroll-down": "playerctl volume 0.05-"
+	},
+	"custom/yay":{
+		"tooltip": false,
+		"format": "{} ",
+		"exec": "yay -Qu | wc -l",
+		"interval": 60,
+		"on-click": "alacritty -e yay"
 	}
 }

@@ -26,7 +26,7 @@ window#waybar {
     background: #64727D;
 }
 
-#clock, #battery, #cpu, #memory, #backlight, #network, #pulseaudio, #custom-playerctl, #tray, #mode, #idle_inhibitor {
+#clock, #battery, #cpu, #memory, #backlight, #network, #pulseaudio, #custom-playerctl, #custom-yay, #tray, #mode, #idle_inhibitor {
     padding: 0 10px;
     margin: 0 5px;
 }
@@ -98,6 +98,10 @@ window#waybar {
 #custom-playerctl {
     background: #a3be8c;
     color: #2a5c45;
+}
+
+#custom-yay {
+    background-color: #64727D;
 }
 
 #tray {

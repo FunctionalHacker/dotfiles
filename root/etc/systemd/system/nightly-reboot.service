@@ -1,0 +1,6 @@
+[Unit]
+Description=Nightly reboot
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/systemctl reboot

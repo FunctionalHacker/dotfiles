@@ -98,6 +98,15 @@ dotfiles:
   f_pacman-dl.timer:
     src: etc/systemd/system/pacman-dl.timer
     dst: /etc/systemd/system/pacman-dl.timer
+  f_zsh.hook:
+    src: etc/pacman.d/hooks/zsh.hook
+    dst: /etc/pacman.d/hooks/zsh.hook
+  f_nightly-reboot.service:
+    src: etc/systemd/system/nightly-reboot.service
+    dst: /etc/systemd/system/nightly-reboot.service
+  f_nightly-reboot.timer:
+    src: etc/systemd/system/nightly-reboot.timer
+    dst: /etc/systemd/system/nightly-reboot.timer
 profiles:
   Locale:
     dotfiles:
@@ -130,6 +139,7 @@ profiles:
       - f_99-lowbat.rules
       - f_sleep.conf
       - f_ignore
+      - f_zsh.hook
     include:
       - Locale
       - Pacman
@@ -142,3 +152,5 @@ profiles:
       - f_60-uinput-permissions.rules
       - f_timesyncd.conf
       - f_sshd_config
+      - f_nightly-reboot.service
+      - f_nightly-reboot.timer

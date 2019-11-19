@@ -131,8 +131,8 @@ profiles:
       - f_sleep.conf
       - f_ignore
     include:
-      - locale
-      - pacman
+      - Locale
+      - Pacman
   Rivendell:
     include:
       - Locale

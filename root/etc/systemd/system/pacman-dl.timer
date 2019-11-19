@@ -3,3 +3,6 @@ Description=Download packages hourly
 
 [Timer]
 OnCalendar=hourly
+
+[Install]
+WantedBy=timers.target

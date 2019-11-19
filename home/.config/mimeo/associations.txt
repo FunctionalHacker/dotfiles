@@ -39,3 +39,9 @@ imageviewer %U
 
 zathura %U
   ^https?://(?:[a-z0-9\-]+\.)+[a-z]{2,6}(?:/[^/#?]+)+\.(?:pdf)
+
+alacritty -e rtv "%U"
+  ^https?://(www.)?reddit.com.*
+
+alacritty -e rtv "%U"
+  ^https?://redd.it.*

@@ -92,6 +92,12 @@ dotfiles:
   f_ignore:
     src: .ignore
     dst: /.ignore
+  f_pacman-dl.service:
+    src: etc/systemd/system/pacman-dl.service
+    dst: /etc/systemd/system/pacman-dl.service
+  f_pacman-dl.timer:
+    src: etc/systemd/system/pacman-dl.timer
+    dst: /etc/systemd/system/pacman-dl.timer
 profiles:
   locale:
     dotfiles:
@@ -126,6 +132,8 @@ profiles:
     - f_sleep.conf
     - f_fstab
     - f_ignore
+    - f_pacman-dl.service
+    - f_pacman-dl.timer
     include:
     - locale
     - pacman

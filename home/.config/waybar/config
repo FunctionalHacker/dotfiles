@@ -9,6 +9,7 @@
 		"pulseaudio",
 		"custom/yay",
 		"cpu",
+		"temperature",
 		"memory",
 		"battery",
 		"clock",
@@ -47,15 +48,15 @@
 	},
 	"clock": {
 		"tooltip": false,
-		"format": "{:%Y-%m-%d %H:%M}"
+		"format": "{:%Y-%m-%d %H:%M} "
 	},
 	"cpu": {
 		"tooltip": false,
-		"format": "{usage}% CPU"
+		"format": "{usage}% "
 	},
 	"memory": {
 		"tooltip": false,
-		"format": "{}% RAM"
+		"format": "{}% "
 	},
 	"backlight": {
 		// "device": "acpi_video1",
@@ -121,7 +122,10 @@
 		"tooltip": false,
 		"format": "{} ",
 		"exec": "yay -Qu | wc -l",
-		"interval": 60,
+		"interval": 300,
 		"on-click": "alacritty -e yay"
+	},
+	"temperature": {
+		"format": "{temperatureC}°C "
 	}
 }

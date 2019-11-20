@@ -137,7 +137,6 @@ profiles:
       - f_99-sysctl.conf
       - f_getty.conf
       - f_99-lowbat.rules
-      - f_sleep.conf
       - f_ignore
       - f_zsh.hook
     include:

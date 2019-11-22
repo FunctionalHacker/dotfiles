@@ -1,0 +1,12 @@
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Operation = Remove
+Type = Package
+Target = usr/bin/*
+
+[Action]
+Depends = zsh
+Depends = procps-ng
+When = PostTransaction
+Exec = /usr/bin/pkill zsh --signal=USR1

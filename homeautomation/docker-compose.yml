@@ -75,7 +75,7 @@ services:
 
   almond:
     container_name: almond
-    image: standfordoval/almond-server:latest-portable
+    image: stanfordoval/almond-server:latest-portable
     ports:
       - '3006:3000'
     volumes:

@@ -26,6 +26,10 @@ zplugin light wfxr/forgit
 zplugin ice wait'1' lucid as'completion'
 zplugin light zsh-users/zsh-completions
 
+# swaymsg completions
+zplugin ice wait'1' lucid as'completion'
+zplugin snippet https://gist.githubusercontent.com/RPigott/a3efdc08fa4d5fd7df38d091ab5e8532/raw/867ac1884d97d1bd1e5d4037d4eefdf4a004e72b/_swaymsg
+
 # fzf completions
 zplugin ice wait'1' lucid as'completion'
 zplugin snippet /usr/share/fzf/completion.zsh

@@ -22,7 +22,7 @@ dotfiles:
     src: .config/mpv
   d_nvim_config:
     actions:
-      - vim-plug
+    - vim-plug
     dst: ~/.config/nvim/conf.d
     src: .config/nvim/conf.d
   d_scripts:
@@ -160,81 +160,85 @@ dotfiles:
   f_config:
     src: .config/ncmpcpp/config
     dst: ~/.config/ncmpcpp/config
+  d_efistub:
+    src: .EFISTUB
+    dst: ~/.EFISTUB
 profiles:
   Media:
     dotfiles:
-      - f_beets_config
-      - f_beets_whitelist
-      - f_abcde.conf
-      - d_mpv
-      - f_youtube-dl_config
-      - f_mpd.conf
+    - f_beets_config
+    - f_beets_whitelist
+    - f_abcde.conf
+    - d_mpv
+    - f_youtube-dl_config
+    - f_mpd.conf
   Sway:
     dotfiles:
-      - d_sway
-      - d_waybar
-      - d_rofi
-      - f_mako_config
-      - f_redshift.conf
-      - f_rofi-pass.conf
+    - d_sway
+    - d_waybar
+    - d_rofi
+    - f_mako_config
+    - f_redshift.conf
+    - f_rofi-pass.conf
   Pacman:
     dotfiles:
-      - f_yay_config.json
-      - f_makepkg.conf
+    - f_yay_config.json
+    - f_makepkg.conf
   Mirkwood:
     dotfiles:
-      - d_systemd
-      - f_tdesktop_lang.strings
-      - f_gitconfig
-      - f_mailcap
-      - f_zprofile
-      - f_mimeo_associations.txt
-      - f_mpdscribble.conf
-      - f_mpdris2.conf
-      - f_ranger_commands.py
-      - f_libra_config
-      - f_ncmpcpp_bindings
-      - f_zathurarc
-      - f_youtube-viewer.conf
-      - f_efm-langserver.yaml
-      - f_fonts.conf
-      - f_flashfocus.yml
-      - f_config
+    - d_systemd
+    - f_tdesktop_lang.strings
+    - f_gitconfig
+    - f_mailcap
+    - f_zprofile
+    - f_mimeo_associations.txt
+    - f_mpdscribble.conf
+    - f_mpdris2.conf
+    - f_ranger_commands.py
+    - f_libra_config
+    - f_ncmpcpp_bindings
+    - f_zathurarc
+    - f_youtube-viewer.conf
+    - f_efm-langserver.yaml
+    - f_fonts.conf
+    - f_flashfocus.yml
+    - f_config
+    - d_efistub
     include:
-      - Terminal
-      - Media
-      - Sway
-      - Pacman
+    - Terminal
+    - Media
+    - Sway
+    - Pacman
   ReekyRaspberry:
     include:
-      - Terminal
+    - Terminal
   Rivendell:
     include:
-      - Terminal
-      - Media
-      - Pacman
+    - Terminal
+    - Media
+    - Pacman
   Terminal:
     dotfiles:
-      - f_nvimpager_init.vim
-      - f_ignore
-      - f_rtv.cfg
-      - d_zsh
-      - f_zshrc
-      - f_tmux.conf
-      - f_ranger.conf
-      - f_ssh.conf
-      - f_authorized_keys
-      - d_scripts
-      - d_nvim_config
-      - f_init.vim
-      - f_coc-settings.json
-      - f_gitconfig
-      - f_alacritty.yml
+    - f_nvimpager_init.vim
+    - f_ignore
+    - f_rtv.cfg
+    - d_zsh
+    - f_zshrc
+    - f_tmux.conf
+    - f_ranger.conf
+    - f_ssh.conf
+    - f_authorized_keys
+    - d_scripts
+    - d_nvim_config
+    - f_init.vim
+    - f_coc-settings.json
+    - f_gitconfig
+    - f_alacritty.yml
   AnittaPC:
     include:
-      - Terminal
-      - Pacman
+    - Terminal
+    - Pacman
   TakamakiPC:
     include:
-      - Terminal
-      - Pacman
+    - Terminal
+    - Pacman

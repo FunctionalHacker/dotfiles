@@ -138,8 +138,10 @@ ls() { ls_extended $@ }
 # default icon for notify-send
 notify-send() { /usr/bin/notify-send --icon=alarm $@ }
 
-# Burn bootable iso
-#burniso() { dd if=$1 | pv -s $(du -h $1 | awk '{print $1;}' | dd of=$2 bs=4M }
+
+# encrypted tar's with zstd compression
+cgpgtar() { tar cf - --zstd $1 | gpg -e -z 0 > $1.tar.zst.gpg }
+xgpgtar() { gpg -d $1 | tar x --zstd }
 
 # colorise output
 cvs() { grc cvs $@ }

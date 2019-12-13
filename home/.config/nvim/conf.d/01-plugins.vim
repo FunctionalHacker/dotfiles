@@ -77,8 +77,8 @@ Plug 'lambdalisue/suda.vim'
 " Conguer of Completion
 Plug 'neoclide/coc.nvim', {'do': './install.sh nightly'}
 
-" Git wrapper
-Plug 'tpope/vim-fugitive'
+" Git plugin
+Plug 'jreybert/vimagit'
 
 " Git diff in gutter
 Plug 'airblade/vim-gitgutter'

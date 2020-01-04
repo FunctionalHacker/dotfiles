@@ -15,7 +15,8 @@ let g:coc_global_extensions = [
 			\ 'coc-prettier',
 			\ 'coc-python',
 			\ 'coc-emmet',
-			\ 'coc-rust-analyzer'
+			\ 'coc-rust-analyzer',
+			\ 'coc-markdownlint'
 			\ ]
 
 call plug#begin()
@@ -25,6 +26,9 @@ Plug 'https://git.zx2c4.com/password-store', { 'rtp': 'contrib/vim/redact_pass.v
 
 " Colorize color words
 Plug 'norcalli/nvim-colorizer.lua'
+
+" Use neovim from firefox
+Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 
 " Spelling
 Plug 'vim-scripts/Vimchant'

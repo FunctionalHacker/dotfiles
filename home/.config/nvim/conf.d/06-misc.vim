@@ -26,3 +26,9 @@ let NERDTreeMinimalUI = 1 "remove press ? for help"
 let NERDTreeAutoDeleteBuffer = 1 " delete buffer when file is deleted
 let NERDTreeQuitOnOpen = 1 " close nerdtree when opening file
 let NERDTreeDirArrows = 1
+
+" Firenvim settings
+au BufEnter github.com_*.txt set filetype=markdown
+au BufEnter gitlab.com_*.txt set filetype=markdown
+au BufEnter git.reekynet.com_*.txt set filetype=markdown
+au BufEnter www.reddit.com_*.txt set filetype=markdown

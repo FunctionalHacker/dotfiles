@@ -3,6 +3,7 @@
 	"suggest.noselect": false,
 	"suggest.echodocSupport": true,
 	"suggest.maxCompleteItemCount": 20,
+	"diagnostic.virtualText": true,
 	"coc.preferences.formatOnSaveFiletypes": [
 		"javascript",
 		"typescript",
@@ -34,11 +35,6 @@
 			"args": ["start"],
 			"filetypes": ["xml"],
 			"ignoredRootPaths": ["~"]
-		},
-		"efm": {
-			"command": "~/.bin/go/bin/efm-langserver",
-			"args": [],
-			"filetypes": ["markdown"]
 		}
 	}
 }

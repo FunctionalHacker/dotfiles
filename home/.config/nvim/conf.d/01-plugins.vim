@@ -65,9 +65,6 @@ Plug 'honza/vim-snippets'
 " Filetype icons
 Plug 'ryanoasis/vim-devicons'
 
-" A personal wiki for vim
-Plug 'vimwiki/vimwiki'
-
 " Surround stuff with brackets and quotes 
 Plug 'tpope/vim-surround'
 

@@ -10,13 +10,13 @@ source ~/.zplugin/bin/zplugin.zsh
 zplugin ice load multisrc'{async,pure}.zsh'
 zplugin light sindresorhus/pure
 
+# fzf as tab completion
+zplugin ice lucid
+zplugin light Aloxaf/fzf-tab
+
 # substring search
 zplugin ice lucid
 zplugin light zsh-users/zsh-history-substring-search
-
-# omz tab completion etc
-zplugin ice lucid
-zplugin snippet OMZ::lib/completion.zsh
 
 # fzf git awesomeness
 zplugin ice wait'1' lucid atload'source $HOME/.config/zsh/03-functions.zsh'

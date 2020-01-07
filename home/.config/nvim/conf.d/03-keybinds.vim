@@ -10,17 +10,6 @@ nmap <C-s> <Plug>MarkdownPreview
 nmap <M-s> <Plug>MarkdownPreviewStop
 nmap <C-p> <Plug>MarkdownPreviewToggle
 
-" FZF
-nmap <C-f> :Files<CR>
-nmap <C-g> :Rg<CR>
-" Ripgrep command customization
-command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --hidden --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
-  \   <bang>0 ? fzf#vim#with_preview('up:60%')
-  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-  \   <bang>0)
-
 set splitbelow
 set splitright
 

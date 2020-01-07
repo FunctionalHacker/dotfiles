@@ -1,40 +1,39 @@
 {
-	"python.jediEnabled": false,
-	"suggest.noselect": false,
-	"suggest.echodocSupport": true,
-	"suggest.maxCompleteItemCount": 20,
-	"diagnostic.virtualText": true,
-	"coc.preferences.formatOnSaveFiletypes": [
-		"javascript",
-		"typescript",
-		"typescriptreact",
-		"json",
-		"javascriptreact",
-		"yaml"
-	],
-	"eslint.filetypes": [
-		"javascript",
-		"typescript",
-		"typescriptreact",
-		"javascriptreact"
-	],
-	"prettier.singleQuote": true,
-	"diagnostic.errorSign": "•",
-	"diagnostic.warningSign": "•",
-	"diagnostic.infoSign": "•",
-	"suggest.snippetIndicator": "~",
-	"languageserver": {
-		"bash": {
-			"command": "bash-language-server",
-			"args": ["start"],
-			"filetypes": ["sh"],
-			"ignoredRootPaths": ["~"]
-		},
-		"xml": {
-			"command": "xml-language-server",
-			"args": ["start"],
-			"filetypes": ["xml"],
-			"ignoredRootPaths": ["~"]
-		}
-	}
+  "python.jediEnabled": false,
+  "suggest.noselect": false,
+  "suggest.echodocSupport": true,
+  "suggest.maxCompleteItemCount": 20,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "javascript",
+    "typescript",
+    "typescriptreact",
+    "json",
+    "javascriptreact",
+    "yaml"
+  ],
+  "prettier.singleQuote": true,
+  "diagnostic.errorSign": "•",
+  "diagnostic.warningSign": "•",
+  "diagnostic.infoSign": "•",
+  "suggest.snippetIndicator": "~",
+  "languageserver": {
+    "bash": {
+      "command": "bash-language-server",
+      "args": ["start"],
+      "filetypes": ["sh"],
+      "ignoredRootPaths": ["~"]
+    },
+    "xml": {
+      "command": "xml-language-server",
+      "args": ["start"],
+      "filetypes": ["xml"],
+      "ignoredRootPaths": ["~"]
+    }
+  },
+  "markdownlint.config": {
+    "rules": {
+      "default": true,
+      "line_length": false
+    }
+  }
 }

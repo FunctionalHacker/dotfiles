@@ -16,7 +16,7 @@ let g:coc_global_extensions = [
 			\ 'coc-python',
 			\ 'coc-emmet',
 			\ 'coc-rust-analyzer',
-			\ 'coc-markdownlint'
+			\ 'coc-markdownlint',
 			\ ]
 
 call plug#begin()
@@ -77,6 +77,10 @@ Plug 'lambdalisue/suda.vim'
 
 " Conguer of Completion
 Plug 'neoclide/coc.nvim', {'do': './install.sh nightly'}
+
+" VimL source for CoC
+Plug 'Shougo/neco-vim'
+Plug 'neoclide/coc-neco'
 
 " Git plugin
 Plug 'jreybert/vimagit'

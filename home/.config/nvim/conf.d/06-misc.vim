@@ -6,7 +6,7 @@ let pyxversion=3
 let g:suda_smart_edit = 1
 
 " Remap exit terminal mode to esc
-tnoremap <Esc> <C-\><C-n>
+au TermOpen * tnoremap <buffer> <Esc> <c-\><c-n>
 
 " Use system clipboard
 set clipboard=unnamedplus

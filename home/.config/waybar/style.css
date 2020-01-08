@@ -7,7 +7,7 @@
 }
 
 window#waybar {
-    background: #282828;
+    background: #292D3E;
     color: white;
 }
 
@@ -63,7 +63,7 @@ window#waybar {
 }
 
 #temperature {
-    background: #a3be8c;
+    background: #97B084;
 	color: black;
 }
 
@@ -78,7 +78,7 @@ window#waybar {
 }
 
 #cpu {
-    background: #2ecc71;
+    background: #BD9B5D;
     color: #000000;
 }
 
@@ -111,7 +111,7 @@ window#waybar {
 }
 
 #custom-playerctl {
-    background: #a3be8c;
+    background: #97B084;
     color: #2a5c45;
 }
 

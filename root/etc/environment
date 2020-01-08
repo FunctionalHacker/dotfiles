@@ -14,3 +14,6 @@ MOZ_WEBRENDER=1
 
 # Fix redshift on wlroots
 WLR_DRM_NO_ATOMIC=1
+
+# Use wayland in SDL2
+SDL_VIDEODRIVER=wayland

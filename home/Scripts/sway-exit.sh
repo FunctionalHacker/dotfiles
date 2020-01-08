@@ -2,7 +2,8 @@
 
 RESP=$(cat <<EOF | fzf
 Exit
-Sleep
+Suspend
+Lock
 Reboot
 Shutdown
 EOF
@@ -20,6 +21,9 @@ case "$RESP" in
 		;;
 	Shutdown)
 		systemctl poweroff
+		;;
+	Lock)
+		loginctl lock-session
 		;;
 	*)
 		exit 1

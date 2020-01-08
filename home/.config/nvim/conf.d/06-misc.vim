@@ -14,6 +14,9 @@ set clipboard=unnamedplus
 " Remove extra line
 set cmdheight=1
 
+" Disable auto commenting
+set formatoptions-=cro
+
 " Set pandoc preview program
 let g:pandoc_preview_pdf_cmd = "zathura"
 

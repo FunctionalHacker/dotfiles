@@ -7,11 +7,14 @@ window:
     y: 20
   dynamic_padding: false
   decorations: full
+
 scrolling:
   history: 10000
   multiplier: 3
   auto_scroll: false
+
 tabspaces: 8
+
 font:
   normal:
     family: Hack Nerd Font Mono
@@ -23,52 +26,77 @@ font:
     x: 0
     y: 0
   use_thin_strokes: true
-draw_bold_text_with_bright_colors: true
+
+# Base16 Horizon Dark - alacritty color config
+# Michaël Ball (http://github.com/michael-ball/)
 colors:
+  # Default colors
   primary:
-    background: '#282828'
-    foreground: '#ebdbb2'
+    background: '0x1c1e26'
+    foreground: '0xcbced0'
+
+  # Colors the cursor will use if `custom_cursor_colors` is true
+  cursor:
+    text: '0x1c1e26'
+    cursor: '0xcbced0'
+
+  # Normal colors
   normal:
-    black: '#282828'
-    red: '#cc241d'
-    green: '#98971a'
-    yellow: '#d79921'
-    blue: '#458588'
-    magenta: '#b16286'
-    cyan: '#689d6a'
-    white: '#a89984'
+    black: '0x1c1e26'
+    red: '0xe93c58'
+    green: '0xefaf8e'
+    yellow: '0xefb993'
+    blue: '0xdf5273'
+    magenta: '0xb072d1'
+    cyan: '0x24a8b4'
+    white: '0xcbced0'
+
+  # Bright colors
   bright:
-    black: '#928374'
-    red: '#fb4934'
-    green: '#b8bb26'
-    yellow: '#fabd2f'
-    blue: '#83a598'
-    magenta: '#d3869b'
-    cyan: '#8ec07c'
-    white: '#ebdbb2'
+    black: '0x6f6f70'
+    red: '0xe58d7d'
+    green: '0x232530'
+    yellow: '0x2e303e'
+    blue: '0x9da0a2'
+    magenta: '0xdcdfe4'
+    cyan: '0xe4a382'
+    white: '0xe3e6ee'
+
+draw_bold_text_with_bright_colors: false
+
 visual_bell:
   animation: EaseOutExpo
   duration: 0
   color: '#ffffff'
+
 background_opacity: 1.0
+
 mouse_bindings:
   - { mouse: Middle, action: PasteSelection }
+
 mouse:
   double_click: { threshold: 300 }
   triple_click: { threshold: 300 }
   hide_when_typing: false
   url:
     modifiers: None
+
 selection:
   semantic_escape_chars: ',│`|:"'' ()[]{}<>'
   save_to_clipboard: false
+
 dynamic_title: true
+
 cursor:
   style: Block
   unfocused_hollow: true
+
 live_config_reload: true
+
 enable_experimental_conpty_backend: true
+
 alt_send_esc: true
+
 key_bindings:
   - { key: Paste, action: Paste }
   - { key: Copy, action: Copy }

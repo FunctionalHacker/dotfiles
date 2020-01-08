@@ -27,42 +27,37 @@ font:
     y: 0
   use_thin_strokes: true
 
-# Base16 Horizon Dark - alacritty color config
-# Michaël Ball (http://github.com/michael-ball/)
+# Adapted from Material theme - https://github.com/kaicataldo/material.vim
+#
 colors:
   # Default colors
   primary:
-    background: '0x1c1e26'
-    foreground: '0xcbced0'
-
-  # Colors the cursor will use if `custom_cursor_colors` is true
-  cursor:
-    text: '0x1c1e26'
-    cursor: '0xcbced0'
+    background: '0x292d3e'
+    foreground: '0xD8DEE9'
 
   # Normal colors
   normal:
-    black: '0x1c1e26'
-    red: '0xe93c58'
-    green: '0xefaf8e'
-    yellow: '0xefb993'
-    blue: '0xdf5273'
-    magenta: '0xb072d1'
-    cyan: '0x24a8b4'
-    white: '0xcbced0'
+    black: '0x3B4252'
+    red: '0xff5370'
+    green: '0xA3BE8C'
+    yellow: '0xEBCB8B'
+    blue: '0x81A1C1'
+    magenta: '0xB48EAD'
+    cyan: '0x88C0D0'
+    white: '0xE5E9F0'
+    orange: '0xf78c6c'
 
   # Bright colors
   bright:
-    black: '0x6f6f70'
-    red: '0xe58d7d'
-    green: '0x232530'
-    yellow: '0x2e303e'
-    blue: '0x9da0a2'
-    magenta: '0xdcdfe4'
-    cyan: '0xe4a382'
-    white: '0xe3e6ee'
-
-draw_bold_text_with_bright_colors: false
+    black: '0x3B4252'
+    red: '0xff5370'
+    green: '0xA3BE8C'
+    yellow: '0xEBCB8B'
+    blue: '0x81A1C1'
+    magenta: '0xB48EAD'
+    cyan: '0x88C0D0'
+    white: '0xE5E9F0'
+    orange: '0xf78c6c'
 
 visual_bell:
   animation: EaseOutExpo

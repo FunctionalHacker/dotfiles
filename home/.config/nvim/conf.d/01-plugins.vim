@@ -21,6 +21,9 @@ let g:coc_global_extensions = [
 
 call plug#begin()
 
+" Light statusline
+Plug 'itchyny/lightline.vim'
+
 " Make editing passwords safer
 Plug 'https://git.zx2c4.com/password-store', { 'rtp': 'contrib/vim/redact_pass.vim' }
 
@@ -41,15 +44,11 @@ Plug 'conornewton/vim-pandoc-markdown-preview'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 
-" Airline statusline
-Plug 'vim-airline/vim-airline'
-
 " Syntax plugins
 Plug 'stephpy/vim-yaml'
 Plug 'vim-pandoc/vim-pandoc-syntax'
-Plug 'leafgarland/typescript-vim'
-Plug 'ianks/vim-tsx'
 Plug 'kevinoid/vim-jsonc'
+Plug 'HerringtonDarkholme/yats.vim'
 Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'zplugin/zplugin-vim-syntax'
 Plug 'aouelete/sway-vim-syntax'
@@ -92,7 +91,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'jamessan/vim-gnupg'
 
 " Colorscheme
-Plug 'morhetz/gruvbox'
+Plug 'kaicataldo/material.vim'
 
 " Latex plugin
 Plug 'lervag/vimtex'

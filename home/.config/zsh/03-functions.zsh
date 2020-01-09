@@ -16,11 +16,18 @@ gpush() { git push $@ }
 # Syntax highlighting cat
 cat() {	nvimpager -c $@ }
 
-
 rip() {
 	abcde
 	printf "Ripping done. Importing to library"
 	beet import ~/Documents/Rip/flac/*
+}
+
+# make fzf zsh plugin use ripgrep
+_fzf_compgen_dir() {
+	rg --hidden --files --null --sort path "$1" 2>/dev/null | xargs -0 dirname | uniq
+}
+_fzf_compgen_path() {
+	rg --files --hidden "$1" 2>/dev/null
 }
 
 # search and install packages with fzf

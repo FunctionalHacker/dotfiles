@@ -193,7 +193,6 @@ profiles:
   Mirkwood:
     dotfiles:
       - d_systemd
-      - f_zprofile
       - f_tdesktop_lang.strings
       - f_gitconfig
       - f_mailcap

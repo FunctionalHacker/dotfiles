@@ -107,49 +107,51 @@ dotfiles:
   f_nightly-reboot.timer:
     src: etc/systemd/system/nightly-reboot.timer
     dst: /etc/systemd/system/nightly-reboot.timer
+  f_sway@.service:
+    src: etc/systemd/system/sway@.service
+    dst: /etc/systemd/system/sway@.service
 profiles:
   Locale:
     dotfiles:
-      - f_locale.conf
-      - f_locale.gen
+    - f_locale.conf
+    - f_locale.gen
   Pacman:
     dotfiles:
-      - f_pacman.conf
-      - f_pacserve.service.conf
-      - f_pacman-dl.service
-      - f_pacman-dl.timer
+    - f_pacman.conf
+    - f_pacserve.service.conf
+    - f_pacman-dl.service
+    - f_pacman-dl.timer
   Mirkwood:
     dotfiles:
-      - f_environment
-      - f_cryptissue
-      - f_welcomemessage.conf
-      - d_bin
-      - f_adb.service
-      - f_bluetooth.conf
-      - f_iwd@.service
-      - f_loader.conf
-      - f_sshd_config
-      - f_logind.conf
-      - f_60-uinput-permissions.rules
-      - f_freetype2.sh
-      - f_fonts.conf
-      - f_timesyncd.conf
-      - f_99-sysctl.conf
-      - f_getty.conf
-      - f_99-lowbat.rules
-      - f_ignore
-      - f_zsh.hook
+    - f_cryptissue
+    - f_welcomemessage.conf
+    - d_bin
+    - f_adb.service
+    - f_bluetooth.conf
+    - f_iwd@.service
+    - f_loader.conf
+    - f_sshd_config
+    - f_logind.conf
+    - f_60-uinput-permissions.rules
+    - f_freetype2.sh
+    - f_fonts.conf
+    - f_timesyncd.conf
+    - f_99-sysctl.conf
+    - f_99-lowbat.rules
+    - f_ignore
+    - f_zsh.hook
+    - f_sway@.service
     include:
-      - Locale
-      - Pacman
+    - Locale
+    - Pacman
   Rivendell:
     include:
-      - Locale
-      - Pacman
+    - Locale
+    - Pacman
     dotfiles:
-      - f_bluetooth.conf
-      - f_60-uinput-permissions.rules
-      - f_timesyncd.conf
-      - f_sshd_config
-      - f_nightly-reboot.service
-      - f_nightly-reboot.timer
+    - f_bluetooth.conf
+    - f_60-uinput-permissions.rules
+    - f_timesyncd.conf
+    - f_sshd_config
+    - f_nightly-reboot.service
+    - f_nightly-reboot.timer

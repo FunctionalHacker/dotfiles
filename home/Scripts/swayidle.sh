@@ -7,7 +7,7 @@ swayidle \
 	lock "$swaylock" \
 	timeout 300 "$dimscreen -sd" \
     resume "$dimscreen -r" \
-	timeout 600 "loginctl lock-session; sleep 0.5; $screenoff" \
+	timeout 600 "loginctl lock-session $(loginctl show-user $USER -p Sessions | cut -d'=' -f2); sleep 0.5; $screenoff" \
     resume "$screenon; $dimscreen -r" \
-	before-sleep "playerctl pause; loginctl lock-session" \
+	before-sleep "playerctl pause; loginctl lock-session $(loginctl show-user $USER -p Sessions | cut -d'=' -f2)" \
 	unlock "pkill -9 swaylock"

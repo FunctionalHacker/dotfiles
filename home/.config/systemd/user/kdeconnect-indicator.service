@@ -1,0 +1,10 @@
+[Unit]
+Description=Indicator and UI for KDE Connect
+PartOf=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/kdeconnect-indicator
+
+[Install]
+WantedBy=sway-session.target

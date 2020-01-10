@@ -4,7 +4,7 @@ PartOf=graphical-session.target
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/clipman -d
+ExecStart=/usr/bin/wl-paste -t text --watch clipman store
 
 [Install]
 WantedBy=sway-session.target

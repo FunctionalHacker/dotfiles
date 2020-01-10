@@ -1,0 +1,10 @@
+[Unit]
+Description=Standalone mail and news reader from mozilla.org
+PartOf=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/thunderbird
+
+[Install]
+WantedBy=sway-session.target

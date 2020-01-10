@@ -1,0 +1,10 @@
+[Unit]
+Description=MPRIS2 support for MPD
+PartOf=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/mpDris2
+
+[Install]
+WantedBy=sway-session.target

@@ -8,9 +8,8 @@
 		"idle_inhibitor",
 		"pulseaudio",
 		"custom/yay",
-		"cpu",
+		"network",
 		"temperature",
-		"memory",
 		"battery",
 		"clock",
 		"tray"
@@ -41,6 +40,16 @@
 			"activated": "",
 			"deactivated": ""
 		}
+	},
+	"network": {
+		"format": "{ifname}",
+		"format-wifi": "{essid} ({signalStrength}%) ",
+		"format-ethernet": "{ipaddr} ",
+		"format-disconnected": "Disconnected ", //An empty format will hide the module.
+		"tooltip-format": "{ifname}",
+		"tooltip-format-wifi": "{ifname} {frequency}MHz ",
+		"tooltip-format-ethernet": "{ifname} ",
+		"tooltip-format-disconnected": "Disconnected"
 	},
 	"tray": {
 		// "icon-size": 21,
@@ -77,15 +86,6 @@
 	},
 	"battery#bat2": {
 		"bat": "BAT2"
-	},
-	"network": {
-		"tooltip": false,
-		"interface": "wg0",
-		"format-ethernet": "VPN Connected",
-		"format-disconnected": "VPN disconnected ⚠",
-		"on-click": "sudo systemctl start wg-quick@wg0.service",
-		"on-click-right": "sudo systemctl stop wg-quick@wg0.service",
-		"interval": 10
 	},
 	"pulseaudio": {
 		"tooltip": false,

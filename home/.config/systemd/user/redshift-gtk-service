@@ -1,0 +1,10 @@
+[Unit]
+Description=Adjusts the color temperature of your screen according to your surroundings.
+PartOf=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/redshift-gtk -m wayland
+
+[Install]
+WantedBy=sway-session.target

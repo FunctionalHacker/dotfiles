@@ -5,7 +5,7 @@ PartOf=graphical-session.target
 [Service]
 Type=simple
 ExecStartPre=/usr/bin/mkfifo /tmp/sway.wob
-ExecStart=/usr/bin/tail -f /tmp/sway.wob | wob
+ExecStart=/usr/bin/tail -f /tmp/sway.wob | /usr/bin/wob
 ExecStop=/usr/bin/rm /tmp/sway.wob
 
 [Install]

@@ -107,9 +107,6 @@ dotfiles:
   f_nightly-reboot.timer:
     src: etc/systemd/system/nightly-reboot.timer
     dst: /etc/systemd/system/nightly-reboot.timer
-  f_sway@.service:
-    src: etc/systemd/system/sway@.service
-    dst: /etc/systemd/system/sway@.service
 profiles:
   Locale:
     dotfiles:
@@ -142,7 +139,6 @@ profiles:
       - f_99-lowbat.rules
       - f_ignore
       - f_zsh.hook
-      - f_sway@.service
     include:
       - Locale
       - Pacman

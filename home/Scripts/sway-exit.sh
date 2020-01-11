@@ -1,29 +1,29 @@
 #!/bin/bash
 
-RESP=$(cat <<EOF | fzf
-Exit
+RESP=$(cat <<EOF | fzf +s --tac
+Shutdown
+Reboot
 Suspend
 Lock
-Reboot
-Shutdown
+Exit
 EOF
 );
 
 case "$RESP" in
-	Exit)
-		swaymsg exit
-		;;
-	Suspend)
-		systemctl suspend
+	Shutdown)
+		systemctl poweroff
 		;;
 	Reboot)
 		systemctl reboot
 		;;
-	Shutdown)
-		systemctl poweroff
+	Suspend)
+		systemctl suspend
 		;;
 	Lock)
-		loginctl lock-session
+		loginctl lock-session $(loginctl show-user $USER -p Sessions | cut -d'=' -f2)
+		;;
+	Exit)
+		swaymsg exit
 		;;
 	*)
 		exit 1

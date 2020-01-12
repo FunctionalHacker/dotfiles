@@ -9,4 +9,4 @@ sudo efibootmgr \
 	--remove-dups \
 	--label "Arch Linux" \
 	--loader /vmlinuz-linux \
-	--unicode 'cryptdevice=UUID=19fa8fab-c5fe-454a-9a17-b7185ce975ea:cryptroot:allow-discards root=/dev/mapper/cryptroot rootflags=subvol=root resume=/dev/mapper/cryptroot resume_offset=7345408 rw quiet loglevel=0 vga=current processor.max_cstate=5 rcu_nocbs=0-11 initrd=/amd-ucode.img initrd=/initramfs-linux.img amdgpu.noretry=0'
+	--unicode 'cryptdevice=UUID=19fa8fab-c5fe-454a-9a17-b7185ce975ea:cryptroot:allow-discards root=/dev/mapper/cryptroot rootflags=subvol=root resume=/dev/mapper/cryptroot resume_offset=7345408 rw quiet loglevel=3 vga=current vt.global_cursor_default=0 processor.max_cstate=5 rcu_nocbs=0-11 initrd=/amd-ucode.img initrd=/initramfs-linux.img amdgpu.noretry=0'

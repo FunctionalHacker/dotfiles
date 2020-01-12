@@ -60,7 +60,7 @@ zbarimg() { zbarimg -q --raw $@ }
 zbarcam() { zbarcam -q --raw $@ }
 
 # shorten systemd user command
-suser() { systemctl --user $@ }
+-u() { systemctl --user $@ }
 
 # switch to desktop mode
 dock() { swaymsg output eDP-1 disable }

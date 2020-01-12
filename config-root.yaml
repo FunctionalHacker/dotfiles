@@ -113,6 +113,9 @@ dotfiles:
   f_vconsole.conf:
     src: etc/vconsole.conf
     dst: /etc/vconsole.conf
+  f_20-quiet-printk.conf:
+    src: etc/sysctl.d/20-quiet-printk.conf
+    dst: /etc/sysctl.d/20-quiet-printk.conf
 profiles:
   Locale:
     dotfiles:
@@ -147,6 +150,7 @@ profiles:
     - f_zsh.hook
     - f_mkinitcpio.conf
     - f_vconsole.conf
+    - f_20-quiet-printk.conf
     include:
     - Locale
     - Pacman

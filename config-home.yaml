@@ -169,6 +169,9 @@ dotfiles:
   d_efistub:
     src: .EFISTUB
     dst: ~/.EFISTUB
+  f_hushlogin:
+    src: .hushlogin
+    dst: ~/.hushlogin
 profiles:
   Media:
     dotfiles:
@@ -209,6 +212,7 @@ profiles:
       - f_flashfocus.yml
       - f_config
       - d_efistub
+      - f_hushlogin
     include:
       - Terminal
       - Media

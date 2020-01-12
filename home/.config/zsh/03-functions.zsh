@@ -56,8 +56,11 @@ fman() {
 :wq() { 'exit' }
 
 # zbar output only data
-zbarimg() { /usr/bin/zbarimg -q --raw $@ }
-zbarcam() { /usr/bin/zbarcam -q --raw $@ }
+zbarimg() { zbarimg -q --raw $@ }
+zbarcam() { zbarcam -q --raw $@ }
+
+# shorten systemd user command
+suser() { systemctl --user $@ }
 
 # switch to desktop mode
 dock() { swaymsg output eDP-1 disable }

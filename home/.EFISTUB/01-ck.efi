@@ -7,6 +7,6 @@ sudo efibootmgr \
 	--create \
 	--quiet \
 	--remove-dups \
-	--label "Arch Linux (ck-zen)" \
+	--label "Arch Linux CK" \
 	--loader /vmlinuz-linux-ck-zen \
 	--unicode 'cryptdevice=UUID=19fa8fab-c5fe-454a-9a17-b7185ce975ea:cryptroot:allow-discards root=/dev/mapper/cryptroot rootflags=subvol=root resume=/dev/mapper/cryptroot resume_offset=7345408 rw quiet loglevel=0 vga=current processor.max_cstate=5 rcu_nocbs=0-11 initrd=/amd-ucode.img initrd=/initramfs-linux-ck-zen.img amdgpu.noretry=0 amdgpu.noretry=0'

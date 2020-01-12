@@ -123,9 +123,8 @@ passync() { pass git pull && pass git push && updatesecrets }
 
 # update stuff
 plugupdate() { vim +PlugUpgrade +PlugUpdate +CocUpdate +qa && zplugin update && $HOME/.tmux/plugins/tpm/bin/update_plugins all }
-dotupdate() {dotgit submodule update && dotsync }
-update() { yay -Syu firefox-nightly; flatpak update }
-updateall() { update; plugupdate; dotupdate; passync; sudo awman-update }
+update() { yay -Syu --devel firefox-nightly }
+updateall() { update; plugupdate; sudo awman-update }
 
 # remove unneeded packages
 autoremove() { sudo pacman -R $(pacman -Qdtq) }

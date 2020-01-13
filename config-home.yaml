@@ -62,9 +62,6 @@ dotfiles:
   f_coc-settings.json:
     dst: ~/.config/nvim/coc-settings.json
     src: .config/nvim/coc-settings.json
-  f_efm-langserver.yaml:
-    dst: ~/.config/efm-langserver/config.yaml
-    src: .config/efm-langserver/config.yaml
   f_gitconfig:
     dst: ~/.gitconfig
     src: .gitconfig
@@ -160,10 +157,7 @@ dotfiles:
   f_nvimpager_init.vim:
     src: .config/nvimpager/init.vim
     dst: ~/.config/nvimpager/init.vim
-  f_flashfocus.yml:
-    src: .config/flashfocus/flashfocus.yml
-    dst: ~/.config/flashfocus/flashfocus.yml
-  f_config:
+  f_ncmpcpp.conf:
     src: .config/ncmpcpp/config
     dst: ~/.config/ncmpcpp/config
   d_efistub:
@@ -173,6 +167,9 @@ dotfiles:
     src: .hushlogin
     dst: ~/.hushlogin
 profiles:
+  Base:
+    dotfiles:
+      - d_systemd
   Media:
     dotfiles:
       - f_beets_config
@@ -181,6 +178,12 @@ profiles:
       - d_mpv
       - f_youtube-dl_config
       - f_mpd.conf
+      - f_ncmpcpp_bindings
+      - f_ncmpcpp.conf
+      - f_libra_config
+      - f_mpdscribble.conf
+      - f_mpdris2.conf
+      - f_youtube-viewer.conf
   Sway:
     dotfiles:
       - d_sway
@@ -189,31 +192,19 @@ profiles:
       - f_mako_config
       - f_redshift.conf
       - f_rofi-pass.conf
+      - f_zathurarc
+      - f_mimeo_associations.txt
+      - f_tdesktop_lang.strings
+      - f_fonts.conf
   Pacman:
     dotfiles:
       - f_yay_config.json
       - f_makepkg.conf
   Mirkwood:
     dotfiles:
-      - d_systemd
-      - f_tdesktop_lang.strings
-      - f_gitconfig
-      - f_mailcap
-      - f_mimeo_associations.txt
-      - f_mpdscribble.conf
-      - f_mpdris2.conf
-      - f_ranger_commands.py
-      - f_libra_config
-      - f_ncmpcpp_bindings
-      - f_zathurarc
-      - f_youtube-viewer.conf
-      - f_efm-langserver.yaml
-      - f_fonts.conf
-      - f_flashfocus.yml
-      - f_config
       - d_efistub
-      - f_hushlogin
     include:
+      - Base
       - Terminal
       - Media
       - Sway
@@ -229,11 +220,15 @@ profiles:
   Terminal:
     dotfiles:
       - f_nvimpager_init.vim
+      - f_hushlogin
       - f_ignore
+      - f_ranger_commands.py
       - f_rtv.cfg
+      - f_mailcap
       - d_zsh
       - f_zshrc
       - f_tmux.conf
+      - f_gitconfig
       - f_ranger.conf
       - f_ssh.conf
       - f_authorized_keys

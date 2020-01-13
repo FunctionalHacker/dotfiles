@@ -10,6 +10,9 @@ export HISTFILE=~/.zsh_history
 export HISTSIZE=1000
 export SAVEHIST=1000
 
+# Variable to pass to sdotdrop to get current user
+export USRNAME=$USER
+
 # go path
 export GOPATH=~/.bin/go
 

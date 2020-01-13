@@ -8,13 +8,13 @@ git() {
 }
 
 # git shorthands
-gc() { git commit $@ }
-gac() { ga && gc }
-gpull() { git pull $@ }
-gpush() { git push $@ }
+alias gc='git commit'
+alias gac='ga && gc'
+alias gpull='git pull'
+alias gpush='git push'
 
 # Syntax highlighting cat
-cat() {	nvimpager -c $@ }
+alias cat='nvimpager -c'
 
 rip() {
 	abcde
@@ -52,21 +52,22 @@ fman() {
 }
 
 # I'm retarded so I need this
-:q() { 'exit' }
-:wq() { 'exit' }
+alias :q='exit'
+alias :wq='exit'
 
 # zbar output only data
-zbarimg() { zbarimg -q --raw $@ }
-zbarcam() { zbarcam -q --raw $@ }
+alias zbarimg='zbarimg -q --raw'
+alias zbarcam='zbarcam -q --raw'
 
-# shorten systemd user command
--u() { systemctl --user $@ }
+# shorten systemctl
+alias sc='systemctl'
+alias scu='systemctl --user'
 
 # switch to desktop mode
-dock() { swaymsg output eDP-1 disable }
+alias dock='swaymsg output eDP-1 disable'
 
 # move to trash instead of remove
-rm() { trash $@ }
+alias rm='trash'
 
 # clean stuff
 clean() {
@@ -80,29 +81,23 @@ clean() {
 }
 
 # connect to wireguard
-startvpn() { sudo systemctl start wg-quick@wg0.service }
-stopvpn() { sudo systemctl stop wg-quick@wg0.service }
+alias startvpn='sudo systemctl start wg-quick@wg0.service'
+alias stopvpn='sudo systemctl stop wg-quick@wg0.service'
 
 # connect to metropolia vpn
-metropoliavpn() { sudo openconnect -u markoak --passwd-on-stdin vpn.metropolia.fi }
+alias metropoliavpn='sudo openconnect -u markoak --passwd-on-stdin vpn.metropolia.fi'
 
 # read qrcode from selection
 qr() { grim -g "$(slurp -d)" - | zbarimg PNG:- }
 
 # generate qr code in terminal
-qrencode() { /usr/bin/qrencode -t ansiutf8 $@ }
+alias qrencode='qrencode -t ansiutf8'
 
 # color picker
 cpick() { grim -g "$(slurp -p)" -t ppm - | convert - -format "%[pixel:p{0,0}]" txt:- }
 
-# eclim daemon location
-eclimd() { /usr/lib/eclipse/eclimd }
-
 #iwctl aliases
-i() { iwctl station wlan $@ }
-
-# download firefox customizations
-ffcustom() { wget "https://gist.githubusercontent.com/Sporif/db6b3440fba0b1bcf5477afacf93f875/raw/2a1be65a12f8f0c88ba84a69697e542ad62d4624/userChrome.css" "https://gist.github.com/mrkwatz/277fb19d210a7539304ca2388f24d8e3/raw/d5b47f4089a3ef29cc719ecb9f3bc0d333ab866a/userChrome.js" "https://gist.github.com/mrkwatz/277fb19d210a7539304ca2388f24d8e3/raw/d5b47f4089a3ef29cc719ecb9f3bc0d333ab866a/userChrome.xml" }
+alias i='iwctl station wlan0'
 
 # change cpu power settings
 performanceg() { sudo cpupower frequency-set -g performance }
@@ -112,13 +107,14 @@ powersave() { powersaveg && sudo ryzenadj --stapm-limit=25000 --fast-limit=25000
 ultimatepowersave() { powersave && sudo ryzenadj --stapm-limit=25000 --fast-limit=25000 --slow-limit=25000 --tctl-temp=20; }
 
 # monitor cpu freq
-cpufreq() { watch -n 1 eval "cat /proc/cpuinfo |grep MHz" }
+cpufreq() { watch -n 1 eval "cat /proc/cpuinfo | grep MHz" }
 
 # dotdrop
 updatesecrets() { bash $DOTREPO/secrets/secrets.sh; chmod 600 $DOTREPO/secrets/secrets }
 dotdrop() { source $DOTREPO/secrets/secrets && $DOTREPO/dotdrop/dotdrop.sh --cfg=$DOTREPO/config-home.yaml $@ }
 sdotdrop() { source $DOTREPO/secrets/secrets && sudo -E $DOTREPO/dotdrop/dotdrop.sh --cfg=$DOTREPO/config-root.yaml $@ }
-dotgit() { git -C $DOTREPO $@ }
+compdef _dotdrop-completion.zsh sdotdrop
+alias dotgit='git -C $DOTREPO'
 dotsync() { cd $DOTREPO && gpull && ga && gc && gpush && cd $OLDPWD }
 
 # sync password manager
@@ -132,20 +128,17 @@ updateall() { update; plugupdate; sudo awman-update }
 # remove unneeded packages
 autoremove() { sudo pacman -R $(pacman -Qdtq) }
 
-# start neomutt instead of mutt
-mutt() { neomutt $@ }
-
 # turn on usb tethering on my android phone
 tether() { adb shell su -c "service call connectivity 33 i32 1 s16 me" > /dev/null }
 
 # update arch mirrorlist
-reflect() { sudo reflector --latest 200 --threads 8 --verbose --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist }
+alias reflect='sudo reflector --latest 200 --threads 8 --verbose --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist'
 
 # better ls
-ls() { ls_extended $@ }
+alias ls='ls_extended'
 
 # default icon for notify-send
-notify-send() { /usr/bin/notify-send --icon=alarm $@ }
+alias notify-send='notify-send --icon=alarm'
 
 
 # encrypted tar's with zstd compression

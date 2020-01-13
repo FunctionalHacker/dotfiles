@@ -19,7 +19,7 @@ zplugin ice lucid
 zplugin light zsh-users/zsh-history-substring-search
 
 # fzf git awesomeness
-zplugin ice wait'1' lucid atload'source $HOME/.config/zsh/03-functions.zsh'
+zplugin ice wait'1' lucid atload'source $HOME/.config/zsh/03-aliases.zsh'
 zplugin light wfxr/forgit
 
 # lots of completions

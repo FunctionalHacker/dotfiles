@@ -60,7 +60,7 @@ alias zbarimg='zbarimg -q --raw'
 alias zbarcam='zbarcam -q --raw'
 
 # shorten systemctl
-alias sc='systemctl'
+alias sc='sudo systemctl'
 alias scu='systemctl --user'
 
 # switch to desktop mode
@@ -100,11 +100,23 @@ cpick() { grim -g "$(slurp -p)" -t ppm - | convert - -format "%[pixel:p{0,0}]" t
 alias i='iwctl station wlan0'
 
 # change cpu power settings
-performanceg() { sudo cpupower frequency-set -g performance }
-powersaveg() { sudo cpupower frequency-set -g powersave }
-performance() { performanceg && sudo ryzenadj --stapm-limit=45000 --fast-limit=45000 --slow-limit=45000 --tctl-temp=90 }
-powersave() { powersaveg && sudo ryzenadj --stapm-limit=25000 --fast-limit=25000 --slow-limit=25000 --tctl-temp=55 }
-ultimatepowersave() { powersave && sudo ryzenadj --stapm-limit=25000 --fast-limit=25000 --slow-limit=25000 --tctl-temp=20; }
+battery() { 
+	sudo cpupower frequency-set -g powersave
+	echo low | sudo tee /sys/class/drm/card0/device/power_dpm_force_performance_level
+}
+plugged() {
+	sudo cpupower frequency-set -g schedutil
+	echo auto | sudo tee /sys/class/drm/card0/device/power_dpm_force_performance_level
+}
+ultimatepowersave() {
+	battery
+	powersave
+	sudo ryzenadj --stapm-limit=25000 --fast-limit=25000 --slow-limit=25000 --tctl-temp=20;
+}
+performance() { 
+	sudo cpupower frequency-set -g performance
+	sudo ryzenadj --stapm-limit=45000 --fast-limit=45000 --slow-limit=45000 --tctl-temp=90
+}
 
 # monitor cpu freq
 cpufreq() { watch -n 1 eval "cat /proc/cpuinfo | grep MHz" }

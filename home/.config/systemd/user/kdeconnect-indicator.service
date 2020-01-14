@@ -1,6 +1,7 @@
 [Unit]
-Description=Indicator and UI for KDE Connect
+Description=KDE Connect tray indicator
 PartOf=graphical-session.target
+Requires=kdeconnectd.service
 
 [Service]
 Type=simple

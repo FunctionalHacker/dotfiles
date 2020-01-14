@@ -7,7 +7,7 @@ services:
     restart: always
     image: homeassistant/home-assistant
     volumes:
-      - /homeautomation-config/home-assistant:/config
+      - /docker/homeautomation/home-assistant:/config
     network_mode: host
     depends_on:
       - deconz
@@ -27,7 +27,7 @@ services:
     network_mode: host
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - /homeautomation-config/deconz:/root/.local/share/dresden-elektronik/deCONZ
+      - /docker/homeautomation/deconz:/root/.local/share/dresden-elektronik/deCONZ
     devices:
       - /dev/ttyACM0
 
@@ -40,7 +40,7 @@ services:
     ports:
       - '1880:1880'
     volumes:
-      - /homeautomation-config/node-red:/data
+      - /docker/homeautomation/node-red:/data
     depends_on:
       - home-assistant
 
@@ -52,7 +52,7 @@ services:
       - '9000:9000'
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - /homeautomation-config/portainer:/data
+      - /docker/homeautomation/portainer:/data
 
   mosquitto:
     container_name: mosquitto
@@ -60,7 +60,7 @@ services:
     restart: always
     network_mode: host
     volumes:
-      - /homeautomation-config/mosquitto:/mosquitto
+      - /docker/homeautomation/mosquitto:/mosquitto
 
   mariadb:
     container_name: mariadb
@@ -71,23 +71,4 @@ services:
     ports:
       - '3308:3306'
     volumes:
-      - /homeautomation-config/mariadb:/var/lib/mysql
-
-  almond:
-    container_name: almond
-    image: stanfordoval/almond-server:latest-portable
-    ports:
-      - '3006:3000'
-    volumes:
-      - /homeautomation-config/almond
-#  snips:
-#    container_name: snips
-#    image: reekymarko/snips
-#    restart: always
-#    environment:
-#      ENABLE_MQTT: 'no'
-#      ENABLE_HOTWORD_SERVICE: 'no'
-#    volumes:
-#      - /homeautomation-config/snips/log/:/var/log
-#      - /homeautomation-config/snips/snips.toml:/etc/snips.toml
-#      - /homeautomation-config/snips/assistant:/usr/share/snips
+      - /docker/homeautomation/mariadb:/var/lib/mysql

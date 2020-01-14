@@ -1,0 +1,10 @@
+version: '3'
+services:
+  jellyfin:
+    image: jellyfin/jellyfin
+    user: 1001:985
+    network_mode: 'host'
+    volumes:
+      - /docker/jellyfin/config:/config
+      - /docker/jellyfin/cache:/cache
+      - /mnt/Storage/Media:/media

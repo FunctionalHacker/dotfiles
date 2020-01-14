@@ -4,13 +4,6 @@ services:
   freepbx:
     container_name: freepbx
     image: tiredofit/freepbx
-    ports:
-      - 8012:80
-      - 5060:5060
-      - 5160:5160
-      - 18000-18100:18000-18100/udp
-      #### Flash Operator Panel
-      - 4445:4445
     volumes:
       - /docker/freepbx/certs:/certs
       - /docker/freepbx/data:/data
@@ -24,6 +17,7 @@ services:
       - DB_EMBEDDED=TRUE
 
     restart: always
+    network_mode: host
 
     ### These final lines are for Fail2ban. If you don't want, comment and also add ENABLE_FAIL2BAN=FALSE to your environment
     cap_add:

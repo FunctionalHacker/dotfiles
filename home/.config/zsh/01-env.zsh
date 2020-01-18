@@ -20,6 +20,7 @@ export GOPATH=~/.bin/go
 export FZF_DEFAULT_COMMAND='rg --files --hidden 2>/dev/null'
 export FZF_COMPLETION_TRIGGER='**'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_CTRL_T_OPTS='--preview "/usr/bin/cat {} | nvimpager -c "'
 export FZF_ALT_C_COMMAND='rg --hidden --files --null --sort path 2>/dev/null | xargs -0 dirname | uniq'
 
 # use lesspipe with less

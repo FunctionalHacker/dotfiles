@@ -7,9 +7,6 @@ function SetFZFoptions()
 	tunmap <buffer> <Esc>
 endfunction
 
-set winblend=20
-
-hi NormalFloat guibg=None
 if exists('g:fzf_colors.bg')
 	call remove(g:fzf_colors, 'bg')
 endif

@@ -1,6 +1,9 @@
 " Set colorscheme
 colorscheme material
 
+" Floating window transparency
+set winblend=10
+
 " Material theme variant
 let g:material_theme_style = 'palenight'
 

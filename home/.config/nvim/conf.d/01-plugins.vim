@@ -46,6 +46,7 @@ Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 
 " Syntax plugins
+Plug 'rust-lang/rust.vim'
 Plug 'stephpy/vim-yaml'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'kevinoid/vim-jsonc'

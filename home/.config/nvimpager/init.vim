@@ -10,6 +10,7 @@ set runtimepath+=~/.config/nvim/plugged/vim-pandoc-syntax
 set runtimepath+=~/.config/nvim/plugged/vim-yaml
 set runtimepath+=~/.config/nvim/plugged/yats.vim
 set runtimepath+=~/.config/nvim/plugged/zplugin-vim-syntax
+set runtimepath+=~/.config/nvim/plugged/rust.vim
 
 set runtimepath+=~/.config/nvim/plugged/vim-pandoc-syntax
 source ~/.config/nvim/conf.d/02-appearance.vim

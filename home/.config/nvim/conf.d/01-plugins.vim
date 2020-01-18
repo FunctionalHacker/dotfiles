@@ -11,12 +11,13 @@ let g:coc_global_extensions = [
 			\ 'coc-tsserver',
 			\ 'coc-json',
 			\ 'coc-yaml',
-			\ 'coc-vimtex',
+			\ 'coc-texlab',
 			\ 'coc-prettier',
 			\ 'coc-python',
 			\ 'coc-emmet',
 			\ 'coc-rust-analyzer',
 			\ 'coc-markdownlint',
+			\ 'coc-snippets',
 			\ ]
 
 call plug#begin()

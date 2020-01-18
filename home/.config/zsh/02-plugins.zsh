@@ -32,7 +32,7 @@ zplugin snippet https://gist.githubusercontent.com/RPigott/a3efdc08fa4d5fd7df38d
 
 # dotdrop completion
 zplugin ice wait'1' lucid as'completion'
-zplugin snippet $DOTREPO/dotdrop/completion/_dotdrop-completion.zsh
+zplugin snippet '$DOTREPO/dotdrop/completion/_dotdrop-completion.zsh'
 
 # docker-compose completion
 zplugin ice wait'1' lucid as'completion'

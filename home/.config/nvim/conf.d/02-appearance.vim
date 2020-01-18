@@ -4,11 +4,8 @@ colorscheme material
 " Floating window transparency
 set winblend=10
 
-" Material theme variant
-let g:material_theme_style = 'palenight'
-
 " Enable italics
-let g:material_terminal_italics = 1
+let g:onedark_terminal_italics=1
 
 " Disable built-in statusline because airline shows it
 set noshowmode
@@ -20,7 +17,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline_section_warning = ''
 let g:airline_section_error = ''
-let g:airline_theme='material'
+let g:airline_theme='onedark'
 
 " True color support
 set termguicolors

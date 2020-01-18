@@ -93,7 +93,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'jamessan/vim-gnupg'
 
 " Colorscheme
-Plug 'simonsmith/material.vim'
+Plug 'joshdick/onedark.vim'
 
 " Latex plugin
 Plug 'lervag/vimtex'

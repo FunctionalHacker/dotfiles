@@ -9,3 +9,4 @@
 .rustup/
 .zplugin/
 .config/nvim/plugged/
+.local/share/Trash/

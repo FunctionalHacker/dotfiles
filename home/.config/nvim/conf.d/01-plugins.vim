@@ -45,15 +45,8 @@ Plug 'conornewton/vim-pandoc-markdown-preview'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 
-" Syntax plugins
-Plug 'rust-lang/rust.vim'
-Plug 'stephpy/vim-yaml'
-Plug 'vim-pandoc/vim-pandoc-syntax'
-Plug 'kevinoid/vim-jsonc'
-Plug 'HerringtonDarkholme/yats.vim'
-Plug 'MaxMEllon/vim-jsx-pretty'
-Plug 'zplugin/zplugin-vim-syntax'
-Plug 'aouelete/sway-vim-syntax'
+" Language syntax pack
+Plug 'sheerun/vim-polyglot'
 
 " Read editorconfig settings
 Plug 'editorconfig/editorconfig-vim'

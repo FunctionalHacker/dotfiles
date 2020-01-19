@@ -1,5 +1,5 @@
 " Set colorscheme
-colorscheme material
+colorscheme onedark
 
 " Floating window transparency
 set winblend=10

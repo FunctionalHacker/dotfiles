@@ -4,6 +4,7 @@ services:
     image: jellyfin/jellyfin
     user: 1001:985
     network_mode: 'host'
+    restart: always
     volumes:
       - /docker/jellyfin/config:/config
       - /docker/jellyfin/cache:/cache

@@ -5,8 +5,8 @@ screenon="swaymsg 'output * dpms on'"
 screenoff="swaymsg 'output * dpms off'"
 swayidle \
 	lock "$swaylock" \
-	timeout 300 "$dimscreen -sd" \
-    resume "$dimscreen -r" \
+	timeout 300 "lqsd -d" \
+    resume "lqsd -r" \
 	timeout 600 "loginctl lock-session $(loginctl show-user $USER -p Sessions | cut -d'=' -f2); sleep 0.5; $screenoff" \
     resume "$screenon; $dimscreen -r" \
 	before-sleep "playerctl pause; loginctl lock-session $(loginctl show-user $USER -p Sessions | cut -d'=' -f2)" \

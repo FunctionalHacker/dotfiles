@@ -1,12 +1,3 @@
-# signoff every commit
-git() {
-	if [[ "$1" == "commit" && $# -eq 1 ]]; then
-		/usr/bin/git commit -S -s
-	else
-		/usr/bin/git $@
-	fi
-}
-
 # git shorthands
 alias gc='git commit'
 alias gac='ga && gc'

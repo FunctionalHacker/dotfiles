@@ -26,5 +26,10 @@ nnoremap <C-H> <C-W><C-H>
 " Enable mouse
 set mouse=a
 
-" Preview with pandoc
-nnoremap <leader>v :PandocPreview<cr>
+" Toggle equalalways
+function ToggleEqual ()
+	:set equalalways!
+	:set equalalways!
+endfunction
+
+nnoremap <leader>= :call ToggleEqual()<CR>

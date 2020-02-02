@@ -12,7 +12,7 @@ services:
       - USER_UID=1000
       - USER_GID=1000
       - DB_TYPE=mysql
-      - DB_HOST=db:3306
+      - DB_HOST=mariadb-gitea:3306
       - DB_NAME=gitea
       - DB_USER=gitea
       - DB_PASSWD=gitea
@@ -27,9 +27,9 @@ services:
       - '3000:3000'
       - '222:22'
     depends_on:
-      - db
+      - mariadb-gitea
 
-  mariadb:
+  mariadb-gitea:
     container_name: mariadb-gitea
     image: mariadb
     restart: always

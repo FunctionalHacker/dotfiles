@@ -1,0 +1,41 @@
+version: '2'
+
+networks:
+  gitea:
+    external: false
+
+services:
+  gitea:
+    container_name: gitea
+    image: gitea/gitea:latest
+    environment:
+      - USER_UID=1000
+      - USER_GID=1000
+      - DB_TYPE=mysql
+      - DB_HOST=db:3306
+      - DB_NAME=gitea
+      - DB_USER=gitea
+      - DB_PASSWD=gitea
+    restart: always
+    networks:
+      - gitea
+    volumes:
+      - /docker/gitea/gitea:/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - '3000:3000'
+      - '222:22'
+    depends_on:
+      - db
+
+  mariadb:
+    container_name: mariadb-gitea
+    image: mariadb
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    ports:
+      - '3308:3306'
+    volumes:
+      - /docker/gitea/mariadb:/var/lib/mysql

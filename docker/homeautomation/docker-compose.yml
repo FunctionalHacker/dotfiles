@@ -63,7 +63,7 @@ services:
       - /docker/homeautomation/mosquitto:/mosquitto
 
   mariadb:
-    container_name: mariadb
+    container_name: mariadb-hass
     image: mariadb
     restart: always
     environment:

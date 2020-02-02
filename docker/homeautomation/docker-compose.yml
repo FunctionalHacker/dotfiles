@@ -68,7 +68,5 @@ services:
     restart: always
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-    ports:
-      - '3308:3306'
     volumes:
       - /docker/homeautomation/mariadb:/var/lib/mysql

@@ -8,5 +8,5 @@ services:
       - '9000:9000'
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - /docker/homeautomation/portainer:/data
+      - /docker/portainer:/data
       - /etc/localtime:/etc/localtime:ro

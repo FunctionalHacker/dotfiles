@@ -1,13 +1,12 @@
 version: '3'
 services:
   home-assistant:
-    environment:
-      TZ: 'Europe/Helsinki'
     container_name: home-assistant
     restart: always
     image: homeassistant/home-assistant
     volumes:
       - /docker/homeautomation/home-assistant:/config
+      - /etc/localtime:/etc/localtime:ro
     network_mode: host
     depends_on:
       - deconz
@@ -26,8 +25,9 @@ services:
       DEBUG_OTAU: 1
     network_mode: host
     volumes:
-      - /etc/localtime:/etc/localtime:ro
       - /docker/homeautomation/deconz:/root/.local/share/dresden-elektronik/deCONZ
+
+      - /etc/localtime:/etc/localtime:ro
     devices:
       - /dev/ttyACM0
 
@@ -35,12 +35,11 @@ services:
     container_name: node-red
     image: nodered/node-red
     restart: always
-    environment:
-      TZ: 'Europe/Helsinki'
     ports:
       - '1880:1880'
     volumes:
       - /docker/homeautomation/node-red:/data
+      - /etc/localtime:/etc/localtime:ro
     depends_on:
       - home-assistant
 
@@ -53,6 +52,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /docker/homeautomation/portainer:/data
+      - /etc/localtime:/etc/localtime:ro
 
   mosquitto:
     container_name: mosquitto
@@ -61,6 +61,7 @@ services:
     network_mode: host
     volumes:
       - /docker/homeautomation/mosquitto:/mosquitto
+      - /etc/localtime:/etc/localtime:ro
 
   mariadb:
     container_name: mariadb-hass
@@ -72,3 +73,4 @@ services:
       - '3308:3306'
     volumes:
       - /docker/homeautomation/mariadb:/var/lib/mysql
+      - /etc/localtime:/etc/localtime:ro

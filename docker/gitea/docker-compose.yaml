@@ -33,9 +33,10 @@ services:
     container_name: mariadb-gitea
     image: mariadb
     restart: always
+    networks:
+      - gitea
     environment:
-      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-    ports:
-      - '3308:3306'
+      - MYSQL_ROOT_PASSWORD=gitea
     volumes:
       - /docker/gitea/mariadb:/var/lib/mysql
+      - /etc/localtime:/etc/localtime:ro

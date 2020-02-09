@@ -3,6 +3,8 @@ services:
   jellyfin:
     image: jellyfin/jellyfin
     container_name: jellyfin
+    environment:
+      - TZ=Europe/Helsinki
     user: 1001:985
     network_mode: 'host'
     restart: always

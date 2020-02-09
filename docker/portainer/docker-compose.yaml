@@ -1,8 +1,10 @@
 version: '3'
 services:
   portainer:
-    container_name: portainer
     image: portainer/portainer
+    container_name: portainer
+    environment:
+      - TZ=Europe/Helsinki
     restart: always
     ports:
       - '9000:9000'

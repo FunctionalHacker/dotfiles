@@ -2,11 +2,13 @@ version: '3'
 services:
   home-assistant:
     container_name: home-assistant
-    restart: always
     image: homeassistant/home-assistant
+    environment:
+      - TZ=Europe/Helsinki
     volumes:
       - /docker/homeautomation/home-assistant:/config
       - /etc/localtime:/etc/localtime:ro
+    restart: always
     network_mode: host
     depends_on:
       - deconz
@@ -15,51 +17,57 @@ services:
   deconz:
     container_name: deconz
     image: marthoc/deconz
-    restart: always
     environment:
-      DECONZ_WEB_PORT: 8083
-      DECONZ_WS_PORT: 8084
-      DECONZ_VNC_PORT: 5901
-      DECONZ_VNC_MODE: 1
-      DECONZ_VNC_PASSWORD: '${DECONZ_VNC_PASSWORD}'
-      DEBUG_OTAU: 1
+      - TZ=Europe/Helsinki
+      - DECONZ_WEB_PORT=8083
+      - DECONZ_WS_PORT=8084
+      - DECONZ_VNC_PORT=5901
+      - DECONZ_VNC_MODE=1
+      - DECONZ_VNC_PASSWORD=${DECONZ_VNC_PASSWORD}
+      - DEBUG_OTAU=1
     network_mode: host
     volumes:
       - /docker/homeautomation/deconz:/root/.local/share/dresden-elektronik/deCONZ
 
       - /etc/localtime:/etc/localtime:ro
+    restart: always
     devices:
       - /dev/ttyACM0
 
   node-red:
     container_name: node-red
     image: nodered/node-red
-    restart: always
+    environment:
+      - TZ=Europe/Helsinki
     ports:
       - '1880:1880'
     volumes:
       - /docker/homeautomation/node-red:/data
       - /etc/localtime:/etc/localtime:ro
+    restart: always
     depends_on:
       - home-assistant
 
   mosquitto:
     container_name: mosquitto
     image: eclipse-mosquitto
-    restart: always
+    environment:
+      - TZ=Europe/Helsinki
     network_mode: host
     volumes:
       - /docker/homeautomation/mosquitto:/mosquitto
       - /etc/localtime:/etc/localtime:ro
+    restart: always
 
   mariadb:
     container_name: mariadb-hass
     image: mariadb
-    restart: always
     environment:
+      - TZ=Europe/Helsinki
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
     ports:
       - '3308:3306'
     volumes:
       - /docker/homeautomation/mariadb:/var/lib/mysql
       - /etc/localtime:/etc/localtime:ro
+    restart: always

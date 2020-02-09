@@ -9,6 +9,7 @@ services:
     container_name: gitea
     image: gitea/gitea:latest
     environment:
+      - TZ=Europe/Helsinki
       - USER_UID=1000
       - USER_GID=1000
       - DB_TYPE=mysql
@@ -21,7 +22,6 @@ services:
       - gitea
     volumes:
       - /docker/gitea/gitea:/data
-      - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
     ports:
       - '3000:3000'
@@ -36,6 +36,7 @@ services:
     networks:
       - gitea
     environment:
+      - TZ=Europe/Helsinki
       - MYSQL_ROOT_PASSWORD=gitea
     volumes:
       - /docker/gitea/mariadb:/var/lib/mysql

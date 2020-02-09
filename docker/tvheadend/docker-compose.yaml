@@ -5,8 +5,8 @@ services:
     container_name: tvheadend
     environment:
       - TZ=Europe/Helsinki
-      - PUID=1001
-      - PGID=985
+      - PUID=${UID}
+      - PGID=${GID}
     volumes:
       - /docker/tvheadend:/config
       - /mnt/Storage/Media/PVR:/recordings

@@ -4,10 +4,9 @@ services:
   mumble:
     container_name: mumble
     image: phlak/mumble
+    user: '${UID}:${GID}'
     environment:
       - TZ=Europe/Helsinki
-      - PUID=${UID}
-      - PGID=${GID}
     ports:
       - '64748:64738'
       - '64748:64738/udp'

@@ -4,6 +4,7 @@ services:
     image: linuxserver/tvheadend
     container_name: tvheadend
     environment:
+      - TZ=Europe/Helsinki
       - PUID=1001
       - PGID=985
     volumes:

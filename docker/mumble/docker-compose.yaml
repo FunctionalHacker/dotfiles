@@ -1,14 +1,15 @@
 version: '3'
 
 services:
-  gitea:
-    container_name: gitea
-    image: gitea/gitea:latest
-    restart: always
-    volumes:
-      - /docker/mumble:/etc/mumble
-      - /etc/timezone:/etc/timezone:ro
-      - /etc/localtime:/etc/localtime:ro
+  mumble:
+    container_name: mumble
+    image: phlak/mumble
+    environment:
+      - TZ=Europe/Helsinki
     ports:
       - '64748:64738'
       - '64748:64738/udp'
+    volumes:
+      - /docker/mumble:/etc/mumble
+      - /etc/localtime:/etc/localtime:ro
+    restart: always

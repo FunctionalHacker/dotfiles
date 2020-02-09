@@ -6,6 +6,8 @@ services:
     image: phlak/mumble
     environment:
       - TZ=Europe/Helsinki
+      - PUID=${UID}
+      - PGID=${GID}
     ports:
       - '64748:64738'
       - '64748:64738/udp'

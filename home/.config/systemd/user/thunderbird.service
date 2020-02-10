@@ -4,6 +4,7 @@ PartOf=graphical-session.target
 
 [Service]
 Type=simple
+Environment="LANG=en_XX.UTF-8@POSIX"
 ExecStart=/usr/bin/thunderbird
 
 [Install]

@@ -164,7 +164,6 @@ profiles:
       - f_mkinitcpio.conf
       - f_bluetooth.conf
       - f_60-uinput-permissions.rules
-      - f_timesyncd.conf
       - f_sshd_config
       - f_nightly-reboot.service
       - f_nightly-reboot.timer

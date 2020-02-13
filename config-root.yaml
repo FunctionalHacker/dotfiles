@@ -172,3 +172,5 @@ profiles:
     include:
       - Locale
       - Pacman
+    dotfiles:
+      - f_sshd_config

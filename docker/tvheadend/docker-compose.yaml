@@ -3,7 +3,6 @@ services:
   tvheadend:
     image: linuxserver/tvheadend
     container_name: tvheadend
-    user: "1000:985"
     environment:
       - TZ=Europe/Helsinki
       - PUID=1000

@@ -5,7 +5,7 @@ services:
     container_name: jellyfin
     environment:
       - TZ=Europe/Helsinki
-    user: "${UID}:${GID}"
+    user: "1000:985"
     ports:
       - "8096:8096"
     networks:

@@ -1,12 +1,11 @@
-version: '2'
+version: "2"
 services:
   tvheadend:
     image: linuxserver/tvheadend
     container_name: tvheadend
+    user: $UID:$GID
     environment:
       - TZ=Europe/Helsinki
-      - PUID=${UID}
-      - PGID=${GID}
     volumes:
       - /docker/tvheadend:/config
       - /mnt/Storage/Media/PVR:/recordings

@@ -168,3 +168,7 @@ profiles:
       - f_sshd_config
       - f_nightly-reboot.service
       - f_nightly-reboot.timer
+  Moria:
+    include:
+      - Locale
+      - Pacman

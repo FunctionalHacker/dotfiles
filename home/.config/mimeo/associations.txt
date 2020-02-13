@@ -45,3 +45,6 @@ alacritty -e rtv "%U"
 
 alacritty -e rtv "%U"
   ^https?://redd.it.*
+
+mpv "$(yle-dl --showurl %U)"
+  ^https?://areena.yle.fi.*

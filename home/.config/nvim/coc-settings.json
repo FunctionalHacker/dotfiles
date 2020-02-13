@@ -11,7 +11,7 @@
     "javascriptreact",
     "yaml"
   ],
-  "prettier.singleQuote": true,
+  "prettier.singleQuote": false,
   "diagnostic.errorSign": "•",
   "diagnostic.warningSign": "•",
   "diagnostic.infoSign": "•",

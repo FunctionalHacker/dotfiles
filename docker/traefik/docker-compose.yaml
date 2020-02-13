@@ -1,0 +1,41 @@
+version: '3'
+
+services:
+  traefik:
+    image: traefik:v2.0
+    container_name: traefik
+    restart: unless-stopped
+    ports:
+      - '80:80'
+      - '443:443'
+    environment:
+      - TZ=Europe/Helsinki
+    security_opt:
+      - no-new-privileges:true
+    networks:
+      - proxy
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /docker/traefik/traefik.yml:/traefik.yml:ro
+      - /docker/traefik/dashboard-users:/dashboard-users:ro
+      - /docker/traefik/acme.json:/acme.json
+    labels:
+      - 'traefik.enable=true'
+
+      - 'traefik.http.routers.redirect.entrypoints=http'
+      - 'traefik.http.routers.redirect.rule=Host(`traefik.reekynet.com`)'
+      - 'traefik.http.middlewares.http2https.redirectscheme.scheme=https'
+      - 'traefik.http.routers.redirect.middlewares=http2https'
+
+      - 'traefik.http.routers.dashboard.entrypoints=https'
+      - 'traefik.http.routers.dashboard.rule=Host(`traefik.reekynet.com`)'
+      - 'traefik.http.middlewares.dashboard-auth.basicauth.usersfile=/dashboard-users'
+      - 'traefik.http.routers.dashboard.middlewares=dashboard-auth'
+      - 'traefik.http.routers.dashboard.tls=true'
+      - 'traefik.http.routers.dashboard.tls.certresolver=http'
+      - 'traefik.http.routers.dashboard.service=api@internal'
+
+networks:
+  proxy:
+    external: true

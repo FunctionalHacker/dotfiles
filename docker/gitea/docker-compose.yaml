@@ -1,9 +1,5 @@
 version: '2'
 
-networks:
-  gitea:
-    external: false
-
 services:
   gitea:
     container_name: gitea
@@ -20,14 +16,30 @@ services:
     restart: always
     networks:
       - gitea
-    volumes:
-      - /docker/gitea/gitea:/data
-      - /etc/localtime:/etc/localtime:ro
+      - proxy
     ports:
       - '3000:3000'
       - '222:22'
     depends_on:
       - mariadb-gitea
+    volumes:
+      - /docker/gitea/gitea:/data
+      - /etc/localtime:/etc/localtime:ro
+    labels:
+      - 'traefik.enable=true'
+
+      - 'traefik.http.routers.gitea-redirect.entrypoints=http'
+      - 'traefik.http.routers.gitea-redirect.rule=Host(`git.reekynet.com`)'
+      - 'traefik.http.middlewares.http2https.redirectscheme.scheme=https'
+      - 'traefik.http.routers.gitea-redirect.middlewares=http2https'
+
+      - 'traefik.http.routers.gitea.entrypoints=https'
+      - 'traefik.http.routers.gitea.rule=Host(`git.reekynet.com`)'
+      - 'traefik.http.routers.gitea.tls=true'
+      - 'traefik.http.routers.gitea.tls.certresolver=http'
+      - 'traefik.http.routers.gitea.service=gitea'
+      - 'traefik.docker.network=proxy'
+      - 'traefik.http.services.gitea.loadbalancer.server.port=3000'
 
   mariadb-gitea:
     container_name: mariadb-gitea
@@ -41,3 +53,9 @@ services:
     volumes:
       - /docker/gitea/mariadb:/var/lib/mysql
       - /etc/localtime:/etc/localtime:ro
+
+networks:
+  gitea:
+    external: false
+  proxy:
+    external: true

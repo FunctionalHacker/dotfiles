@@ -1,0 +1,9 @@
+[Unit]
+Description=Watch server temperature
+
+[Service]
+Type=simple
+ExecStart=/home/balrog/Scripts/ipmi-temp.sh
+
+[Install]
+WantedBy=multi-user.target

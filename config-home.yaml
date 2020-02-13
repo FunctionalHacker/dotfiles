@@ -217,6 +217,11 @@ profiles:
       - Terminal
       - Media
       - Pacman
+  Moria:
+    include:
+      - Terminal
+      - Media
+      - Pacman
   Terminal:
     dotfiles:
       - f_nvimpager_init.vim

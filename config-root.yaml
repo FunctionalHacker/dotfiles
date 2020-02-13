@@ -122,11 +122,15 @@ dotfiles:
   f_ipmi-temp.service:
     src: etc/systemd/system/ipmi-temp.service
     dst: /etc/systemd/system/ipmi-temp.service
+  f_ipmi-static.service:
+    src: etc/systemd/system/ipmi-static.service
+    dst: /etc/systemd/system/ipmi-static.service
 profiles:
   IPMI:
     dotfiles:
       - f_ipmi-temp.timer
       - f_ipmi-temp.service
+      - f_ipmi-static.service
   Locale:
     dotfiles:
       - f_locale.conf
@@ -161,8 +165,6 @@ profiles:
       - f_mkinitcpio.conf
       - f_vconsole.conf
       - f_20-quiet-printk.conf
-      - f_ipmi-temp.timer
-      - f_ipmi-temp.service
     include:
       - Locale
       - Pacman

@@ -123,9 +123,10 @@ dotfiles:
     src: etc/systemd/system/ipmi-temp.service
     dst: /etc/systemd/system/ipmi-temp.service
 profiles:
-  Ipmi:
-    dotfiles: f_ipmi-temp.timer
-      f_ipmi-temp.service
+  IPMI:
+    dotfiles:
+      - f_ipmi-temp.timer
+      - f_ipmi-temp.service
   Locale:
     dotfiles:
       - f_locale.conf
@@ -182,6 +183,6 @@ profiles:
     include:
       - Locale
       - Pacman
-      - Ipmi
+      - IPMI
     dotfiles:
       - f_sshd_config

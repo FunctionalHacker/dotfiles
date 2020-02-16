@@ -188,4 +188,3 @@ profiles:
       - IPMI
     dotfiles:
       - f_sshd_config
-      - f_99-sysctl.conf

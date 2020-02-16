@@ -16,6 +16,7 @@ services:
       - "8123:8123"
     depends_on:
       - deconz
+      - mariadb
     labels:
       - "traefik.enable=true"
 

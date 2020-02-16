@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 services:
   home-assistant:
     container_name: home-assistant
@@ -8,50 +8,29 @@ services:
     volumes:
       - /docker/homeautomation/home-assistant:/config
       - /etc/localtime:/etc/localtime:ro
+    devices:
+      - /dev/ttyACM0
     restart: always
     networks:
       - home-assistant
       - proxy
     ports:
-      - '8123:8123'
-    depends_on:
-      - deconz
-      - mosquitto
+      - "8123:8123"
     labels:
-      - 'traefik.enable=true'
+      - "traefik.enable=true"
 
-      - 'traefik.http.routers.home-assistant-redirect.entrypoints=http'
-      - 'traefik.http.routers.home-assistant-redirect.rule=Host(`home.reekynet.com`)'
-      - 'traefik.http.middlewares.http2https.redirectscheme.scheme=https'
-      - 'traefik.http.routers.home-assistant-redirect.middlewares=http2https'
+      - "traefik.http.routers.home-assistant-redirect.entrypoints=http"
+      - "traefik.http.routers.home-assistant-redirect.rule=Host(`home.reekynet.com`)"
+      - "traefik.http.middlewares.http2https.redirectscheme.scheme=https"
+      - "traefik.http.routers.home-assistant-redirect.middlewares=http2https"
 
-      - 'traefik.http.routers.home-assistant.entrypoints=https'
-      - 'traefik.http.routers.home-assistant.rule=Host(`home.reekynet.com`)'
-      - 'traefik.http.routers.home-assistant.tls=true'
-      - 'traefik.http.routers.home-assistant.tls.certresolver=http'
-      - 'traefik.http.routers.home-assistant.service=home-assistant'
-      - 'traefik.docker.network=proxy'
-      - 'traefik.http.services.home-assistant.loadbalancer.server.port=8123'
-
-  deconz:
-    container_name: deconz
-    image: marthoc/deconz
-    environment:
-      - TZ=Europe/Helsinki
-      - DECONZ_WEB_PORT=8083
-      - DECONZ_WS_PORT=8084
-      - DECONZ_VNC_PORT=5901
-      - DECONZ_VNC_MODE=1
-      - DECONZ_VNC_PASSWORD=${DECONZ_VNC_PASSWORD}
-      - DEBUG_OTAU=1
-    network_mode: host
-    volumes:
-      - /docker/homeautomation/deconz:/root/.local/share/dresden-elektronik/deCONZ
-
-      - /etc/localtime:/etc/localtime:ro
-    restart: always
-    devices:
-      - /dev/ttyACM0
+      - "traefik.http.routers.home-assistant.entrypoints=https"
+      - "traefik.http.routers.home-assistant.rule=Host(`home.reekynet.com`)"
+      - "traefik.http.routers.home-assistant.tls=true"
+      - "traefik.http.routers.home-assistant.tls.certresolver=http"
+      - "traefik.http.routers.home-assistant.service=home-assistant"
+      - "traefik.docker.network=proxy"
+      - "traefik.http.services.home-assistant.loadbalancer.server.port=8123"
 
   node-red:
     container_name: node-red
@@ -62,7 +41,7 @@ services:
       - home-assistant
       - proxy
     ports:
-      - '1880:1880'
+      - "1880:1880"
     volumes:
       - /docker/homeautomation/node-red:/data
       - /etc/localtime:/etc/localtime:ro
@@ -70,31 +49,20 @@ services:
     depends_on:
       - home-assistant
     labels:
-      - 'traefik.enable=true'
+      - "traefik.enable=true"
 
-      - 'traefik.http.routers.node-red-redirect.entrypoints=http'
-      - 'traefik.http.routers.node-red-redirect.rule=Host(`node.reekynet.com`)'
-      - 'traefik.http.middlewares.http2https.redirectscheme.scheme=https'
-      - 'traefik.http.routers.node-red-redirect.middlewares=http2https'
+      - "traefik.http.routers.node-red-redirect.entrypoints=http"
+      - "traefik.http.routers.node-red-redirect.rule=Host(`node.reekynet.com`)"
+      - "traefik.http.middlewares.http2https.redirectscheme.scheme=https"
+      - "traefik.http.routers.node-red-redirect.middlewares=http2https"
 
-      - 'traefik.http.routers.node-red.entrypoints=https'
-      - 'traefik.http.routers.node-red.rule=Host(`node.reekynet.com`)'
-      - 'traefik.http.routers.node-red.tls=true'
-      - 'traefik.http.routers.node-red.tls.certresolver=http'
-      - 'traefik.http.routers.node-red.service=node-red'
-      - 'traefik.docker.network=proxy'
-      - 'traefik.http.services.node.loadbalancer.server.port=1880'
-
-  mosquitto:
-    container_name: mosquitto
-    image: eclipse-mosquitto
-    environment:
-      - TZ=Europe/Helsinki
-    network_mode: host
-    volumes:
-      - /docker/homeautomation/mosquitto:/mosquitto
-      - /etc/localtime:/etc/localtime:ro
-    restart: always
+      - "traefik.http.routers.node-red.entrypoints=https"
+      - "traefik.http.routers.node-red.rule=Host(`node.reekynet.com`)"
+      - "traefik.http.routers.node-red.tls=true"
+      - "traefik.http.routers.node-red.tls.certresolver=http"
+      - "traefik.http.routers.node-red.service=node-red"
+      - "traefik.docker.network=proxy"
+      - "traefik.http.services.node.loadbalancer.server.port=1880"
 
   mariadb:
     container_name: mariadb-hass

@@ -16,7 +16,6 @@ services:
       - "8123:8123"
     depends_on:
       - deconz
-      - mosquitto
     labels:
       - "traefik.enable=true"
 
@@ -84,17 +83,6 @@ services:
       - "traefik.http.routers.node-red.service=node-red"
       - "traefik.docker.network=proxy"
       - "traefik.http.services.node.loadbalancer.server.port=1880"
-
-  mosquitto:
-    container_name: mosquitto
-    image: eclipse-mosquitto
-    environment:
-      - TZ=Europe/Helsinki
-    network_mode: host
-    volumes:
-      - /docker/homeautomation/mosquitto:/mosquitto
-      - /etc/localtime:/etc/localtime:ro
-    restart: always
 
   mariadb:
     container_name: mariadb-hass

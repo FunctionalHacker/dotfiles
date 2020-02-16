@@ -46,8 +46,8 @@ services:
       - DEBUG_OTAU=1
     network_mode: host
     volumes:
-      - /docker/homeautomation/deconz:/root/.local/share/dresden-elektronik/deCONZ
-
+      - /docker/homeautomation/deconz/deconz:/root/.local/share/dresden-elektronik/deCONZ
+      - /docker/homeautomation/deconz/otau:/root/otau
       - /etc/localtime:/etc/localtime:ro
     restart: always
     devices:

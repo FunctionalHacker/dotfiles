@@ -46,6 +46,7 @@ services:
       - DEBUG_OTAU=1
     ports:
       - "8083:8083"
+      - "8084:8084"
     volumes:
       - /docker/homeautomation/deconz/deconz:/root/.local/share/dresden-elektronik/deCONZ
       - /docker/homeautomation/deconz/otau:/root/otau

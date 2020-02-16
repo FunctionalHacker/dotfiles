@@ -40,13 +40,12 @@ services:
       - TZ=Europe/Helsinki
       - DECONZ_WEB_PORT=8083
       - DECONZ_WS_PORT=8084
+      - DECONZ_UPNP=0
       - DECONZ_VNC_PORT=5901
       - DECONZ_VNC_MODE=1
       - DECONZ_VNC_PASSWORD=${DECONZ_VNC_PASSWORD}
       - DEBUG_OTAU=1
-    ports:
-      - "8083:8083"
-      - "8084:8084"
+    network_mode: host
     volumes:
       - /docker/homeautomation/deconz/deconz:/root/.local/share/dresden-elektronik/deCONZ
       - /docker/homeautomation/deconz/otau:/root/otau

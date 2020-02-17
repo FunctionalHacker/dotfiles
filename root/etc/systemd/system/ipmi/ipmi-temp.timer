@@ -1,0 +1,9 @@
+[Unit]
+Description=Watches server temperature
+
+[Timer]
+OnUnitInactiveSec=5s
+OnBootSec=5s
+
+[Install]
+WantedBy=timers.target

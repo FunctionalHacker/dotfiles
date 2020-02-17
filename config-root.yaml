@@ -120,11 +120,6 @@ dotfiles:
     src: etc/systemd/system/ipmi
     dst: /etc/systemd/system/ipmi
 profiles:
-  IPMI:
-    dotfiles:
-      - f_ipmi-temp.timer
-      - f_ipmi-temp.service
-      - f_ipmi-static.service
   Locale:
     dotfiles:
       - f_locale.conf
@@ -184,3 +179,4 @@ profiles:
     dotfiles:
       - f_sshd_config
       - f_99-sysctl.conf
+      - d_ipmi

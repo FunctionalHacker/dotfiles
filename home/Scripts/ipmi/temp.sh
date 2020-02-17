@@ -7,7 +7,9 @@ IPMIEK=0000000000000000000000000000000000000000
 MAXTEMP=27
 TEMP=$(ipmitool -I lanplus -H $IPMIHOST -U $IPMIUSER -P $IPMIPW -y $IPMIEK sdr type temperature |grep Ambient |grep degrees |grep -Po '\d{2}' | tail -1)
 
-echo $TEMP > /tmp/idrac-temp
+mkdir -p /tmp/ipmi
+
+echo $TEMP > /tmp/ipmi/temp
 
 
 if [[ $TEMP > $MAXTEMP ]];

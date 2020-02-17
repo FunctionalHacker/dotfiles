@@ -3,7 +3,7 @@ Description=Set fan speed
 
 [Service]
 Type=simple
-ExecStart=/home/balrog/Scripts/ipmi-static.sh
+ExecStart=/home/balrog/Scripts/ipmi/static.sh
 
 [Install]
 WantedBy=multi-user.target

@@ -1,18 +1,6 @@
 #!/usr/bin/env bash
 
-# ----------------------------------------------------------------------------------
-# Script for setting manual fan speed to 2160 RPM (on my R710)
-#
-# Requires:
-# ipmitool – apt-get install ipmitool
-# slacktee.sh – https://github.com/course-hero/slacktee
-# ----------------------------------------------------------------------------------
-
-
-# IPMI SETTINGS:
-# Modify to suit your needs.
-# DEFAULT IP: 192.168.0.120
-IPMIHOST=10.0.0.174
+IPMIHOST=10.0.0.82
 IPMIUSER=ReekyMarko
 IPMIPW={{@@ env['PASS_IPMI'] @@}}
 IPMIEK=0000000000000000000000000000000000000000

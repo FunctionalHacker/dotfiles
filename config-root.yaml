@@ -116,67 +116,81 @@ dotfiles:
   f_20-quiet-printk.conf:
     src: etc/sysctl.d/20-quiet-printk.conf
     dst: /etc/sysctl.d/20-quiet-printk.conf
-  d_ipmi:
-    src: etc/systemd/system/ipmi
-    dst: /etc/systemd/system/ipmi
+  f_ipmi-static.service:
+    src: etc/systemd/system/ipmi-static.service
+    dst: /etc/systemd/system/ipmi-static.service
+  f_ipmi-temp.service:
+    src: etc/systemd/system/ipmi-temp.service
+    dst: /etc/systemd/system/ipmi-temp.service
+  f_ipmi-temp.timer:
+    src: etc/systemd/system/ipmi-temp.timer
+    dst: /etc/systemd/system/ipmi-temp.timer
+  f_ipmi-fans.service:
+    src: etc/systemd/system/ipmi-fans.service
+    dst: /etc/systemd/system/ipmi-fans.service
+  f_ipmi-fans.timer:
+    src: etc/systemd/system/ipmi-fans.timer
+    dst: /etc/systemd/system/ipmi-fans.timer
 profiles:
   Locale:
     dotfiles:
-      - f_locale.conf
-      - f_locale.gen
+    - f_locale.conf
+    - f_locale.gen
   Pacman:
     dotfiles:
-      - f_pacman.conf
-      - f_pacserve.service.conf
-      - f_pacman-dl.service
-      - f_pacman-dl.timer
+    - f_pacman.conf
+    - f_pacserve.service.conf
+    - f_pacman-dl.service
+    - f_pacman-dl.timer
   Mirkwood:
     dotfiles:
-      - f_getty.conf
-      - f_environment
-      - f_cryptissue
-      - f_welcomemessage.conf
-      - d_bin
-      - f_adb.service
-      - f_bluetooth.conf
-      - f_iwd@.service
-      - f_loader.conf
-      - f_sshd_config
-      - f_logind.conf
-      - f_60-uinput-permissions.rules
-      - f_freetype2.sh
-      - f_fonts.conf
-      - f_timesyncd.conf
-      - f_99-sysctl.conf
-      - f_99-lowbat.rules
-      - f_ignore
-      - f_zsh.hook
-      - f_mkinitcpio.conf
-      - f_vconsole.conf
-      - f_20-quiet-printk.conf
-      - d_ipmi
+    - f_getty.conf
+    - f_environment
+    - f_cryptissue
+    - f_welcomemessage.conf
+    - d_bin
+    - f_adb.service
+    - f_bluetooth.conf
+    - f_iwd@.service
+    - f_loader.conf
+    - f_sshd_config
+    - f_logind.conf
+    - f_60-uinput-permissions.rules
+    - f_freetype2.sh
+    - f_fonts.conf
+    - f_timesyncd.conf
+    - f_99-sysctl.conf
+    - f_99-lowbat.rules
+    - f_ignore
+    - f_zsh.hook
+    - f_mkinitcpio.conf
+    - f_vconsole.conf
+    - f_20-quiet-printk.conf
+    - f_ipmi-static.service
+    - f_ipmi-temp.service
+    - f_ipmi-temp.timer
+    - f_ipmi-fans.service
+    - f_ipmi-fans.timer
     include:
-      - Locale
-      - Pacman
+    - Locale
+    - Pacman
   Rivendell:
     include:
-      - Locale
-      - Pacman
+    - Locale
+    - Pacman
     dotfiles:
-      - f_getty.conf
-      - f_vconsole.conf
-      - f_mkinitcpio.conf
-      - f_bluetooth.conf
-      - f_60-uinput-permissions.rules
-      - f_sshd_config
-      - f_nightly-reboot.service
-      - f_nightly-reboot.timer
+    - f_getty.conf
+    - f_vconsole.conf
+    - f_mkinitcpio.conf
+    - f_bluetooth.conf
+    - f_60-uinput-permissions.rules
+    - f_sshd_config
+    - f_nightly-reboot.service
+    - f_nightly-reboot.timer
   Moria:
     include:
-      - Locale
-      - Pacman
-      - IPMI
+    - Locale
+    - Pacman
     dotfiles:
-      - f_sshd_config
-      - f_99-sysctl.conf
-      - d_ipmi
+    - f_sshd_config
+    - f_99-sysctl.conf

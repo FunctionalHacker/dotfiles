@@ -62,6 +62,8 @@ services:
       - TZ=Europe/Helsinki
     ports:
       - "1883:1883"
+    networks:
+      - home-assistant
     volumes:
       - /docker/homeautomation/mosquitto:/mosquitto
       - /etc/localtime:/etc/localtime:ro

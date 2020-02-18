@@ -9,7 +9,7 @@ TEMP=$(ipmitool -I lanplus -H $IPMIHOST -U $IPMIUSER -P $IPMIPW -y $IPMIEK sdr t
 
 mkdir -p /tmp/ipmi
 
-echo $TEMP > /tmp/ipmi/temp
+mosquitto_pub -u reekynet -P {{@@ env['PASS_MQTT'] @@}} -t "ipmi/temp" -m "$TEMP"
 
 
 if [[ $TEMP > $MAXTEMP ]];

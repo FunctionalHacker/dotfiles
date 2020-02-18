@@ -11,9 +11,9 @@ DATA=`ipmitool -I lanplus -H $IPMIHOST -U $IPMIUSER -P $IPMIPW -y $IPMIEK sdr ge
 
 echo "$DATA"
 
-echo "$DATA" | head -1 | tail -1> /tmp/ipmi/fan1
-echo "$DATA" | head -2 | tail -1> /tmp/ipmi/fan2
-echo "$DATA" | head -3 | tail -1> /tmp/ipmi/fan3
-echo "$DATA" | head -4 | tail -1> /tmp/ipmi/fan4
-echo "$DATA" | head -5 | tail -1> /tmp/ipmi/fan5
-echo "$DATA" | head -6 | tail -1> /tmp/ipmi/fan6
+mosquitto_pub -u reekynet -P {{@@ env['PASS_MQTT'] @@}} -t "ipmi/fan1" -m "$(echo "$DATA" | head -1 | tail -1)"
+mosquitto_pub -u reekynet -P {{@@ env['PASS_MQTT'] @@}} -t "ipmi/fan2" -m "$(echo "$DATA" | head -2 | tail -1)"
+mosquitto_pub -u reekynet -P {{@@ env['PASS_MQTT'] @@}} -t "ipmi/fan3" -m "$(echo "$DATA" | head -3 | tail -1)"
+mosquitto_pub -u reekynet -P {{@@ env['PASS_MQTT'] @@}} -t "ipmi/fan4" -m "$(echo "$DATA" | head -4 | tail -1)"
+mosquitto_pub -u reekynet -P {{@@ env['PASS_MQTT'] @@}} -t "ipmi/fan5" -m "$(echo "$DATA" | head -5 | tail -1)"
+mosquitto_pub -u reekynet -P {{@@ env['PASS_MQTT'] @@}} -t "ipmi/fan6" -m "$(echo "$DATA" | head -6 | tail -1)"

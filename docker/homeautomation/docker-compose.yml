@@ -7,7 +7,6 @@ services:
       - TZ=Europe/Helsinki
     volumes:
       - /docker/homeautomation/home-assistant:/config
-      - /tmp/ipmi:/ipmi
       - /etc/localtime:/etc/localtime:ro
     restart: always
     networks:

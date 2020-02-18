@@ -18,6 +18,7 @@ services:
     depends_on:
       - deconz
       - mariadb
+      - mosquitto
     labels:
       - "traefik.enable=true"
 

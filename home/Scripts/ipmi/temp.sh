@@ -7,8 +7,6 @@ IPMIEK=0000000000000000000000000000000000000000
 MAXTEMP=27
 TEMP=$(ipmitool -I lanplus -H $IPMIHOST -U $IPMIUSER -P $IPMIPW -y $IPMIEK sdr type temperature |grep Ambient |grep degrees |grep -Po '\d{2}' | tail -1)
 
-mkdir -p /tmp/ipmi
-
 mosquitto_pub -u reekynet -P {{@@ env['PASS_MQTT'] @@}} -t "ipmi/temp" -m "$TEMP"
 
 

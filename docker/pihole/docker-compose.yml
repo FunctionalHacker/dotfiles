@@ -14,7 +14,7 @@ services:
     volumes:
       - /docker/pihole/pihole/:/etc/pihole/
       - /docker/pihole/dnsmasq/:/etc/dnsmasq.d/
-      - /docker/pihole/log/:/var/log/pihole.log
+      - /docker/pihole/log/:/var/log/
       - /etc/localtime:/etc/localtime:ro
     dns:
       - 127.0.0.1

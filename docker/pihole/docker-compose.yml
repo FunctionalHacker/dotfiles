@@ -1,0 +1,34 @@
+version: "3"
+
+services:
+  pihole:
+    container_name: pihole
+    image: pihole/pihole:latest
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "67:67/udp"
+      - "8053:80/tcp"
+    environment:
+      TZ: "Europe/Helsinki"
+    volumes:
+      - /docker/pihole/pihole/:/etc/pihole/
+      - /docker/pihole/dnsmasq/:/etc/dnsmasq.d/
+      - /docker/pihole/log/:/var/log/pihole.log
+      - /etc/localtime:/etc/localtime:ro
+    dns:
+      - 127.0.0.1
+      - 1.1.1.1
+    cap_add:
+      - NET_ADMIN
+    restart: always
+    labels:
+      - "traefik.enable=true"
+      - "traefik.frontend.rule=HostRegexp:pihole.reekynet.lan,{catchall:.*}"
+      - "traefik.frontend.priority=1"
+      - "traefik.backend=pihole"
+      - "traefik.port=80"
+
+networks:
+  proxy:
+    external: true

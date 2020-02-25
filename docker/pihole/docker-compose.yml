@@ -2,6 +2,8 @@ version: "3"
 
 services:
   pihole:
+    networks:
+      - proxy
     container_name: pihole
     image: pihole/pihole:latest
     ports:

@@ -5,6 +5,8 @@ services:
     image: nextcloud:apache
     container_name: nextcloud
     restart: always
+    ports:
+      - "1869:80"
     networks:
       - nextcloud
       - proxy

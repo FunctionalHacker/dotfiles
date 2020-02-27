@@ -4,7 +4,7 @@ services:
   mumble:
     container_name: mumble
     image: phlak/mumble
-    user: '${UID}:${GID}'
+    user: '1000:985'
     environment:
       - TZ=Europe/Helsinki
     ports:

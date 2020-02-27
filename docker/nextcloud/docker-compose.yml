@@ -61,7 +61,7 @@ services:
     container_name: cron
     restart: always
     volumes:
-      - nextcloud:/var/www/html
+      - /docker/nextcloud/nextcloud:/var/www/html
     entrypoint: /cron.sh
     depends_on:
       - mariadb-nextcloud

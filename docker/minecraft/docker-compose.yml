@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  mumble:
+    container_name: minecraft
+    image: bbriggs/bukkit
+    environment:
+      - TZ=Europe/Helsinki
+      - EULA=true
+    ports:
+      - "25565:25565"
+    volumes:
+      - /docker/minecraft:/data
+      - /etc/localtime:/etc/localtime:ro
+    restart: always

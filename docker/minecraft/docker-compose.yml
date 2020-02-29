@@ -1,7 +1,7 @@
 version: "3"
 
 services:
-  mumble:
+  minecraft:
     container_name: minecraft
     image: bbriggs/bukkit
     environment:

@@ -4,6 +4,7 @@ services:
   minecraft:
     container_name: minecraft
     image: bbriggs/bukkit
+    command: spigot
     environment:
       - TZ=Europe/Helsinki
       - EULA=true

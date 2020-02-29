@@ -168,7 +168,7 @@ blkid() { grc blkid $@ }
 du() { grc du $@ }
 dnf() { grc dnf $@ }
 docker() { grc docker $@ }
-docke-machine() { grc docker-machine $@ }
+docker-machine() { grc docker-machine $@ }
 env() { grc env $@ }
 id() { grc id $@ }
 ip() { grc ip $@ }

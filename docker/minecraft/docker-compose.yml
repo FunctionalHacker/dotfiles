@@ -3,7 +3,7 @@ version: "3"
 services:
   minecraft:
     container_name: minecraft
-    image: bbriggs/bukkit/1.15.1
+    image: c2d6e524006b
     command: spigot
     environment:
       - TZ=Europe/Helsinki

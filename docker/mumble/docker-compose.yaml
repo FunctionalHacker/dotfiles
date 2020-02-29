@@ -1,15 +1,13 @@
-version: '3'
+version: "3"
 
 services:
   mumble:
     container_name: mumble
     image: phlak/mumble
-    user: '1000:985'
+    user: "1000:985"
     environment:
       - TZ=Europe/Helsinki
-    ports:
-      - '64748:64738'
-      - '64748:64738/udp'
+    network_mode: host
     volumes:
       - /docker/mumble:/etc/mumble
       - /etc/localtime:/etc/localtime:ro

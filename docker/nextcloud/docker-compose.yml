@@ -13,6 +13,7 @@ services:
     volumes:
       - /docker/nextcloud/nextcloud:/var/www/html
       - /mnt/Storage/Nextcloud:/var/www/html/data
+      - /mnt/Storage/Syncthing:/Syncthing
       - /etc/localtime:/etc/localtime:ro
     environment:
       - TZ=Europe/Helsinki

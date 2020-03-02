@@ -1,10 +1,9 @@
 [Unit]
 Description=Generic command-line automation tool
-PartOf=graphical-session.target
 
 [Service]
-Type=simple
 ExecStart=/usr/bin/ydotoold
+Restart=on-failure
 
 [Install]
-WantedBy=sway-session.target
+WantedBy=default.target

@@ -196,6 +196,7 @@ profiles:
       - f_mimeo_associations.txt
       - f_tdesktop_lang.strings
       - f_fonts.conf
+      - f_zprofile
   Pacman:
     dotfiles:
       - f_yay_config.json

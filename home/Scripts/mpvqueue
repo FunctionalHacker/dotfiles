@@ -4,11 +4,11 @@ MPVPIPE=/tmp/mpvqueue.playlist
 
 notify="notify-send -i mpv -a mpv"
 
-# if link is a youtube playlist, open recursively
-if [[ ${1} =~ (^.*(youtu.be\/|list=)([^#\&\?]*).*) ]]; then
-	$notify "Adding playlist ${@}"
-	/usr/local/bin/mpvqueue $(youtube-dl -j --flat-playlist "${1}" | jq -r '.id' | sed 's_^_https://youtube.com/watch?v=_')
-	exit
+# if link is a youtube playlist, clean up url
+if [[ ${1} =~ /^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$ ]]; then
+	url="https://youtube.com/playlist?list=${1#*list=}"
+else
+	url="$1"
 fi
 
 # See if MPV is already running
@@ -18,16 +18,16 @@ if [ -z "$(pidof mpv)" ]; then
 	rm -f $MPVPIPE && mkfifo $MPVPIPE
 
 	# start mpv
-	/usr/bin/mpv --no-terminal --input-file="${MPVPIPE}" "${@}" & disown
+	/usr/bin/mpv --no-terminal --input-file="${MPVPIPE}" "$url" & disown
 
 	# Wait for mpv to be up before moving on to adding anything else to playlist
 	while [ -z "$(pidof mpv)" ]; do
 		sleep 1
 	done
-	$notify "Playing ${@}"
+	$notify "Playing $url"
 
 else
 	# mpv is running, so add stuff to playlist
-	$notify "Adding ${@}"
-	echo "loadfile \"${@}\" append-play" >>  "${MPVPIPE}"
+	$notify "Adding $url"
+	echo "loadfile \"$url\" append-play" >>  "${MPVPIPE}"
 fi

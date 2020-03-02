@@ -23,7 +23,7 @@ case "$RESP" in
 		loginctl lock-session $(loginctl show-user $USER -p Sessions | cut -d'=' -f2)
 		;;
 	Exit)
-		systemctl --user stop sway
+		swaymsg exit
 		;;
 	*)
 		exit 1

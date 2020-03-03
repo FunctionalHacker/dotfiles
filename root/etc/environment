@@ -1,1 +1,19 @@
-XDG_SESSION_TYPE=wayland
+# Fix java on wayland
+_JAVA_AWT_WM_NONREPARENTING=1
+_JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
+
+# Enable qt5 theming and wayland support
+QT_QPA_PLATFORMTHEME=qt5ct
+QT_QPA_PLATFORM=wayland-egl
+QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+
+# Firefox
+MOZ_ENABLE_WAYLAND=1
+MOZ_USE_XINPUT2=1
+MOZ_WEBRENDER=1
+
+# Fix redshift on wlroots
+WLR_DRM_NO_ATOMIC=1
+
+# Use wayland in SDL2
+SDL_VIDEODRIVER=wayland

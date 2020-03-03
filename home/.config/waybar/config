@@ -104,8 +104,8 @@
 		},
 		"on-click": "pulseaudio-ctl mute",
 		"on-click-right": "pavucontrol",
-		"on-scroll-up": "pulseaudio-ctl up",
-		"on-scroll-down": "pulseaudio-ctl down"
+		"on-scroll-up": "pulseaudio-ctl up 1",
+		"on-scroll-down": "pulseaudio-ctl down 1"
 	},
 	"custom/playerctl": {
 		"tooltip": false,

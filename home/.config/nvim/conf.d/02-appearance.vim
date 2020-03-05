@@ -41,3 +41,6 @@ set shiftwidth=4
 " Make gutter and cursorline bg transparent
 highlight CursorLineNr 			guibg=transparent
 highlight SignColumn 			guibg=transparent
+
+" Don't wrap in the middle of words
+set linebreak

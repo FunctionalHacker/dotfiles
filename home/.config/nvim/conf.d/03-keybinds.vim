@@ -33,3 +33,7 @@ function ToggleEqual ()
 endfunction
 
 nnoremap <leader>= :call ToggleEqual()<CR>
+
+" Navigate display lines insted of physical lines
+nnoremap j gj
+nnoremap k gk

@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  organizr:
+    container_name: organizr
+    image: organizrtools/organizr-v2
+    environment:
+      - TZ=Europe/Helsinki
+    restart: always
+    ports:
+      - "3123:80"
+    volumes:
+      - /docker/organizr:/data
+      - /etc/localtime:/etc/localtime:ro

@@ -1,9 +1,0 @@
-[Unit]
-Description=Generic command-line automation tool
-
-[Service]
-ExecStart=/usr/bin/ydotoold
-Restart=on-failure
-
-[Install]
-WantedBy=default.target

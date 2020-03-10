@@ -10,5 +10,5 @@ services:
     ports:
       - "3123:80"
     volumes:
-      - /docker/organizr:/data
+      - /docker/organizr:/config
       - /etc/localtime:/etc/localtime:ro

@@ -102,10 +102,10 @@
 			"car": "",
 			"default": ["", ""]
 		},
-		"on-click": "pulseaudio-ctl mute",
+		"on-click": "pamixer --toggle-mute && ( pamixer --get-mute && echo 0 > $SWAYSOCK.wob ) || pamixer --get-volume > $SWAYSOCK.wob",
 		"on-click-right": "pavucontrol",
-		"on-scroll-up": "pulseaudio-ctl up 1",
-		"on-scroll-down": "pulseaudio-ctl down 1"
+		"on-scroll-up": "pamixer -ui 1 && pamixer --get-volume > $SWAYSOCK.wob",
+		"on-scroll-down": "pamixer -ud 1 && pamixer --get-volume > $SWAYSOCK.wob"
 	},
 	"custom/playerctl": {
 		"tooltip": false,

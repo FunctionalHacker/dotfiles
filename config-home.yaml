@@ -1,8 +1,6 @@
 actions:
   vim-plug: nvim +PlugInstall +qall
   zplug: zplug install
-  waybar: systemctl --user restart waybar
-  mako: systemctl --user restart mako
 config:
   backup: true
   banner: true
@@ -37,8 +35,6 @@ dotfiles:
     dst: ~/.local/share/TelegramDesktop/tdata/ticons
     src: .local/share/TelegramDesktop/tdata/ticons
   d_waybar:
-    actions:
-      - waybar
     dst: ~/.config/waybar
     src: .config/waybar
   f_abcde.conf:
@@ -80,8 +76,6 @@ dotfiles:
   f_mako_config:
     dst: ~/.config/mako/config
     src: .config/mako/config
-    actions:
-      - mako
   f_mimeo_associations.txt:
     dst: ~/.config/mimeo/associations.txt
     src: .config/mimeo/associations.txt

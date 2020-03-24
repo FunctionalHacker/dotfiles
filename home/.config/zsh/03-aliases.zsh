@@ -129,7 +129,7 @@ update() { yay -Syu --devel firefox-nightly }
 updateall() { update; plugupdate; sudo awman-update }
 
 # remove unneeded packages
-autoremove() { sudo pacman -R $(pacman -Qdtq) }
+autoremove() { sudo pacman -Rns $(pacman -Qdtq) }
 
 # turn on usb tethering on my android phone
 tether() { adb shell su -c "service call connectivity 33 i32 1 s16 me" > /dev/null }

@@ -91,7 +91,7 @@
 		"tooltip": false,
 		//"scroll-step": 1,
 		"format": "{volume}% {icon}",
-		"format-bluetooth": "{volume}% {icon}",
+		"format-bluetooth": "{volume}% ",
 		"format-muted": "",
 		"format-icons": {
 			"headphones": "",

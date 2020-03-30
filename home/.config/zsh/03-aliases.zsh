@@ -46,6 +46,8 @@ fman() {
 alias :q='exit'
 alias :wq='exit'
 
+alias reboot-kodi='systemctl reboot --boot-loader-entry=kodi.conf'
+
 # zbar output only data
 alias zbarimg='zbarimg -q --raw'
 alias zbarcam='zbarcam -q --raw'

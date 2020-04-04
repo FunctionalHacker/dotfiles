@@ -37,6 +37,9 @@ dotfiles:
   d_waybar:
     dst: ~/.config/waybar
     src: .config/waybar
+  d_wofi:
+    src: .config/wofi
+    dst: ~/.config/wofi
   f_abcde.conf:
     dst: ~/.abcde.conf
     src: .abcde.conf
@@ -100,9 +103,6 @@ dotfiles:
   f_redshift.conf:
     dst: ~/.config/redshift/redshift.conf
     src: .config/redshift/redshift.conf
-  f_rofi-pass.conf:
-    dst: ~/.config/rofi-pass/config
-    src: .config/rofi-pass/config
   f_rtv.cfg:
     dst: ~/.config/rtv/rtv.cfg
     src: .config/rtv/rtv.cfg
@@ -136,9 +136,6 @@ dotfiles:
   f_zshrc:
     dst: ~/.zshrc
     src: .zshrc
-  d_rofi:
-    src: .config/rofi
-    dst: ~/.config/rofi
   d_zsh:
     src: .config/zsh
     dst: ~/.config/zsh
@@ -154,9 +151,6 @@ dotfiles:
   f_ncmpcpp.conf:
     src: .config/ncmpcpp/config
     dst: ~/.config/ncmpcpp/config
-  d_efistub:
-    src: .EFISTUB
-    dst: ~/.EFISTUB
   f_hushlogin:
     src: .hushlogin
     dst: ~/.hushlogin
@@ -182,10 +176,9 @@ profiles:
     dotfiles:
       - d_sway
       - d_waybar
-      - d_rofi
+      - d_wofi
       - f_mako_config
       - f_redshift.conf
-      - f_rofi-pass.conf
       - f_zathurarc
       - f_mimeo_associations.txt
       - f_tdesktop_lang.strings
@@ -196,8 +189,6 @@ profiles:
       - f_yay_config.json
       - f_makepkg.conf
   Mirkwood:
-    dotfiles:
-      - d_efistub
     include:
       - Base
       - Terminal

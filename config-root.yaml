@@ -1,3 +1,5 @@
+actions:
+  chmod-wireguard: chmod 0640 /etc/systemd/network/99-wireguard.netdev
 config:
   backup: true
   banner: true
@@ -17,6 +19,11 @@ dotfiles:
   d_bin:
     dst: /usr/local/bin
     src: usr/local/bin
+  d_networkd:
+    actions:
+      - chmod-wireguard
+    src: etc/systemd/network
+    dst: /etc/systemd/network
   f_99-sysctl.conf:
     dst: /etc/sysctl.d/99-sysctl.conf
     src: etc/sysctl.d/99-sysctl.conf
@@ -134,98 +141,67 @@ dotfiles:
   f_system.conf:
     src: etc/systemd/system.conf
     dst: /etc/systemd/system.conf
-  f_99-wireguard.netdev:
-    src: etc/systemd/network/99-wireguard.netdev
-    dst: /etc/systemd/network/99-wireguard.netdev
-  f_99-wireguard.network:
-    src: etc/systemd/network/99-wireguard.network
-    dst: /etc/systemd/network/99-wireguard.network
-  f_01-wired.network:
-    src: etc/systemd/network/01-wired.network
-    dst: /etc/systemd/network/01-wired.network
-  f_02-usb0.link:
-    src: etc/systemd/network/02-usb0.link
-    dst: /etc/systemd/network/02-usb0.link
-  f_02-usb0.network:
-    src: etc/systemd/network/02-usb0.network
-    dst: /etc/systemd/network/02-usb0.network
-  f_03-wireless.network:
-    src: etc/systemd/network/03-wireless.network
-    dst: /etc/systemd/network/03-wireless.network
-  f_04-wlan0.link:
-    src: etc/systemd/network/04-wlan0.link
-    dst: /etc/systemd/network/04-wlan0.link
-  f_04-wlan0.network:
-    src: etc/systemd/network/04-wlan0.network
-    dst: /etc/systemd/network/04-wlan0.network
 profiles:
   Locale:
     dotfiles:
-    - f_locale.conf
-    - f_locale.gen
+      - f_locale.conf
+      - f_locale.gen
   Pacman:
     dotfiles:
-    - f_pacman.conf
-    - f_pacserve.service.conf
-    - f_pacman-dl.service
-    - f_pacman-dl.timer
+      - f_pacman.conf
+      - f_pacserve.service.conf
+      - f_pacman-dl.service
+      - f_pacman-dl.timer
   Mirkwood:
     dotfiles:
-    - f_getty.conf
-    - f_environment
-    - f_cryptissue
-    - f_welcomemessage.conf
-    - d_bin
-    - f_adb.service
-    - f_bluetooth.conf
-    - f_iwd@.service
-    - f_sshd_config
-    - f_logind.conf
-    - f_60-uinput-permissions.rules
-    - f_freetype2.sh
-    - f_fonts.conf
-    - f_timesyncd.conf
-    - f_99-sysctl.conf
-    - f_99-lowbat.rules
-    - f_ignore
-    - f_zsh.hook
-    - f_mkinitcpio.conf
-    - f_vconsole.conf
-    - f_20-quiet-printk.conf
-    - f_system.conf
-    - f_99-wireguard.netdev
-    - f_99-wireguard.network
-    - f_01-wired.network
-    - f_02-usb0.link
-    - f_02-usb0.network
-    - f_03-wireless.network
-    - f_04-wlan0.link
-    - f_04-wlan0.network
+      - f_getty.conf
+      - f_environment
+      - f_cryptissue
+      - f_welcomemessage.conf
+      - d_bin
+      - d_networkd
+      - f_adb.service
+      - f_bluetooth.conf
+      - f_iwd@.service
+      - f_sshd_config
+      - f_logind.conf
+      - f_60-uinput-permissions.rules
+      - f_freetype2.sh
+      - f_fonts.conf
+      - f_timesyncd.conf
+      - f_99-sysctl.conf
+      - f_99-lowbat.rules
+      - f_ignore
+      - f_zsh.hook
+      - f_mkinitcpio.conf
+      - f_vconsole.conf
+      - f_20-quiet-printk.conf
+      - f_system.conf
     include:
-    - Locale
-    - Pacman
+      - Locale
+      - Pacman
   Rivendell:
     include:
-    - Locale
-    - Pacman
+      - Locale
+      - Pacman
     dotfiles:
-    - f_getty.conf
-    - f_vconsole.conf
-    - f_mkinitcpio.conf
-    - f_bluetooth.conf
-    - f_60-uinput-permissions.rules
-    - f_sshd_config
-    - f_nightly-reboot.service
-    - f_nightly-reboot.timer
+      - f_getty.conf
+      - f_vconsole.conf
+      - f_mkinitcpio.conf
+      - f_bluetooth.conf
+      - f_60-uinput-permissions.rules
+      - f_sshd_config
+      - f_nightly-reboot.service
+      - f_nightly-reboot.timer
   Moria:
     include:
-    - Locale
-    - Pacman
+      - Locale
+      - Pacman
     dotfiles:
-    - f_sshd_config
-    - f_99-sysctl.conf
-    - f_ipmi-static.service
-    - f_ipmi-temp.service
-    - f_ipmi-temp.timer
-    - f_ipmi-fans.service
-    - f_ipmi-fans.timer
+      - f_sshd_config
+      - f_99-sysctl.conf
+      - f_ipmi-static.service
+      - f_ipmi-temp.service
+      - f_ipmi-temp.timer
+      - f_ipmi-fans.service
+      - f_ipmi-fans.timer

@@ -134,6 +134,30 @@ dotfiles:
   f_system.conf:
     src: etc/systemd/system.conf
     dst: /etc/systemd/system.conf
+  f_99-wireguard.netdev:
+    src: etc/systemd/network/99-wireguard.netdev
+    dst: /etc/systemd/network/99-wireguard.netdev
+  f_99-wireguard.network:
+    src: etc/systemd/network/99-wireguard.network
+    dst: /etc/systemd/network/99-wireguard.network
+  f_01-wired.network:
+    src: etc/systemd/network/01-wired.network
+    dst: /etc/systemd/network/01-wired.network
+  f_02-usb0.link:
+    src: etc/systemd/network/02-usb0.link
+    dst: /etc/systemd/network/02-usb0.link
+  f_02-usb0.network:
+    src: etc/systemd/network/02-usb0.network
+    dst: /etc/systemd/network/02-usb0.network
+  f_03-wireless.network:
+    src: etc/systemd/network/03-wireless.network
+    dst: /etc/systemd/network/03-wireless.network
+  f_04-wlan0.link:
+    src: etc/systemd/network/04-wlan0.link
+    dst: /etc/systemd/network/04-wlan0.link
+  f_04-wlan0.network:
+    src: etc/systemd/network/04-wlan0.network
+    dst: /etc/systemd/network/04-wlan0.network
 profiles:
   Locale:
     dotfiles:
@@ -169,6 +193,14 @@ profiles:
     - f_vconsole.conf
     - f_20-quiet-printk.conf
     - f_system.conf
+    - f_99-wireguard.netdev
+    - f_99-wireguard.network
+    - f_01-wired.network
+    - f_02-usb0.link
+    - f_02-usb0.network
+    - f_03-wireless.network
+    - f_04-wlan0.link
+    - f_04-wlan0.network
     include:
     - Locale
     - Pacman

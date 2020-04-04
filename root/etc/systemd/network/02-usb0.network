@@ -1,0 +1,8 @@
+[Match]
+Name=usb0
+
+[Network]
+DHCP=ipv4
+
+[DHCP]
+RouteMetric=10

@@ -3,19 +3,16 @@
 MPVPIPE=/tmp/mpvqueue.playlist
 
 notify="notify-send -i mpv -a mpv"
-
-# if link is a youtube playlist, clean up url
-if [[ ${1} =~ /^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$ ]]; then
-	url="https://youtube.com/playlist?list=${1#*list=}"
-else
-	url="$1"
-fi
+url="$1"
 
 # See if MPV is already running
 if [ -z "$(pidof mpv)" ]; then
 	# mpv is not running
 	# remove fifo
 	rm -f $MPVPIPE && mkfifo $MPVPIPE
+
+	# pause other players
+	playerctl pause
 
 	# start mpv
 	/usr/bin/mpv --no-terminal --input-file="${MPVPIPE}" "$url" & disown

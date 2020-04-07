@@ -26,7 +26,7 @@ window#waybar {
     background: #64727D;
 }
 
-#clock, #battery, #cpu, #temperature, #memory, #backlight, #network, #pulseaudio, #custom-playerctl, #custom-yay, #tray, #mode, #idle_inhibitor {
+#clock, #battery, #cpu, #temperature, #memory, #backlight, #network, #pulseaudio, #custom-media, #custom-yay, #tray, #mode, #idle_inhibitor {
     padding: 0 10px;
     margin: 0 5px;
 }
@@ -110,7 +110,7 @@ window#waybar {
     color: #2a5c45;
 }
 
-#custom-playerctl {
+#custom-media {
     background: #97B084;
     color: black;
 }

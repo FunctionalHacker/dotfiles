@@ -2,7 +2,7 @@
 {
 	"layer": "bottom", // Waybar at top layer
 	"height": 22, // Waybar height
-	"modules-left": ["sway/workspaces", "sway/mode", "custom/playerctl"],
+	"modules-left": ["sway/workspaces", "sway/mode", "custom/media"],
 	"modules-center": ["sway/window"],
 	"modules-right": [
 		"idle_inhibitor",
@@ -107,12 +107,12 @@
 		"on-scroll-up": "pamixer -ui 1 && pamixer --get-volume > $SWAYSOCK.wob",
 		"on-scroll-down": "pamixer -ud 1 && pamixer --get-volume > $SWAYSOCK.wob"
 	},
-	"custom/playerctl": {
+	"custom/media": {
 		"tooltip": false,
 		"format": "{}",
-		"exec": "$HOME/Scripts/metadata.sh",
-		"interval": 2,
-		"max-length": 40,
+		"return-type": "json",
+		"exec": "$HOME/Scripts/mediaplayer.py 2>/dev/null",
+		"max-length": 50,
 		"on-click": "playerctl play-pause",
 		"on-click-right": "playerctl next",
 		"on-scroll-up": "playerctl volume 0.05+",
@@ -123,7 +123,7 @@
 		"format": "{} ",
 		"exec": "yay -Qu | wc -l",
 		"interval": 300,
-		"on-click": "alacritty -e yay"
+		"on-click": "gnome-software --mode=updates"
 	},
 	"temperature": {
 		"format": "{temperatureC}°C "

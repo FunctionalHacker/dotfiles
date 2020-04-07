@@ -1,9 +1,0 @@
-[Match]
-Name = wg0
-
-[Network]
-Address = 10.200.200.2/24
-
-[Route]
-Gateway = 10.200.200.1
-Destination = 10.200.200.0/24

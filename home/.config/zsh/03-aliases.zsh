@@ -126,7 +126,12 @@ dotsync() { cd $DOTREPO && gpull && ga && gc && gpush && cd $OLDPWD }
 passync() { pass git pull && pass git push && updatesecrets }
 
 # update stuff
-plugupdate() { vim +PlugUpgrade +PlugUpdate +CocUpdate +qa && zinit self-update && zinit update -p && $HOME/.tmux/plugins/tpm/bin/update_plugins all }
+plugupdate() {
+	vim +PlugUpgrade +PlugUpdate +CocUpdate +qa
+	zinit self-update
+	zinit update -p
+	$HOME/.tmux/plugins/tpm/bin/update_plugins all
+}
 update() { yay -Syu --devel firefox-nightly }
 updateall() { update; plugupdate; sudo awman-update }
 

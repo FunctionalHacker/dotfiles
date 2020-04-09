@@ -10,4 +10,4 @@ swayidle \
 	timeout 600 "loginctl lock-session" \
 	timeout 610 "$screenoff" \
     resume "$screenon; lqsd -r" \
-	before-sleep "playerctl pause; loginctl lock-session)"
+	before-sleep "playerctl pause; loginctl lock-session"

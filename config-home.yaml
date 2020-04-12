@@ -19,9 +19,6 @@ dotfiles:
   d_mpv:
     dst: ~/.config/mpv
     src: .config/mpv
-  d_environment:
-    dst: ~/.config/environment.d
-    src: .config/environment.d
   f_init.vim:
     dst: ~/.config/nvim/init.vim
     src: .config/nvim/init.vim

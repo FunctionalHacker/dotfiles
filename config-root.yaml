@@ -39,9 +39,6 @@ dotfiles:
   f_detected.sh:
     dst: /etc/clamav/detected.sh
     src: etc/clamav/detected.sh
-  f_environment:
-    dst: /etc/environment
-    src: etc/environment
   f_freetype2.sh:
     dst: /etc/profile.d/freetype2.sh
     src: etc/profile.d/freetype2.sh
@@ -155,7 +152,6 @@ profiles:
   Mirkwood:
     dotfiles:
       - f_getty.conf
-      - f_environment
       - f_cryptissue
       - f_welcomemessage.conf
       - d_bin

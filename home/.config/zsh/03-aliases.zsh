@@ -93,22 +93,11 @@ cpick() { grim -g "$(slurp -p)" -t ppm - | convert - -format "%[pixel:p{0,0}]" t
 alias i='iwctl station wlan0'
 
 # change cpu power settings
-battery() { 
-	sudo cpupower frequency-set -g powersave
+gpulow() { 
 	echo low | sudo tee /sys/class/drm/card0/device/power_dpm_force_performance_level
 }
-plugged() {
-	sudo cpupower frequency-set -g schedutil
+gpuauto() {
 	echo auto | sudo tee /sys/class/drm/card0/device/power_dpm_force_performance_level
-}
-ultimatepowersave() {
-	battery
-	powersave
-	sudo ryzenadj --stapm-limit=25000 --fast-limit=25000 --slow-limit=25000 --tctl-temp=20;
-}
-performance() { 
-	sudo cpupower frequency-set -g performance
-	sudo ryzenadj --stapm-limit=45000 --fast-limit=45000 --slow-limit=45000 --tctl-temp=90
 }
 
 # monitor cpu freq

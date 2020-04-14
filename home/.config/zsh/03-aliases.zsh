@@ -140,6 +140,7 @@ update() {
 		zinit update -p
 		$HOME/.tmux/plugins/tpm/bin/update_plugins all
 	}
+	{%@@ if profile == "Moria" @@%}
 
 	docker() {
 		for dir in $HOME/Git/dotfiles/docker/*; do
@@ -150,6 +151,7 @@ update() {
 		done
 	}
 
+	{%@@ endif @@%}
 	if [ $# -eq 0 ]; then
 		1=base
 	fi
@@ -164,9 +166,11 @@ update() {
 		plugins)
 			plugins
 			;;
+	{%@@ if profile == "Moria" @@%}
 		docker)
 			docker
 			;;
+	{%@@ endif @@%}
 		*)
 			printf "$1: not a valid action"
 			;;

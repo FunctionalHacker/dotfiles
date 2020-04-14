@@ -111,6 +111,7 @@ compdef _dotdrop-completion.zsh sdotdrop
 alias dotgit='git -C $DOTREPO'
 dotsync() { cd $DOTREPO && gpull && ga && gc && gpush && cd $OLDPWD }
 
+
 # sync password manager
 passync() { pass git pull && pass git push && updatesecrets }
 
@@ -121,8 +122,31 @@ plugupdate() {
 	zinit update -p
 	$HOME/.tmux/plugins/tpm/bin/update_plugins all
 }
+
 update() { yay -Pw && yay }
-updateall() { yay -Syu --devel firefox-nightly; plugupdate; sudo awman-update }
+
+{%@@ if profile == "Moria" @@%}
+update-docker() {
+	for dir in $HOME/Git/dotfiles/docker/*; do
+		cd $dir
+		docker-compose pull
+		docker-compose up -d
+		cd ..
+	done
+}
+
+update-all() {
+	update
+	plugupdate
+	update-docker
+}
+{%@@ else @@%}
+updateall() {
+	yay -Pw
+	yay -Syu --devel firefox-nightly
+	plugupdate
+	sudo awman-update
+}
 
 # remove unneeded packages
 autoremove() { sudo pacman -Rns $(pacman -Qdtq) }

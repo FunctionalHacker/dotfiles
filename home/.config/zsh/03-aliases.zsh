@@ -121,8 +121,8 @@ plugupdate() {
 	zinit update -p
 	$HOME/.tmux/plugins/tpm/bin/update_plugins all
 }
-update() { yay -Syu --devel firefox-nightly }
-updateall() { update; plugupdate; sudo awman-update }
+update() { yay -Pw && yay }
+updateall() { yay -Syu --devel firefox-nightly; plugupdate; sudo awman-update }
 
 # remove unneeded packages
 autoremove() { sudo pacman -Rns $(pacman -Qdtq) }

@@ -117,19 +117,21 @@ passync() { pass git pull && pass git push && updatesecrets }
 
 update() {
 	all() {
-		base --devel
 		plugins
 		{%@@ if profile == "Moria" @@%}
+		base --devel
 		docker
+		{%@@ elif profile == "Mirkwood" @@%}
+		base --devel firefox-nightly
 		{%@@ else @@%}
-		yay -Syu firefox-nightly
+		base --devel
 		{%@@ endif @@%}
 		sudo awman-update
 	}
 
 	base() {
 		yay -Pw
-		yay $@
+		yay -Syu $@
 	}
 
 	plugins() {

@@ -1,131 +1,127 @@
-// vim: ft=jsonc
+// vim: ft=json
 {
-	"layer": "bottom", // Waybar at top layer
-	"height": 22, // Waybar height
-	"modules-left": ["sway/workspaces", "sway/mode", "custom/media"],
-	"modules-center": ["sway/window"],
-	"modules-right": [
-		"idle_inhibitor",
-		"pulseaudio",
-		"custom/yay",
-		"network",
-		"temperature",
-		"battery",
-		"clock",
-		"tray"
-	],
-	// Modules configuration
-	"sway/workspaces": {
-		"disable-scroll": true,
-		"all-outputs": true,
-		"format": "{icon}",
-		"format-icons": {
-			"1": "",
-			"2": "",
-			"3": "",
-			"4": "",
-			"5": "",
-			"urgent": "",
-			"focused": "",
-			"default": ""
-		}
-	},
-	"sway/mode": {
-		"format": "<span style=\"italic\">{}</span>"
-	},
-	"idle_inhibitor": {
-		"tooltip": false,
-		"format": "{icon}",
-		"format-icons": {
-			"activated": "",
-			"deactivated": ""
-		}
-	},
-	"network": {
-		"format": "{ifname}",
-		"format-wifi": "{essid} ({signalStrength}%) ",
-		"format-ethernet": "{ipaddr} ",
-		"format-disconnected": "Disconnected ", //An empty format will hide the module.
-		"tooltip-format": "{ifname}",
-		"tooltip-format-wifi": "{ifname} {frequency}MHz ",
-		"tooltip-format-ethernet": "{ifname} ",
-		"tooltip-format-disconnected": "Disconnected"
-	},
-	"tray": {
-		// "icon-size": 21,
-		"spacing": 10
-	},
-	"clock": {
-		"tooltip": false,
-		"format": "{:%Y-%m-%d %H:%M} "
-	},
-	"cpu": {
-		"tooltip": false,
-		"format": "{usage}% "
-	},
-	"memory": {
-		"tooltip": false,
-		"format": "{}% "
-	},
-	"backlight": {
-		// "device": "acpi_video1",
-		"format": "{percent}% {icon}",
-		"format-icons": ["", ""]
-	},
-	"battery": {
-		"tooltip": false,
-		"states": {
-			// "good": 95,
-			"warning": 30,
-			"critical": 15
-		},
-		"format": "{capacity}% {icon}",
-		// "format-good": "", // An empty format will hide the module
-		// "format-full": "",
-		"format-icons": ["", "", "", "", ""]
-	},
-	"battery#bat2": {
-		"bat": "BAT2"
-	},
-	"pulseaudio": {
-		"tooltip": false,
-		//"scroll-step": 1,
-		"format": "{volume}% {icon}",
-		"format-bluetooth": "{volume}% ",
-		"format-muted": "",
-		"format-icons": {
-			"headphones": "",
-			"handsfree": "",
-			"headset": "",
-			"phone": "",
-			"portable": "",
-			"car": "",
-			"default": ["", ""]
-		},
-		"on-click": "pamixer --toggle-mute && ( pamixer --get-mute && echo 0 > $SWAYSOCK.wob ) || pamixer --get-volume > $SWAYSOCK.wob",
-		"on-click-right": "pavucontrol",
-		"on-scroll-up": "pamixer -ui 1 && pamixer --get-volume > $SWAYSOCK.wob",
-		"on-scroll-down": "pamixer -ud 1 && pamixer --get-volume > $SWAYSOCK.wob"
-	},
-	"custom/media": {
-		"tooltip": false,
-		"format": "{}",
-		"return-type": "json",
-		"exec": "$HOME/Scripts/mediaplayer.py 2>/dev/null",
-		"max-length": 50,
-		"on-click": "playerctl play-pause",
-		"on-click-right": "playerctl next",
-		"on-scroll-up": "playerctl volume 0.05+",
-		"on-scroll-down": "playerctl volume 0.05-"
-	},
-	"custom/yay":{
-		"tooltip": false,
-		"format": "{} ",
-		"exec": "yay -Qu | wc -l",
-		"interval": 300,
-		"on-click": "gnome-software --mode=updates"
-	},
-	"temperature": {
-		"format": "{temperatureC}°C "
-	}
+  "layer": "top",
+  "test": "asd",
+  "height": 22,
+  "modules-left": ["sway/workspaces", "sway/mode", "custom/media"],
+  "modules-center": ["sway/window"],
+  "modules-right": [
+    "idle_inhibitor",
+    "pulseaudio",
+    "custom/yay",
+    "network",
+    "temperature",
+    "battery",
+    "clock",
+    "tray"
+  ],
+  "sway/workspaces": {
+    "disable-scroll": true,
+    "all-outputs": true,
+    "format": "{icon}",
+    "format-icons": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": "",
+      "5": "",
+      "urgent": "",
+      "focused": "",
+      "default": ""
+    }
+  },
+  "sway/mode": {
+    "format": "<span style=\"italic\">{}</span>"
+  },
+  "idle_inhibitor": {
+    "tooltip": false,
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "",
+      "deactivated": ""
+    }
+  },
+  "network": {
+    "format": "{ifname}",
+    "format-wifi": "{essid} ({signalStrength}%) ",
+    "format-ethernet": "{ipaddr} ",
+    "format-disconnected": "Disconnected ",
+    "tooltip-format": "{ifname}",
+    "tooltip-format-wifi": "{ifname} {frequency}MHz ",
+    "tooltip-format-ethernet": "{ifname} ",
+    "tooltip-format-disconnected": "Disconnected"
+  },
+  "tray": {
+    "spacing": 10
+  },
+  "clock": {
+    "tooltip": true,
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "format": "{:%Y-%m-%d %H:%M} "
+  },
+  "cpu": {
+    "tooltip": false,
+    "format": "{usage}% "
+  },
+  "memory": {
+    "tooltip": false,
+    "format": "{}% "
+  },
+  "backlight": {
+    "format": "{percent}% {icon}",
+    "format-icons": ["", ""]
+  },
+  "battery": {
+    "tooltip": true,
+    "tooltip-format": "{time}",
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{capacity}% {icon}",
+    "format-icons": ["", "", "", "", ""]
+  },
+  "battery#bat2": {
+    "bat": "BAT2"
+  },
+  "pulseaudio": {
+    "tooltip": false,
+    "format": "{volume}% {icon}",
+    "format-bluetooth": "{volume}% ",
+    "format-muted": "",
+    "format-icons": {
+      "headphones": "",
+      "handsfree": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["", ""]
+    },
+    "on-click": "pamixer --toggle-mute && ( pamixer --get-mute && echo 0 > $SWAYSOCK.wob ) || pamixer --get-volume > $SWAYSOCK.wob",
+    "on-click-right": "pavucontrol",
+    "on-scroll-up": "pamixer -ui 1 && pamixer --get-volume > $SWAYSOCK.wob",
+    "on-scroll-down": "pamixer -ud 1 && pamixer --get-volume > $SWAYSOCK.wob"
+  },
+  "custom/media": {
+    "tooltip": false,
+    "format": "{}",
+    "return-type": "json",
+    "exec": "$HOME/Scripts/mediaplayer.py 2>/dev/null",
+    "max-length": 50,
+    "on-click": "playerctl play-pause",
+    "on-click-right": "playerctl next",
+    "on-scroll-up": "playerctl volume 0.05+",
+    "on-scroll-down": "playerctl volume 0.05-"
+  },
+  "custom/yay": {
+    "tooltip": false,
+    "format": "{} ",
+    "exec": "yay -Qu | wc -l",
+    "interval": 300,
+    "on-click": "gnome-software --mode=updates"
+  },
+  "temperature": {
+    "format": "{temperatureC}°C "
+  }
 }

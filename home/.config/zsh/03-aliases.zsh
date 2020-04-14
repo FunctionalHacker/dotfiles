@@ -115,39 +115,61 @@ dotsync() { cd $DOTREPO && gpull && ga && gc && gpush && cd $OLDPWD }
 # sync password manager
 passync() { pass git pull && pass git push && updatesecrets }
 
-# update stuff
-plugupdate() {
-	vim +PlugUpgrade +PlugUpdate +CocUpdate +qa
-	zinit self-update
-	zinit update -p
-	$HOME/.tmux/plugins/tpm/bin/update_plugins all
-}
+update() {
+	all() {
+		base --devel
+		plugins
+		{%@@ if profile == "Moria" @@%}
+		docker
+		{%@@ else @@%}
+		yay -Syu firefox-nightly
+		{%@@ endif @@%}
+		sudo awman-update
+	}
 
-update() { yay -Pw && yay }
+	base() {
+		yay -Pw
+		yay $@
+	}
 
-{%@@ if profile == "Moria" @@%}
-update-docker() {
-	for dir in $HOME/Git/dotfiles/docker/*; do
-		cd $dir
-		docker-compose pull
-		docker-compose up -d
-		cd ..
-	done
-}
+	plugins() {
+		vim +PlugUpgrade +PlugUpdate +CocUpdate +qa
+		zinit self-update
+		zinit update -p
+		$HOME/.tmux/plugins/tpm/bin/update_plugins all
+	}
 
-update-all() {
-	update
-	plugupdate
-	update-docker
+	docker() {
+		for dir in $HOME/Git/dotfiles/docker/*; do
+			cd $dir
+			docker-compose pull
+			docker-compose up -d
+			cd ..
+		done
+	}
+
+	if [ $# -eq 0 ]; then
+		1=base
+	fi
+
+	case "$1" in
+		all)
+			all
+			;;
+		base)
+			base
+			;;
+		plugins)
+			plugins
+			;;
+		docker)
+			docker
+			;;
+		*)
+			printf "$1: not a valid action"
+			;;
+	esac
 }
-{%@@ else @@%}
-updateall() {
-	yay -Pw
-	yay -Syu --devel firefox-nightly
-	plugupdate
-	sudo awman-update
-}
-{%@@ endif @@%}
 
 # remove unneeded packages
 autoremove() { sudo pacman -Rns $(pacman -Qdtq) }

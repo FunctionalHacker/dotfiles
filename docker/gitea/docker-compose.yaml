@@ -1,9 +1,9 @@
-version: '2'
+version: "2"
 
 services:
   gitea:
     container_name: gitea
-    image: gitea/gitea:latest
+    image: gitea/gitea:1
     environment:
       - TZ=Europe/Helsinki
       - USER_UID=1000
@@ -18,28 +18,28 @@ services:
       - gitea
       - proxy
     ports:
-      - '3000:3000'
-      - '222:22'
+      - "3000:3000"
+      - "222:22"
     depends_on:
       - mariadb-gitea
     volumes:
       - /docker/gitea/gitea:/data
       - /etc/localtime:/etc/localtime:ro
     labels:
-      - 'traefik.enable=true'
+      - "traefik.enable=true"
 
-      - 'traefik.http.routers.gitea-redirect.entrypoints=http'
-      - 'traefik.http.routers.gitea-redirect.rule=Host(`git.reekynet.com`)'
-      - 'traefik.http.middlewares.http2https.redirectscheme.scheme=https'
-      - 'traefik.http.routers.gitea-redirect.middlewares=http2https'
+      - "traefik.http.routers.gitea-redirect.entrypoints=http"
+      - "traefik.http.routers.gitea-redirect.rule=Host(`git.reekynet.com`)"
+      - "traefik.http.middlewares.http2https.redirectscheme.scheme=https"
+      - "traefik.http.routers.gitea-redirect.middlewares=http2https"
 
-      - 'traefik.http.routers.gitea.entrypoints=https'
-      - 'traefik.http.routers.gitea.rule=Host(`git.reekynet.com`)'
-      - 'traefik.http.routers.gitea.tls=true'
-      - 'traefik.http.routers.gitea.tls.certresolver=http'
-      - 'traefik.http.routers.gitea.service=gitea'
-      - 'traefik.docker.network=proxy'
-      - 'traefik.http.services.gitea.loadbalancer.server.port=3000'
+      - "traefik.http.routers.gitea.entrypoints=https"
+      - "traefik.http.routers.gitea.rule=Host(`git.reekynet.com`)"
+      - "traefik.http.routers.gitea.tls=true"
+      - "traefik.http.routers.gitea.tls.certresolver=http"
+      - "traefik.http.routers.gitea.service=gitea"
+      - "traefik.docker.network=proxy"
+      - "traefik.http.services.gitea.loadbalancer.server.port=3000"
 
   mariadb-gitea:
     container_name: mariadb-gitea

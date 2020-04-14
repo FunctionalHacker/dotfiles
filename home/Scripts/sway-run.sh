@@ -19,9 +19,6 @@ export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
 # Fix redshift on wlroots
 export WLR_DRM_NO_ATOMIC=1
 
-# Use wayland in SDL2
-export SDL_VIDEODRIVER=wayland
-
 # Run sway
 sway
 
@@ -35,4 +32,3 @@ unset QT_QPA_PLATFORMTHEME=qt5ct
 unset QT_QPA_PLATFORM=wayland-egl
 unset QT_WAYLAND_DISABLE_WINDOWDECORATION=1
 unset WLR_DRM_NO_ATOMIC=1
-unset SDL_VIDEODRIVER=wayland

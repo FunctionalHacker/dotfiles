@@ -29,12 +29,6 @@ yi() {
 	fi
 }
 
-docker-prune() {
-	docker image prune -a
-	docker volume prune
-	docker container prune
-}
-
 # search and remove packages with fzf
 yr() { 
 	SELECTED_PKGS="$(yay -Qsq | fzf --header='Remove packages' -m --preview 'yay -Si {1}')"

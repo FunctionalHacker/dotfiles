@@ -147,6 +147,7 @@ updateall() {
 	plugupdate
 	sudo awman-update
 }
+{%@@ endif @@%}
 
 # remove unneeded packages
 autoremove() { sudo pacman -Rns $(pacman -Qdtq) }

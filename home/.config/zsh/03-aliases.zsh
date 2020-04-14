@@ -120,7 +120,7 @@ update() {
 		plugins
 		{%@@ if profile == "Moria" @@%}
 		base --devel
-		docker
+		docker-pull
 		{%@@ elif profile == "Mirkwood" @@%}
 		base --devel firefox-nightly
 		{%@@ else @@%}
@@ -142,7 +142,7 @@ update() {
 	}
 	{%@@ if profile == "Moria" @@%}
 
-	docker() {
+	docker-pull() {
 		for dir in $HOME/Git/dotfiles/docker/*; do
 			cd $dir
 			docker-compose pull
@@ -168,7 +168,7 @@ update() {
 			;;
 	{%@@ if profile == "Moria" @@%}
 		docker)
-			docker
+			docker-pull
 			;;
 	{%@@ endif @@%}
 		*)

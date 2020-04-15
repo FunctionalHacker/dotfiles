@@ -120,7 +120,7 @@ update() {
 		plugins
 		{%@@ if profile == "Moria" @@%}
 		base --devel
-		docker
+		docker-update
 		{%@@ elif profile == "Mirkwood" @@%}
 		base --devel firefox-nightly
 		{%@@ else @@%}
@@ -142,7 +142,7 @@ update() {
 	}
 	{%@@ if profile == "Moria" @@%}
 
-	docker() {
+	docker-update() {
 		for dir in $HOME/Git/dotfiles/docker/*; do
 			cd $dir
 			docker-compose pull
@@ -168,7 +168,7 @@ update() {
 			;;
 	{%@@ if profile == "Moria" @@%}
 		docker)
-			docker
+			docker-update
 			;;
 	{%@@ endif @@%}
 		*)
@@ -187,7 +187,7 @@ tether() { adb shell su -c "service call connectivity 33 i32 1 s16 me" > /dev/nu
 alias reflect='sudo reflector --latest 200 --threads 8 --verbose --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist'
 
 # better ls
-alias ls='exa --time-style=long-iso --git'
+alias ls='ls_extended -I'
 
 # default icon for notify-send
 alias notify-send='notify-send --icon=alarm'

@@ -140,7 +140,6 @@ update() {
 		zinit update -p
 		$HOME/.tmux/plugins/tpm/bin/update_plugins all
 	}
-	{%@@ if profile == "Moria" @@%}
 
 	docker-update() {
 		for dir in $HOME/Git/dotfiles/docker/*; do
@@ -151,7 +150,6 @@ update() {
 		done
 	}
 
-	{%@@ endif @@%}
 	if [ $# -eq 0 ]; then
 		1=base
 	fi
@@ -166,11 +164,9 @@ update() {
 		plugins)
 			plugins
 			;;
-	{%@@ if profile == "Moria" @@%}
 		docker)
 			docker-update
 			;;
-	{%@@ endif @@%}
 		*)
 			printf "$1: not a valid action"
 			;;
@@ -187,7 +183,7 @@ tether() { adb shell su -c "service call connectivity 33 i32 1 s16 me" > /dev/nu
 alias reflect='sudo reflector --latest 200 --threads 8 --verbose --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist'
 
 # better ls
-alias ls='ls_extended -I'
+alias ls='ls_extended -Ih'
 
 # default icon for notify-send
 alias notify-send='notify-send --icon=alarm'

@@ -107,7 +107,7 @@
     "tooltip": false,
     "format": "{}",
     "return-type": "json",
-    "exec": "$HOME/Scripts/mediaplayer.py 2>/dev/null",
+    "exec": "$HOME/.config/waybar/scripts/mediaplayer.py 2>/dev/null",
     "max-length": 50,
     "on-click": "playerctl play-pause",
     "on-click-right": "playerctl next",

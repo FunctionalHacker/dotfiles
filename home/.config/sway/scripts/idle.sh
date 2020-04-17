@@ -1,5 +1,5 @@
 #!/bin/bash
-swaylock="$HOME/Scripts/swaylock.sh"
+swaylock="$HOME/.config/sway/scripts/lock.sh"
 screenon="swaymsg 'output * dpms on'"
 screenoff="swaymsg 'output * dpms off'"
 swayidle \
@@ -10,4 +10,4 @@ swayidle \
 	timeout 600 "loginctl lock-session" \
 	timeout 610 "$screenoff" \
     resume "$screenon; lqsd -r" \
-	before-sleep "playerctl pause; loginctl lock-session"
+	before-sleep "playerctl pause; loginctl lock-session" \

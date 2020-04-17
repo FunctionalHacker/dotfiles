@@ -31,8 +31,8 @@ dotfiles:
     dst: ~/.config/nvim/coc-settings.json
     src: .config/nvim/coc-settings.json
   d_scripts:
-    dst: ~/Scripts
-    src: Scripts
+    dst: ~/.scripts
+    src: .scripts
   d_sway:
     dst: ~/.config/sway
     src: .config/sway

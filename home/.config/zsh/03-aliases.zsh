@@ -52,9 +52,11 @@ alias reboot-kodi='systemctl reboot --boot-loader-entry=kodi.conf'
 alias zbarimg='zbarimg -q --raw'
 alias zbarcam='zbarcam -q --raw'
 
-# shorten systemctl
-alias sc='sudo systemctl'
+# shorten systemctl and journalctl
+alias sc='systemctl'
 alias scu='systemctl --user'
+alias jc='journalctl'
+alias jcu='journalctl --user'
 
 # switch to desktop mode
 alias dock='swaymsg output eDP-1 disable'

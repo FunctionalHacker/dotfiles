@@ -170,7 +170,7 @@ update() {
 			docker-update
 			;;
 		*)
-			printf "$1: not a valid action"
+			base $@
 			;;
 	esac
 }

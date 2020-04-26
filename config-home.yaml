@@ -226,3 +226,7 @@ profiles:
     include:
       - Terminal
       - Pacman
+  localhost:
+    include:
+      - Terminal
+      - Pacman

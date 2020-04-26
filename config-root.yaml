@@ -205,3 +205,6 @@ profiles:
       - f_ipmi-temp.timer
       - f_ipmi-fans.service
       - f_ipmi-fans.timer
+  localhost:
+    include:
+      - Locale

@@ -23,7 +23,7 @@ export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
 export WLR_DRM_NO_ATOMIC=1
 
 # Run sway
-sway
+dbus-run-session sway
 
 # Unset the variables after quitting Sway
 unset MOZ_ENABLE_WAYLAND

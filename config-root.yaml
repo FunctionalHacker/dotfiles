@@ -21,7 +21,7 @@ dotfiles:
     src: usr/local/bin
   d_networkd:
     actions:
-    - chmod-wireguard
+      - chmod-wireguard
     src: etc/systemd/network
     dst: /etc/systemd/network
   f_99-sysctl.conf:
@@ -144,64 +144,67 @@ dotfiles:
 profiles:
   Locale:
     dotfiles:
-    - f_locale.conf
-    - f_locale.gen
+      - f_locale.conf
+      - f_locale.gen
   Pacman:
     dotfiles:
-    - f_pacman.conf
-    - f_pacserve.service.conf
-    - f_pacman-dl.service
-    - f_pacman-dl.timer
+      - f_pacman.conf
+      - f_pacserve.service.conf
+      - f_pacman-dl.service
+      - f_pacman-dl.timer
   Mirkwood:
     dotfiles:
-    - f_getty.conf
-    - f_cryptissue
-    - f_welcomemessage.conf
-    - d_bin
-    - d_networkd
-    - f_adb.service
-    - f_bluetooth.conf
-    - f_iwd@.service
-    - f_sshd_config
-    - f_logind.conf
-    - f_60-uinput-permissions.rules
-    - f_freetype2.sh
-    - f_fonts.conf
-    - f_timesyncd.conf
-    - f_99-sysctl.conf
-    - f_99-lowbat.rules
-    - f_ignore
-    - f_zsh.hook
-    - f_mkinitcpio.conf
-    - f_vconsole.conf
-    - f_20-quiet-printk.conf
-    - f_system.conf
-    - f_cpupower
+      - f_getty.conf
+      - f_cryptissue
+      - f_welcomemessage.conf
+      - d_bin
+      - d_networkd
+      - f_adb.service
+      - f_bluetooth.conf
+      - f_iwd@.service
+      - f_sshd_config
+      - f_logind.conf
+      - f_60-uinput-permissions.rules
+      - f_freetype2.sh
+      - f_fonts.conf
+      - f_timesyncd.conf
+      - f_99-sysctl.conf
+      - f_99-lowbat.rules
+      - f_ignore
+      - f_zsh.hook
+      - f_mkinitcpio.conf
+      - f_vconsole.conf
+      - f_20-quiet-printk.conf
+      - f_system.conf
+      - f_cpupower
     include:
-    - Locale
-    - Pacman
+      - Locale
+      - Pacman
   Rivendell:
     include:
-    - Locale
-    - Pacman
+      - Locale
+      - Pacman
     dotfiles:
-    - f_getty.conf
-    - f_vconsole.conf
-    - f_mkinitcpio.conf
-    - f_bluetooth.conf
-    - f_60-uinput-permissions.rules
-    - f_sshd_config
-    - f_nightly-reboot.service
-    - f_nightly-reboot.timer
+      - f_getty.conf
+      - f_vconsole.conf
+      - f_mkinitcpio.conf
+      - f_bluetooth.conf
+      - f_60-uinput-permissions.rules
+      - f_sshd_config
+      - f_nightly-reboot.service
+      - f_nightly-reboot.timer
+  localhost:
+    include:
+      - Pacman
   Moria:
     include:
-    - Locale
-    - Pacman
+      - Locale
+      - Pacman
     dotfiles:
-    - f_sshd_config
-    - f_99-sysctl.conf
-    - f_ipmi-static.service
-    - f_ipmi-temp.service
-    - f_ipmi-temp.timer
-    - f_ipmi-fans.service
-    - f_ipmi-fans.timer
+      - f_sshd_config
+      - f_99-sysctl.conf
+      - f_ipmi-static.service
+      - f_ipmi-temp.service
+      - f_ipmi-temp.timer
+      - f_ipmi-fans.service
+      - f_ipmi-fans.timer

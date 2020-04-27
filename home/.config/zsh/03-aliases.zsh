@@ -5,7 +5,7 @@ alias gpull='git pull'
 alias gpush='git push'
 
 # Syntax highlighting cat
-alias cat='nvimpager -c'
+alias ncat='nvimpager -c'
 
 rip() {
 	abcde

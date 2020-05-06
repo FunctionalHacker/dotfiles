@@ -21,7 +21,7 @@ dotfiles:
     src: usr/local/bin
   d_networkd:
     actions:
-      - chmod-wireguard
+    - chmod-wireguard
     src: etc/systemd/network
     dst: /etc/systemd/network
   f_99-sysctl.conf:
@@ -45,9 +45,6 @@ dotfiles:
   f_iwd@.service:
     dst: /etc/systemd/system/iwd@.service
     src: etc/systemd/system/iwd@.service
-  f_loader.conf:
-    dst: /boot/loader/loader.conf
-    src: boot/loader/loader.conf
   f_fonts.conf:
     dst: /etc/fonts/local.conf
     src: etc/fonts/local.conf
@@ -66,9 +63,6 @@ dotfiles:
   f_pacman.conf:
     dst: /etc/pacman.conf
     src: etc/pacman.conf
-  f_pacserve.service.conf:
-    dst: /etc/pacserve/pacserve.service.conf
-    src: etc/pacserve/pacserve.service.conf
   f_sshd_config:
     dst: /etc/ssh/sshd_config
     src: etc/ssh/sshd_config
@@ -96,21 +90,6 @@ dotfiles:
   f_ignore:
     src: .ignore
     dst: /.ignore
-  f_pacman-dl.service:
-    src: etc/systemd/system/pacman-dl.service
-    dst: /etc/systemd/system/pacman-dl.service
-  f_pacman-dl.timer:
-    src: etc/systemd/system/pacman-dl.timer
-    dst: /etc/systemd/system/pacman-dl.timer
-  f_zsh.hook:
-    src: etc/pacman.d/hooks/zsh.hook
-    dst: /etc/pacman.d/hooks/zsh.hook
-  f_nightly-reboot.service:
-    src: etc/systemd/system/nightly-reboot.service
-    dst: /etc/systemd/system/nightly-reboot.service
-  f_nightly-reboot.timer:
-    src: etc/systemd/system/nightly-reboot.timer
-    dst: /etc/systemd/system/nightly-reboot.timer
   f_mkinitcpio.conf:
     src: etc/mkinitcpio.conf
     dst: /etc/mkinitcpio.conf
@@ -141,70 +120,76 @@ dotfiles:
   f_cpupower:
     src: etc/default/cpupower
     dst: /etc/default/cpupower
+  f_arch.conf:
+    src: boot/loader/entries/arch.conf
+    dst: /boot/loader/entries/arch.conf
+  f_arch-lts.conf:
+    src: boot/loader/entries/arch-lts.conf
+    dst: /boot/loader/entries/arch-lts.conf
+  f_kodi.conf:
+    src: boot/loader/entries/kodi.conf
+    dst: /boot/loader/entries/kodi.conf
 profiles:
   Locale:
     dotfiles:
-      - f_locale.conf
-      - f_locale.gen
+    - f_locale.conf
+    - f_locale.gen
   Pacman:
     dotfiles:
-      - f_pacman.conf
-      - f_pacserve.service.conf
-      - f_pacman-dl.service
-      - f_pacman-dl.timer
+    - f_pacman.conf
   Mirkwood:
     dotfiles:
-      - f_getty.conf
-      - f_cryptissue
-      - f_welcomemessage.conf
-      - d_bin
-      - d_networkd
-      - f_adb.service
-      - f_bluetooth.conf
-      - f_iwd@.service
-      - f_sshd_config
-      - f_logind.conf
-      - f_60-uinput-permissions.rules
-      - f_freetype2.sh
-      - f_fonts.conf
-      - f_timesyncd.conf
-      - f_99-sysctl.conf
-      - f_99-lowbat.rules
-      - f_ignore
-      - f_zsh.hook
-      - f_mkinitcpio.conf
-      - f_vconsole.conf
-      - f_20-quiet-printk.conf
-      - f_system.conf
-      - f_cpupower
+    - f_getty.conf
+    - f_cryptissue
+    - f_welcomemessage.conf
+    - d_bin
+    - d_networkd
+    - f_adb.service
+    - f_bluetooth.conf
+    - f_iwd@.service
+    - f_sshd_config
+    - f_logind.conf
+    - f_60-uinput-permissions.rules
+    - f_freetype2.sh
+    - f_fonts.conf
+    - f_timesyncd.conf
+    - f_99-sysctl.conf
+    - f_99-lowbat.rules
+    - f_ignore
+    - f_mkinitcpio.conf
+    - f_vconsole.conf
+    - f_20-quiet-printk.conf
+    - f_system.conf
+    - f_cpupower
+    - f_arch.conf
+    - f_arch-lts.conf
+    - f_kodi.conf
     include:
-      - Locale
-      - Pacman
+    - Locale
+    - Pacman
   Rivendell:
     include:
-      - Locale
-      - Pacman
+    - Locale
+    - Pacman
     dotfiles:
-      - f_getty.conf
-      - f_vconsole.conf
-      - f_mkinitcpio.conf
-      - f_bluetooth.conf
-      - f_60-uinput-permissions.rules
-      - f_sshd_config
-      - f_nightly-reboot.service
-      - f_nightly-reboot.timer
+    - f_getty.conf
+    - f_vconsole.conf
+    - f_mkinitcpio.conf
+    - f_bluetooth.conf
+    - f_60-uinput-permissions.rules
+    - f_sshd_config
   Moria:
     include:
-      - Locale
-      - Pacman
+    - Locale
+    - Pacman
     dotfiles:
-      - f_sshd_config
-      - f_99-sysctl.conf
-      - f_ipmi-static.service
-      - f_ipmi-temp.service
-      - f_ipmi-temp.timer
-      - f_ipmi-fans.service
-      - f_ipmi-fans.timer
+    - f_sshd_config
+    - f_99-sysctl.conf
+    - f_ipmi-static.service
+    - f_ipmi-temp.service
+    - f_ipmi-temp.timer
+    - f_ipmi-fans.service
+    - f_ipmi-fans.timer
   localhost:
     include:
-      - Locale
+    - Locale

@@ -4,3 +4,4 @@ border-color=#D65D0E
 icons=1
 default-timeout=5000
 max-visible=6
+layer=overlay

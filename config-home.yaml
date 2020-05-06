@@ -229,4 +229,3 @@ profiles:
   localhost:
     include:
       - Terminal
-      - Pacman

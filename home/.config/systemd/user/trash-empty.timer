@@ -1,0 +1,9 @@
+[Unit]
+Description=Runs trash-empty.service every hour
+
+[Timer]
+OnUnitActiveSec=1h
+Unit=trash-empty.service
+
+[Install]
+WantedBy=timers.target

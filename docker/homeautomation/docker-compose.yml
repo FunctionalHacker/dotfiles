@@ -12,6 +12,7 @@ services:
     networks:
       - home-assistant
       - proxy
+    network_mode: host
     ports:
       - "8123:8123"
     depends_on:

@@ -2,7 +2,6 @@
 --write-sub
 --sub-lang en
 --embed-subs
---embed-thumbnail
 --add-metadata
 --prefer-ffmpeg 
 --yes-playlist

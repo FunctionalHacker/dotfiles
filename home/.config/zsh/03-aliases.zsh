@@ -130,11 +130,13 @@ update() {
 		{%@@ if profile == "Moria" @@%}
 		base --devel
 		docker-update
+		docker system prune --volumes
 		{%@@ elif profile == "Mirkwood" @@%}
 		base --devel firefox-nightly
 		{%@@ else @@%}
 		base --devel
 		{%@@ endif @@%}
+		flatpak update
 		sudo awman-update
 	}
 

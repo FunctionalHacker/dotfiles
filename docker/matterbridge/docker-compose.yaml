@@ -2,6 +2,7 @@ version: "3.7"
 services:
   matterbridge:
     image: 42wim/matterbridge
+    container_name: matterbridge
     restart: always
     volumes:
       - /docker/matterbridge:/etc/matterbridge

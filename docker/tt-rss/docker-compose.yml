@@ -1,7 +1,7 @@
 version: "3"
 
 services:
-  tt-rss-db:
+  db:
     container_name: tt-rss-db
     image: postgres:12-alpine
     restart: unless-stopped
@@ -13,7 +13,7 @@ services:
     networks:
       - tt-rss
 
-  tt-rss-app:
+  app:
     container_name: tt-rss-app
     image: cthulhoo/ttrss-fpm-pgsql-static
     restart: unless-stopped
@@ -33,7 +33,7 @@ services:
     networks:
       - tt-rss
 
-  tt-rss-updater:
+  updater:
     container_name: tt-rss-updater
     image: cthulhoo/ttrss-fpm-pgsql-static
     restart: unless-stopped
@@ -54,7 +54,7 @@ services:
     networks:
       - tt-rss
 
-  tt-rss-web:
+  web:
     container_name: tt-rss-web
     image: cthulhoo/ttrss-web
     restart: unless-stopped

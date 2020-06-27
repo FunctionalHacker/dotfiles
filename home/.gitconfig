@@ -6,9 +6,11 @@
 [commit]
 	signoff = true
 	gpgsign = true
+
 [tag]
 	gpgSign = true
 	signoff = true
+
 [format]
 	signoff = true
 
@@ -21,5 +23,9 @@
 [diff]
 	prompt = false
 	tool = nvim-diff
+
 [difftool "nvim-diff"]
 	cmd = nvim -d -c 'set nomodifiable'
+
+[pull]
+	rebase = false

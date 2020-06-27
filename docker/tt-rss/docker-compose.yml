@@ -29,7 +29,7 @@ services:
     volumes:
       - /docker/tt-rss/app:/var/www/html
     depends_on:
-      - tt-rss-db
+      - db
     networks:
       - tt-rss
 
@@ -49,7 +49,7 @@ services:
     volumes:
       - /docker/tt-rss/app:/var/www/html
     depends_on:
-      - tt-rss-app
+      - app
     command: /updater.sh
     networks:
       - tt-rss
@@ -63,7 +63,7 @@ services:
     volumes:
       - /docker/tt-rss/app:/var/www/html:ro
     depends_on:
-      - tt-rss-app
+      - app
     networks:
       - tt-rss
       - proxy

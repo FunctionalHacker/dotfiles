@@ -59,7 +59,7 @@ services:
     image: cthulhoo/ttrss-web
     restart: unless-stopped
     ports:
-      - 8280:2015
+      - ${HTTP_PORT}:2015
     volumes:
       - /docker/tt-rss/app:/var/www/html:ro
     depends_on:

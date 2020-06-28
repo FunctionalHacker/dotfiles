@@ -5,8 +5,6 @@ services:
     container_name: jellyfin
     environment:
       - TZ=Europe/Helsinki
-      - NVIDIA_VISIBLE_DEVICES=all
-      - NVIDIA_DRIVER_CAPABILITIES=all
     user: "1000:985"
     ports:
       - "8096:8096"

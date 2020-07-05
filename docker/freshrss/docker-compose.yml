@@ -40,7 +40,7 @@ services:
       - freshrss
     environment:
       - TZ=Europe/Helsinki
-      - MYSQL_ROOT_PASSWORD=gitea
+      - MYSQL_ROOT_PASSWORD=freshrss
     volumes:
       - /docker/freshrss/mariadb:/var/lib/mysql
       - /etc/localtime:/etc/localtime:ro

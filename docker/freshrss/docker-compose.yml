@@ -30,7 +30,7 @@ services:
       - "traefik.http.routers.freshrss.tls.certresolver=http"
       - "traefik.http.routers.freshrss.service=freshrss"
       - "traefik.docker.network=proxy"
-      - "traefik.http.services.freshrss.loadbalancer.server.port=3000"
+      - "traefik.http.services.freshrss.loadbalancer.server.port=80"
 
   mariadb-freshrss:
     container_name: mariadb-freshrss

@@ -1,0 +1,52 @@
+version: "2.1"
+services:
+  freshrss:
+    image: linuxserver/freshrss
+    container_name: freshrss
+    restart: unless-stopped
+    networks:
+      - freshrss
+      - proxy
+    ports:
+      - 8088:80
+    environment:
+      - PUID=1000
+      - PGID=985
+      - TZ=Europe/Helsinki
+    volumes:
+      - /docker/freshrss/freshrss:/config
+      - /etc/localtime:/etc/localtime:ro
+    labels:
+      - "traefik.enable=true"
+
+      - "traefik.http.routers.freshrss-redirect.entrypoints=http"
+      - "traefik.http.routers.freshrss-redirect.rule=Host(`rss.reekynet.com`)"
+      - "traefik.http.middlewares.http2https.redirectscheme.scheme=https"
+      - "traefik.http.routers.freshrss-redirect.middlewares=http2https"
+
+      - "traefik.http.routers.freshrss.entrypoints=https"
+      - "traefik.http.routers.freshrss.rule=Host(`rss.reekynet.com`)"
+      - "traefik.http.routers.freshrss.tls=true"
+      - "traefik.http.routers.freshrss.tls.certresolver=http"
+      - "traefik.http.routers.freshrss.service=freshrss"
+      - "traefik.docker.network=proxy"
+      - "traefik.http.services.freshrss.loadbalancer.server.port=80"
+
+  mariadb-freshrss:
+    container_name: mariadb-freshrss
+    image: mariadb
+    restart: unless-stopped
+    networks:
+      - freshrss
+    environment:
+      - TZ=Europe/Helsinki
+      - MYSQL_ROOT_PASSWORD=freshrss
+    volumes:
+      - /docker/freshrss/mariadb:/var/lib/mysql
+      - /etc/localtime:/etc/localtime:ro
+
+networks:
+  freshrss:
+    external: false
+  proxy:
+    external: true

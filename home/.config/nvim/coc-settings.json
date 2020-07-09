@@ -3,14 +3,7 @@
   "suggest.noselect": false,
   "suggest.echodocSupport": true,
   "suggest.maxCompleteItemCount": 20,
-  "coc.preferences.formatOnSaveFiletypes": [
-    "javascript",
-    "typescript",
-    "typescriptreact",
-    "json",
-    "javascriptreact",
-    "yaml"
-  ],
+  "coc.preferences.formatOnSaveFiletypes": [],
   "prettier.singleQuote": false,
   "diagnostic.errorSign": "•",
   "diagnostic.warningSign": "•",

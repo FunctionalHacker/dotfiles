@@ -197,6 +197,9 @@ profiles:
       - Terminal
       - Media
       - Pacman
+  mko-laptop:
+    include:
+      - Terminal
   Terminal:
     dotfiles:
       - f_nvimpager

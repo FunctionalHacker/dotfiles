@@ -54,7 +54,6 @@ services:
       - /docker/nextcloud:/var/www/html
     entrypoint: /cron.sh
     depends_on:
-      - mariadb-nextcloud
       - redis
 
 networks:

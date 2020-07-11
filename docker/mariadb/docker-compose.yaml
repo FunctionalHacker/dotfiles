@@ -1,0 +1,16 @@
+mariadb:
+  container_name: mariadb
+  image: mariadb
+  environment:
+    - TZ=Europe/Helsinki
+    - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+  networks:
+    - mariadb
+  volumes:
+    - /docker/mariadb:/var/lib/mysql
+    - /etc/localtime:/etc/localtime:ro
+  restart: always
+
+networks:
+  mariadb:
+    external: true

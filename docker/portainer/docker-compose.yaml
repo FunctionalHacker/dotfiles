@@ -5,7 +5,7 @@ services:
     container_name: portainer
     environment:
       - TZ=Europe/Helsinki
-    restart: always
+    restart: unless-stopped
     networks:
       - proxy
     volumes:

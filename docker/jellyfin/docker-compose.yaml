@@ -10,7 +10,7 @@ services:
       - "8096:8096"
     networks:
       - proxy
-    restart: always
+    restart: unless-stopped
     volumes:
       - /docker/jellyfin/config:/config
       - /docker/jellyfin/cache:/cache

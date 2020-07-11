@@ -11,4 +11,4 @@ services:
     volumes:
       - /docker/mumble:/etc/mumble
       - /etc/localtime:/etc/localtime:ro
-    restart: always
+    restart: unless-stopped

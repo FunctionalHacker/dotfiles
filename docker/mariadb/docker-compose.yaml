@@ -13,6 +13,6 @@ services:
       - /etc/localtime:/etc/localtime:ro
     restart: always
 
-  networks:
-    db:
-      external: true
+networks:
+  db:
+    external: true

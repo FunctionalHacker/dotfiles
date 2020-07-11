@@ -3,6 +3,6 @@ services:
   matterbridge:
     image: 42wim/matterbridge:stable
     container_name: matterbridge
-    restart: always
+    restart: unless-stopped
     volumes:
       - /docker/matterbridge:/etc/matterbridge

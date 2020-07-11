@@ -17,4 +17,4 @@ services:
     devices:
       - /dev/dri:/dev/dri #hardware acceleration
       - /dev/dvb:/dev/dvb #tuner card
-    restart: always
+    restart: unless-stopped

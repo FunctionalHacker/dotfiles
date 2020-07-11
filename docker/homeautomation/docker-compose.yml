@@ -11,12 +11,12 @@ services:
     restart: always
     networks:
       - home-assistant
+      - mariadb
       - proxy
     ports:
       - "8123:8123"
     depends_on:
       - deconz
-      - mariadb
       - mosquitto
     labels:
       - "traefik.enable=true"
@@ -101,21 +101,10 @@ services:
       - "traefik.docker.network=proxy"
       - "traefik.http.services.node.loadbalancer.server.port=1880"
 
-  mariadb:
-    container_name: mariadb-hass
-    image: mariadb
-    environment:
-      - TZ=Europe/Helsinki
-      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-    networks:
-      - home-assistant
-    volumes:
-      - /docker/homeautomation/mariadb:/var/lib/mysql
-      - /etc/localtime:/etc/localtime:ro
-    restart: always
-
 networks:
   home-assistant:
     external: false
+  mariadb:
+    external: true
   proxy:
     external: true

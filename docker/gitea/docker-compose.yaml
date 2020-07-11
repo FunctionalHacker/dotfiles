@@ -9,21 +9,20 @@ services:
       - USER_UID=1000
       - USER_GID=1000
       - DB_TYPE=mysql
-      - DB_HOST=mariadb-gitea:3306
+      - DB_HOST=mariadb:3306
       - DB_NAME=gitea
       - DB_USER=gitea
-      - DB_PASSWD=gitea
+      - DB_PASSWD=${MYSQL_PASS}
     restart: always
     networks:
       - gitea
+      - mariadb
       - proxy
     ports:
       - "3000:3000"
       - "222:22"
-    depends_on:
-      - mariadb-gitea
     volumes:
-      - /docker/gitea/gitea:/data
+      - /docker/gitea:/data
       - /etc/localtime:/etc/localtime:ro
     labels:
       - "traefik.enable=true"
@@ -41,21 +40,10 @@ services:
       - "traefik.docker.network=proxy"
       - "traefik.http.services.gitea.loadbalancer.server.port=3000"
 
-  mariadb-gitea:
-    container_name: mariadb-gitea
-    image: mariadb
-    restart: always
-    networks:
-      - gitea
-    environment:
-      - TZ=Europe/Helsinki
-      - MYSQL_ROOT_PASSWORD=gitea
-    volumes:
-      - /docker/gitea/mariadb:/var/lib/mysql
-      - /etc/localtime:/etc/localtime:ro
-
 networks:
   gitea:
     external: false
+  mariadb:
+    external: true
   proxy:
     external: true

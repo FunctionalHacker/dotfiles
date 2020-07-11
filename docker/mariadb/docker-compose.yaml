@@ -12,5 +12,5 @@ mariadb:
   restart: always
 
 networks:
-  mariadb:
+  db:
     external: true

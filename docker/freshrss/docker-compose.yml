@@ -6,6 +6,7 @@ services:
     restart: unless-stopped
     networks:
       - freshrss
+      - mariadb
       - proxy
     ports:
       - 8088:80
@@ -14,7 +15,7 @@ services:
       - PGID=985
       - TZ=Europe/Helsinki
     volumes:
-      - /docker/freshrss/freshrss:/config
+      - /docker/freshrss:/config
       - /etc/localtime:/etc/localtime:ro
     labels:
       - "traefik.enable=true"
@@ -32,21 +33,10 @@ services:
       - "traefik.docker.network=proxy"
       - "traefik.http.services.freshrss.loadbalancer.server.port=80"
 
-  mariadb-freshrss:
-    container_name: mariadb-freshrss
-    image: mariadb
-    restart: unless-stopped
-    networks:
-      - freshrss
-    environment:
-      - TZ=Europe/Helsinki
-      - MYSQL_ROOT_PASSWORD=freshrss
-    volumes:
-      - /docker/freshrss/mariadb:/var/lib/mysql
-      - /etc/localtime:/etc/localtime:ro
-
 networks:
   freshrss:
     external: false
+  mariadb:
+    external: true
   proxy:
     external: true

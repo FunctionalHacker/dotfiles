@@ -9,9 +9,10 @@ services:
       - "1869:80"
     networks:
       - nextcloud
+      - mariadb
       - proxy
     volumes:
-      - /docker/nextcloud/nextcloud:/var/www/html
+      - /docker/nextcloud:/var/www/html
       - /mnt/Storage/Nextcloud:/var/www/html/data
       - /mnt/Storage/Syncthing:/Syncthing
       - /mnt/Storage/Media/Music:/Music
@@ -21,7 +22,6 @@ services:
       - MYSQL_HOST=mariadb-nextcloud
       - REDIS_HOST=redis
     depends_on:
-      - mariadb-nextcloud
       - redis
     labels:
       - "traefik.enable=true"
@@ -39,20 +39,6 @@ services:
       - "traefik.docker.network=proxy"
       - "traefik.http.services.nextcloud.loadbalancer.server.port=80"
 
-  mariadb-nextcloud:
-    container_name: mariadb-nextcloud
-    image: mariadb
-    command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
-    restart: always
-    networks:
-      - nextcloud
-    environment:
-      - TZ=Europe/Helsinki
-      - MYSQL_ROOT_PASSWORD=nextcloud
-    volumes:
-      - /docker/nextcloud/mariadb:/var/lib/mysql
-      - /etc/localtime:/etc/localtime:ro
-
   redis:
     image: redis:alpine
     container_name: redis
@@ -65,7 +51,7 @@ services:
     container_name: cron
     restart: always
     volumes:
-      - /docker/nextcloud/nextcloud:/var/www/html
+      - /docker/nextcloud:/var/www/html
     entrypoint: /cron.sh
     depends_on:
       - mariadb-nextcloud
@@ -74,5 +60,7 @@ services:
 networks:
   nextcloud:
     external: false
+  mariadb:
+    external: true
   proxy:
     external: true

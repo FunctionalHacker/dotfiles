@@ -43,7 +43,5 @@ services:
       - "traefik.http.services.pihole.loadbalancer.server.port=8069"
 
 networks:
-  pihole:
-    external: false
   proxy:
     external: true

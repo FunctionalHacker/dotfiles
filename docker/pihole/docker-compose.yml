@@ -9,7 +9,6 @@ services:
       - "53:53/udp"
       - "67:67/udp"
       - "8069:80/tcp"
-      - "8070:443/tcp"
     networks:
       - proxy
     environment:

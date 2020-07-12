@@ -40,7 +40,7 @@ services:
       - "traefik.http.routers.pihole.tls.certresolver=http"
       - "traefik.http.routers.pihole.service=pihole"
       - "traefik.docker.network=proxy"
-      - "traefik.http.services.pihole.loadbalancer.server.port=8069"
+      - "traefik.http.services.pihole.loadbalancer.server.port=80"
 
 networks:
   proxy:

@@ -10,6 +10,8 @@ services:
       - "67:67/udp"
       - "8069:80/tcp"
       - "8070:443/tcp"
+    networks:
+      - proxy
     environment:
       TZ: "Europe/Helsinki"
       WEBPASSWORD: "${WEBPASSWORD}"
@@ -39,3 +41,9 @@ services:
       - "traefik.http.routers.pihole.service=pihole"
       - "traefik.docker.network=proxy"
       - "traefik.http.services.pihole.loadbalancer.server.port=8069"
+
+networks:
+  pihole:
+    external: false
+  proxy:
+    external: true

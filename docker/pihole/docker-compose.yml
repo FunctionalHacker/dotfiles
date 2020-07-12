@@ -13,15 +13,14 @@ services:
     environment:
       TZ: "Europe/Helsinki"
       WEBPASSWORD: "${WEBPASSWORD}"
-    # Volumes store your data between container upgrades
     volumes:
-      - "/docker/pi-hole/pi-hole:/etc/pihole/"
-      - "/docker/pi-hole/dnsmasq:/etc/dnsmasq.d/"
+      - "/docker/pihole/pihole:/etc/pihole/"
+      - "/docker/pihole/dnsmasq:/etc/dnsmasq.d/"
     dns:
       - 127.0.0.1
       - 1.1.1.1
     # Recommended but not required (DHCP needs NET_ADMIN)
-    #   https://github.com/pi-hole/docker-pi-hole#note-on-capabilities
+    #   https://github.com/pihole/docker-pihole#note-on-capabilities
     cap_add:
       - NET_ADMIN
     restart: unless-stopped

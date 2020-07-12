@@ -99,7 +99,7 @@ services:
       - "traefik.http.routers.node-red.tls.certresolver=http"
       - "traefik.http.routers.node-red.service=node-red"
       - "traefik.docker.network=proxy"
-      - "traefik.http.services.node.loadbalancer.server.port=1880"
+      - "traefik.http.services.node-red.loadbalancer.server.port=1880"
 
 networks:
   home-assistant:

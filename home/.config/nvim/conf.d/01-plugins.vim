@@ -18,6 +18,7 @@ let g:coc_global_extensions = [
 			\ 'coc-rust-analyzer',
 			\ 'coc-markdownlint',
 			\ 'coc-snippets',
+			\ 'coc-java'
 			\ ]
 
 call plug#begin()

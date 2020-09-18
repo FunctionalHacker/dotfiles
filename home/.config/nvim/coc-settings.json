@@ -9,6 +9,7 @@
   "diagnostic.warningSign": "•",
   "diagnostic.infoSign": "•",
   "suggest.snippetIndicator": "~",
+  "rust-analyzer.serverPath": "/usr/bin/rust-analyzer",
   "languageserver": {
     "bash": {
       "command": "bash-language-server",

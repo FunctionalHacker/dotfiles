@@ -36,14 +36,6 @@ endfunction
 nmap <C-f> :Files<CR>
 nmap <C-g> :Rg<CR>
 
-" Files command customization
-command! -bang -nargs=* Rg
-			\ call fzf#vim#files(
-			\   'rg --files --hidden 2>/dev/null'.shellescape(<q-args>), 1,
-			\   <bang>0 ? fzf#vim#with_preview('up:60%')
-			\           : fzf#vim#with_preview('right:50%:hidden', '?'),
-			\   <bang>0)
-
 " Ripgrep command customization
 command! -bang -nargs=* Rg
 			\ call fzf#vim#grep(

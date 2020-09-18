@@ -2,6 +2,9 @@
 let g:python3_host_prog='/usr/bin/python3'
 let pyxversion=3
 
+" LaTex fallback flavor
+let g:tex_flavor = 'latex'
+
 " Use suda by default
 let g:suda_smart_edit = 1
 

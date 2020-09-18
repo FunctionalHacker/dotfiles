@@ -10,3 +10,8 @@
 .zplugin/
 .config/nvim/plugged/
 .local/share/Trash/
+.bin/
+.AndroidStudio*/
+.android/
+.audacity-data/
+.zcompdump*

@@ -11,7 +11,7 @@ alias moria-mariadb='ssh -tt moria docker exec -it mariadb mysql -p'
 cat() {
 	# Check if output is a terminal, else use regular cat
 	if [ -t 1 ]; then
-		nvimpager -c $@
+		nvimpager $@
 	else
 		/usr/bin/cat $@
 	fi

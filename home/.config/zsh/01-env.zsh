@@ -17,12 +17,12 @@ export USRNAME=$USER
 export GOPATH=~/.bin/go
 
 # fzf settings
-export FZF_DEFAULT_COMMAND='rg --files --hidden 2>/dev/null'
+export FZF_DEFAULT_COMMAND='fd -Ht f'
+export FZF_ALT_C_COMMAND='fd -Ht d'
 export FZF_DEFAULT_OPTS='-m --bind ctrl-a:select-all,ctrl-d:deselect-all,ctrl-t:toggle-all'
 export FZF_COMPLETION_TRIGGER='**'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_T_OPTS='--preview "/usr/bin/cat {} | nvimpager -c "'
-export FZF_ALT_C_COMMAND='rg --hidden --files --null --sort path 2>/dev/null | xargs -0 dirname | uniq'
 
 # use lesspipe with less
 export LESSOPEN="|lesspipe.sh %s"

@@ -8,7 +8,7 @@ services:
     volumes:
       - /docker/homeautomation/home-assistant:/config
       - /etc/localtime:/etc/localtime:ro
-    restart: always
+    restart: unless-stopped
     networks:
       - home-assistant
       - mariadb
@@ -51,7 +51,7 @@ services:
       - /docker/homeautomation/deconz/deconz:/root/.local/share/dresden-elektronik/deCONZ
       - /docker/homeautomation/deconz/otau:/root/otau
       - /etc/localtime:/etc/localtime:ro
-    restart: always
+    restart: unless-stopped
     devices:
       - /dev/ttyACM0
 
@@ -67,7 +67,25 @@ services:
     volumes:
       - /docker/homeautomation/mosquitto:/mosquitto
       - /etc/localtime:/etc/localtime:ro
-    restart: always
+    restart: unless-stopped
+
+  rhasspy:
+    container_name: rhasspy
+    image: rhasspy/rhasspy
+    command: --profile en --user-profiles /profiles
+    volumes:
+      - /docker/homeautomation/rhasspy:/profiles
+    environment:
+      - TZ=Europe/Helsinki
+    networks:
+      - home-assistant
+    ports:
+      - "12101:12101"
+    restart: unless-stopped
+    depends_on:
+      - home-assistant
+    devices:
+      - "/dev/snd:/dev/snd"
 
   node-red:
     container_name: node-red
@@ -82,7 +100,7 @@ services:
     volumes:
       - /docker/homeautomation/node-red:/data
       - /etc/localtime:/etc/localtime:ro
-    restart: always
+    restart: unless-stopped
     depends_on:
       - home-assistant
     labels:

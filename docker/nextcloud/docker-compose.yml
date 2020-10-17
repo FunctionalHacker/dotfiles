@@ -21,6 +21,7 @@ services:
       - TZ=Europe/Helsinki
       - MYSQL_HOST=mariadb-nextcloud
       - REDIS_HOST=redis
+      - REDIS_HOST_PASSWORD=123
     depends_on:
       - redis
     labels:
@@ -45,6 +46,7 @@ services:
     networks:
       - nextcloud
     restart: always
+    command: redis-server --requirepass 123
 
   cron:
     image: nextcloud:apache

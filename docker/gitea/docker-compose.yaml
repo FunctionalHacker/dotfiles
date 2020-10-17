@@ -15,7 +15,6 @@ services:
       - DB_PASSWD=${MYSQL_PASS}
     restart: unless-stopped
     networks:
-      - gitea
       - mariadb
       - proxy
     ports:
@@ -41,8 +40,6 @@ services:
       - "traefik.http.services.gitea.loadbalancer.server.port=3000"
 
 networks:
-  gitea:
-    external: false
   mariadb:
     external: true
   proxy:

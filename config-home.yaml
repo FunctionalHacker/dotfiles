@@ -197,6 +197,10 @@ profiles:
       - Terminal
       - Media
       - Pacman
+  Gondor:
+    include:
+      - Terminal
+      - Pacman
   mko-laptop:
     include:
       - Terminal

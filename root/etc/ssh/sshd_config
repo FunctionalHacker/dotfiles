@@ -4,6 +4,7 @@ StreamLocalBindUnlink yes
 X11Forwarding yes
 AuthorizedKeysFile	.ssh/authorized_keys
 PasswordAuthentication no
+PermitRootLogin no
 ChallengeResponseAuthentication no
 UsePAM yes
 PrintMotd no # pam does that

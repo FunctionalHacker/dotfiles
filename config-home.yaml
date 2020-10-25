@@ -187,11 +187,6 @@ profiles:
       - Media
       - Sway
       - Pacman
-  Rivendell:
-    include:
-      - Terminal
-      - Media
-      - Pacman
   Moria:
     include:
       - Terminal

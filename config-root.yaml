@@ -172,17 +172,6 @@ profiles:
     include:
       - Locale
       - Pacman
-  Rivendell:
-    include:
-      - Locale
-      - Pacman
-    dotfiles:
-      - f_getty.conf
-      - f_vconsole.conf
-      - f_mkinitcpio.conf
-      - f_bluetooth.conf
-      - f_60-uinput-permissions.rules
-      - f_sshd_config
   Moria:
     include:
       - Locale
@@ -190,11 +179,13 @@ profiles:
     dotfiles:
       - f_sshd_config
       - f_99-sysctl.conf
-      - f_ipmi-static.service
-      - f_ipmi-temp.service
-      - f_ipmi-temp.timer
-      - f_ipmi-fans.service
-      - f_ipmi-fans.timer
+  Gondor:
+    include:
+      - Locale
+      - Pacman
+    dotfiles:
+      - f_sshd_config
+      - f_99-sysctl.conf
   localhost:
     include:
       - Locale

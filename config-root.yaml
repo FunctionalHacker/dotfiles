@@ -182,10 +182,8 @@ profiles:
   Gondor:
     include:
       - Locale
-      - Pacman
     dotfiles:
       - f_sshd_config
-      - f_99-sysctl.conf
   localhost:
     include:
       - Locale

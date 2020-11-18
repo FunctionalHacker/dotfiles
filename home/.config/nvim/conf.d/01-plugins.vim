@@ -32,6 +32,9 @@ Plug 'https://git.zx2c4.com/password-store', { 'rtp': 'contrib/vim/redact_pass.v
 " Colorize color words
 Plug 'norcalli/nvim-colorizer.lua'
 
+" NeoVim in Firefox
+Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+
 " Spelling
 Plug 'vim-scripts/Vimchant'
 

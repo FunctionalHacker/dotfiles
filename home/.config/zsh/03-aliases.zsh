@@ -32,18 +32,18 @@ _fzf_compgen_path() {
 }
 
 # search and install packages with fzf
-yi() { 
-	SELECTED_PKGS="$(yay -Slq | fzf --header='Install packages' -m --preview 'yay -Si {1}')"
+pi() { 
+	SELECTED_PKGS="$(paru -Slq | fzf --header='Install packages' -m --preview 'paru -Si {1}')"
 	if [ -n "$SELECTED_PKGS" ]; then
-		yay -S $(echo $SELECTED_PKGS)
+		paru -S $(echo $SELECTED_PKGS)
 	fi
 }
 
 # search and remove packages with fzf
-yr() { 
-	SELECTED_PKGS="$(yay -Qsq | fzf --header='Remove packages' -m --preview 'yay -Si {1}')"
+pr() { 
+	SELECTED_PKGS="$(paru -Qsq | fzf --header='Remove packages' -m --preview 'paru -Si {1}')"
 	if [ -n "$SELECTED_PKGS" ]; then
-		yay -Rns $(echo $SELECTED_PKGS)
+		paru -Rns $(echo $SELECTED_PKGS)
 	fi
 }
 
@@ -80,7 +80,7 @@ clean() {
 	SPACEBEFORE=$(eval "$DFCMD")
 	trash-empty 10
 	sudo journalctl --vacuum-size=500M
-	yay -Sc
+	paru -Sc
 	SPACEAFTER=$(eval "$DFCMD")
 	echo "Saved $(calc $SPACEAFTER - $SPACEBEFORE)G of space"
 }
@@ -144,8 +144,8 @@ update() {
 	}
 
 	base() {
-		yay -Pw
-		yay -Syu $@
+		paru -Pw
+		paru -Syu $@
 	}
 
 	plugins() {

@@ -47,8 +47,8 @@ if ! [ -x "$(command -v paru)" ]; then
 		sudo pacman -Syu --needed --noconfirm git wget base-devel
 		cd
 		wget https://aur.archlinux.org/cgit/aur.git/snapshot/paru-bin.tar.gz
-		tar xfv paru.tar.gz
-		cd paru
+		tar xfv paru-bin.tar.gz
+		cd paru-bin
 		makepkg -si --noconfirm
 		cd ..
 		rm -r paru*

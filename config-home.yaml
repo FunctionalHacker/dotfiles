@@ -19,12 +19,18 @@ dotfiles:
   d_mpv:
     dst: ~/.config/mpv
     src: .config/mpv
+  d_neomutt:
+    dst: ~/.config/neomutt
+    src: .config/neomutt
+  d_goimapnotify:
+    dst: ~/.config/imapnotify
+    src: .config/imapnotify
   f_init.vim:
     dst: ~/.config/nvim/init.vim
     src: .config/nvim/init.vim
   d_nvim_config:
     actions:
-      - vim-plug
+    - vim-plug
     dst: ~/.config/nvim/conf.d
     src: .config/nvim/conf.d
   f_coc-settings.json:
@@ -45,6 +51,9 @@ dotfiles:
   f_abcde.conf:
     dst: ~/.abcde.conf
     src: .abcde.conf
+  f_mbsyncrc:
+    dst: ~/.mbsyncrc
+    src: .mbsyncrc
   f_alacritty.yml:
     dst: ~/.config/alacritty/alacritty.yml
     src: .config/alacritty/alacritty.yml
@@ -114,9 +123,6 @@ dotfiles:
   f_tmux.conf:
     dst: ~/.tmux.conf
     src: .tmux.conf
-  f_yay_config.json:
-    dst: ~/.config/yay/config.json
-    src: .config/yay/config.json
   f_youtube-dl_config:
     dst: ~/.config/youtube-dl/config
     src: .config/youtube-dl/config
@@ -147,87 +153,98 @@ dotfiles:
   f_hushlogin:
     src: .hushlogin
     dst: ~/.hushlogin
+  f_paru.conf:
+    src: .config/paru/paru.conf
+    dst: ~/.config/paru/paru.conf
 profiles:
-  Base:
+  base:
     dotfiles:
-      - d_systemd
-  Media:
+    - d_systemd
+  terminal:
     dotfiles:
-      - f_beets_config
-      - f_beets_whitelist
-      - f_abcde.conf
-      - d_mpv
-      - f_youtube-dl_config
-      - f_mpd.conf
-      - f_ncmpcpp_bindings
-      - f_ncmpcpp.conf
-      - f_libra_config
-      - f_mpdscribble.conf
-      - f_mpdris2.conf
-  Sway:
+    - f_nvimpager
+    - f_hushlogin
+    - f_ripgrep_ignore
+    - f_ranger_commands.py
+    - f_rtv.cfg
+    - f_mailcap
+    - d_zsh
+    - f_zshrc
+    - f_tmux.conf
+    - f_gitconfig
+    - f_ranger.conf
+    - f_ssh.conf
+    - f_authorized_keys
+    - d_scripts
+    - d_nvim_config
+    - f_init.vim
+    - f_coc-settings.json
+    - f_gitconfig
+    - f_alacritty.yml
+  email:
     dotfiles:
-      - d_sway
-      - d_waybar
-      - d_wofi
-      - f_mako_config
-      - f_redshift.conf
-      - f_zathurarc
-      - f_mimeo_associations.txt
-      - f_tdesktop_lang.strings
-      - f_fonts.conf
-      - f_zprofile
+    - d_neomutt
+    - d_goimapnotify
+    - f_mbsyncrc
+  media:
+    dotfiles:
+    - f_beets_config
+    - f_beets_whitelist
+    - f_abcde.conf
+    - d_mpv
+    - f_youtube-dl_config
+    - f_mpd.conf
+    - f_ncmpcpp_bindings
+    - f_ncmpcpp.conf
+    - f_libra_config
+    - f_mpdscribble.conf
+    - f_mpdris2.conf
+  sway:
+    dotfiles:
+    - d_sway
+    - d_waybar
+    - d_wofi
+    - f_mako_config
+    - f_redshift.conf
+    - f_zathurarc
+    - f_mimeo_associations.txt
+    - f_tdesktop_lang.strings
+    - f_fonts.conf
+    - f_zprofile
   Pacman:
     dotfiles:
-      - f_yay_config.json
-      - f_makepkg.conf
+    - f_makepkg.conf
+    - f_paru.conf
   Mirkwood:
     include:
-      - Base
-      - Terminal
-      - Media
-      - Sway
-      - Pacman
+    - base
+    - terminal
+    - email
+    - media
+    - sway
+    - Pacman
+    dotfiles:
+    - f_paru.conf
   Moria:
     include:
-      - Terminal
-      - Media
-      - Pacman
+    - terminal
+    - media
+    - Pacman
   Gondor:
     include:
-      - Terminal
-      - Pacman
+    - terminal
+    - Pacman
   mko-laptop:
     include:
-      - Terminal
-  Terminal:
-    dotfiles:
-      - f_nvimpager
-      - f_hushlogin
-      - f_ripgrep_ignore
-      - f_ranger_commands.py
-      - f_rtv.cfg
-      - f_mailcap
-      - d_zsh
-      - f_zshrc
-      - f_tmux.conf
-      - f_gitconfig
-      - f_ranger.conf
-      - f_ssh.conf
-      - f_authorized_keys
-      - d_scripts
-      - d_nvim_config
-      - f_init.vim
-      - f_coc-settings.json
-      - f_gitconfig
-      - f_alacritty.yml
+    - terminal
   AnittaPC:
     include:
-      - Terminal
-      - Pacman
+    - terminal
+    - Pacman
   TakamakiPC:
     include:
-      - Terminal
-      - Pacman
+    - terminal
+    - Pacman
   localhost:
     include:
-      - Terminal
+    - terminal

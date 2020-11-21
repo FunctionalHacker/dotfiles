@@ -1,4 +1,4 @@
-# vim: filetype=muttrc
+# vim: filetype=neomuttrc
 
 set sendmail 	= "/usr/bin/msmtp"
 set mbox_type	= Maildir
@@ -7,9 +7,7 @@ set spoolfile	= +Personal/INBOX
 
 source ~/.config/neomutt/appearance
 source ~/.config/neomutt/sidebar
-source ~/.config/neomutt/accounts/reekymarko@reekynet.com
+source ~/.config/neomutt/accounts/marko@korhonen.cc
 
-macro index <f2> '<sync-mailbox><enter-command>source ~/.config/neomutt/accounts/reekymarko@reekynet.com<enter><change-folder>!<enter>'
-macro index <f3> '<sync-mailbox><enter-command>source ~/.config/neomutt/accounts/marko.korhonen@reekynet.com<enter><change-folder>!<enter>'
-macro index <f4> '<sync-mailbox><enter-command>source ~/.config/neomutt/accounts/admin@reekynet.com<enter><change-folder>!<enter>'
-macro index <f5> '<sync-mailbox><enter-command>source ~/.config/neomutt/accounts/marko.korhonen@metropolia.fi<enter><change-folder>!<enter>'
+macro index <f2> '<sync-mailbox><enter-command>source ~/.config/neomutt/accounts/marko@korhonen.cc<enter><change-folder>!<enter>'
+macro index <f3> '<sync-mailbox><enter-command>source ~/.config/neomutt/accounts/admin@korhonen.cc<enter><change-folder>!<enter>'

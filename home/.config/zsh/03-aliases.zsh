@@ -117,8 +117,8 @@ cpufreq() { watch -n 1 eval "cat /proc/cpuinfo | grep MHz" }
 
 # dotdrop
 updatesecrets() { bash $DOTREPO/secrets/secrets.sh; chmod 600 $DOTREPO/secrets/secrets }
-dotdrop() { source $DOTREPO/secrets/secrets && $DOTREPO/dotdrop/dotdrop.sh --cfg=$DOTREPO/config-home.yaml $@ }
-sdotdrop() { source $DOTREPO/secrets/secrets && sudo -E $DOTREPO/dotdrop/dotdrop.sh --cfg=$DOTREPO/config-root.yaml $@ }
+dotdrop() { source $DOTREPO/secrets/secrets && $DOTREPO/dotdrop.sh --cfg=$DOTREPO/config-home.yaml $@ }
+sdotdrop() { source $DOTREPO/secrets/secrets && sudo -E $DOTREPO/dotdrop.sh --cfg=$DOTREPO/config-root.yaml $@ }
 compdef _dotdrop-completion.zsh sdotdrop
 alias dotgit='git -C $DOTREPO'
 dotsync() { cd $DOTREPO && gpull && ga && gc && gpush && cd $OLDPWD }
@@ -156,7 +156,7 @@ update() {
 	}
 
 	docker-update() {
-		for dir in $HOME/Git/dotfiles/docker/*; do
+		for dir in $HOME/git/dotfiles/docker/*; do
 			cd $dir
 			docker-compose pull
 			docker-compose up -d

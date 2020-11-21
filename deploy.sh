@@ -1,18 +1,19 @@
-#!/bin/bash
+#!/bin/zsh
 
-# to run this, execute
-# bash <(curl -sL git.reekynet.com/ReekyMarko/dotfiles/raw/branch/master/deploy.sh)
+# This is a script that should be ran once
+# on a new system. Dotdrop will take it from there.
+# It is higly tailored to my own needs and
+# you (the random person on the internet) should probably not run it
 
-# Run this to install my dotfiles on a fresh Arch Linux installation.
-# This should work on any Arch Linux install with an internet connection
-# and sudo rights
+export DOTREPO="$HOME/git/dotfiles"
+DISTRO="$(lsb_release -ds | sed 's/"//g')"
 
-# When asked a hostname, make sure it's already in the dotrop config,
-# otherwise dotdrop won't install anything
+PKGLIST=""
 
-export DOTREPO="$HOME/Git/dotfiles"
-export HOSTNAME="$(hostnamectl | head -n 1 | sed 's/ //g' | cut -d':' -f2-)"
-export DISTRO="$(lsb_release -ds | sed 's/"//g')"
+if [ -d $DOTREPO ]; then
+	print "Dotfile repository already exists, exiting..."
+	exit 1
+fi
 
 if [ "$DISTRO" -ne "Arch Linux" ]; then
 	print "Not running on Arch Linux"
@@ -20,31 +21,51 @@ if [ "$DISTRO" -ne "Arch Linux" ]; then
 	exit 1
 fi
 
-read -p "Hostname [$HOSTNAME]: " -i $HOSTNAME NEWHOSTNAME
-if [ "$HOSTNAME -ne $NEWHOSTNAME" ]; then
-	sudo hostnamectl set-hostname $NEWHOSTNAME	
-fi
-HOSTNAME=$NEWHOSTNAME
-
-# install yay
-if ! [ -x "$(command -v yay)" ]; then
-	read -p "Install yay? [Y/n] " -i "y" IYAY
-	if [ "$(tr '[:upper:]' ':lower:' $IYAY)" -eq "y" ]; then
-		print "Installing yay"
+# install neovim if not installed
+if ! [ -x "$(command -v nvim)" ]; then
+	read -p "Install neovim? [Y/n] " -i "y" INVIM
+	if [ "$(tr '[:upper:]' ':lower:' $INVIM)" -eq "y" ]; then
+		print "Installing neovim"
+		PKGLIST=$PKGLIST + " neovim neovim-dropin"
 	fi
-	sudo pacman -Syu --needed --noconfirm git wget base-devel
-	cd
-	wget https://aur.archlinux.org/cgit/aur.git/snapshot/yay.tar.gz
-	tar xfv yay.tar.gz
-	cd yay
-	makepkg -si --noconfirm
-	cd ..
-	rm -r yay*
 fi
 
-mkdir ~/Git
-git clone https://git.reekynet.com/ReekyMarko/dotfiles.git $DOTREPO
-cd ~/Git/dotfiles
+# install zsh if not installed
+if ! [ -x "$(command -v zsh)" ]; then
+	read -p "Install zsh? [Y/n] " -i "y" IZSH
+	if [ "$(tr '[:upper:]' ':lower:' $INVIM)" -eq "y" ]; then
+		print "Installing zsh"
+		PKGLIST=$PKGLIST + " zsh"
+	fi
+fi
+
+# install paru if not installed
+if ! [ -x "$(command -v paru)" ]; then
+	read -p "Install paru? [Y/n] " -i "y" IYAY
+	if [ "$(tr '[:upper:]' ':lower:' $IYAY)" -eq "y" ]; then
+		print "Installing paru"
+		sudo pacman -Syu --needed --noconfirm git wget base-devel
+		cd
+		wget https://aur.archlinux.org/cgit/aur.git/snapshot/paru-bin.tar.gz
+		tar xfv paru.tar.gz
+		cd paru
+		makepkg -si --noconfirm
+		cd ..
+		rm -r paru*
+	fi
+fi
+
+if [ $PKGLIST -ne "" ]
+	if ! [ -x "$(command -v paru)" ]; then
+		print "Can't continue without paru"
+
+		paru -S $PKGLIST
+	fi
+fi
+
+mkdir ~/git
+git clone https://git.korhonen.cc/ReekyMarko/dotfiles.git $DOTREPO
+cd ~/git/dotfiles
 git submodule init
 git submodule update
 $DOTREPO/dotdrop.sh --cfg=$DOTREPO/config-home.yaml install

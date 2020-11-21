@@ -8,7 +8,7 @@
 export DOTREPO="$HOME/git/dotfiles"
 DISTRO="$(lsb_release -ds | sed 's/"//g')"
 
-PKGLIST=""
+PKGLIST="python-ruamel-yaml python-magic-git python-jinja python-docopt"
 
 if [ -d $DOTREPO ]; then
 	print "Dotfile repository already exists, exiting..."

@@ -1,99 +1,48 @@
-### reekymarko@reekynet.com #####################################
-IMAPAccount 	reekymarko@reekynet.com
+### marko@korhonen.cc #####################################
+IMAPAccount 	marko@korhonen.cc
 Host 			imap.migadu.com
-User 			reekymarko@reekynet.com
-PassCmd			"pass email/reekymarko@reekynet.com | head -n 1"
+User 			marko@korhonen.cc
+Pass			"{{@@ env['PASS_EMAIL_MARKO'] @@}}"
 SSLType 		IMAPS
 Port			993
 CertificateFile	/etc/ssl/certs/ca-certificates.crt
 
-IMAPStore		reekymarko@reekynet.com-remote
-Account			reekymarko@reekynet.com
+IMAPStore		marko@korhonen.cc-remote
+Account			marko@korhonen.cc
 
-MaildirStore 	reekymarko@reekynet.com-local
+MaildirStore 	marko@korhonen.cc-local
 Subfolders		Verbatim
-Path			~/.mail/reekymarko@reekynet.com/
-Inbox			~/.mail/reekymarko@reekynet.com/INBOX
+Path			~/.mail/marko@korhonen.cc/
+Inbox			~/.mail/marko@korhonen.cc/INBOX
 
-Channel			reekymarko@reekynet.com
-Master			:reekymarko@reekynet.com-remote:
-Slave			:reekymarko@reekynet.com-local:
+Channel			marko@korhonen.cc
+Master			:marko@korhonen.cc-remote:
+Slave			:marko@korhonen.cc-local:
 Create			Both
 Patterns		*
 SyncState		*
 #################################################################
 
-### marko.korhonen@reekynet.com #####################################
-IMAPAccount 	marko.korhonen@reekynet.com
+### admin@korhonen.cc #####################################
+IMAPAccount 	admin@korhonen.cc
 Host 			imap.migadu.com
-User 			marko.korhonen@reekynet.com
-PassCmd			"pass email/marko.korhonen@reekynet.com | head -n 1"
+User 			admin@korhonen.cc
+Pass			"{{@@ env['PASS_EMAIL_ADMIN'] @@}}"
 SSLType 		IMAPS
 Port			993
 CertificateFile	/etc/ssl/certs/ca-certificates.crt
 
-IMAPStore		marko.korhonen@reekynet.com-remote
-Account			marko.korhonen@reekynet.com
+IMAPStore		admin@korhonen.cc-remote
+Account			admin@korhonen.cc
 
-MaildirStore 	marko.korhonen@reekynet.com-local
+MaildirStore 	admin@korhonen.cc-local
 Subfolders		Verbatim
-Path			~/.mail/marko.korhonen@reekynet.com/
-Inbox			~/.mail/marko.korhonen@reekynet.com/INBOX
+Path			~/.mail/admin@korhonen.cc/
+Inbox			~/.mail/admin@korhonen.cc/INBOX
 
-Channel			marko.korhonen@reekynet.com
-Master			:marko.korhonen@reekynet.com-remote:
-Slave			:marko.korhonen@reekynet.com-local:
-Create			Both
-Patterns		*
-SyncState		*
-#################################################################
-
-
-### admin@reekynet.com #####################################
-IMAPAccount 	admin@reekynet.com
-Host 			imap.migadu.com
-User 			admin@reekynet.com
-PassCmd			"pass email/admin@reekynet.com | head -n 1"
-SSLType 		IMAPS
-Port			993
-CertificateFile	/etc/ssl/certs/ca-certificates.crt
-
-IMAPStore		admin@reekynet.com-remote
-Account			admin@reekynet.com
-
-MaildirStore 	admin@reekynet.com-local
-Subfolders		Verbatim
-Path			~/.mail/admin@reekynet.com/
-Inbox			~/.mail/admin@reekynet.com/INBOX
-
-Channel			admin@reekynet.com
-Master			:admin@reekynet.com-remote:
-Slave			:admin@reekynet.com-local:
-Create			Both
-Patterns		*
-SyncState		*
-#################################################################
-
-### marko.korhonen@metropolia.fi #####################################
-IMAPAccount 	marko.korhonen@metropolia.fi
-Host 			imap.metropolia.fi
-User 			markoak
-PassCmd			"pass email/marko.korhonen@metropolia.fi | head -n 1"
-SSLType 		IMAPS
-Port			993
-CertificateFile	/etc/ssl/certs/ca-certificates.crt
-
-IMAPStore		marko.korhonen@metropolia.fi-remote
-Account			marko.korhonen@metropolia.fi
-
-MaildirStore 	marko.korhonen@metropolia.fi-local
-Subfolders		Verbatim
-Path			~/.mail/marko.korhonen@metropolia.fi/
-Inbox			~/.mail/marko.korhonen@metropolia.fi/INBOX
-
-Channel			marko.korhonen@metropolia.fi
-Master			:marko.korhonen@metropolia.fi-remote:
-Slave			:marko.korhonen@metropolia.fi-local:
+Channel			admin@korhonen.cc
+Master			:admin@korhonen.cc-remote:
+Slave			:admin@korhonen.cc-local:
 Create			Both
 Patterns		*
 SyncState		*

@@ -27,8 +27,8 @@ export FZF_CTRL_T_OPTS='--preview "/usr/bin/cat {} | nvimpager -c "'
 # use lesspipe with less
 export LESSOPEN="|lesspipe.sh %s"
 
-# dotdrop repository location
-export DOTREPO="$HOME/Git/dotfiles"
+# dotfile repository location
+export DOTREPO="$HOME/git/dotfiles"
 
 # nvim ftw!
 export EDITOR=nvim

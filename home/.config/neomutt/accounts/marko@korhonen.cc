@@ -1,6 +1,6 @@
-# vim: filetype=muttrc
+# vim: filetype=neomuttrc
 
-set my_email        = "marko.korhonen@reekynet.com"
+set my_email        = "marko@korhonen.cc"
 set from            = $my_email
 set sendmail        = "/usr/bin/msmtp -a $my_email"
 set realname        = "Marko Korhonen"

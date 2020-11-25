@@ -22,7 +22,7 @@ dotfiles:
   d_neomutt:
     dst: ~/.config/neomutt
     src: .config/neomutt
-  d_goimapnotify:
+  d_imapnotify:
     dst: ~/.config/imapnotify
     src: .config/imapnotify
   f_init.vim:
@@ -33,12 +33,12 @@ dotfiles:
     - vim-plug
     dst: ~/.config/nvim/conf.d
     src: .config/nvim/conf.d
+  f_user-dirs.dirs:
+    dst: ~/.config/user-dirs.dirs
+    src: .config/user-dirs.dirs
   f_coc-settings.json:
     dst: ~/.config/nvim/coc-settings.json
     src: .config/nvim/coc-settings.json
-  d_scripts:
-    dst: ~/.scripts
-    src: .scripts
   d_sway:
     dst: ~/.config/sway
     src: .config/sway
@@ -178,7 +178,6 @@ profiles:
     - f_ranger.conf
     - f_ssh.conf
     - f_authorized_keys
-    - d_scripts
     - d_nvim_config
     - f_init.vim
     - f_coc-settings.json
@@ -187,7 +186,7 @@ profiles:
   email:
     dotfiles:
     - d_neomutt
-    - d_goimapnotify
+    - d_imapnotify
     - f_mbsyncrc
     - f_msmtp_config
   media:
@@ -229,6 +228,7 @@ profiles:
     - Pacman
     dotfiles:
     - f_paru.conf
+    - f_user-dirs.dirs
   Moria:
     include:
     - terminal

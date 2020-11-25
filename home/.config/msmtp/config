@@ -1,25 +1,26 @@
+defaults
+auth 			on
+tls            	on
+tls_starttls   	off
+tls_trust_file 	/etc/ssl/certs/ca-certificates.crt
+logfile        	~/.log/msmtp.log
+host           	smtp.migadu.com
+port           	465
+
+# functionalhacker@korhonen.cc
+account        	functionalhacker@korhonen.cc
+from           	functionalhacker@korhonen.cc
+user           	functionalhacker@korhonen.cc
+password 		"{{@@ env['PASS_EMAIL_HACKER'] @@}}"
+
 # marko@korhonen.cc
 account        	marko@korhonen.cc
 from           	marko@korhonen.cc
 user           	marko@korhonen.cc
 password 		"{{@@ env['PASS_EMAIL_MARKO'] @@}}"
-auth 			on
-tls            	on
-tls_starttls   	off
-tls_trust_file 	/etc/ssl/certs/ca-certificates.crt
-logfile        	~/.log/msmtp/marko@korhonen.cc.log
-host           	smtp.migadu.com
-port           	465
 
 # admin@korhonen.cc
 account        	admin@korhonen.cc
 from           	admin@korhonen.cc
 user           	admin@korhonen.cc
 password 		"{{@@ env['PASS_EMAIL_ADMIN'] @@}}"
-auth 			on
-tls            	on
-tls_starttls   	off
-tls_trust_file 	/etc/ssl/certs/ca-certificates.crt
-logfile        	~/.log/msmtp/admin@korhonen.cc.log
-host           	smtp.migadu.com
-port           	465

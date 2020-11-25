@@ -1,3 +1,28 @@
+### functionalhacker@korhonen.cc #####################################
+IMAPAccount 	functionalhacker@korhonen.cc
+Host 			imap.migadu.com
+User 			functionalhacker@korhonen.cc
+Pass			"{{@@ env['PASS_EMAIL_HACKER'] @@}}"
+SSLType 		IMAPS
+Port			993
+CertificateFile	/etc/ssl/certs/ca-certificates.crt
+
+IMAPStore		functionalhacker@korhonen.cc-remote
+Account			functionalhacker@korhonen.cc
+
+MaildirStore 	functionalhacker@korhonen.cc-local
+Subfolders		Verbatim
+Path			~/.mail/functionalhacker@korhonen.cc/
+Inbox			~/.mail/functionalhacker@korhonen.cc/INBOX
+
+Channel			functionalhacker@korhonen.cc
+Master			:functionalhacker@korhonen.cc-remote:
+Slave			:functionalhacker@korhonen.cc-local:
+Create			Both
+Patterns		*
+SyncState		*
+#################################################################
+
 ### marko@korhonen.cc #####################################
 IMAPAccount 	marko@korhonen.cc
 Host 			imap.migadu.com

@@ -4,8 +4,7 @@ alias gac='ga && gc'
 alias gpull='git pull'
 alias gpush='git push'
 
-# Access server mariadb
-alias moria-mariadb='ssh -tt moria docker exec -it mariadb mysql -p'
+alias mutt='neomutt'
 
 # Syntax highlighting cat if output is a terminal
 cat() {

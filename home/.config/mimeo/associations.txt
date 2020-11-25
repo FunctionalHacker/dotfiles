@@ -1,31 +1,31 @@
-umpv %U
+mpvqueue %U
   ^https?://invidio.us/.*
   
-umpv %U
+mpvqueue %U
   ^https?://(m.)?(www.)?youtube.com/watch\?.*v=
 
-umpv %U
+mpvqueue %U
   ^https?://(www.)?youtube.com/playlist\?.*list=
 
-umpv %U
+mpvqueue %U
   ^https?://(www.)?youtu.be/
 
-umpv %U
+mpvqueue %U
   ^https?://(www.)?(m.)?twitch.tv/
 
-umpv %U
+mpvqueue %U
   ^https?://(?:[a-z0-9\-]+\.)+[a-z]{2,6}(?:/[^/#?]+)+\.(?:mp4|mkv|webm|avi|3gp|gif|gifv)
 
-umpv %U
+mpvqueue %U
   ^https?://www.facebook.com/.*/videos/
 
-umpv %U
+mpvqueue %U
   ^https?://gfycat.com/.*
 
-umpv %U
+mpvqueue %U
   ^https?://vimeo.com/.*
 
-umpv %U
+mpvqueue %U
   ^https?://v.redd.it/.*
 
 imgurviewer %U

@@ -174,7 +174,6 @@ profiles:
     - d_zsh
     - f_zshrc
     - f_tmux.conf
-    - f_gitconfig
     - f_ranger.conf
     - f_ssh.conf
     - f_authorized_keys
@@ -229,6 +228,7 @@ profiles:
     dotfiles:
     - f_paru.conf
     - f_user-dirs.dirs
+    - f_gitconfig
   Moria:
     include:
     - terminal

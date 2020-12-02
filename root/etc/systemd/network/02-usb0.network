@@ -2,7 +2,8 @@
 Name=usb0
 
 [Network]
-DHCP=ipv4
+DHCP=yes
 
 [DHCP]
 RouteMetric=10
+UseDomains=true

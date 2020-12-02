@@ -1,5 +1,3 @@
-actions:
-  chmod-wireguard: chmod 0640 /etc/systemd/network/99-wireguard.netdev
 config:
   backup: true
   banner: true
@@ -20,10 +18,11 @@ dotfiles:
     dst: /usr/local/bin
     src: usr/local/bin
   d_networkd:
-    actions:
-      - chmod-wireguard
     src: etc/systemd/network
     dst: /etc/systemd/network
+  f_networkd:
+    src: etc/systemd/networkd.conf
+    dst: /etc/systemd/networkd.conf
   f_99-sysctl.conf:
     dst: /etc/sysctl.d/99-sysctl.conf
     src: etc/sysctl.d/99-sysctl.conf
@@ -66,9 +65,6 @@ dotfiles:
   f_sshd_config:
     dst: /etc/ssh/sshd_config
     src: etc/ssh/sshd_config
-  f_timesyncd.conf:
-    dst: /etc/systemd/timesyncd.conf
-    src: etc/systemd/timesyncd.conf
   f_welcomemessage.conf:
     dst: /etc/welcomemessage.conf
     src: etc/welcomemessage.conf
@@ -132,58 +128,64 @@ dotfiles:
   f_pacserve.service.conf:
     src: etc/pacserve/pacserve.service.conf
     dst: /etc/pacserve/pacserve.service.conf
+  f_resolved.conf:
+    src: etc/systemd/resolved.conf
+    dst: /etc/systemd/resolved.conf
 profiles:
+  Network:
+    dotfiles:
+    - d_networkd
+    - f_resolved.conf
   Locale:
     dotfiles:
-      - f_locale.conf
-      - f_locale.gen
+    - f_locale.conf
+    - f_locale.gen
   Pacman:
     dotfiles:
-      - f_pacman.conf
-      - f_pacserve.service.conf
+    - f_pacman.conf
+    - f_pacserve.service.conf
   Mirkwood:
     dotfiles:
-      - f_getty.conf
-      - f_cryptissue
-      - f_welcomemessage.conf
-      - d_bin
-      - d_networkd
-      - f_adb.service
-      - f_bluetooth.conf
-      - f_iwd@.service
-      - f_sshd_config
-      - f_logind.conf
-      - f_60-uinput-permissions.rules
-      - f_freetype2.sh
-      - f_fonts.conf
-      - f_timesyncd.conf
-      - f_99-sysctl.conf
-      - f_99-lowbat.rules
-      - f_ignore
-      - f_mkinitcpio.conf
-      - f_vconsole.conf
-      - f_20-quiet-printk.conf
-      - f_system.conf
-      - f_cpupower
-      - f_arch.conf
-      - f_arch-lts.conf
-      - f_kodi.conf
-      - f_pacserve.service.conf
+    - f_getty.conf
+    - f_cryptissue
+    - f_welcomemessage.conf
+    - d_bin
+    - f_adb.service
+    - f_bluetooth.conf
+    - f_iwd@.service
+    - f_sshd_config
+    - f_logind.conf
+    - f_60-uinput-permissions.rules
+    - f_freetype2.sh
+    - f_fonts.conf
+    - f_99-sysctl.conf
+    - f_99-lowbat.rules
+    - f_ignore
+    - f_mkinitcpio.conf
+    - f_vconsole.conf
+    - f_20-quiet-printk.conf
+    - f_system.conf
+    - f_cpupower
+    - f_arch.conf
+    - f_arch-lts.conf
+    - f_kodi.conf
+    - f_pacserve.service.conf
     include:
-      - Locale
-      - Pacman
+    - Locale
+    - Pacman
+    - Network
   Moria:
     include:
-      - Locale
-      - Pacman
+    - Locale
+    - Pacman
     dotfiles:
-      - f_sshd_config
-      - f_99-sysctl.conf
+    - f_sshd_config
+    - f_99-sysctl.conf
   Gondor:
     include:
-      - Locale
+    - Locale
     dotfiles:
-      - f_sshd_config
+    - f_sshd_config
   localhost:
     include:
-      - Locale
+    - Locale

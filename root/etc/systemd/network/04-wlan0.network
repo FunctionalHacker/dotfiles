@@ -2,7 +2,8 @@
 Name=wlan0
 
 [Network]
-DHCP=ipv4
+DHCP=yes
 
 [DHCP]
 RouteMetric=20
+UseDomains=true

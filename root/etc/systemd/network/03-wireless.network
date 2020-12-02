@@ -2,7 +2,8 @@
 Name=wlp*
 
 [Network]
-DHCP=ipv4
+DHCP=yes
 
 [DHCP]
 RouteMetric=20
+UseDomains=true

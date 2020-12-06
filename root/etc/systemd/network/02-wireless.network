@@ -1,9 +1,8 @@
 [Match]
-Name=wlan0
+Name=w*
 
 [Network]
 DHCP=yes
 
 [DHCP]
-RouteMetric=20
 UseDomains=true

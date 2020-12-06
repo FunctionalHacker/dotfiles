@@ -1,6 +1,0 @@
-[Match]
-MACAddress=dc:fb:48:2b:b7:86
-
-[Link]
-Description=Internal wireless adapter
-Name=wlan0

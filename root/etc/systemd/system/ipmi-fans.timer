@@ -1,9 +1,0 @@
-[Unit]
-Description=Run fans service every 30s
-
-[Timer]
-OnUnitInactiveSec=15s
-OnBootSec=15s
-
-[Install]
-WantedBy=timers.target

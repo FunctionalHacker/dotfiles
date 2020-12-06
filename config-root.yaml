@@ -134,58 +134,58 @@ dotfiles:
 profiles:
   Network:
     dotfiles:
-    - d_networkd
-    - f_resolved.conf
+      - d_networkd
+      - f_resolved.conf
   Locale:
     dotfiles:
-    - f_locale.conf
-    - f_locale.gen
+      - f_locale.conf
+      - f_locale.gen
   Pacman:
     dotfiles:
-    - f_pacman.conf
-    - f_pacserve.service.conf
+      - f_pacman.conf
+      - f_pacserve.service.conf
   Mirkwood:
     dotfiles:
-    - f_getty.conf
-    - f_cryptissue
-    - f_welcomemessage.conf
-    - d_bin
-    - f_adb.service
-    - f_bluetooth.conf
-    - f_iwd@.service
-    - f_sshd_config
-    - f_logind.conf
-    - f_60-uinput-permissions.rules
-    - f_freetype2.sh
-    - f_fonts.conf
-    - f_99-sysctl.conf
-    - f_99-lowbat.rules
-    - f_ignore
-    - f_mkinitcpio.conf
-    - f_vconsole.conf
-    - f_20-quiet-printk.conf
-    - f_system.conf
-    - f_cpupower
-    - f_arch.conf
-    - f_arch-lts.conf
-    - f_kodi.conf
-    - f_pacserve.service.conf
+      - f_getty.conf
+      - f_cryptissue
+      - f_welcomemessage.conf
+      - d_bin
+      - f_adb.service
+      - f_bluetooth.conf
+      - f_iwd@.service
+      - f_sshd_config
+      - f_logind.conf
+      - f_60-uinput-permissions.rules
+      - f_freetype2.sh
+      - f_fonts.conf
+      - f_99-lowbat.rules
+      - f_ignore
+      - f_mkinitcpio.conf
+      - f_vconsole.conf
+      - f_20-quiet-printk.conf
+      - f_system.conf
+      - f_cpupower
+      - f_arch.conf
+      - f_arch-lts.conf
+      - f_kodi.conf
     include:
-    - Locale
-    - Pacman
-    - Network
+      - Locale
+      - Pacman
+      - Network
   Moria:
     include:
-    - Locale
-    - Pacman
+      - Locale
+      - Pacman
+      - Network
     dotfiles:
-    - f_sshd_config
-    - f_99-sysctl.conf
+      - f_sshd_config
+      - f_99-sysctl.conf
+      - f_cpupower
   Gondor:
     include:
-    - Locale
+      - Locale
     dotfiles:
-    - f_sshd_config
+      - f_sshd_config
   localhost:
     include:
-    - Locale
+      - Locale

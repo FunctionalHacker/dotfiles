@@ -8,4 +8,3 @@ set runtimepath+=~/.config/nvim/plugged/vim-polyglot
 source ~/.config/nvim/conf.d/02-appearance.vim
 source ~/.config/nvim/conf.d/03-keybinds.vim
 source ~/.config/nvim/conf.d/06-misc.vim
-source ~/.config/nvim/conf.d/07-clipboardfix.vim

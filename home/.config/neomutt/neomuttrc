@@ -1,0 +1,9 @@
+# vim: filetype=neomuttrc
+
+## General options
+set header_cache = "~/.cache/neomutt"
+set mbox_type=Maildir
+
+# Accounts
+source "~/.config/neomutt/accounts/marko@korhonen.cc"
+folder-hook $folder 'source ~/.config/neomutt/accounts/marko@korhonen.cc'

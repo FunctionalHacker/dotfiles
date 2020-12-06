@@ -2,7 +2,7 @@ version: '3'
 
 services:
   traefik:
-    image: traefik:v2.0
+    image: traefik:latest
     container_name: traefik
     restart: unless-stopped
     ports:
@@ -24,12 +24,12 @@ services:
       - 'traefik.enable=true'
 
       - 'traefik.http.routers.redirect.entrypoints=http'
-      - 'traefik.http.routers.redirect.rule=Host(`traefik.reekynet.com`)'
+      - 'traefik.http.routers.redirect.rule=Host(`traefik.korhonen.cc`)'
       - 'traefik.http.middlewares.http2https.redirectscheme.scheme=https'
       - 'traefik.http.routers.redirect.middlewares=http2https'
 
       - 'traefik.http.routers.dashboard.entrypoints=https'
-      - 'traefik.http.routers.dashboard.rule=Host(`traefik.reekynet.com`)'
+      - 'traefik.http.routers.dashboard.rule=Host(`traefik.korhonen.cc`)'
       - 'traefik.http.middlewares.dashboard-auth.basicauth.usersfile=/dashboard-users'
       - 'traefik.http.routers.dashboard.middlewares=dashboard-auth'
       - 'traefik.http.routers.dashboard.tls=true'

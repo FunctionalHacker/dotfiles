@@ -9,7 +9,7 @@ services:
     environment:
       - TZ=Europe/Helsinki
       - PEERS=4
-      - SERVERURL=reekynet.com
+      - SERVERURL=korhonen.cc
       - SERVERPORT=48574
       - INTERNAL_SUBNET=10.200.200.0/24
     volumes:

@@ -1,9 +1,0 @@
-[Unit]
-Description=Write fan speeds to tmp
-
-[Service]
-Type=simple
-ExecStart=/home/balrog/.scripts/ipmi/fans.sh
-
-[Install]
-WantedBy=multi-user.target

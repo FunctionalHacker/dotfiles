@@ -5,5 +5,4 @@ Name=enp*
 DHCP=yes
 
 [DHCP]
-RouteMetric=10
 UseDomains=true

@@ -17,10 +17,10 @@ dotfiles:
   d_bin:
     dst: /usr/local/bin
     src: usr/local/bin
-  d_networkd:
+  d_network:
     src: etc/systemd/network
     dst: /etc/systemd/network
-  f_networkd:
+  f_networkd.conf:
     src: etc/systemd/networkd.conf
     dst: /etc/systemd/networkd.conf
   f_99-sysctl.conf:
@@ -110,14 +110,11 @@ dotfiles:
   f_pacserve.service.conf:
     src: etc/pacserve/pacserve.service.conf
     dst: /etc/pacserve/pacserve.service.conf
-  f_resolved.conf:
-    src: etc/systemd/resolved.conf
-    dst: /etc/systemd/resolved.conf
 profiles:
   Network:
     dotfiles:
-      - d_networkd
-      - f_resolved.conf
+      - d_network
+      - f_networkd.conf
   Locale:
     dotfiles:
       - f_locale.conf

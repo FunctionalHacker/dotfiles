@@ -10,7 +10,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
     restart: unless-stopped
     networks:
-      - home-assistant
+      - homeautomation
       - mariadb
       - proxy
     ports:
@@ -22,12 +22,12 @@ services:
       - "traefik.enable=true"
 
       - "traefik.http.routers.home-assistant-redirect.entrypoints=http"
-      - "traefik.http.routers.home-assistant-redirect.rule=Host(`home.reekynet.com`)"
+      - "traefik.http.routers.home-assistant-redirect.rule=Host(`home.korhonen.cc`)"
       - "traefik.http.middlewares.http2https.redirectscheme.scheme=https"
       - "traefik.http.routers.home-assistant-redirect.middlewares=http2https"
 
       - "traefik.http.routers.home-assistant.entrypoints=https"
-      - "traefik.http.routers.home-assistant.rule=Host(`home.reekynet.com`)"
+      - "traefik.http.routers.home-assistant.rule=Host(`home.korhonen.cc`)"
       - "traefik.http.routers.home-assistant.tls=true"
       - "traefik.http.routers.home-assistant.tls.certresolver=http"
       - "traefik.http.routers.home-assistant.service=home-assistant"
@@ -63,7 +63,7 @@ services:
     ports:
       - "1883:1883"
     networks:
-      - home-assistant
+      - homeautomation
     volumes:
       - /docker/homeautomation/mosquitto:/mosquitto
       - /etc/localtime:/etc/localtime:ro
@@ -77,26 +77,52 @@ services:
       - /docker/homeautomation/rhasspy:/profiles
     environment:
       - TZ=Europe/Helsinki
-    networks:
-      - home-assistant
     ports:
       - "12101:12101"
+    networks:
+      - homeautomation
     restart: unless-stopped
     depends_on:
       - home-assistant
+      - opentts
     devices:
       - "/dev/snd:/dev/snd"
+
+  opentts:
+    image: synesthesiam/opentts
+    container_name: opentts
+    ports:
+      - 5500:5500
+    command: --marytts-url http://marytts:59125 --mozillatts-url http://mozillatts:5002
+    tty: true
+    networks:
+      - homeautomation
+    depends_on:
+      - marytts
+      - mozillatts
+  marytts:
+    image: synesthesiam/marytts:5.2
+    container_name: marytts
+    tty: true
+    networks:
+      - homeautomation
+  mozillatts:
+    image: synesthesiam/mozilla-tts
+    container_name: mozillatts
+    tty: true
+    networks:
+      - homeautomation
 
   node-red:
     container_name: node-red
     image: nodered/node-red
     environment:
       - TZ=Europe/Helsinki
-    networks:
-      - home-assistant
       - proxy
     ports:
       - "1880:1880"
+    networks:
+      - homeautomation
     volumes:
       - /docker/homeautomation/node-red:/data
       - /etc/localtime:/etc/localtime:ro
@@ -107,20 +133,48 @@ services:
       - "traefik.enable=true"
 
       - "traefik.http.routers.node-red-redirect.entrypoints=http"
-      - "traefik.http.routers.node-red-redirect.rule=Host(`node.reekynet.com`)"
+      - "traefik.http.routers.node-red-redirect.rule=Host(`node.korhonen.cc`)"
       - "traefik.http.middlewares.http2https.redirectscheme.scheme=https"
       - "traefik.http.routers.node-red-redirect.middlewares=http2https"
 
       - "traefik.http.routers.node-red.entrypoints=https"
-      - "traefik.http.routers.node-red.rule=Host(`node.reekynet.com`)"
+      - "traefik.http.routers.node-red.rule=Host(`node.korhonen.cc`)"
       - "traefik.http.routers.node-red.tls=true"
       - "traefik.http.routers.node-red.tls.certresolver=http"
       - "traefik.http.routers.node-red.service=node-red"
       - "traefik.docker.network=proxy"
       - "traefik.http.services.node-red.loadbalancer.server.port=1880"
 
+  gotify:
+    image: gotify/server
+    container_name: gotify
+    volumes:
+      - /docker/homeautomation/gotify:/app/data
+    environment:
+      - GOTIFY_DATABASE_DIALECT=mysql
+      - GOTIFY_DATABASE_CONNECTION=gotify:gotify@tcp(mariadb:3306)/gotify?charset=utf8&parseTime=True&loc=Local
+    networks:
+      - proxy
+      - mariadb
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+
+      - "traefik.http.routers.gotify-redirect.entrypoints=http"
+      - "traefik.http.routers.gotify-redirect.rule=Host(`gotify.korhonen.cc`)"
+      - "traefik.http.middlewares.http2https.redirectscheme.scheme=https"
+      - "traefik.http.routers.gotify-redirect.middlewares=http2https"
+
+      - "traefik.http.routers.gotify.entrypoints=https"
+      - "traefik.http.routers.gotify.rule=Host(`gotify.korhonen.cc`)"
+      - "traefik.http.routers.gotify.tls=true"
+      - "traefik.http.routers.gotify.tls.certresolver=http"
+      - "traefik.http.routers.gotify.service=gotify"
+      - "traefik.docker.network=proxy"
+      - "traefik.http.services.gotify.loadbalancer.server.port=80"
+
 networks:
-  home-assistant:
+  homeautomation:
     external: false
   mariadb:
     external: true

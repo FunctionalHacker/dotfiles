@@ -20,12 +20,12 @@ services:
       - "traefik.enable=true"
 
       - "traefik.http.routers.jellyfin-redirect.entrypoints=http"
-      - "traefik.http.routers.jellyfin-redirect.rule=Host(`jellyfin.reekynet.com`)"
+      - "traefik.http.routers.jellyfin-redirect.rule=Host(`jellyfin.korhonen.cc`)"
       - "traefik.http.middlewares.http2https.redirectscheme.scheme=https"
       - "traefik.http.routers.jellyfin-redirect.middlewares=http2https"
 
       - "traefik.http.routers.jellyfin.entrypoints=https"
-      - "traefik.http.routers.jellyfin.rule=Host(`jellyfin.reekynet.com`)"
+      - "traefik.http.routers.jellyfin.rule=Host(`jellyfin.korhonen.cc`)"
       - "traefik.http.routers.jellyfin.tls=true"
       - "traefik.http.routers.jellyfin.tls.certresolver=http"
       - "traefik.http.routers.jellyfin.service=jellyfin"

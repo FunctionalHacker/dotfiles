@@ -1,7 +1,7 @@
 version: '3'
 services:
   portainer:
-    image: portainer/portainer
+    image: portainer/portainer-ce
     container_name: portainer
     environment:
       - TZ=Europe/Helsinki
@@ -16,12 +16,12 @@ services:
       - 'traefik.enable=true'
 
       - 'traefik.http.routers.portainer-redirect.entrypoints=http'
-      - 'traefik.http.routers.portainer-redirect.rule=Host(`portainer.reekynet.com`)'
+      - 'traefik.http.routers.portainer-redirect.rule=Host(`portainer.korhonen.cc`)'
       - 'traefik.http.middlewares.http2https.redirectscheme.scheme=https'
       - 'traefik.http.routers.portainer-redirect.middlewares=http2https'
 
       - 'traefik.http.routers.portainer.entrypoints=https'
-      - 'traefik.http.routers.portainer.rule=Host(`portainer.reekynet.com`)'
+      - 'traefik.http.routers.portainer.rule=Host(`portainer.korhonen.cc`)'
       - 'traefik.http.routers.portainer.tls=true'
       - 'traefik.http.routers.portainer.tls.certresolver=http'
       - 'traefik.http.routers.portainer.service=portainer'

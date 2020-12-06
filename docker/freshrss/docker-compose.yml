@@ -21,12 +21,12 @@ services:
       - "traefik.enable=true"
 
       - "traefik.http.routers.freshrss-redirect.entrypoints=http"
-      - "traefik.http.routers.freshrss-redirect.rule=Host(`rss.reekynet.com`)"
+      - "traefik.http.routers.freshrss-redirect.rule=Host(`rss.korhonen.cc`)"
       - "traefik.http.middlewares.http2https.redirectscheme.scheme=https"
       - "traefik.http.routers.freshrss-redirect.middlewares=http2https"
 
       - "traefik.http.routers.freshrss.entrypoints=https"
-      - "traefik.http.routers.freshrss.rule=Host(`rss.reekynet.com`)"
+      - "traefik.http.routers.freshrss.rule=Host(`rss.korhonen.cc`)"
       - "traefik.http.routers.freshrss.tls=true"
       - "traefik.http.routers.freshrss.tls.certresolver=http"
       - "traefik.http.routers.freshrss.service=freshrss"

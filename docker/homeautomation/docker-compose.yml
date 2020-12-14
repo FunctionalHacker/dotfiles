@@ -80,9 +80,11 @@ services:
     depends_on:
       - marytts
       - mozillatts
+    restart: unless-stopped
   marytts:
     image: synesthesiam/marytts:5.2
     container_name: marytts
+    restart: unless-stopped
     tty: true
     networks:
       - homeautomation

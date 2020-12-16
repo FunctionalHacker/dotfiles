@@ -34,10 +34,14 @@ export DOTREPO="$HOME/git/dotfiles"
 export EDITOR=nvim
 export PAGER="nvimpager -p"
 
-# use gpg for ssh
+# Use GPG for SSH authentication
 export GPG_TTY="$(tty)"
-export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-gpgconf --launch gpg-agent
+
+# set SSH_AUTH_SOCK if not logging in over SSH
+if [ "$SSH_CONNECTION" != "" ]; then
+	export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+	gpgconf --launch gpg-agent
+fi
 
 # tehfuk
 eval $(thefuck --alias)

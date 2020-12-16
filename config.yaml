@@ -159,6 +159,9 @@ dotfiles:
   f_msmtp_config:
     src: .config/msmtp/config
     dst: ~/.config/msmtp/config
+  f_foot.ini:
+    src: .config/foot/foot.ini
+    dst: ~/.config/foot/foot.ini
 profiles:
   base:
     dotfiles:
@@ -229,6 +232,7 @@ profiles:
     - f_paru.conf
     - f_user-dirs.dirs
     - f_gitconfig
+    - f_foot.ini
   Moria:
     include:
     - terminal

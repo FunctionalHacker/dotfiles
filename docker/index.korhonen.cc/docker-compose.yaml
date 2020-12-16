@@ -1,0 +1,33 @@
+version: "3"
+
+services:
+  nginx:
+    image: fraoustin/fancyindex
+    container_name: index.korhonen.cc
+    environment:
+      - DISABLE_AUTH=true
+      - CONTAINER_TIMEZONE="Europe/Helsinki"
+    volumes:
+      - /docker/index.korhonen.cc:/share
+    networks:
+      - proxy
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+
+      - "traefik.http.routers.index-redirect.entrypoints=http"
+      - "traefik.http.routers.index-redirect.rule=Host(`index.korhonen.cc`)"
+      - "traefik.http.middlewares.http2https.redirectscheme.scheme=https"
+      - "traefik.http.routers.index-redirect.middlewares=http2https"
+
+      - "traefik.http.routers.index.entrypoints=https"
+      - "traefik.http.routers.index.rule=Host(`index.korhonen.cc`)"
+      - "traefik.http.routers.index.tls=true"
+      - "traefik.http.routers.index.tls.certresolver=http"
+      - "traefik.http.routers.index.service=index"
+      - "traefik.docker.network=proxy"
+      - "traefik.http.services.index.loadbalancer.server.port=80"
+
+networks:
+  proxy:
+    external: true

@@ -204,6 +204,9 @@ alias notify-send='notify-send --icon=alarm'
 # download archiso
 alias archiso='curl "http://mirror.rackspace.com/archlinux/iso/$(date +%Y.%m).01/archlinux-$(date +%Y.%m).01-x86_64.iso"'
 
+# Update repository
+alias repoupdate='aur sync -Su --margs --noconfirm'
+
 
 # encrypted tar's with zstd compression
 cgpgtar() { tar cf - --zstd $1 | gpg -e -z 0 > $1.tar.zst.gpg }
@@ -280,4 +283,3 @@ btw, () {
   ▟███▀▘                       ▝▀███▙
  ▟▛▀                               ▀▜▙"
 }
-

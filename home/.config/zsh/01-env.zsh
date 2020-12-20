@@ -33,6 +33,7 @@ export DOTREPO="$HOME/git/dotfiles"
 # nvim ftw!
 export EDITOR=nvim
 export PAGER="nvimpager -p"
+export AUR_PAGER=$PAGER
 
 # Use GPG for SSH authentication
 export GPG_TTY="$(tty)"

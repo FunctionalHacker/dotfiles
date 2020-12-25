@@ -130,21 +130,18 @@ update() {
 	all() {
 		plugins
 		{%@@ if profile == "Moria" @@%}
-		base --devel
+		repo
 		docker-update
 		docker system prune --volumes
-		{%@@ elif profile == "Mirkwood" @@%}
-		base --devel firefox-nightly
 		{%@@ else @@%}
-		base --devel
+		paru
 		{%@@ endif @@%}
 		flatpak update
 		sudo awman-update
 	}
 
-	base() {
-		paru -Pw
-		paru -Syu $@
+	repo() {
+		aur sync -Su --margs --noconfirm
 	}
 
 	plugins() {
@@ -171,9 +168,6 @@ update() {
 		all)
 			all
 			;;
-		base)
-			base
-			;;
 		plugins)
 			plugins
 			;;
@@ -181,7 +175,7 @@ update() {
 			docker-update
 			;;
 		*)
-			base $@
+			paru
 			;;
 	esac
 }
@@ -205,7 +199,6 @@ alias notify-send='notify-send --icon=alarm'
 alias archiso='curl "http://mirror.rackspace.com/archlinux/iso/$(date +%Y.%m).01/archlinux-$(date +%Y.%m).01-x86_64.iso"'
 
 # Update repository
-alias repoupdate='aur sync -Su --margs --noconfirm'
 
 
 # encrypted tar's with zstd compression

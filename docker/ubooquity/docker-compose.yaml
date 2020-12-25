@@ -1,0 +1,19 @@
+version: "2.1"
+services:
+  ubooquity:
+    image: ghcr.io/linuxserver/ubooquity
+    container_name: ubooquity
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Helsinki
+      - MAXMEM=1024
+    volumes:
+      - /docker/ubooquity/config:/config
+      - /docker/ubooquity/books:/books
+      - /docker/ubooquity/comics:/comics
+      - /docker/ubooquity/files:/files
+    ports:
+      - 2202:2202
+      - 2203:2203
+    restart: unless-stopped

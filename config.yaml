@@ -258,7 +258,7 @@ profiles:
     - f_init.vim
     - f_coc-settings.json
     - f_alacritty.yml
-  AnittaPC:
+  Edoras:
     include:
     - terminal
     - Pacman

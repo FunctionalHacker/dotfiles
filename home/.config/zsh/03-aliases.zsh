@@ -141,7 +141,7 @@ update() {
 	}
 
 	repo() {
-		aur sync -Su --margs --noconfirm
+		aur sync -Su --margs --noconfirm firefox-nightly
 	}
 
 	plugins() {

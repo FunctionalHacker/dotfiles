@@ -128,15 +128,14 @@ passync() { pass git pull && pass git push && updatesecrets }
 
 update() {
 	all() {
+		paru
 		plugins
 		{%@@ if profile == "Moria" @@%}
 		repo
 		docker-update
 		docker system prune --volumes
-		{%@@ else @@%}
-		paru
 		{%@@ endif @@%}
-		flatpak update
+		sudo flatpak update
 		sudo awman-update
 	}
 
@@ -173,6 +172,9 @@ update() {
 			;;
 		docker)
 			docker-update
+			;;
+		repo)
+			repo
 			;;
 		*)
 			paru

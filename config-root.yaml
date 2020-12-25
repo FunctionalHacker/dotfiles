@@ -167,3 +167,6 @@ profiles:
   localhost:
     include:
       - Locale
+  Edoras:
+    include:
+      - Pacman

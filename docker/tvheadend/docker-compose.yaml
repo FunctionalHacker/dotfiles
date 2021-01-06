@@ -17,6 +17,8 @@ services:
       - /dev/dri:/dev/dri #hardware acceleration
       - /dev/dvb:/dev/dvb #tuner card
     restart: unless-stopped
+    networks:
+      - proxy
     labels:
       - "traefik.enable=true"
 
@@ -32,3 +34,7 @@ services:
       - "traefik.http.routers.tvheadend.service=tvheadend"
       - "traefik.docker.network=proxy"
       - "traefik.http.services.tvheadend.loadbalancer.server.port=9981"
+
+networks:
+  proxy:
+    external: true

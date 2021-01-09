@@ -8,14 +8,9 @@ services:
       - TZ=Europe/Helsinki
       - USER_UID=1000
       - USER_GID=1000
-      - DB_TYPE=mysql
-      - DB_HOST=mariadb:3306
-      - DB_NAME=gitea
-      - DB_USER=gitea
-      - DB_PASSWD=${MYSQL_PASS}
     restart: unless-stopped
     networks:
-      - mariadb
+      - postgres
       - proxy
     ports:
       - "3000:3000"
@@ -40,7 +35,7 @@ services:
       - "traefik.http.services.gitea.loadbalancer.server.port=3000"
 
 networks:
-  mariadb:
+  postgres:
     external: true
   proxy:
     external: true

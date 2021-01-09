@@ -9,7 +9,7 @@ services:
       - "1869:80"
     networks:
       - nextcloud
-      - mariadb
+      - postgres
       - proxy
     volumes:
       - /docker/nextcloud:/var/www/html
@@ -19,7 +19,6 @@ services:
       - /etc/localtime:/etc/localtime:ro
     environment:
       - TZ=Europe/Helsinki
-      - MYSQL_HOST=mariadb-nextcloud
       - REDIS_HOST=redis
       - REDIS_HOST_PASSWORD=123
     depends_on:
@@ -61,7 +60,7 @@ services:
 networks:
   nextcloud:
     external: false
-  mariadb:
+  postgres:
     external: true
   proxy:
     external: true

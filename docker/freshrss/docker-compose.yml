@@ -6,7 +6,7 @@ services:
     restart: unless-stopped
     networks:
       - freshrss
-      - mariadb
+      - postgres
       - proxy
     ports:
       - 8088:80
@@ -36,7 +36,7 @@ services:
 networks:
   freshrss:
     external: false
-  mariadb:
+  postgres:
     external: true
   proxy:
     external: true

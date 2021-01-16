@@ -37,6 +37,9 @@ services:
 
   spotifeed:
     build: ./spotifeed
+    image: spotifeed
+    ports:
+      - "8083:8083"
     container_name: spotifeed
     restart: unless-stopped
     networks:

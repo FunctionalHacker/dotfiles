@@ -132,6 +132,7 @@ update() {
 		plugins
 		{%@@ if profile == "Moria" @@%}
 		repo
+		firefox
 		docker-update
 		docker system prune --volumes
 		{%@@ endif @@%}

@@ -33,6 +33,13 @@ services:
       - "traefik.docker.network=proxy"
       - "traefik.http.services.freshrss.loadbalancer.server.port=80"
 
+  spotifeed:
+    build: ./spotifeed
+    container_name: spotifeed
+    restart: unless-stopped
+    networks:
+      - freshrss
+
 networks:
   freshrss:
     external: false

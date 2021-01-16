@@ -144,7 +144,7 @@ update() {
 	}
 
 	firefox() {
-		aur sync -S --rebuild --margs --noconfirm firefox-nightly
+		aur sync -S --rebuild firefox-nightly --margs --noconfirm 
 	}
 
 	plugins() {

@@ -51,6 +51,7 @@ services:
     restart: unless-stopped
     volumes:
       - /docker/freshrss/bibliogram/db:/app/db
+      - /docker/freshrss/bibliogram/config.js:/app/config.js
     networks:
       - freshrss
       - proxy

@@ -17,7 +17,7 @@ services:
     depends_on:
       - spotifeed
     volumes:
-      - /docker/freshrss:/config
+      - /docker/freshrss/freshrss:/config
       - /etc/localtime:/etc/localtime:ro
     labels:
       - "traefik.enable=true"
@@ -38,12 +38,23 @@ services:
   spotifeed:
     build: ./spotifeed
     image: spotifeed
-    ports:
-      - "8083:8083"
     container_name: spotifeed
+    ports:
+      - 8083:8083
     restart: unless-stopped
     networks:
       - freshrss
+
+  bibliogram:
+    image: cloudrac3r/bibliogram
+    container_name: bibliogram
+    restart: unless-stopped
+    volumes:
+      - /docker/freshrss/bibliogram/db:/app/db
+    networks:
+      - freshrss
+    ports:
+      - 10407:10407
 
 networks:
   freshrss:

@@ -53,8 +53,22 @@ services:
       - /docker/freshrss/bibliogram/db:/app/db
     networks:
       - freshrss
-    ports:
-      - 10407:10407
+      - proxy
+    labels:
+      - "traefik.enable=true"
+
+      - "traefik.http.routers.bibliogram-redirect.entrypoints=http"
+      - "traefik.http.routers.bibliogram-redirect.rule=Host(`bibliogram.korhonen.cc`)"
+      - "traefik.http.middlewares.http2https.redirectscheme.scheme=https"
+      - "traefik.http.routers.bibliogram-redirect.middlewares=http2https"
+
+      - "traefik.http.routers.bibliogram.entrypoints=https"
+      - "traefik.http.routers.bibliogram.rule=Host(`bibliogram.korhonen.cc`)"
+      - "traefik.http.routers.bibliogram.tls=true"
+      - "traefik.http.routers.bibliogram.tls.certresolver=http"
+      - "traefik.http.routers.bibliogram.service=bibliogram"
+      - "traefik.docker.network=proxy"
+      - "traefik.http.services.bibliogram.loadbalancer.server.port=10407"
 
 networks:
   freshrss:

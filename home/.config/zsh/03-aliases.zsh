@@ -180,6 +180,9 @@ update() {
 		repo)
 			repo
 			;;
+		firefox)
+			firefox
+			;;
 		*)
 			paru
 			;;

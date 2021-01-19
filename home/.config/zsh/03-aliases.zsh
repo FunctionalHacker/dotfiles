@@ -132,7 +132,6 @@ update() {
 		plugins
 		{%@@ if profile == "Moria" @@%}
 		repo
-		firefox
 		docker-update
 		docker system prune --volumes
 		{%@@ endif @@%}
@@ -142,6 +141,7 @@ update() {
 
 	repo() {
 		aur sync -Su --margs --noconfirm
+		firefox
 	}
 
 	firefox() {

@@ -243,21 +243,8 @@ profiles:
     - terminal
     - Pacman
   mko-laptop:
-    dotfiles:
-    - f_nvimpager
-    - f_hushlogin
-    - f_ripgrep_ignore
-    - f_ranger_commands.py
-    - f_rtv.cfg
-    - f_mailcap
-    - d_zsh
-    - f_zshrc
-    - f_tmux.conf
-    - f_ranger.conf
-    - d_nvim_config
-    - f_init.vim
-    - f_coc-settings.json
-    - f_alacritty.yml
+    include:
+    - terminal
   Edoras:
     include:
     - terminal

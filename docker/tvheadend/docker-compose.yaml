@@ -10,6 +10,7 @@ services:
     volumes:
       - /docker/tvheadend:/config
       - /mnt/Storage/Media/PVR:/recordings
+      - /mnt/Storage/picons:/picons
       - /etc/localtime:/etc/localtime:ro
     ports:
       - 9982:9982

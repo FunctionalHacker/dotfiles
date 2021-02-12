@@ -1,23 +1,23 @@
 #!/usr/bin/env bash
 
-MPVPIPE=/tmp/mpvqueue.playlist
-
 notify="notify-send -i mpv -a mpv"
 url="$1"
+
+# NOTE: You need to configure mpv to
+# enable ipc server on this path (see my mpv config for an example)
+MPVSOCKET="/tmp/mpvsocket"
 
 # See if MPV is already running
 if [ -z "$(pidof mpv)" ]; then
 	# mpv is not running
-	# remove fifo
-	rm -f $MPVPIPE && mkfifo $MPVPIPE
 
 	# pause other players
 	playerctl pause
 
 	# start mpv
-	/usr/bin/mpv --no-terminal --input-file="${MPVPIPE}" "$url" & disown
+	/usr/bin/mpv --no-terminal "$url" & disown
 
-	# Wait for mpv to be up before moving on to adding anything else to playlist
+	# Wait for mpv to be up before adding anything else to playlist
 	while [ -z "$(pidof mpv)" ]; do
 		sleep 1
 	done
@@ -26,5 +26,5 @@ if [ -z "$(pidof mpv)" ]; then
 else
 	# mpv is running, so add stuff to playlist
 	$notify "Adding $url"
-	echo "loadfile \"$url\" append-play" >>  "${MPVPIPE}"
+	echo "{\"command\": [\"loadfile\", \"$url\", \"append\"]}" | socat - /tmp/mpvsocket
 fi

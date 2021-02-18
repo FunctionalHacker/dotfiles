@@ -101,61 +101,65 @@ dotfiles:
   f_pacserve.service.conf:
     src: etc/pacserve/pacserve.service.conf
     dst: /etc/pacserve/pacserve.service.conf
+  f_encrypt:
+    src: usr/lib/initcpio/hooks/encrypt
+    dst: /usr/lib/initcpio/hooks/encrypt
 profiles:
   Network:
     dotfiles:
-      - d_network
-      - f_networkd.conf
+    - d_network
+    - f_networkd.conf
   Locale:
     dotfiles:
-      - f_locale.conf
-      - f_locale.gen
+    - f_locale.conf
+    - f_locale.gen
   Pacman:
     dotfiles:
-      - f_pacman.conf
-      - f_pacserve.service.conf
+    - f_pacman.conf
+    - f_pacserve.service.conf
   Mirkwood:
     dotfiles:
-      - f_getty.conf
-      - f_cryptissue
-      - f_welcomemessage.conf
-      - d_bin
-      - f_adb.service
-      - f_bluetooth.conf
-      - f_sshd_config
-      - f_logind.conf
-      - f_60-uinput-permissions.rules
-      - f_freetype2.sh
-      - f_fonts.conf
-      - f_99-lowbat.rules
-      - f_ignore
-      - f_mkinitcpio.conf
-      - f_vconsole.conf
-      - f_20-quiet-printk.conf
-      - f_system.conf
-      - f_cpupower
+    - f_getty.conf
+    - f_cryptissue
+    - f_welcomemessage.conf
+    - d_bin
+    - f_adb.service
+    - f_bluetooth.conf
+    - f_sshd_config
+    - f_logind.conf
+    - f_60-uinput-permissions.rules
+    - f_freetype2.sh
+    - f_fonts.conf
+    - f_99-lowbat.rules
+    - f_ignore
+    - f_mkinitcpio.conf
+    - f_vconsole.conf
+    - f_20-quiet-printk.conf
+    - f_system.conf
+    - f_cpupower
+    - f_encrypt
     include:
-      - Locale
-      - Pacman
-      - Network
+    - Locale
+    - Pacman
+    - Network
   Moria:
     include:
-      - Locale
-      - Pacman
-      - Network
+    - Locale
+    - Pacman
+    - Network
     dotfiles:
-      - f_sshd_config
-      - f_99-sysctl.conf
-      - f_cpupower
+    - f_sshd_config
+    - f_99-sysctl.conf
+    - f_cpupower
   Gondor:
     include:
-      - Locale
-      - Pacman
+    - Locale
+    - Pacman
     dotfiles:
-      - f_sshd_config
+    - f_sshd_config
   localhost:
     include:
-      - Locale
+    - Locale
   Edoras:
     include:
-      - Pacman
+    - Pacman

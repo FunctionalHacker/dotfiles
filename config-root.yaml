@@ -98,15 +98,6 @@ dotfiles:
   f_cpupower:
     src: etc/default/cpupower
     dst: /etc/default/cpupower
-  f_arch.conf:
-    src: boot/loader/entries/arch.conf
-    dst: /boot/loader/entries/arch.conf
-  f_arch-lts.conf:
-    src: boot/loader/entries/arch-lts.conf
-    dst: /boot/loader/entries/arch-lts.conf
-  f_kodi.conf:
-    src: boot/loader/entries/kodi.conf
-    dst: /boot/loader/entries/kodi.conf
   f_pacserve.service.conf:
     src: etc/pacserve/pacserve.service.conf
     dst: /etc/pacserve/pacserve.service.conf

@@ -11,4 +11,4 @@ for bootscript in *.efi; do
 done
 
 # set bootorder
-sudo efibootmgr --bootorder 0000,0001,0002
+sudo efibootmgr --bootorder 0000,0001

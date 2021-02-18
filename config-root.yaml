@@ -101,9 +101,6 @@ dotfiles:
   f_pacserve.service.conf:
     src: etc/pacserve/pacserve.service.conf
     dst: /etc/pacserve/pacserve.service.conf
-  f_encrypt:
-    src: usr/lib/initcpio/hooks/encrypt
-    dst: /usr/lib/initcpio/hooks/encrypt
 profiles:
   Network:
     dotfiles:
@@ -137,7 +134,6 @@ profiles:
     - f_20-quiet-printk.conf
     - f_system.conf
     - f_cpupower
-    - f_encrypt
     include:
     - Locale
     - Pacman

@@ -134,9 +134,6 @@ profiles:
       - f_20-quiet-printk.conf
       - f_system.conf
       - f_cpupower
-      - f_arch.conf
-      - f_arch-lts.conf
-      - f_kodi.conf
     include:
       - Locale
       - Pacman

@@ -8,14 +8,13 @@ services:
       - freshrss
       - postgres
       - proxy
-    ports:
-      - 8088:80
     environment:
       - PUID=1000
       - PGID=985
       - TZ=Europe/Helsinki
     depends_on:
       - spotifeed
+      - bibliogram
     volumes:
       - /docker/freshrss/freshrss:/config
       - /etc/localtime:/etc/localtime:ro
@@ -39,11 +38,28 @@ services:
     build: ./spotifeed
     image: spotifeed
     container_name: spotifeed
-    ports:
-      - 8083:8083
+    environment:
+      - SPOTIFY_CLIENT_ID=${SPOTIFY_CLIENT_ID}
+      - SPOTIFY_CLIENT_SECRET=${SPOTIFY_CLIENT_SECRET}
     restart: unless-stopped
     networks:
       - freshrss
+      - proxy
+    labels:
+      - "traefik.enable=true"
+
+      - "traefik.http.routers.spotifeed-redirect.entrypoints=http"
+      - "traefik.http.routers.spotifeed-redirect.rule=Host(`spotifeed.korhonen.cc`)"
+      - "traefik.http.middlewares.http2https.redirectscheme.scheme=https"
+      - "traefik.http.routers.spotifeed-redirect.middlewares=http2https"
+
+      - "traefik.http.routers.spotifeed.entrypoints=https"
+      - "traefik.http.routers.spotifeed.rule=Host(`spotifeed.korhonen.cc`)"
+      - "traefik.http.routers.spotifeed.tls=true"
+      - "traefik.http.routers.spotifeed.tls.certresolver=http"
+      - "traefik.http.routers.spotifeed.service=spotifeed"
+      - "traefik.docker.network=proxy"
+      - "traefik.http.services.spotifeed.loadbalancer.server.port=8083"
 
   bibliogram:
     image: cloudrac3r/bibliogram

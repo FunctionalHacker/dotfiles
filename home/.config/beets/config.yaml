@@ -1,5 +1,5 @@
-directory: ~/Music
-library: ~/Music/beets.db
+directory: ~/music
+library: ~/music/beets.db
 plugins: 
 - acousticbrainz
 - check

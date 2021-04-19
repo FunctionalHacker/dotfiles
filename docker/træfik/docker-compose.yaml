@@ -17,9 +17,10 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - /docker/traefik/traefik.yml:/traefik.yml:ro
-      - /docker/traefik/dashboard-users:/dashboard-users:ro
-      - /docker/traefik/acme.json:/acme.json
+      - /docker/træfik/træfik/traefik.yml:/traefik.yml:ro
+      - /docker/træfik/træfik/dashboard-users:/dashboard-users:ro
+      - /docker/træfik/træfik/acme.json:/acme.json
+      - /docker/træfik/træfik/log:/var/log
     labels:
       - 'traefik.enable=true'
 
@@ -36,6 +37,17 @@ services:
       - 'traefik.http.routers.dashboard.tls.certresolver=http'
       - 'traefik.http.routers.dashboard.service=api@internal'
 
+  fail2ban:
+    image: crazymax/fail2ban:latest
+    container_name: fail2ban
+    restart: unless-stopped
+    network_mode: "host"
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    volumes:
+      - /docker/træfik/træfik/log:/var/log/træfik:ro
+      - /docker/træfik/fail2ban:/data
 networks:
   proxy:
     external: true

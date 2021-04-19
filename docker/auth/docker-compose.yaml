@@ -1,0 +1,20 @@
+version: "2"
+
+services:
+  openldap:
+    container_name: openldap
+    image: osixia/openldap:stable
+    environment:
+      - TZ=Europe/Helsinki
+      - LDAP_ORGANIZATION="Korhonen"
+      - LDAP_DOMAIN="korhonen.cc"
+      - LDAP_ADMIN_PASSWORD="${LDAP_ADMIN_PASSWORD}"
+    hostname: ldap.korhonen.cc
+    ports:
+      - 389:389
+      - 636:636
+    restart: unless-stopped
+    volumes:
+      - /docker/auth/openldap/ldap:/var/lib/ldap
+      - /docker/auth/openldap/slapd.d:/etc/ldap/slapd.d
+      - /etc/localtime:/etc/localtime:ro

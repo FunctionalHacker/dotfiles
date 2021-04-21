@@ -39,7 +39,7 @@ export AUR_PAGER=$PAGER
 export GPG_TTY="$(tty)"
 
 # set SSH_AUTH_SOCK if not logging in over SSH
-if [ "$SSH_CONNECTION" != "" ]; then
+if [ "$SSH_CONNECTION" -eq "" ]; then
 	export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 	gpgconf --launch gpg-agent
 fi

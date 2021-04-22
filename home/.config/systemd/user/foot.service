@@ -1,0 +1,10 @@
+[Unit]
+Description=Wayland terminal emulator (server)
+PartOf=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/foot -s
+
+[Install]
+WantedBy=sway-session.target

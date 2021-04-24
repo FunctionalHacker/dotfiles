@@ -129,9 +129,6 @@ dotfiles:
   f_zathurarc:
     dst: ~/.config/zathura/zathurarc
     src: .config/zathura/zathurarc
-  f_zprofile:
-    dst: ~/.zprofile
-    src: .zprofile
   f_zshrc:
     dst: ~/.zshrc
     src: .zshrc
@@ -215,7 +212,6 @@ profiles:
     - f_mimeo_associations.txt
     - f_tdesktop_lang.strings
     - f_fonts.conf
-    - f_zprofile
   Pacman:
     dotfiles:
     - f_makepkg.conf

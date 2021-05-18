@@ -28,4 +28,4 @@
 	cmd = nvim -d -c 'set nomodifiable'
 
 [pull]
-	rebase = false
+	rebase = merges

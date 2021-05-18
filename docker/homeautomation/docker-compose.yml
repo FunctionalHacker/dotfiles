@@ -64,36 +64,8 @@ services:
     restart: unless-stopped
     depends_on:
       - home-assistant
-      - opentts
     devices:
       - "/dev/snd:/dev/snd"
-
-  opentts:
-    image: synesthesiam/opentts
-    container_name: opentts
-    ports:
-      - 5500:5500
-    command: --marytts-url http://marytts:59125 --mozillatts-url http://mozillatts:5002
-    tty: true
-    networks:
-      - homeautomation
-    depends_on:
-      - marytts
-      - mozillatts
-    restart: unless-stopped
-  marytts:
-    image: synesthesiam/marytts:5.2
-    container_name: marytts
-    restart: unless-stopped
-    tty: true
-    networks:
-      - homeautomation
-  mozillatts:
-    image: synesthesiam/mozilla-tts
-    container_name: mozillatts
-    tty: true
-    networks:
-      - homeautomation
 
   node-red:
     container_name: node-red

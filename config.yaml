@@ -245,6 +245,7 @@ profiles:
   mko-laptop:
     include:
     - terminal
+    - media
   Edoras:
     include:
     - terminal

@@ -216,53 +216,53 @@ cgpgtar() { tar cf - --zstd $1 | gpg -e -z 0 > $1.tar.zst.gpg }
 xgpgtar() { gpg -d $1 | tar x --zstd }
 
 # colorise output
-cvs() { grc cvs $@ }
-df() { grc df $@ }
-digg() { grc digg $@ }
-gcc() { grc gcc $@ }
-g++() { grc g++ $@ }
-ifconfig() { grc ifconfig $@ }
-make() { grc make $@ }
-mount() { grc mount $@ }
-mtr() { grc mtr $@ }
-netstat() { grc mount $@ }
-ping() { grc ping $@ }
-ps() { grc ps $@ }
-tail() { grc tail $@ }
-traceroute() { grc traceroute $@ }
-wdiff() { grc wdiff $@ }
-blkid() { grc blkid $@ }
-du() { grc du $@ }
-dnf() { grc dnf $@ }
-docker() { grc docker $@ }
-docker-machine() { grc docker-machine $@ }
-env() { grc env $@ }
-id() { grc id $@ }
-ip() { grc ip $@ }
-iostat() { grc iostat $@ }
-last() { grc last $@ }
-lsattr() { grc lsattr $@ }
-lsblk() { grc lsblk $@ }
-lspci() { grc lspci $@ }
-lsmod() { grc lsmod $@ }
-lsof() { grc lsof $@ }
-getfacl() { grc getfacl $@ }
-getsebool() { grc getsebool $@ }
-ulimit() { grc ulimit $@ }
-uptime() { grc uptime $@ }
-nmap() { grc nmap $@ }
-fdisk() { grc fdisk $@ }
-findmnt() { grc findmnt $@ }
-free() { grc free $@ }
-semanage() { grc semanage $@ }
-sar() { grc sar $@ }
-ss() { grc ss $@ }
-sysctl() { grc sysctl $@ }
-systemctl() { grc systemctl $@ }
-stat() { grc stat $@ }
-showmount() { grc showmount $@ }
-tune2fs() { grc tune2fs $@ }
-tcpdum() { grc tcpdum $@ }
+alias cvs='grc cvs $@'
+alias df='grc df $@'
+alias digg='grc digg $@'
+alias gcc='grc gcc $@'
+alias g++='grc g++ $@'
+alias ifconfig='grc ifconfig $@'
+alias make='grc make $@'
+alias mount='grc mount $@'
+alias mtr='grc mtr $@'
+alias netstat='grc mount $@'
+alias ping='grc ping $@'
+alias ps='grc ps $@'
+alias tail='grc tail $@'
+alias traceroute='grc traceroute $@'
+alias wdiff='grc wdiff $@'
+alias blkid='grc blkid $@'
+alias du='grc du $@'
+alias dnf='grc dnf $@'
+alias docker='grc docker $@'
+alias docker-machine='grc docker-machine $@'
+alias env='grc env $@'
+alias id='grc id $@'
+alias ip='grc ip $@'
+alias iostat='grc iostat $@'
+alias last='grc last $@'
+alias lsattr='grc lsattr $@'
+alias lsblk='grc lsblk $@'
+alias lspci='grc lspci $@'
+alias lsmod='grc lsmod $@'
+alias lsof='grc lsof $@'
+alias getfacl='grc getfacl $@'
+alias getsebool='grc getsebool $@'
+alias ulimit='grc ulimit $@'
+alias uptime='grc uptime $@'
+alias nmap='grc nmap $@'
+alias fdisk='grc fdisk $@'
+alias findmnt='grc findmnt $@'
+alias free='grc free $@'
+alias semanage='grc semanage $@'
+alias sar='grc sar $@'
+alias ss='grc ss $@'
+alias sysctl='grc sysctl $@'
+alias systemctl='grc systemctl $@'
+alias stat='grc stat $@'
+alias showmount='grc showmount $@'
+alias tune2fs='grc tune2fs $@'
+alias tcpdum='grc tcpdum $@'
 
 btw, () {
 	echo "                 I use"

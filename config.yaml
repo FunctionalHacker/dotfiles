@@ -162,6 +162,13 @@ dotfiles:
   f_foot.ini:
     src: .config/foot/foot.ini
     dst: ~/.config/foot/foot.ini
+  f_gpg-agent.conf:
+    src: .gnupg/gpg-agent.conf
+    dst: ~/.gnupg/gpg-agent.conf
+    chmod: '600'
+  f_gpg.conf:
+    src: .gnupg/gpg.conf
+    dst: ~/.gnupg/gpg.conf
 profiles:
   base:
     dotfiles:
@@ -233,6 +240,8 @@ profiles:
     - f_user-dirs.dirs
     - f_gitconfig
     - f_foot.ini
+    - f_gpg-agent.conf
+    - f_gpg.conf
   Moria:
     include:
     - terminal

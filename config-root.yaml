@@ -159,3 +159,6 @@ profiles:
   Edoras:
     include:
     - Pacman
+  mko-laptop:
+    dotfiles:
+      - f_cpupower

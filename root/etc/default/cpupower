@@ -1,2 +1,6 @@
 # vim:set ts=2 sw=2 ft=sh et:
+{%@@ if profile == "Mirkwood" @@%}
 governor='powersave'
+{%@@ else @@%}
+governor='performance'
+{%@@ endif @@%}

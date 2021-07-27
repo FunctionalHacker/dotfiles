@@ -17,6 +17,7 @@ services:
       - proxy
     ports:
       - "8123:8123"
+      - "8300:8300"
     depends_on:
       - mosquitto
     labels:

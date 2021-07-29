@@ -34,10 +34,6 @@ zinit snippet https://gist.githubusercontent.com/RPigott/a3efdc08fa4d5fd7df38d09
 zinit ice wait'1' lucid as'completion'
 zinit snippet '$DOTREPO/dotdrop/completion/_dotdrop-completion.zsh'
 
-# docker-compose completion
-zinit ice wait'1' lucid as'completion'
-zinit snippet https://raw.githubusercontent.com/docker/compose/master/contrib/completion/zsh/_docker-compose
-
 # syntax highlighting
 zinit ice lucid atinit'zpcompinit'
 zinit light zdharma/fast-syntax-highlighting

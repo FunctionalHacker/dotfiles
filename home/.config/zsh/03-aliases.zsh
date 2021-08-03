@@ -24,10 +24,10 @@ rip() {
 
 # make fzf zsh plugin use ripgrep
 _fzf_compgen_dir() {
-	rg --hidden --files --null --sort path "$1" 2>/dev/null | xargs -0 dirname | uniq
+	fd -Ht d
 }
 _fzf_compgen_path() {
-	rg --files --hidden "$1" 2>/dev/null
+	fd -Ht f
 }
 
 # search and install packages with fzf

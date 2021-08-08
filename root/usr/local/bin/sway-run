@@ -6,6 +6,7 @@
 export MOZ_ENABLE_WAYLAND=1
 export MOZ_USE_XINPUT2=1
 export MOZ_WEBRENDER=1
+export MOZ_DBUS_REMOTE=1
 
 # Enable xdg-desktop-portal-wlr
 export XDG_CURRENT_DESKTOP=sway
@@ -30,6 +31,7 @@ dbus-run-session sway
 unset MOZ_ENABLE_WAYLAND
 unset MOZ_USE_XINPUT2
 unset MOZ_WEBRENDER
+unset MOZ_DBUS_REMOTE
 unset _JAVA_AWT_WM_NONREPARENTING
 unset _JAVA_OPTIONS
 unset QT_QPA_PLATFORMTHEME

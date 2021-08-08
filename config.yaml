@@ -1,5 +1,5 @@
 actions:
-  vim-plug: nvim +PlugInstall +qall
+  nvim-packer-install: nvim +PackerInstall
 config:
   backup: true
   banner: true
@@ -25,20 +25,20 @@ dotfiles:
   d_imapnotify:
     dst: ~/.config/imapnotify
     src: .config/imapnotify
-  f_init.vim:
-    dst: ~/.config/nvim/init.vim
-    src: .config/nvim/init.vim
-  d_nvim_config:
+  f_nvim_init:
+    dst: ~/.config/nvim/init.lua
+    src: .config/nvim/init.lua
+  d_nvim_lua:
     actions:
-    - vim-plug
-    dst: ~/.config/nvim/conf.d
-    src: .config/nvim/conf.d
+      - nvim-packer-install
+    dst: ~/.config/nvim/lua
+    src: .config/nvim/lua
+  d_nvim_scripts:
+    dst: ~/.config/nvim/scripts
+    src: .config/nvim/scripts
   f_user-dirs.dirs:
     dst: ~/.config/user-dirs.dirs
     src: .config/user-dirs.dirs
-  f_coc-settings.json:
-    dst: ~/.config/nvim/coc-settings.json
-    src: .config/nvim/coc-settings.json
   d_sway:
     dst: ~/.config/sway
     src: .config/sway
@@ -165,107 +165,107 @@ dotfiles:
   f_gpg-agent.conf:
     src: .gnupg/gpg-agent.conf
     dst: ~/.gnupg/gpg-agent.conf
-    chmod: '600'
+    chmod: "600"
   f_gpg.conf:
     src: .gnupg/gpg.conf
     dst: ~/.gnupg/gpg.conf
 profiles:
   base:
     dotfiles:
-    - d_systemd
+      - d_systemd
   terminal:
     dotfiles:
-    - f_nvimpager
-    - f_hushlogin
-    - f_ripgrep_ignore
-    - f_ranger_commands.py
-    - f_rtv.cfg
-    - f_mailcap
-    - d_zsh
-    - f_zshrc
-    - f_tmux.conf
-    - f_ranger.conf
-    - f_ssh.conf
-    - f_authorized_keys
-    - d_nvim_config
-    - f_init.vim
-    - f_coc-settings.json
-    - f_gitconfig
-    - f_alacritty.yml
+      - f_nvimpager
+      - f_hushlogin
+      - f_ripgrep_ignore
+      - f_ranger_commands.py
+      - f_rtv.cfg
+      - f_mailcap
+      - d_zsh
+      - f_zshrc
+      - f_tmux.conf
+      - f_ranger.conf
+      - f_ssh.conf
+      - f_authorized_keys
+      - d_nvim_lua
+      - d_nvim_scripts
+      - f_nvim_init
+      - f_gitconfig
+      - f_alacritty.yml
   email:
     dotfiles:
-    - d_neomutt
-    - d_imapnotify
-    - f_mbsyncrc
-    - f_msmtp_config
+      - d_neomutt
+      - d_imapnotify
+      - f_mbsyncrc
+      - f_msmtp_config
   media:
     dotfiles:
-    - f_beets_config
-    - f_beets_whitelist
-    - f_abcde.conf
-    - d_mpv
-    - f_youtube-dl_config
-    - f_mpd.conf
-    - f_ncmpcpp_bindings
-    - f_ncmpcpp.conf
-    - f_libra_config
-    - f_mpdscribble.conf
-    - f_mpdris2.conf
+      - f_beets_config
+      - f_beets_whitelist
+      - f_abcde.conf
+      - d_mpv
+      - f_youtube-dl_config
+      - f_mpd.conf
+      - f_ncmpcpp_bindings
+      - f_ncmpcpp.conf
+      - f_libra_config
+      - f_mpdscribble.conf
+      - f_mpdris2.conf
   sway:
     dotfiles:
-    - d_sway
-    - d_waybar
-    - d_wofi
-    - f_mako_config
-    - f_redshift.conf
-    - f_zathurarc
-    - f_mimeo_associations.txt
-    - f_tdesktop_lang.strings
-    - f_fonts.conf
-    - f_zprofile
+      - d_sway
+      - d_waybar
+      - d_wofi
+      - f_mako_config
+      - f_redshift.conf
+      - f_zathurarc
+      - f_mimeo_associations.txt
+      - f_tdesktop_lang.strings
+      - f_fonts.conf
+      - f_zprofile
   Pacman:
     dotfiles:
-    - f_makepkg.conf
-    - f_paru.conf
+      - f_makepkg.conf
+      - f_paru.conf
   Mirkwood:
     include:
-    - base
-    - terminal
-    - email
-    - media
-    - sway
-    - Pacman
+      - base
+      - terminal
+      - email
+      - media
+      - sway
+      - Pacman
     dotfiles:
-    - f_paru.conf
-    - f_user-dirs.dirs
-    - f_gitconfig
-    - f_foot.ini
-    - f_gpg-agent.conf
-    - f_gpg.conf
+      - f_paru.conf
+      - f_user-dirs.dirs
+      - f_gitconfig
+      - f_foot.ini
+      - f_gpg-agent.conf
+      - f_gpg.conf
   Moria:
     include:
-    - terminal
-    - media
-    - Pacman
+      - terminal
+      - media
+      - Pacman
   Gondor:
     include:
-    - terminal
-    - Pacman
+      - terminal
+      - Pacman
   mko-laptop:
     include:
-    - terminal
-    - media
+      - terminal
+      - media
   Edoras:
     include:
-    - terminal
-    - Pacman
+      - terminal
+      - Pacman
   TakamakiPC:
     include:
-    - terminal
-    - Pacman
+      - terminal
+      - Pacman
   localhost:
     include:
-    - terminal
+      - terminal
   ViiruJaTeippi:
     include:
-    - terminal
+      - terminal

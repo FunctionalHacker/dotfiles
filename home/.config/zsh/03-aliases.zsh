@@ -149,7 +149,7 @@ update() {
 	}
 
 	plugins() {
-		vim +PlugUpgrade +PlugUpdate +CocUpdate +qa
+		nvim +PackerUpdate +TSUpdate +qa
 		zinit self-update
 		zinit update -p
 		$HOME/.tmux/plugins/tpm/bin/update_plugins all

@@ -57,6 +57,25 @@ services:
     depends_on:
       - redis
 
+  coturn:
+    image: instrumentisto/coturn
+    container_name: coturn
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - "3478:3478/tcp"
+      - "3478:3478/udp"
+    networks:
+      - nextcloud
+    command:
+      - -n
+      - --log-file=stdout
+      - --min-port=49160
+      - --max-port=49200
+      - --realm=cloud.korhonen.cc
+      - --use-auth-secret
+      - --static-auth-secret=${STATIC_AUTH_SECRET}
+
 networks:
   nextcloud:
     external: false

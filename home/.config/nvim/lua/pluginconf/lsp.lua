@@ -1,9 +1,3 @@
--- List of servers to install
-local required_servers = {
-    "css", "html", "java", "json", "lua", "rust", "yaml", "dockerfile", "latex",
-    "bash", "typescript", "php"
-}
-
 -- keymaps
 local on_attach = function(client, bufnr)
     local function buf_set_keymap(...)
@@ -106,35 +100,18 @@ local function setup_servers()
     -- get all installed servers
     local servers = require'lspinstall'.installed_servers()
 
-    -- install server if not already installed but required
-    -- for _, server in pairs(required_servers) do
-    --    if not vim.tbl_contains(servers) then
-    --        require'lspinstall'.install_server(server)
-    --    end
-    -- end
-
-    -- Refresh servers list in case of newly installed servers
-    servers = require'lspinstall'.installed_servers()
-
     for _, server in pairs(servers) do
         local config = make_config()
 
         -- language specific config
         if server == "lua" then config.settings = lua_settings end
-        require'lspconfig'[server].setup(config)
 
-        -- Java LSP client is started by the plugin nvim-jdtls
-        if server == "java" then return end
+        require'lspconfig'[server].setup(config)
 
     end
 end
 
 setup_servers()
-
-require('jdtls').start_or_attach({
-    cmd = {'java-lsp.sh'},
-    root_dir = require('jdtls.setup').find_root({'gradle.build', 'pom.xml'})
-})
 
 -- Automatically reload after `:LspInstall <server>` so we don't have to restart neovim
 require'lspinstall'.post_install_hook = function()

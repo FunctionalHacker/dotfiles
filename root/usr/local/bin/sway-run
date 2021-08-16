@@ -21,6 +21,9 @@ export QT_QPA_PLATFORMTHEME=qt5ct
 export QT_QPA_PLATFORM=wayland
 export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
 
+# Enable wayland support on clutter
+export CLUTTER_BACKEND=wayland
+
 # Fix redshift on wlroots
 export WLR_DRM_NO_ATOMIC=1
 
@@ -37,5 +40,6 @@ unset _JAVA_OPTIONS
 unset QT_QPA_PLATFORMTHEME
 unset QT_QPA_PLATFORM
 unset QT_WAYLAND_DISABLE_WINDOWDECORATION
+unset CLUTTER_BACKEND
 unset WLR_DRM_NO_ATOMIC
 unset XDG_CURRENT_DESKTOP

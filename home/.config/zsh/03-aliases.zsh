@@ -6,16 +6,7 @@ alias gpush='git push'
 
 alias mutt='neomutt'
 
-# Syntax highlighting cat
-alias cat='bat'
-
-rip() {
-	abcde
-	printf "Ripping done. Importing to library"
-	beet import ~/Documents/Rip/flac/*
-}
-
-# make fzf zsh plugin use ripgrep
+# make fzf zsh plugin use fd
 _fzf_compgen_dir() {
 	fd -Ht d
 }
@@ -23,18 +14,22 @@ _fzf_compgen_path() {
 	fd -Ht f
 }
 
-# search and install packages with fzf
+# search and install packages with skim
 pi() { 
-	SELECTED_PKGS="$(paru -Slq | fzf --header='Install packages' -m --preview 'paru -Si {1}')"
+	SELECTED_PKGS="$(paru -Slq | sk --header='Install packages' -m --preview 'paru -Si {1}')"
 	if [ -n "$SELECTED_PKGS" ]; then
+		# Append the expanded command to history
+		print -s "paru -S $(echo $SELECTED_PKGS)"
 		paru -S $(echo $SELECTED_PKGS)
 	fi
 }
 
-# search and remove packages with fzf
+# search and remove packages with skim
 pr() { 
-	SELECTED_PKGS="$(paru -Qsq | fzf --header='Remove packages' -m --preview 'paru -Si {1}')"
+	SELECTED_PKGS="$(paru -Qsq | sk --header='Remove packages' -m --preview 'paru -Si {1}')"
 	if [ -n "$SELECTED_PKGS" ]; then
+		# Append the expanded command to history
+		print -s "paru -Rns $(echo $SELECTED_PKGS)"
 		paru -Rns $(echo $SELECTED_PKGS)
 	fi
 }

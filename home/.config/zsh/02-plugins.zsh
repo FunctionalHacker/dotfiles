@@ -40,8 +40,8 @@ zinit light zdharma/fast-syntax-highlighting
 
 # use fzf with zsh
 {%@@ if profile == "mko-laptop" @@%}
-source ~/.fzf.zsh
+source ~/.skim.zsh
 {%@@ else @@%}
-source /usr/share/fzf/key-bindings.zsh
-source /usr/share/fzf/completion.zsh
+source /usr/share/skim/key-bindings.zsh
+source /usr/share/skim/completion.zsh
 {%@@ endif @@%}

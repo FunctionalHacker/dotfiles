@@ -22,8 +22,11 @@ setopt EXTENDED_HISTORY
 # Variable to pass to sdotdrop to get current user
 export USRNAME=$USER
 
+# Add ~/.bin to path
+export PATH="/home/$USER/.bin:$PATH"
+
 # go path
-export GOPATH=~/.bin/go
+export GOPATH=~/.go
 
 # skim settings
 export SKIM_DEFAULT_COMMAND='fd -Ht f'

@@ -19,6 +19,9 @@ o.cmdheight = 1
 -- Always show signcolumn
 o.signcolumn = 'yes'
 
+-- Diff settings
+cmd 'set diffopt=filler,internal,algorithm:histogram,indent-heuristic'
+
 -- Blinking cursor
 cmd 'set guicursor=i:ver1'
 cmd 'set guicursor+=a:blinkon1'

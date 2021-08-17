@@ -2,11 +2,10 @@
 Operation = Install
 Operation = Upgrade
 Operation = Remove
-Type = Package
+Type = Path
 Target = usr/bin/*
 
 [Action]
 Depends = zsh
-Depends = procps-ng
 When = PostTransaction
-Exec = /usr/bin/pkill zsh --signal=USR1
+Exec = /usr/bin/install -Dm644 /dev/null /var/cache/zsh/pacman

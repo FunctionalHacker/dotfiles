@@ -59,6 +59,9 @@ dotfiles:
   f_pacman.conf:
     dst: /etc/pacman.conf
     src: etc/pacman.conf
+  f_pacman_zsh_hook:
+    dst: /etc/pacman.d/hooks/zsh.hook
+    src: etc/pacman.d/hooks/zsh.hook
   f_sshd_config:
     dst: /etc/ssh/sshd_config
     src: etc/ssh/sshd_config
@@ -113,6 +116,7 @@ profiles:
   Pacman:
     dotfiles:
     - f_pacman.conf
+    - f_pacman_zsh_hook
     - f_pacserve.service.conf
   Mirkwood:
     dotfiles:

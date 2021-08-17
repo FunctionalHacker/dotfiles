@@ -21,6 +21,7 @@ _fzf_compgen_path() {
 	_skim_compgen_path
 }
 
+{%@@ if profile != "mko-laptop" @@%}
 # Command not found handler
 # source https://wiki.archlinux.org/title/Zsh#pacman_-F_%22command_not_found%22_handler
 function command_not_found_handler {
@@ -48,6 +49,7 @@ function command_not_found_handler {
         done
     fi
 }
+{%@@ endif @@%}
 
 # search and install packages with skim
 pi() { 

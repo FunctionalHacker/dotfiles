@@ -49,9 +49,10 @@ export DOTREPO="$HOME/git/dotfiles"
 
 # nvim ftw!
 export EDITOR=nvim
-export PAGER="sed 's/\x1b\[[0-9;]*m//g' | nvim -R"
+export PAGER="nvim -R"
+export PARU_PAGER="$PAGER -c 'set ft=PKGBUILD'"
 export AUR_PAGER=$PAGER
-export MANPAGER="nvim -c 'set ft=man' -R"
+export MANPAGER="nvim +Man!"
 
 # Use GPG for SSH authentication
 export GPG_TTY="$(tty)"

@@ -6,12 +6,19 @@ alias gpush='git push'
 
 alias mutt='neomutt'
 
-# make fzf zsh plugin use fd
-_fzf_compgen_dir() {
+# make skim zsh plugin use fd
+_skim_compgen_dir() {
 	fd -Ht d
 }
-_fzf_compgen_path() {
+_skim_compgen_path() {
 	fd -Ht f
+}
+# same for fzf
+_fzf_compgen_dir() {
+	_skim_compgen_dir
+}
+_fzf_compgen_path() {
+	_skim_compgen_path
 }
 
 # search and install packages with skim
@@ -34,9 +41,9 @@ pr() {
 	fi
 }
 
-# find and open man pages with fzf
+# find and open man pages with skim
 fman() {
-	man -k . | fzf --prompt='Man> ' | awk '{print $1}' | xargs -r man
+	man -k . | sk --prompt='Man> ' | awk '{print $1}' | xargs -r man
 }
 
 # I'm retarded so I need this

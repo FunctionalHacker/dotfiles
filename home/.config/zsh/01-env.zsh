@@ -22,7 +22,7 @@ export FZF_ALT_C_COMMAND='fd -Ht d'
 export FZF_DEFAULT_OPTS='-m --bind ctrl-a:select-all,ctrl-d:deselect-all,ctrl-t:toggle-all'
 export FZF_COMPLETION_TRIGGER='**'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_CTRL_T_OPTS='--preview "/usr/bin/cat {} | nvimpager -c "'
+export FZF_CTRL_T_OPTS='--preview "bat --color=always --style=numbers --line-range=:500 {}"'
 
 # use lesspipe with less
 export LESSOPEN="|lesspipe.sh %s"
@@ -32,8 +32,9 @@ export DOTREPO="$HOME/git/dotfiles"
 
 # nvim ftw!
 export EDITOR=nvim
-export PAGER="nvimpager -p"
+export PAGER="sed 's/\x1b\[[0-9;]*m//g' | nvim -R"
 export AUR_PAGER=$PAGER
+export MANPAGER="nvim -c 'set ft=man' -R"
 
 # Use GPG for SSH authentication
 export GPG_TTY="$(tty)"

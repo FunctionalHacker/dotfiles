@@ -21,6 +21,7 @@
 [merge]
 	prompt = false
 	tool = nvim-merge
+
 [mergetool "nvim-merge"]
 	cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
 
@@ -36,3 +37,6 @@
 
 [alias]
 	mergetest = !git switch test && git pull && git merge --no-ff -m \"Merge $1 features to test\" $1 && git push
+
+[color]
+	pager = no

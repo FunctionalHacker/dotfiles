@@ -6,15 +6,8 @@ alias gpush='git push'
 
 alias mutt='neomutt'
 
-# Syntax highlighting cat if output is a terminal
-cat() {
-	# Check if output is a terminal, else use regular cat
-	if [ -t 1 ]; then
-		nvimpager $@
-	else
-		/usr/bin/cat $@
-	fi
-}
+# Syntax highlighting cat
+alias cat='bat'
 
 rip() {
 	abcde

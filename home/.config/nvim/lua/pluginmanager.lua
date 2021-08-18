@@ -22,6 +22,9 @@ require('packer').startup(function()
     -- Colorscheme
     use 'monsonjeremy/onedark.nvim'
 
+    -- Git in signcolumn
+    use 'airblade/vim-gitgutter'
+
     -- Statusline
     use {
         'hoob3rt/lualine.nvim',

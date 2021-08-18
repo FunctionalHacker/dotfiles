@@ -5,7 +5,7 @@ local cmd = vim.cmd
 ------ Appearance ------
 
 -- Set colorscheme
-require('onedark').setup()
+require('nightfox').set()
 
 -- True colors
 o.termguicolors = true

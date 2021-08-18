@@ -20,7 +20,7 @@ require('packer').startup(function()
     use {'wbthomason/packer.nvim', opt = true}
 
     -- Colorscheme
-    use 'monsonjeremy/onedark.nvim'
+    use 'EdenEast/nightfox.nvim'
 
     -- Git in signcolumn
     use 'airblade/vim-gitgutter'
@@ -41,7 +41,7 @@ require('packer').startup(function()
     use 'tpope/vim-fugitive'
 
     -- Indent characters
-    --use "lukas-reineke/indent-blankline.nvim"
+    -- use "lukas-reineke/indent-blankline.nvim"
 
     -- Tree explorer
     use {'kyazdani42/nvim-tree.lua', requires = 'kyazdani42/nvim-web-devicons'}
@@ -64,9 +64,6 @@ require('packer').startup(function()
     -- Install LSP executables
     use 'kabouzeid/nvim-lspinstall'
 
-    -- Extensions for eclipse.jdt.ls
-    use 'mfussenegger/nvim-jdtls'
-
     -- Completion framework
     use 'nvim-lua/completion-nvim'
 
@@ -77,9 +74,18 @@ require('packer').startup(function()
         run = ':TSUpdate'
     }
 
-    -- Syntax highlighting for languages
-    -- that are not supported by treesitter
-    use 'sheerun/vim-polyglot'
+    -- treesitter plugin for commentstring
+    use 'JoosepAlviste/nvim-ts-context-commentstring'
+
+	-- Additional plugins for formats not supported
+	-- by treesitter
+	use 'jamespeapen/swayconfig.vim'
+
+    -- mappings for commenting in code
+    use 'tpope/vim-commentary'
+
+	-- we all know this one
+	use 'tpope/vim-surround'
 
     -- Formatter plugin
     use 'sbdchd/neoformat'

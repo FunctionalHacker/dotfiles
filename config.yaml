@@ -1,5 +1,5 @@
 actions:
-  nvim-packer-install: nvim +PackerInstall
+  nvim-packer-sync: nvim +PackerSync
 config:
   backup: true
   banner: true
@@ -30,12 +30,9 @@ dotfiles:
     src: .config/nvim/init.lua
   d_nvim_lua:
     actions:
-    - nvim-packer-install
+    - nvim-packer-sync
     dst: ~/.config/nvim/lua
     src: .config/nvim/lua
-  d_nvim_scripts:
-    dst: ~/.config/nvim/scripts
-    src: .config/nvim/scripts
   f_user-dirs.dirs:
     dst: ~/.config/user-dirs.dirs
     src: .config/user-dirs.dirs
@@ -194,7 +191,6 @@ profiles:
     - f_ssh.conf
     - f_authorized_keys
     - d_nvim_lua
-    - d_nvim_scripts
     - f_nvim_init
     - f_gitconfig
     - f_alacritty.yml

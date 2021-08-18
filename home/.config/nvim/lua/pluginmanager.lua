@@ -37,6 +37,9 @@ require('packer').startup(function()
         requires = 'kyazdani42/nvim-web-devicons'
     }
 
+    -- Git commands
+    use 'tpope/vim-fugitive'
+
     -- Indent characters
     --use "lukas-reineke/indent-blankline.nvim"
 

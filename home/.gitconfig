@@ -30,7 +30,7 @@
 	tool = nvim-diff
 
 [difftool "nvim-diff"]
-	cmd = nvim -d -c 'set nomodifiable'
+	cmd = nvim -d -R
 
 [pull]
 	rebase = merges

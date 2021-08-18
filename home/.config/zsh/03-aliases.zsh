@@ -22,7 +22,7 @@ _fzf_compgen_path() {
 }
 
 # Modern replacements for cat and ls
-alias cat='bat'
+alias cat='bat --paging=never'
 alias ls='exa'
 
 {%@@ if profile != "mko-laptop" @@%}

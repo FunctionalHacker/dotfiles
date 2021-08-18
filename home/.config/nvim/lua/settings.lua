@@ -22,6 +22,9 @@ o.signcolumn = 'yes'
 -- Diff settings
 cmd 'set diffopt=filler,internal,algorithm:histogram,indent-heuristic'
 
+-- Show line numbers
+cmd 'set number'
+
 -- Blinking cursor
 cmd 'set guicursor=i:ver1'
 cmd 'set guicursor+=a:blinkon1'

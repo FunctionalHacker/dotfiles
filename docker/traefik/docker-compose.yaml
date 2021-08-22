@@ -18,7 +18,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - /docker/traefik/traefik/traefik.yml:/traefik.yml:ro
-      - /docker/trawfik/traefik/dashboard-users:/dashboard-users:ro
+      - /docker/traefik/traefik/dashboard-users:/dashboard-users:ro
       - /docker/traefik/traefik/acme.json:/acme.json
       - /docker/traefik/traefik/log:/var/log
     labels:
@@ -51,8 +51,9 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /docker/traefik/traefik/log:/var/log/traefik:ro
       - /docker/traefik/fail2ban:/data
-      - /mnt/Storage/Nextcloud/nextcloud.log:/var/log/nextcloud:ro
       - /docker/gitea/gitea/log/gitea.log:/var/log/gitea:ro
+      - /docker/homeautomation/home-assistant/home-assistant.log:/var/log/hass
+      - /mnt/Storage/Nextcloud/nextcloud.log:/var/log/nextcloud:ro
 networks:
   proxy:
     external: true

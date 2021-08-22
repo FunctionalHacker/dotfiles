@@ -178,7 +178,7 @@ update() {
 	}
 
 	plugins() {
-		nvim +PackerUpdate +TSUpdate +qa
+		nvim +PackerSync +TSUpdate
 		zinit self-update
 		zinit update -p
 		$HOME/.tmux/plugins/tpm/bin/update_plugins all

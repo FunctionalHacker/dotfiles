@@ -45,7 +45,10 @@ services:
     cap_add:
       - NET_ADMIN
       - NET_RAW
+    environment:
+      - TZ=Europe/Helsinki
     volumes:
+      - /etc/localtime:/etc/localtime:ro
       - /docker/træfik/træfik/log:/var/log/træfik:ro
       - /docker/træfik/fail2ban:/data
       - /mnt/Storage/Nextcloud/nextcloud.log:/var/log/nextcloud:ro

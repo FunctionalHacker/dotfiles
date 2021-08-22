@@ -1,0 +1,55 @@
+version: '3'
+
+services:
+  traefik:
+    image: traefik:latest
+    container_name: traefik
+    restart: unless-stopped
+    ports:
+      - '80:80'
+      - '443:443'
+    environment:
+      - TZ=Europe/Helsinki
+    security_opt:
+      - no-new-privileges:true
+    networks:
+      - proxy
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /docker/træfik/træfik/traefik.yml:/traefik.yml:ro
+      - /docker/træfik/træfik/dashboard-users:/dashboard-users:ro
+      - /docker/træfik/træfik/acme.json:/acme.json
+      - /docker/træfik/træfik/log:/var/log
+    labels:
+      - 'traefik.enable=true'
+
+      - 'traefik.http.routers.redirect.entrypoints=http'
+      - 'traefik.http.routers.redirect.rule=Host(`traefik.korhonen.cc`)'
+      - 'traefik.http.middlewares.http2https.redirectscheme.scheme=https'
+      - 'traefik.http.routers.redirect.middlewares=http2https'
+
+      - 'traefik.http.routers.dashboard.entrypoints=https'
+      - 'traefik.http.routers.dashboard.rule=Host(`traefik.korhonen.cc`)'
+      - 'traefik.http.middlewares.dashboard-auth.basicauth.usersfile=/dashboard-users'
+      - 'traefik.http.routers.dashboard.middlewares=dashboard-auth'
+      - 'traefik.http.routers.dashboard.tls=true'
+      - 'traefik.http.routers.dashboard.tls.certresolver=http'
+      - 'traefik.http.routers.dashboard.service=api@internal'
+
+  fail2ban:
+    image: crazymax/fail2ban:latest
+    container_name: fail2ban
+    restart: unless-stopped
+    network_mode: "host"
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    volumes:
+      - /docker/træfik/træfik/log:/var/log/træfik:ro
+      - /docker/træfik/fail2ban:/data
+      - /mnt/Storage/Nextcloud/nextcloud.log:/var/log/nextcloud:ro
+      - /docker/gitea/gitea/log/gitea.log:/var/log/gitea:ro
+networks:
+  proxy:
+    external: true

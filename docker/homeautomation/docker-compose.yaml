@@ -30,8 +30,6 @@ services:
 
       - "traefik.http.routers.home-assistant.entrypoints=https"
       - "traefik.http.routers.home-assistant.rule=Host(`home.korhonen.cc`)"
-      - "traefik.http.routers.home-assistant.tls=true"
-      - "traefik.http.routers.home-assistant.tls.certresolver=http"
       - "traefik.http.routers.home-assistant.service=home-assistant"
       - "traefik.docker.network=proxy"
       - "traefik.http.services.home-assistant.loadbalancer.server.port=8123"
@@ -94,8 +92,6 @@ services:
 
       - "traefik.http.routers.node-red.entrypoints=https"
       - "traefik.http.routers.node-red.rule=Host(`node.korhonen.cc`)"
-      - "traefik.http.routers.node-red.tls=true"
-      - "traefik.http.routers.node-red.tls.certresolver=http"
       - "traefik.http.routers.node-red.service=node-red"
       - "traefik.docker.network=proxy"
       - "traefik.http.services.node-red.loadbalancer.server.port=1880"

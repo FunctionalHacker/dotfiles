@@ -7,7 +7,8 @@ services:
     restart: unless-stopped
     ports:
       - '80:80'
-      - '443:443'
+      - '443:443/tcp'
+      - '443:443/udp'
     environment:
       - TZ=Europe/Helsinki
     security_opt:
@@ -22,8 +23,8 @@ services:
       - /docker/traefik/traefik/acme.json:/acme.json
       - /docker/traefik/traefik/log:/var/log
     labels:
+      # Serve dashboard
       - 'traefik.enable=true'
-
       - 'traefik.http.routers.redirect.entrypoints=http'
       - 'traefik.http.routers.redirect.rule=Host(`traefik.korhonen.cc`)'
       - 'traefik.http.middlewares.http2https.redirectscheme.scheme=https'
@@ -33,8 +34,6 @@ services:
       - 'traefik.http.routers.dashboard.rule=Host(`traefik.korhonen.cc`)'
       - 'traefik.http.middlewares.dashboard-auth.basicauth.usersfile=/dashboard-users'
       - 'traefik.http.routers.dashboard.middlewares=dashboard-auth'
-      - 'traefik.http.routers.dashboard.tls=true'
-      - 'traefik.http.routers.dashboard.tls.certresolver=http'
       - 'traefik.http.routers.dashboard.service=api@internal'
 
   fail2ban:

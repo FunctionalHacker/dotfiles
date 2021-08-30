@@ -29,8 +29,6 @@ services:
 
       - "traefik.http.routers.jellyfin.entrypoints=https"
       - "traefik.http.routers.jellyfin.rule=Host(`jellyfin.korhonen.cc`)"
-      - "traefik.http.routers.jellyfin.tls=true"
-      - "traefik.http.routers.jellyfin.tls.certresolver=http"
       - "traefik.http.routers.jellyfin.service=jellyfin"
       - "traefik.docker.network=proxy"
       - "traefik.http.services.jellyfin.loadbalancer.server.port=8096"

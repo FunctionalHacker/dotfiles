@@ -28,8 +28,6 @@ services:
 
       - "traefik.http.routers.gitea.entrypoints=https"
       - "traefik.http.routers.gitea.rule=Host(`git.korhonen.cc`)"
-      - "traefik.http.routers.gitea.tls=true"
-      - "traefik.http.routers.gitea.tls.certresolver=http"
       - "traefik.http.routers.gitea.service=gitea"
       - "traefik.docker.network=proxy"
       - "traefik.http.services.gitea.loadbalancer.server.port=3000"

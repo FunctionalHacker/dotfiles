@@ -22,8 +22,6 @@ services:
 
       - "traefik.http.routers.index.entrypoints=https"
       - "traefik.http.routers.index.rule=Host(`index.korhonen.cc`)"
-      - "traefik.http.routers.index.tls=true"
-      - "traefik.http.routers.index.tls.certresolver=http"
       - "traefik.http.routers.index.service=index"
       - "traefik.docker.network=proxy"
       - "traefik.http.services.index.loadbalancer.server.port=80"

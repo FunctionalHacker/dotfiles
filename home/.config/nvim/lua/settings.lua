@@ -5,7 +5,7 @@ local cmd = vim.cmd
 ------ Appearance ------
 
 -- Set colorscheme
-require('nightfox').set()
+require('nightfox').load()
 
 -- True colors
 o.termguicolors = true

@@ -172,6 +172,9 @@ dotfiles:
   f_electron12-flags.conf:
     src: .config/electron12-flags.conf
     dst: ~/.config/electron12-flags.conf
+  f_wayland.sh:
+    src: .config/plasma-workspace/env/wayland.sh
+    dst: ~/.config/plasma-workspace/env/wayland.sh
 profiles:
   base:
     dotfiles:
@@ -246,6 +249,7 @@ profiles:
     - f_gpg.conf
     - f_electron-flags.conf
     - f_electron12-flags.conf
+    - f_wayland.sh
   Moria:
     include:
     - terminal

@@ -19,6 +19,12 @@ setopt HIST_REDUCE_BLANKS
 setopt INC_APPEND_HISTORY_TIME
 setopt EXTENDED_HISTORY
 
+# Enable completions for aliases
+setopt complete_aliases
+
+# Use exa completions for ls
+compdef ls='exa'
+
 # Variable to pass to sdotdrop to get current user
 export USRNAME=$USER
 

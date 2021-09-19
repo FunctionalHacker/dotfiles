@@ -62,6 +62,3 @@ if [ "$SSH_CONNECTION" -eq "" ]; then
 	export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 	gpgconf --launch gpg-agent
 fi
-
-# tehfuk
-eval $(thefuck --alias)

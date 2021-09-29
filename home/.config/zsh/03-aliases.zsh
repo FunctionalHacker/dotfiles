@@ -187,8 +187,7 @@ update() {
 	docker-update() {
 		for dir in $HOME/git/dotfiles/docker/*; do
 			cd $dir
-			docker-compose pull
-			docker-compose up -d
+			docker compose up -d
 			cd ..
 		done
 	}

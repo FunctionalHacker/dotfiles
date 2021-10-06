@@ -172,9 +172,9 @@ dotfiles:
   f_electron12-flags.conf:
     src: .config/electron12-flags.conf
     dst: ~/.config/electron12-flags.conf
-  f_wayland.sh:
-    src: .config/plasma-workspace/env/wayland.sh
-    dst: ~/.config/plasma-workspace/env/wayland.sh
+  f_pam_environment:
+    src: .pam_environment
+    dst: ~/.pam_environment
 profiles:
   base:
     dotfiles:
@@ -189,6 +189,7 @@ profiles:
     - f_mailcap
     - d_zsh
     - f_zshrc
+    - f_pam_environment
     - f_tmux.conf
     - f_ranger.conf
     - f_ssh.conf
@@ -228,6 +229,8 @@ profiles:
     - f_tdesktop_lang.strings
     - f_fonts.conf
     - f_zprofile
+    - f_electron-flags.conf
+    - f_electron12-flags.conf
   Pacman:
     dotfiles:
     - f_makepkg.conf
@@ -247,9 +250,6 @@ profiles:
     - f_foot.ini
     - f_gpg-agent.conf
     - f_gpg.conf
-    - f_electron-flags.conf
-    - f_electron12-flags.conf
-    - f_wayland.sh
   Moria:
     include:
     - terminal

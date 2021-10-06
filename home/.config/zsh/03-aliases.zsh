@@ -24,6 +24,7 @@ _fzf_compgen_path() {
 # Modern replacements for cat and ls
 alias cat='bat --paging=never'
 alias ls='exa'
+compdef ls='exa'
 
 {%@@ if profile != "mko-laptop" @@%}
 # Command not found handler

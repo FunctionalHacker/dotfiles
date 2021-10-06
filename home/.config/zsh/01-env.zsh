@@ -22,9 +22,6 @@ setopt EXTENDED_HISTORY
 # Enable completions for aliases
 setopt complete_aliases
 
-# Use exa completions for ls
-compdef ls='exa'
-
 # Variable to pass to sdotdrop to get current user
 export USRNAME=$USER
 
@@ -62,11 +59,10 @@ export MANPAGER="nvim +Man!"
 
 # Use GPG for SSH authentication
 export GPG_TTY="$(tty)"
-# Fix for pinentry not working for ssh
-gpg-connect-agent updatestartuptty /bye >/dev/null
 
 # set SSH_AUTH_SOCK if not logging in over SSH
-if [ "$SSH_CONNECTION" -eq "" ]; then
+if [ "$SSH_CONNECTION" = "" ]; then
 	export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-	gpgconf --launch gpg-agent
+	#gpgconf --launch gpg-agent
+	gpg-connect-agent updatestartuptty /bye >/dev/null
 fi

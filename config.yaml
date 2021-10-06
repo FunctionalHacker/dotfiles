@@ -33,9 +33,6 @@ dotfiles:
     - nvim-packer-sync
     dst: ~/.config/nvim/lua
     src: .config/nvim/lua
-  f_user-dirs.dirs:
-    dst: ~/.config/user-dirs.dirs
-    src: .config/user-dirs.dirs
   d_sway:
     dst: ~/.config/sway
     src: .config/sway
@@ -166,6 +163,9 @@ dotfiles:
   f_gpg.conf:
     src: .gnupg/gpg.conf
     dst: ~/.gnupg/gpg.conf
+  f_gpg_scdaemon.conf:
+    src: .gnupg/scdaemon.conf
+    dst: ~/.gnupg/scdaemon.conf
   f_electron-flags.conf:
     src: .config/electron-flags.conf
     dst: ~/.config/electron-flags.conf
@@ -189,7 +189,6 @@ profiles:
     - f_mailcap
     - d_zsh
     - f_zshrc
-    - f_pam_environment
     - f_tmux.conf
     - f_ranger.conf
     - f_ssh.conf
@@ -231,10 +230,16 @@ profiles:
     - f_zprofile
     - f_electron-flags.conf
     - f_electron12-flags.conf
-  Pacman:
+  pacman:
     dotfiles:
     - f_makepkg.conf
     - f_paru.conf
+  gpg:
+    dotfiles:
+    - f_gpg-agent.conf
+    - f_gpg.conf
+    - f_gpg_scdaemon.conf
+    - f_pam_environment
   Mirkwood:
     include:
     - base
@@ -242,35 +247,34 @@ profiles:
     - email
     - media
     - sway
-    - Pacman
+    - pacman
+    - gpg
     dotfiles:
     - f_paru.conf
-    - f_user-dirs.dirs
     - f_gitconfig
     - f_foot.ini
-    - f_gpg-agent.conf
-    - f_gpg.conf
   Moria:
     include:
     - terminal
     - media
-    - Pacman
+    - pacman
   Gondor:
     include:
     - terminal
-    - Pacman
+    - pacman
   mko-laptop:
     include:
     - terminal
     - media
+    - gpg
   Edoras:
     include:
     - terminal
-    - Pacman
+    - pacman
   TakamakiPC:
     include:
     - terminal
-    - Pacman
+    - pacman
   localhost:
     include:
     - terminal

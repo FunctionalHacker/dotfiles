@@ -62,6 +62,8 @@ export MANPAGER="nvim +Man!"
 
 # Use GPG for SSH authentication
 export GPG_TTY="$(tty)"
+# Fix for pinentry not working for ssh
+gpg-connect-agent updatestartuptty /bye >/dev/null
 
 # set SSH_AUTH_SOCK if not logging in over SSH
 if [ "$SSH_CONNECTION" -eq "" ]; then

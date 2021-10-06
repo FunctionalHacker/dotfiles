@@ -64,28 +64,27 @@ require('packer').startup(function()
     -- Install LSP executables
     use 'kabouzeid/nvim-lspinstall'
 
-    -- Completion framework
-    use 'nvim-lua/completion-nvim'
+    -- Completion
+    use {'ms-jpq/coq_nvim', branch = 'coq'}
+
+    -- Snippets for coq_nvim
+    use {'ms-jpq/coq.artifacts', branch = 'artifacts'}
 
     -- treesitter syntax highlight
-    use {
-        'nvim-treesitter/nvim-treesitter',
-        branch = '0.5-compat',
-        run = ':TSUpdate'
-    }
+    use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
 
     -- treesitter plugin for commentstring
     use 'JoosepAlviste/nvim-ts-context-commentstring'
 
-	-- Additional plugins for formats not supported
-	-- by treesitter
-	use 'jamespeapen/swayconfig.vim'
+    -- Additional plugins for formats not supported
+    -- by treesitter
+    use 'jamespeapen/swayconfig.vim'
 
     -- mappings for commenting in code
     use 'tpope/vim-commentary'
 
-	-- we all know this one
-	use 'tpope/vim-surround'
+    -- we all know this one
+    use 'tpope/vim-surround'
 
     -- Formatter plugin
     use 'sbdchd/neoformat'

@@ -22,6 +22,9 @@ o.signcolumn = 'yes'
 -- Diff settings
 cmd 'set diffopt=filler,internal,algorithm:histogram,indent-heuristic'
 
+-- Allow switching buffers with unsaved changes
+cmd 'set hidden'
+
 -- Show line numbers
 cmd 'set number'
 

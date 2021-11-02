@@ -17,8 +17,6 @@ services:
       - /docker/jellyfin/cache:/cache
       - /mnt/Storage/Media:/media
       - /etc/localtime:/etc/localtime:ro
-    devices:
-      - /dev/dri:/dev/dri
     labels:
       - "traefik.enable=true"
 

@@ -16,7 +16,6 @@ services:
       - 9981:9981
       - 9982:9982
     devices:
-      - /dev/dri:/dev/dri #hardware acceleration
       - /dev/dvb:/dev/dvb #tuner card
     restart: unless-stopped
     networks:

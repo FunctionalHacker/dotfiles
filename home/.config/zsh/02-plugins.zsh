@@ -1,7 +1,7 @@
 # install zinit if it's not already installed
 if [ ! -f ~/.zinit/bin/zinit.zsh ]; then
 	mkdir ~/.zinit
-	git clone https://github.com/zdharma/zinit.git ~/.zinit/bin
+	git clone https://github.com/zdharma-continuum/zinit.git ~/.zinit/bin
 fi
 
 source ~/.zinit/bin/zinit.zsh
@@ -36,7 +36,7 @@ zinit snippet '$DOTREPO/dotdrop/completion/_dotdrop-completion.zsh'
 
 # syntax highlighting
 zinit ice lucid atinit'zpcompinit'
-zinit light zdharma/fast-syntax-highlighting
+zinit light zdharma-continuum/fast-syntax-highlighting
 
 # use skim with zsh
 {%@@ if profile == "mko-laptop" @@%}

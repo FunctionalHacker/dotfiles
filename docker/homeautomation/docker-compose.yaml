@@ -118,8 +118,6 @@ services:
 
       - "traefik.http.routers.gotify.entrypoints=https"
       - "traefik.http.routers.gotify.rule=Host(`gotify.korhonen.cc`)"
-      - "traefik.http.routers.gotify.tls=true"
-      - "traefik.http.routers.gotify.tls.certresolver=http"
       - "traefik.http.routers.gotify.service=gotify"
       - "traefik.docker.network=proxy"
       - "traefik.http.services.gotify.loadbalancer.server.port=80"

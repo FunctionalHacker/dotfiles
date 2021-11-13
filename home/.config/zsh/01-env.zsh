@@ -31,14 +31,19 @@ export PATH="/home/$USER/.bin:$PATH"
 # go path
 export GOPATH=~/.go
 
-# skim settings
-export SKIM_DEFAULT_COMMAND='fd -Ht f'
-export SKIM_ALT_C_COMMAND='fd -Ht d'
-export SKIM_DEFAULT_OPTS='-m --ansi --bind ctrl-a:toggle-all,ctrl-d:deselect-all,ctrl-t:toggle-all'
-export SKIM_DEFAULT_OPTIONS="$SKIM_DEFAULT_OPTS" # TODO make an issue/PR about this difference
-export SKIM_COMPLETION_TRIGGER='**'
-export SKIM_CTRL_T_COMMAND="$SKIM_DEFAULT_COMMAND"
-export SKIM_CTRL_T_OPTS='--preview "bat --color=always --style=numbers --line-range=:500 {}"'
+# fzf settings
+export FZF_DEFAULT_COMMAND='fd -Ht f'
+export FZF_ALT_C_COMMAND='fd -Ht d'
+export FZF_DEFAULT_OPTS='-m --ansi --bind ctrl-a:toggle-all,ctrl-d:deselect-all,ctrl-t:toggle-all'
+export FZF_COMPLETION_TRIGGER='**'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_CTRL_T_OPTS='--preview "bat --color=always --style=numbers --line-range=:500 {}"'
+_fzf_compgen_dir() {
+	fd -Ht d
+}
+_fzf_compgen_path() {
+	fd -Ht f
+}
 
 # dotfile repository location
 export DOTREPO="$HOME/git/dotfiles"

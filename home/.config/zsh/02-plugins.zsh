@@ -10,7 +10,7 @@ source ~/.zinit/bin/zinit.zsh
 zinit ice load multisrc'{async,pure}.zsh'
 zinit light sindresorhus/pure
 
-# skim as tab completion
+# fzf as tab completion
 zinit ice lucid
 zinit light Aloxaf/fzf-tab
 
@@ -18,7 +18,7 @@ zinit light Aloxaf/fzf-tab
 zinit ice lucid
 zinit light zsh-users/zsh-history-substring-search
 
-# skim git awesomeness
+# fzf git awesomeness
 zinit ice wait'1' lucid atload'source $HOME/.config/zsh/03-aliases.zsh'
 zinit light wfxr/forgit
 
@@ -38,13 +38,13 @@ zinit snippet '$DOTREPO/dotdrop/completion/_dotdrop-completion.zsh'
 zinit ice lucid atinit'zpcompinit'
 zinit light zdharma-continuum/fast-syntax-highlighting
 
-# use skim with zsh
+# use fzf with zsh
 {%@@ if profile == "mko-laptop" @@%}
-# Source from home directory since mko-laptop is ubuntu and it doesn't
-# have skim in it's repositories
-source ~/Software/skim/shell/key-bindings.zsh
-source ~/Software/skim/shell/completion.zsh
+# Source from home directory since mko-laptop is ubuntu and it has an
+# old version of FZF in it's repositories
+source ~/Software/fzf/shell/key-bindings.zsh
+source ~/Software/fzf/shell/completion.zsh
 {%@@ else @@%}
-source /usr/share/skim/key-bindings.zsh
-source /usr/share/skim/completion.zsh
+source /usr/share/fzf/key-bindings.zsh
+source /usr/share/fzf/completion.zsh
 {%@@ endif @@%}

@@ -5,14 +5,6 @@ alias gs='git status'
 alias gpull='git pull'
 alias gpush='git push'
 
-# make skim zsh plugin use fd
-_skim_compgen_dir() {
-	fd -Ht d
-}
-_skim_compgen_path() {
-	fd -Ht f
-}
-
 # Modern replacements for cat and ls
 alias cat='bat --paging=never'
 alias ls='exa'
@@ -47,19 +39,17 @@ function command_not_found_handler {
 }
 {%@@ endif @@%}
 
-# search and install packages with skim
+# search and install/remove packages with fzf
 pi() { 
-	SELECTED_PKGS="$(paru -Slq | sk --header='Install packages' -m --preview 'paru -Si {1}')"
+	SELECTED_PKGS="$(paru -Slq | fzf --header='Install packages' -m --preview 'paru -Si {1}')"
 	if [ -n "$SELECTED_PKGS" ]; then
 		# Append the expanded command to history
 		print -s "paru -S $(echo $SELECTED_PKGS)"
 		paru -S $(echo $SELECTED_PKGS)
 	fi
 }
-
-# search and remove packages with skim
 pr() { 
-	SELECTED_PKGS="$(paru -Qsq | sk --header='Remove packages' -m --preview 'paru -Si {1}')"
+	SELECTED_PKGS="$(paru -Qsq | fzf --header='Remove packages' -m --preview 'paru -Si {1}')"
 	if [ -n "$SELECTED_PKGS" ]; then
 		# Append the expanded command to history
 		print -s "paru -Rns $(echo $SELECTED_PKGS)"
@@ -67,9 +57,9 @@ pr() {
 	fi
 }
 
-# find and open man pages with skim
+# find and open man pages with fzf
 fman() {
-	man -k . | sk --prompt='Man> ' | awk '{print $1}' | xargs -r man
+	man -k . | fzf --prompt='Man> ' | awk '{print $1}' | xargs -r man
 }
 
 # I'm retarded so I need this

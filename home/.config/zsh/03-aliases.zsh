@@ -1,10 +1,9 @@
 # git shorthands
 alias gc='git commit'
 alias gac='ga && gc'
+alias gs='git status'
 alias gpull='git pull'
 alias gpush='git push'
-
-alias mutt='neomutt'
 
 # make skim zsh plugin use fd
 _skim_compgen_dir() {
@@ -13,18 +12,10 @@ _skim_compgen_dir() {
 _skim_compgen_path() {
 	fd -Ht f
 }
-# same for fzf
-_fzf_compgen_dir() {
-	_skim_compgen_dir
-}
-_fzf_compgen_path() {
-	_skim_compgen_path
-}
 
 # Modern replacements for cat and ls
 alias cat='bat --paging=never'
 alias ls='exa'
-compdef ls='exa'
 
 {%@@ if profile != "mko-laptop" @@%}
 # Command not found handler
@@ -152,7 +143,6 @@ compdef _dotdrop-completion.zsh sdotdrop
 alias dotgit='git -C $DOTREPO'
 dotsync() { cd $DOTREPO && gpull && ga && gc && gpush && cd $OLDPWD }
 
-
 # sync password manager
 passync() { pass git pull && pass git push && updatesecrets }
 
@@ -235,61 +225,9 @@ alias notify-send='notify-send --icon=alarm'
 # download archiso
 alias archiso='curl "http://mirror.rackspace.com/archlinux/iso/$(date +%Y.%m).01/archlinux-$(date +%Y.%m).01-x86_64.iso"'
 
-# Update repository
-
-
 # encrypted tar's with zstd compression
 cgpgtar() { tar cf - --zstd $1 | gpg -e -z 0 > $1.tar.zst.gpg }
 xgpgtar() { gpg -d $1 | tar x --zstd }
-
-# colorise output
-alias cvs='grc cvs'
-alias df='grc df'
-alias digg='grc digg'
-alias gcc='grc gcc'
-alias g++='grc g++'
-alias ifconfig='grc ifconfig'
-alias make='grc make'
-alias mount='grc mount'
-alias mtr='grc mtr'
-alias netstat='grc mount'
-alias ping='grc ping'
-alias ps='grc ps'
-alias tail='grc tail'
-alias traceroute='grc traceroute'
-alias wdiff='grc wdiff'
-alias blkid='grc blkid'
-alias du='grc du'
-alias dnf='grc dnf'
-alias docker='grc docker'
-alias docker-machine='grc docker-machine'
-alias env='grc env'
-alias id='grc id'
-alias ip='grc ip'
-alias iostat='grc iostat'
-alias last='grc last'
-alias lsattr='grc lsattr'
-alias lsblk='grc lsblk'
-alias lspci='grc lspci'
-alias lsmod='grc lsmod'
-alias lsof='grc lsof'
-alias getfacl='grc getfacl'
-alias getsebool='grc getsebool'
-alias ulimit='grc ulimit'
-alias uptime='grc uptime'
-alias nmap='grc nmap'
-alias fdisk='grc fdisk'
-alias findmnt='grc findmnt'
-alias free='grc free'
-alias semanage='grc semanage'
-alias sar='grc sar'
-alias ss='grc ss'
-alias sysctl='grc sysctl'
-alias systemctl='grc systemctl'
-alias stat='grc stat'
-alias showmount='grc showmount'
-alias tune2fs='grc tune2fs'
-alias tcpdum='grc tcpdum'
 
 btw, () {
 	echo "                 I use"

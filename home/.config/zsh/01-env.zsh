@@ -20,7 +20,7 @@ setopt INC_APPEND_HISTORY_TIME
 setopt EXTENDED_HISTORY
 
 # Enable completions for aliases
-setopt complete_aliases
+setopt no_complete_aliases
 
 # Variable to pass to sdotdrop to get current user
 export USRNAME=$USER
@@ -39,23 +39,16 @@ export SKIM_DEFAULT_OPTIONS="$SKIM_DEFAULT_OPTS" # TODO make an issue/PR about t
 export SKIM_COMPLETION_TRIGGER='**'
 export SKIM_CTRL_T_COMMAND="$SKIM_DEFAULT_COMMAND"
 export SKIM_CTRL_T_OPTS='--preview "bat --color=always --style=numbers --line-range=:500 {}"'
-# copy for fzf, incase I ever use it
-export FZF_DEFAULT_COMMAND="$SKIM_DEFAULT_COMMAND"
-export FZF_ALT_C_COMMAND="$SKIM_ALT_C_COMMAND"
-export FZF_DEFAULT_OPTS="$SKIM_DEFAULT_OPTS"
-export FZF_COMPLETION_TRIGGER="$SKIM_COMPLETION_TRIGGER"
-export FZF_CTRL_T_COMMAND="$SKIM_DEFAULT_COMMAND"
-export FZF_CTRL_T_OPTS="$SKIM_CTRL_T_OPTS"
 
 # dotfile repository location
 export DOTREPO="$HOME/git/dotfiles"
 
 # nvim ftw!
 export EDITOR=nvim
-export PAGER="nvim -R"
+export PAGER="$EDITOR -R"
 export PARU_PAGER="$PAGER -c 'set ft=PKGBUILD'"
 export AUR_PAGER=$PAGER
-export MANPAGER="nvim +Man!"
+export MANPAGER="$EDITOR +Man!"
 
 # Use GPG for SSH authentication
 export GPG_TTY="$(tty)"
@@ -66,3 +59,6 @@ if [ "$SSH_CONNECTION" = "" ]; then
 	#gpgconf --launch gpg-agent
 	gpg-connect-agent updatestartuptty /bye >/dev/null
 fi
+
+# Enable grc colorization of supported commands
+[[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh

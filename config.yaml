@@ -256,7 +256,6 @@ profiles:
   Moria:
     include:
     - terminal
-    - media
     - pacman
   Gondor:
     include:

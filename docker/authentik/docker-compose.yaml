@@ -1,0 +1,84 @@
+services:
+
+  redis:
+    container_name: authentik-redis
+    image: redis:alpine
+    restart: unless-stopped
+    networks:
+      - authentik
+
+  authentik:
+    container_name: authentik
+    image: ${AUTHENTIK_IMAGE:-goauthentik.io/server}:${AUTHENTIK_TAG:-2021.10.4}
+    restart: unless-stopped
+    command: server
+    volumes:
+      - /docker/authentik/media:/media
+      - /docker/authentik/custom-templates:/templates
+      - /docker/authentik/geoip:/geoip
+    env_file:
+      - .env
+    networks:
+      - authentik
+      - postgres
+      - proxy
+    ports:
+      - 9000:9000
+    labels:
+      - "traefik.enable=true"
+
+      - "traefik.http.routers.authentik-redirect.entrypoints=http"
+      - "traefik.http.routers.authentik-redirect.rule=Host(`sso.korhonen.cc`)"
+      - "traefik.http.middlewares.http2https.redirectscheme.scheme=https"
+      - "traefik.http.routers.authentik-redirect.middlewares=http2https"
+
+      - "traefik.http.routers.authentik.entrypoints=https"
+      - "traefik.http.routers.authentik.rule=Host(`sso.korhonen.cc`)"
+      - "traefik.http.routers.authentik.service=authentik"
+      - "traefik.docker.network=proxy"
+      - "traefik.http.services.authentik.loadbalancer.server.port=9000"
+
+  authentik-worker:
+    container_name: authentik-worker
+    image: ${AUTHENTIK_IMAGE:-goauthentik.io/server}:${AUTHENTIK_TAG:-2021.10.4}
+    restart: unless-stopped
+    command: worker
+    networks:
+      - authentik
+      - postgres
+    user: root
+    volumes:
+      - /docker/authentik/backups:/backups
+      - /docker/authentik/media:/media
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /docker/authentik/custom-templates:/templates
+      - /docker/authentik/geoip:/geoip
+    environment:
+      - AUTHENTIK_POSTGRESQL__HOST
+      - AUTHENTIK_POSTGRESQL__USER
+      - AUTHENTIK_POSTGRESQL__NAME
+      - AUTHENTIK_POSTGRESQL__PASSWORD
+      - AUTHENTIK_SECRET_KEY
+    env_file:
+      - .env
+
+  geoipupdate:
+    container_name: authentik-geoip
+    image: "maxmindinc/geoipupdate:latest"
+    volumes:
+      - /docker/authentik/geoip:/usr/share/GeoIP
+    environment:
+      GEOIPUPDATE_EDITION_IDS: "GeoLite2-City"
+      GEOIPUPDATE_FREQUENCY: "8"
+    env_file:
+      - .env
+    networks:
+      - authentik
+
+networks:
+  authentik:
+    internal: true
+  postgres:
+    external: true
+  proxy:
+    external: true

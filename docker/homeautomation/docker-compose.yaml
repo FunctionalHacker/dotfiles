@@ -5,8 +5,6 @@ services:
     image: homeassistant/home-assistant
     environment:
       - TZ=Europe/Helsinki
-    devices:
-      - /dev/ttyACM0
     volumes:
       - /docker/homeautomation/home-assistant:/config
       - /etc/localtime:/etc/localtime:ro
@@ -19,6 +17,7 @@ services:
       - "8123:8123"
       - "8300:8300"
     depends_on:
+      - deconz
       - mosquitto
     labels:
       - "traefik.enable=true"
@@ -33,6 +32,27 @@ services:
       - "traefik.http.routers.home-assistant.service=home-assistant"
       - "traefik.docker.network=proxy"
       - "traefik.http.services.home-assistant.loadbalancer.server.port=8123"
+
+  deconz:
+    container_name: deconz
+    image: deconzcommunity/deconz
+    environment:
+      - TZ=Europe/Helsinki
+      - DECONZ_WEB_PORT=8083
+      - DECONZ_WS_PORT=8084
+      - DECONZ_UPNP=0
+      - DECONZ_VNC_PORT=5901
+      - DECONZ_VNC_MODE=1
+      - DECONZ_VNC_PASSWORD=${DECONZ_VNC_PASSWORD}
+      - DEBUG_OTAU=1
+    network_mode: host
+    volumes:
+      - /docker/homeautomation/deconz/deconz:/opt/deCONZ
+      - /docker/homeautomation/deconz/otau:/root/otau
+      - /etc/localtime:/etc/localtime:ro
+    restart: unless-stopped
+    devices:
+      - /dev/ttyACM0
 
   mosquitto:
     container_name: mosquitto

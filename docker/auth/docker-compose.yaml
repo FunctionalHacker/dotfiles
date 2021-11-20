@@ -1,0 +1,44 @@
+version: "3.8"
+
+services:
+  openldap:
+    container_name: openldap
+    image: osixia/openldap:1.5.0
+    restart: always
+    hostname: ldap.korhonen.cc
+    ports:
+      - "389:389"
+      - "636:636"
+    environment:
+      - LDAP_ORGANISATION=Korhonen
+      - LDAP_DOMAIN=korhonen.cc
+      - LDAP_ADMIN_PASSWORD_FILE=/run/secrets/ldap_admin_password
+      - LDAP_READ_ONLY_USER=true
+      - LDAP_READ_ONLY_USER_USERNAME=ldap-ro
+      - LDAP_READ_ONLY_USER_PASSWORD_FILE=/run/secrets/ldap_read_only_password
+    secrets:
+      - ldap_admin_password
+      - ldap_read_only_password
+    volumes:
+      - "/docker/auth/openldap/ldap:/var/lib/ldap"
+      - "/docker/auth/openldap/slapd.d/:/etc/ldap/slapd.d"
+      - "/docker/auth/openldap/lidf:/data/ldif"
+
+  phpldapadmin:
+    container_name: phpldapadmin
+    image: osixia/phpldapadmin
+    environment:
+      - PHPLDAPADMIN_HTTPS=false
+      - PHPLDAPADMIN_HOSTS=openldap
+    ports:
+      - "4588:80"
+
+networks:
+  auth:
+    external: true
+
+secrets:
+  ldap_admin_password:
+    file: ./.ldap_admin_password_secret
+  ldap_read_only_password:
+    file: ./.ldap_read_only_password_secret

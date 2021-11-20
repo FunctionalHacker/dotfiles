@@ -95,6 +95,12 @@ require('packer').startup(function()
         rtp = 'contrib/vim/redact_pass.vim'
     }
 
+    -- Neovim inside Firefox
+    use {
+        'glacambre/firenvim',
+        run = function() vim.fn['firenvim#install'](0) end
+    }
+
 end)
 
 -- Install plugins if packer was not installed

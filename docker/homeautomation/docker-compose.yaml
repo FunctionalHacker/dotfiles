@@ -1,4 +1,3 @@
-version: "3"
 services:
   home-assistant:
     container_name: home-assistant

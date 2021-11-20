@@ -1,5 +1,3 @@
-version: "2"
-
 services:
   gitea:
     container_name: gitea

@@ -10,6 +10,7 @@ services:
       - "8096:8096"
     networks:
       - proxy
+      - authentik
     restart: unless-stopped
     volumes:
       - /docker/jellyfin/config:/config
@@ -32,4 +33,6 @@ services:
 
 networks:
   proxy:
+    external: true
+  authentik:
     external: true

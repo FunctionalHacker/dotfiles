@@ -72,7 +72,8 @@ lsp_installer.on_server_ready(function(server)
                 telemetry = {enable = false}
             }
         }
-        opts.on_attach = buf_map_keys
-        server:setup(opts)
     end
+
+    opts.on_attach = buf_map_keys
+    server:setup(opts)
 end)

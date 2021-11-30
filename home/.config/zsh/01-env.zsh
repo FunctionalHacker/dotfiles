@@ -67,3 +67,6 @@ fi
 
 # Enable grc colorization of supported commands
 [[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh
+
+# Disable dotdrop submodule auto update
+DOTDROP_AUTOUPDATE=no

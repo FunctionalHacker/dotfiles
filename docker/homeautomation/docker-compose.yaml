@@ -75,6 +75,7 @@ services:
       - "1880:1880"
     networks:
       - homeautomation
+      - proxy
     volumes:
       - /docker/homeautomation/node-red:/data
       - /etc/localtime:/etc/localtime:ro

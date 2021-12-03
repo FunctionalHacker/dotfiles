@@ -41,7 +41,7 @@ require('packer').startup(function()
     use 'tpope/vim-fugitive'
 
     -- Indent characters
-    -- use "lukas-reineke/indent-blankline.nvim"
+    use "lukas-reineke/indent-blankline.nvim"
 
     -- Tree explorer
     use {'kyazdani42/nvim-tree.lua', requires = 'kyazdani42/nvim-web-devicons'}

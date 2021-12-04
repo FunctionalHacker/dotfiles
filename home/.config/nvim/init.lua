@@ -2,6 +2,7 @@ require 'pluginmanager'
 require 'autocmd'
 require 'keybinds'
 require 'settings'
+require 'common'
 
 -- Plugin configurations
 require 'pluginconf.lualine'

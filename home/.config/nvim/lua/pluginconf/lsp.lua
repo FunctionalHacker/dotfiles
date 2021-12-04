@@ -50,7 +50,7 @@ lsp_installer.on_server_ready(function(server)
     local opts = {}
 
     -- Lua specific settings
-    if server_name == "sumneko_lua" then
+    if server.name == "sumneko_lua" then
         local runtime_path = vim.split(package.path, ';')
         opts.settings = {
             Lua = {

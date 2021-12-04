@@ -50,10 +50,11 @@ export DOTREPO="$HOME/git/dotfiles"
 
 # nvim ftw!
 export EDITOR=nvim
-export PAGER="$EDITOR -R"
+export PAGER="$EDITOR -R +\"lua require 'pager'\""
+export GIT_PAGER="$EDITOR -R +\"lua require 'pager'\" \"Git log\""
 export PARU_PAGER="$PAGER -c 'set ft=PKGBUILD'"
 export AUR_PAGER=$PAGER
-export MANPAGER="$EDITOR +Man!"
+export MANPAGER="$EDITOR +\"lua require 'pager'\" +Man!"
 
 # Use GPG for SSH authentication
 export GPG_TTY="$(tty)"

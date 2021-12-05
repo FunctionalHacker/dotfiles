@@ -104,6 +104,12 @@ dotfiles:
   f_pacserve.service.conf:
     src: etc/pacserve/pacserve.service.conf
     dst: /etc/pacserve/pacserve.service.conf
+  d_mkinitcpio.d:
+    src: etc/mkinitcpio.d
+    dst: /etc/mkinitcpio.d
+  f_cmdline:
+    src: etc/kernel/cmdline
+    dst: /etc/kernel/cmdline
 profiles:
   Network:
     dotfiles:
@@ -138,6 +144,8 @@ profiles:
     - f_20-quiet-printk.conf
     - f_system.conf
     - f_cpupower
+    - d_mkinitcpio.d
+    - f_cmdline
     include:
     - Locale
     - Pacman
@@ -165,4 +173,4 @@ profiles:
     - Pacman
   mko-laptop:
     dotfiles:
-      - f_cpupower
+    - f_cpupower

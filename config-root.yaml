@@ -110,6 +110,9 @@ dotfiles:
   f_cmdline:
     src: etc/kernel/cmdline
     dst: /etc/kernel/cmdline
+  f_loader.conf:
+    src: boot/loader/loader.conf
+    dst: /boot/loader/loader.conf
 profiles:
   Network:
     dotfiles:
@@ -146,6 +149,7 @@ profiles:
     - f_cpupower
     - d_mkinitcpio.d
     - f_cmdline
+    - f_loader.conf
     include:
     - Locale
     - Pacman

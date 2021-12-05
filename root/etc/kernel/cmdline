@@ -1,0 +1,1 @@
+cryptdevice=UUID=19fa8fab-c5fe-454a-9a17-b7185ce975ea:cryptroot:allow-discards root=/dev/mapper/cryptroot rootflags=subvol=root resume=/dev/mapper/cryptroot resume_offset=10530935 rw quiet splash vga=current idle=nomwait amdgpu.ppfeaturemask=0xffffffff bgrt_disable

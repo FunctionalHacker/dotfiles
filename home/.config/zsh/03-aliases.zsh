@@ -5,8 +5,7 @@ alias gs='git status'
 alias gpull='git pull'
 alias gpush='git push'
 
-# Modern replacements for cat and ls
-alias cat='bat --paging=never'
+# Modern replacement for ls
 alias ls='exa'
 
 {%@@ if profile != "mko-laptop" @@%}

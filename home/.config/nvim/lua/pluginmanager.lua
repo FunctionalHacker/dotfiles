@@ -46,11 +46,8 @@ require('packer').startup(function()
     -- Tree explorer
     use {'kyazdani42/nvim-tree.lua', requires = 'kyazdani42/nvim-web-devicons'}
 
-    -- Telescope
-    use {
-        'nvim-telescope/telescope.nvim',
-        requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
-    }
+	-- FZF FTW
+	use 'junegunn/fzf.vim'
 
     -- Do stuff as sudo
     use 'lambdalisue/suda.vim'

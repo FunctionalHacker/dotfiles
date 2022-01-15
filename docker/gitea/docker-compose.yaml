@@ -21,8 +21,7 @@ services:
 
       - "traefik.http.routers.gitea-redirect.entrypoints=http"
       - "traefik.http.routers.gitea-redirect.rule=Host(`git.korhonen.cc`)"
-      - "traefik.http.middlewares.http2https.redirectscheme.scheme=https"
-      - "traefik.http.routers.gitea-redirect.middlewares=http2https"
+      - "traefik.http.routers.gitea-redirect.middlewares=http2https@file"
 
       - "traefik.http.routers.gitea.entrypoints=https"
       - "traefik.http.routers.gitea.rule=Host(`git.korhonen.cc`)"

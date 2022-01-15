@@ -16,7 +16,8 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - /docker/traefik/traefik/traefik.yml:/traefik.yml:ro
+      - /docker/traefik/traefik/traefik.toml:/traefik.toml:ro
+      - /docker/traefik/traefik/dynamic.toml:/dynamic.toml:ro
       - /docker/traefik/traefik/dashboard-users:/dashboard-users:ro
       - /docker/traefik/traefik/acme.json:/acme.json
       - /docker/traefik/traefik/log:/var/log
@@ -25,14 +26,14 @@ services:
       - 'traefik.enable=true'
       - 'traefik.http.routers.redirect.entrypoints=http'
       - 'traefik.http.routers.redirect.rule=Host(`traefik.korhonen.cc`)'
-      - 'traefik.http.middlewares.http2https.redirectscheme.scheme=https'
-      - 'traefik.http.routers.redirect.middlewares=http2https'
+      - 'traefik.http.routers.redirect.middlewares=http2https@file'
 
       - 'traefik.http.routers.dashboard.entrypoints=https'
       - 'traefik.http.routers.dashboard.rule=Host(`traefik.korhonen.cc`)'
       - 'traefik.http.middlewares.dashboard-auth.basicauth.usersfile=/dashboard-users'
       - 'traefik.http.routers.dashboard.middlewares=dashboard-auth'
       - 'traefik.http.routers.dashboard.service=api@internal'
+      - 'traefik.docker.network=proxy'
 
   fail2ban:
     image: crazymax/fail2ban:latest

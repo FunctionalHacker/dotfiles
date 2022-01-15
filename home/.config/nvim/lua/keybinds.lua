@@ -21,3 +21,6 @@ MapKey('n', '<C-H>', '<C-W><C-H>')
 MapKey('n', '<C-J>', '<C-W><C-J>')
 MapKey('n', '<C-K>', '<C-W><C-K>')
 MapKey('n', '<C-L>', '<C-W><C-L>')
+
+-- FZF
+MapKey('n', '<C-f>', 'fzf#vim#complete#path(\'fd\'')

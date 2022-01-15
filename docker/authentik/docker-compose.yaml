@@ -29,8 +29,7 @@ services:
 
       - "traefik.http.routers.authentik-redirect.entrypoints=http"
       - "traefik.http.routers.authentik-redirect.rule=Host(`sso.korhonen.cc`)"
-      - "traefik.http.middlewares.http2https.redirectscheme.scheme=https"
-      - "traefik.http.routers.authentik-redirect.middlewares=http2https"
+      - "traefik.http.routers.authentik-redirect.middlewares=http2https@file"
 
       - "traefik.http.routers.authentik.entrypoints=https"
       - "traefik.http.routers.authentik.rule=Host(`sso.korhonen.cc`)"

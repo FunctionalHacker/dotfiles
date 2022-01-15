@@ -21,8 +21,7 @@ services:
 
       - "traefik.http.routers.freshrss-redirect.entrypoints=http"
       - "traefik.http.routers.freshrss-redirect.rule=Host(`rss.korhonen.cc`)"
-      - "traefik.http.middlewares.http2https.redirectscheme.scheme=https"
-      - "traefik.http.routers.freshrss-redirect.middlewares=http2https"
+      - "traefik.http.routers.freshrss-redirect.middlewares=http2https@file"
 
       - "traefik.http.routers.freshrss.entrypoints=https"
       - "traefik.http.routers.freshrss.rule=Host(`rss.korhonen.cc`)"
@@ -45,8 +44,7 @@ services:
 
       - "traefik.http.routers.bibliogram-redirect.entrypoints=http"
       - "traefik.http.routers.bibliogram-redirect.rule=Host(`bibliogram.korhonen.cc`)"
-      - "traefik.http.middlewares.http2https.redirectscheme.scheme=https"
-      - "traefik.http.routers.bibliogram-redirect.middlewares=http2https"
+      - "traefik.http.routers.bibliogram-redirect.middlewares=http2https@file"
 
       - "traefik.http.routers.bibliogram.entrypoints=https"
       - "traefik.http.routers.bibliogram.rule=Host(`bibliogram.korhonen.cc`)"

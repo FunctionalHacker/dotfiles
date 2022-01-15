@@ -11,8 +11,7 @@ services:
 
       - "traefik.http.routers.remotely-redirect.entrypoints=http"
       - "traefik.http.routers.remotely-redirect.rule=Host(`remotely.korhonen.cc`)"
-      - "traefik.http.middlewares.http2https.redirectscheme.scheme=https"
-      - "traefik.http.routers.remotely-redirect.middlewares=http2https"
+      - "traefik.http.routers.remotely-redirect.middlewares=http2https@file"
 
       - "traefik.http.routers.remotely.entrypoints=https"
       - "traefik.http.routers.remotely.rule=Host(`remotely.korhonen.cc`)"

@@ -32,6 +32,14 @@ services:
       - "traefik.docker.network=proxy"
       - "traefik.http.services.home-assistant.loadbalancer.server.port=8123"
 
+  esphome:
+    container_name: esphome
+    image: esphome/esphome
+    volumes:
+      - /docker/homeautomation/esphome:/config
+    restart: unless-stopped
+    network_mode: host
+
   mosquitto:
     container_name: mosquitto
     image: eclipse-mosquitto

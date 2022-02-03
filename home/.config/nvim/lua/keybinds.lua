@@ -1,7 +1,7 @@
 require 'common'
 
 -- Open/close tree browser
-MapKey('n', '<C-Tab>', '<cmd>NvimTreeToggle<CR>')
+MapKey('n', '<C-T>', '<cmd>NvimTreeToggle<CR>')
 
 -- Telescope
 MapKey('n', '<C-f>', '<cmd>Telescope find_files find_command=fd,-Ht,f<CR>')

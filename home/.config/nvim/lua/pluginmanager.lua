@@ -47,7 +47,10 @@ require('packer').startup(function()
     use {'kyazdani42/nvim-tree.lua', requires = 'kyazdani42/nvim-web-devicons'}
 
 	-- FZF FTW
-	use 'junegunn/fzf.vim'
+	use { 'ibhagwan/fzf-lua',
+		-- optional for icon support
+		requires = { 'kyazdani42/nvim-web-devicons' }
+	}
 
     -- Do stuff as sudo
     use 'lambdalisue/suda.vim'

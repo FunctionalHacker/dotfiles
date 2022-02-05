@@ -1,11 +1,9 @@
 services:
   jellyfin:
-    image: jellyfin/jellyfin
+    image: jellyfin/jellyfin:10.8.0-alpha5
     container_name: jellyfin
     environment:
       - TZ=Europe/Helsinki
-      - NVIDIA_DRIVER_CAPABILITIES=all
-      - NVIDIA_VISIBLE_DEVICES=all
     ports:
       - "8096:8096"
     networks:
@@ -17,6 +15,9 @@ services:
       - /docker/jellyfin/cache:/cache
       - /mnt/Storage/Media:/media
       - /etc/localtime:/etc/localtime:ro
+    devices:
+      - /dev/dri/renderD128:/dev/dri/renderD128
+      - /dev/dri/card0:/dev/dri/card0
     labels:
       - "traefik.enable=true"
 

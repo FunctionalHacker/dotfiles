@@ -144,16 +144,14 @@ update() {
 		docker-update
 		docker system prune --volumes
 		{%@@ endif @@%}
-		sudo flatpak update
-		sudo awman-update
 	}
 
 	repo() {
 		aur sync -Su --margs --noconfirm
-		firefox
+		update-firefox
 	}
 
-	firefox() {
+	update-firefox() {
 		aur sync -S --rebuild firefox-nightly --margs --noconfirm 
 	}
 

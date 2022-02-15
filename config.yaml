@@ -120,9 +120,9 @@ dotfiles:
   f_youtube-dl_config:
     dst: ~/.config/youtube-dl/config
     src: .config/youtube-dl/config
-  f_zathurarc:
-    dst: ~/.config/zathura/zathurarc
-    src: .config/zathura/zathurarc
+  d_zathura:
+    dst: ~/.config/zathura
+    src: .config/zathura
   f_zprofile:
     dst: ~/.zprofile
     src: .zprofile
@@ -223,7 +223,7 @@ profiles:
     - d_wofi
     - f_mako_config
     - f_redshift.conf
-    - f_zathurarc
+    - d_zathura
     - f_mimeo_associations.txt
     - f_tdesktop_lang.strings
     - f_fonts.conf

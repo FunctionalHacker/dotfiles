@@ -1,7 +1,12 @@
-background-color=#282828
-text-color=#EBDBB2
-border-color=#D65D0E
+background-color=#1E1D2F
+text-color=#D9E0EE
+border-color=#96CDFB
+progress-color=over #302D41
+
 icons=1
 default-timeout=5000
 max-visible=6
 layer=overlay
+
+[urgency=high]
+border-color=#F8BD96

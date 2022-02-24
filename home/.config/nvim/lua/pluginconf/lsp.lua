@@ -49,8 +49,10 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
 -- Register a handler that will be called for all installed servers.
--- Alternatively, you may also register handlers on specific server instances instead (see example below).
 lsp_installer.on_server_ready(function(server)
+    -- Don't setup jdtls here since it is done by nvim-jdtls
+    if server.name == "jdtls" then return end
+
     local opts = {}
 
     -- Lua specific settings
@@ -79,6 +81,6 @@ lsp_installer.on_server_ready(function(server)
     end
 
     opts.on_attach = buf_map_keys
-	opts.capabilities = capabilities
+    opts.capabilities = capabilities
     server:setup(opts)
 end)

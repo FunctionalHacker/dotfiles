@@ -33,6 +33,9 @@ dotfiles:
     - nvim-packer-sync
     dst: ~/.config/nvim/lua
     src: .config/nvim/lua
+  d_nvim_ftplugin:
+    dst: ~/.config/nvim/ftplugin
+    src: .config/nvim/ftplugin
   d_sway:
     dst: ~/.config/sway
     src: .config/sway
@@ -193,8 +196,9 @@ profiles:
     - f_ranger.conf
     - f_ssh.conf
     - f_authorized_keys
-    - d_nvim_lua
     - f_nvim_init
+    - d_nvim_lua
+    - d_nvim_ftplugin
     - f_gitconfig
     - f_alacritty.yml
   email:

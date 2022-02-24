@@ -64,6 +64,9 @@ require('packer').startup(function()
     -- Install LSP server executables
     use 'williamboman/nvim-lsp-installer'
 
+	-- Additional LSP features for Java
+	use 'mfussenegger/nvim-jdtls'
+
     -- Completion
     use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
     use 'hrsh7th/cmp-nvim-lsp' -- LSP source for nvim-cmp

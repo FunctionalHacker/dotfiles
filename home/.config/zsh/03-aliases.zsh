@@ -238,3 +238,22 @@ btw, () {
   ▟███▀▘                       ▝▀███▙
  ▟▛▀                               ▀▜▙"
 }
+
+# docker-compose with TOML
+dct() {
+	local file_path=('./docker-compose.toml')
+
+	zmodload zsh/zutil
+	zparseopts -D -K -- \
+		f:=file_path ||
+		return 1
+
+	file_path=${file_path[-1]}
+
+	if [[ ! -a "$file_path" ]]; then
+		echo "File $file_path does not exist!"
+		return 1
+	fi
+
+	yj -ty < $file_path | docker-compose -f - $@
+}

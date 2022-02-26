@@ -1,0 +1,34 @@
+[services]
+
+[services.pihole]
+container_name = "pihole"
+image = "pihole/pihole:latest"
+ports = ["53:53/tcp", "53:53/udp", "67:67/udp", "8069:80/tcp"]
+networks = ["proxy"]
+volumes = [
+  "/docker/pihole/pihole:/etc/pihole/",
+  "/docker/pihole/dnsmasq:/etc/dnsmasq.d/",
+]
+dns = ["127.0.0.1", "1.1.1.1"]
+cap_add = ["NET_ADMIN"]
+restart = "unless-stopped"
+labels = [
+  "traefik.enable=true",
+  "traefik.http.routers.pihole-redirect.entrypoints=http",
+  "traefik.http.routers.pihole-redirect.rule=Host(`pihole.korhonen.cc`)",
+  "traefik.http.routers.pihole-redirect.middlewares=http2https@file",
+  "traefik.http.routers.pihole.entrypoints=https",
+  "traefik.http.routers.pihole.rule=Host(`pihole.korhonen.cc`)",
+  "traefik.http.routers.pihole.service=pihole",
+  "traefik.docker.network=proxy",
+  "traefik.http.services.pihole.loadbalancer.server.port=80",
+]
+
+[services.pihole.environment]
+TZ = "Europe/Helsinki"
+WEBPASSWORD = "${WEBPASSWORD}"
+
+[networks]
+
+[networks.proxy]
+external = true

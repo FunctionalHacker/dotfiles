@@ -1,0 +1,77 @@
+[services]
+
+[services.redis]
+container_name = "authentik-redis"
+image = "redis:alpine"
+restart = "unless-stopped"
+networks = ["authentik"]
+
+[services.authentik]
+container_name = "authentik"
+image = "${AUTHENTIK_IMAGE:-goauthentik.io/server}:${AUTHENTIK_TAG:-2021.10.4}"
+restart = "unless-stopped"
+command = "server"
+volumes = [
+  "/docker/authentik/media:/media",
+  "/docker/authentik/custom-templates:/templates",
+  "/docker/authentik/geoip:/geoip",
+]
+env_file = [".env"]
+networks = ["authentik", "postgres", "proxy"]
+ports = ["9000:9000"]
+labels = [
+  "traefik.enable=true",
+  "traefik.http.routers.authentik-redirect.entrypoints=http",
+  "traefik.http.routers.authentik-redirect.rule=Host(`sso.korhonen.cc`)",
+  "traefik.http.routers.authentik-redirect.middlewares=http2https@file",
+  "traefik.http.routers.authentik.entrypoints=https",
+  "traefik.http.routers.authentik.rule=Host(`sso.korhonen.cc`)",
+  "traefik.http.routers.authentik.service=authentik",
+  "traefik.docker.network=proxy",
+  "traefik.http.services.authentik.loadbalancer.server.port=9000",
+]
+
+[services.authentik-worker]
+container_name = "authentik-worker"
+image = "${AUTHENTIK_IMAGE:-goauthentik.io/server}:${AUTHENTIK_TAG:-2021.10.4}"
+restart = "unless-stopped"
+command = "worker"
+networks = ["authentik", "postgres"]
+user = "root"
+volumes = [
+  "/docker/authentik/backups:/backups",
+  "/docker/authentik/media:/media",
+  "/var/run/docker.sock:/var/run/docker.sock",
+  "/docker/authentik/custom-templates:/templates",
+  "/docker/authentik/geoip:/geoip",
+]
+environment = [
+  "AUTHENTIK_POSTGRESQL__HOST",
+  "AUTHENTIK_POSTGRESQL__USER",
+  "AUTHENTIK_POSTGRESQL__NAME",
+  "AUTHENTIK_POSTGRESQL__PASSWORD",
+  "AUTHENTIK_SECRET_KEY",
+]
+env_file = [".env"]
+
+[services.geoipupdate]
+container_name = "authentik-geoip"
+image = "maxmindinc/geoipupdate:latest"
+volumes = ["/docker/authentik/geoip:/usr/share/GeoIP"]
+env_file = [".env"]
+networks = ["authentik"]
+
+[services.geoipupdate.environment]
+GEOIPUPDATE_EDITION_IDS = "GeoLite2-City"
+GEOIPUPDATE_FREQUENCY = "8"
+
+[networks]
+
+[networks.authentik]
+external = true
+
+[networks.postgres]
+external = true
+
+[networks.proxy]
+external = true

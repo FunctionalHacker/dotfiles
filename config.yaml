@@ -141,9 +141,6 @@ dotfiles:
   f_ripgrep_ignore:
     src: .ignore
     dst: ~/.ignore
-  f_nvimpager:
-    src: .config/nvimpager/init.vim
-    dst: ~/.config/nvimpager/init.vim
   f_ncmpcpp.conf:
     src: .config/ncmpcpp/config
     dst: ~/.config/ncmpcpp/config
@@ -184,7 +181,6 @@ profiles:
     - d_systemd
   terminal:
     dotfiles:
-    - f_nvimpager
     - f_hushlogin
     - f_ripgrep_ignore
     - f_ranger_commands.py

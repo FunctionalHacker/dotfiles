@@ -1,0 +1,114 @@
+[services]
+
+[services.home-assistant]
+container_name = "home-assistant"
+image = "homeassistant/home-assistant"
+environment = ["TZ=Europe/Helsinki"]
+devices = ["/dev/ttyACM0"]
+volumes = [
+  "/docker/homeautomation/home-assistant:/config",
+  "/etc/localtime:/etc/localtime:ro",
+]
+restart = "unless-stopped"
+networks = ["homeautomation", "postgres", "proxy"]
+ports = ["8123:8123", "8300:8300"]
+depends_on = ["mosquitto"]
+labels = [
+  "traefik.enable=true",
+  "traefik.http.routers.home-assistant-redirect.entrypoints=http",
+  "traefik.http.routers.home-assistant-redirect.rule=Host(`home.korhonen.cc`)",
+  "traefik.http.routers.home-assistant-redirect.middlewares=http2https@file",
+  "traefik.http.routers.home-assistant.entrypoints=https",
+  "traefik.http.routers.home-assistant.rule=Host(`home.korhonen.cc`)",
+  "traefik.http.routers.home-assistant.service=home-assistant",
+  "traefik.docker.network=proxy",
+  "traefik.http.services.home-assistant.loadbalancer.server.port=8123",
+]
+
+[services.esphome]
+container_name = "esphome"
+image = "esphome/esphome"
+volumes = ["/docker/homeautomation/esphome:/config"]
+restart = "unless-stopped"
+network_mode = "host"
+
+[services.mosquitto]
+container_name = "mosquitto"
+image = "eclipse-mosquitto"
+environment = ["TZ=Europe/Helsinki"]
+ports = ["1883:1883"]
+networks = ["homeautomation"]
+volumes = [
+  "/docker/homeautomation/mosquitto:/mosquitto",
+  "/etc/localtime:/etc/localtime:ro",
+]
+restart = "unless-stopped"
+
+[services.rhasspy]
+container_name = "rhasspy"
+image = "rhasspy/rhasspy"
+command = "--profile en --user-profiles /profiles"
+volumes = ["/docker/homeautomation/rhasspy:/profiles"]
+environment = ["TZ=Europe/Helsinki"]
+ports = ["12101:12101"]
+networks = ["homeautomation"]
+restart = "unless-stopped"
+depends_on = ["home-assistant"]
+devices = ["/dev/snd:/dev/snd"]
+
+[services.node-red]
+container_name = "node-red"
+image = "nodered/node-red"
+environment = ["TZ=Europe/Helsinki", "proxy"]
+ports = ["1880:1880"]
+networks = ["homeautomation", "proxy"]
+volumes = [
+  "/docker/homeautomation/node-red:/data",
+  "/etc/localtime:/etc/localtime:ro",
+]
+restart = "unless-stopped"
+depends_on = ["home-assistant"]
+labels = [
+  "traefik.enable=true",
+  "traefik.http.routers.node-red-redirect.entrypoints=http",
+  "traefik.http.routers.node-red-redirect.rule=Host(`node.korhonen.cc`)",
+  "traefik.http.routers.node-red-redirect.middlewares=http2https@file",
+  "traefik.http.routers.node-red.entrypoints=https",
+  "traefik.http.routers.node-red.rule=Host(`node.korhonen.cc`)",
+  "traefik.http.routers.node-red.service=node-red",
+  "traefik.docker.network=proxy",
+  "traefik.http.services.node-red.loadbalancer.server.port=1880",
+]
+
+[services.gotify]
+image = "gotify/server"
+container_name = "gotify"
+volumes = ["/docker/homeautomation/gotify:/app/data"]
+environment = [
+  "GOTIFY_DATABASE_DIALECT=postgres",
+  "GOTIFY_DATABASE_CONNECTION=\"host=postgres port=5432 user=gotify dbname=gotify password=${GOTIFY_PGPASS} sslmode=disable\"",
+]
+networks = ["proxy", "postgres"]
+restart = "unless-stopped"
+labels = [
+  "traefik.enable=true",
+  "traefik.http.routers.gotify-redirect.entrypoints=http",
+  "traefik.http.routers.gotify-redirect.rule=Host(`gotify.korhonen.cc`)",
+  "traefik.http.routers.gotify-redirect.middlewares=http2https@file",
+  "traefik.http.routers.gotify.entrypoints=https",
+  "traefik.http.routers.gotify.rule=Host(`gotify.korhonen.cc`)",
+  "traefik.http.routers.gotify.service=gotify",
+  "traefik.docker.network=proxy",
+  "traefik.http.services.gotify.loadbalancer.server.port=80",
+]
+
+[networks]
+
+[networks.homeautomation]
+external = false
+
+[networks.postgres]
+external = true
+
+[networks.proxy]
+external = true

@@ -1,0 +1,38 @@
+[services]
+
+[services.jellyfin]
+image = "jellyfin/jellyfin:10.8.0-alpha5"
+container_name = "jellyfin"
+environment = ["TZ=Europe/Helsinki"]
+ports = ["8096:8096"]
+networks = ["proxy", "authentik"]
+restart = "unless-stopped"
+volumes = [
+  "/docker/jellyfin/config:/config",
+  "/docker/jellyfin/cache:/cache",
+  "/mnt/Storage/Media:/media",
+  "/etc/localtime:/etc/localtime:ro",
+]
+devices = [
+  "/dev/dri/renderD128:/dev/dri/renderD128",
+  "/dev/dri/card0:/dev/dri/card0",
+]
+labels = [
+  "traefik.enable=true",
+  "traefik.http.routers.jellyfin-redirect.entrypoints=http",
+  "traefik.http.routers.jellyfin-redirect.rule=Host(`jellyfin.korhonen.cc`)",
+  "traefik.http.routers.jellyfin-redirect.middlewares=http2https@file",
+  "traefik.http.routers.jellyfin.entrypoints=https",
+  "traefik.http.routers.jellyfin.rule=Host(`jellyfin.korhonen.cc`)",
+  "traefik.http.routers.jellyfin.service=jellyfin",
+  "traefik.docker.network=proxy",
+  "traefik.http.services.jellyfin.loadbalancer.server.port=8096",
+]
+
+[networks]
+
+[networks.proxy]
+external = true
+
+[networks.authentik]
+external = true

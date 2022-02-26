@@ -1,0 +1,29 @@
+[services]
+
+[services.gitea]
+container_name = "gitea"
+image = "gitea/gitea:1"
+environment = ["TZ=Europe/Helsinki", "USER_UID=1000", "USER_GID=1000"]
+restart = "unless-stopped"
+networks = ["postgres", "proxy"]
+ports = ["3000:3000", "22:22"]
+volumes = ["/docker/gitea:/data", "/etc/localtime:/etc/localtime:ro"]
+labels = [
+  "traefik.enable=true",
+  "traefik.http.routers.gitea-redirect.entrypoints=http",
+  "traefik.http.routers.gitea-redirect.rule=Host(`git.korhonen.cc`)",
+  "traefik.http.routers.gitea-redirect.middlewares=http2https@file",
+  "traefik.http.routers.gitea.entrypoints=https",
+  "traefik.http.routers.gitea.rule=Host(`git.korhonen.cc`)",
+  "traefik.http.routers.gitea.service=gitea",
+  "traefik.docker.network=proxy",
+  "traefik.http.services.gitea.loadbalancer.server.port=3000",
+]
+
+[networks]
+
+[networks.postgres]
+external = true
+
+[networks.proxy]
+external = true

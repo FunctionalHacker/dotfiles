@@ -1,0 +1,52 @@
+[services]
+
+[services.traefik]
+image = "traefik:latest"
+container_name = "traefik"
+restart = "unless-stopped"
+ports = ["80:80", "443:443/tcp", "443:443/udp"]
+environment = ["TZ=Europe/Helsinki"]
+security_opt = ["no-new-privileges:true"]
+networks = ["proxy"]
+volumes = [
+  "/etc/localtime:/etc/localtime:ro",
+  "/var/run/docker.sock:/var/run/docker.sock:ro",
+  "/docker/traefik/traefik/traefik.toml:/traefik.toml:ro",
+  "/docker/traefik/traefik/dynamic.toml:/dynamic.toml:ro",
+  "/docker/traefik/traefik/dashboard-users:/dashboard-users:ro",
+  "/docker/traefik/traefik/acme.json:/acme.json",
+  "/docker/traefik/traefik/log:/var/log",
+]
+labels = [
+  "traefik.enable=true",
+  "traefik.http.routers.redirect.entrypoints=http",
+  "traefik.http.routers.redirect.rule=Host(`traefik.korhonen.cc`)",
+  "traefik.http.routers.redirect.middlewares=http2https@file",
+  "traefik.http.routers.dashboard.entrypoints=https",
+  "traefik.http.routers.dashboard.rule=Host(`traefik.korhonen.cc`)",
+  "traefik.http.middlewares.dashboard-auth.basicauth.usersfile=/dashboard-users",
+  "traefik.http.routers.dashboard.middlewares=dashboard-auth",
+  "traefik.http.routers.dashboard.service=api@internal",
+  "traefik.docker.network=proxy",
+]
+
+[services.fail2ban]
+image = "crazymax/fail2ban:latest"
+container_name = "fail2ban"
+restart = "unless-stopped"
+network_mode = "host"
+cap_add = ["NET_ADMIN", "NET_RAW"]
+environment = ["TZ=Europe/Helsinki"]
+volumes = [
+  "/etc/localtime:/etc/localtime:ro",
+  "/docker/traefik/traefik/log:/var/log/traefik:ro",
+  "/docker/traefik/fail2ban:/data",
+  "/docker/gitea/gitea/log/gitea.log:/var/log/gitea:ro",
+  "/docker/homeautomation/home-assistant/home-assistant.log:/var/log/hass",
+  "/mnt/Storage/Nextcloud/nextcloud.log:/var/log/nextcloud:ro",
+]
+
+[networks]
+
+[networks.proxy]
+external = true

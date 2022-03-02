@@ -22,8 +22,5 @@ MapKey('n', '<C-J>', '<C-W><C-J>')
 MapKey('n', '<C-K>', '<C-W><C-K>')
 MapKey('n', '<C-L>', '<C-W><C-L>')
 
--- FZF
-MapKey('n', '<C-f>', "<cmd>lua require('fzf-lua').files()<CR>")
-
 -- Run Neoformat
 MapKey('n', '<M-f>', '<cmd>Neoformat<CR>')

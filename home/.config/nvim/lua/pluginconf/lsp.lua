@@ -3,7 +3,6 @@ local lsp_installer = require("nvim-lsp-installer")
 local M = {}
 
 M.lsp_map_keys = function(server, bufnr)
-    print("Lsp_map_keys()")
     local function map_key(...)
         -- Map to buffer if buffer number is supplied,
         -- globally otherwise
@@ -80,7 +79,7 @@ lsp_installer.on_server_ready(function(server)
         }
     end
 
-    opts.on_attach = Lsp_map_keys
+    opts.on_attach = M.lsp_map_keys
     opts.capabilities = capabilities
     server:setup(opts)
 end)

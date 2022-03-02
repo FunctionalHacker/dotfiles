@@ -80,28 +80,6 @@ labels = [
   "traefik.http.services.node-red.loadbalancer.server.port=1880",
 ]
 
-[services.gotify]
-image = "gotify/server"
-container_name = "gotify"
-volumes = ["/docker/homeautomation/gotify:/app/data"]
-environment = [
-  "GOTIFY_DATABASE_DIALECT=postgres",
-  "GOTIFY_DATABASE_CONNECTION=\"host=postgres port=5432 user=gotify dbname=gotify password=${GOTIFY_PGPASS} sslmode=disable\"",
-]
-networks = ["proxy", "postgres"]
-restart = "unless-stopped"
-labels = [
-  "traefik.enable=true",
-  "traefik.http.routers.gotify-redirect.entrypoints=http",
-  "traefik.http.routers.gotify-redirect.rule=Host(`gotify.korhonen.cc`)",
-  "traefik.http.routers.gotify-redirect.middlewares=http2https@file",
-  "traefik.http.routers.gotify.entrypoints=https",
-  "traefik.http.routers.gotify.rule=Host(`gotify.korhonen.cc`)",
-  "traefik.http.routers.gotify.service=gotify",
-  "traefik.docker.network=proxy",
-  "traefik.http.services.gotify.loadbalancer.server.port=80",
-]
-
 [networks]
 
 [networks.homeautomation]

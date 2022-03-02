@@ -1,47 +1,45 @@
 local lsp_installer = require("nvim-lsp-installer")
 
-local buf_map_keys = function(server_name, bufnr)
-    local function buf_set_keymap(...)
-        vim.api.nvim_buf_set_keymap(bufnr, ...)
+Lsp_map_keys = function(server, bufnr)
+    print("Lsp_map_keys()")
+    local function map_key(...)
+        -- Map to buffer if buffer number is supplied,
+        -- globally otherwise
+        if bufnr == nil then
+            vim.api.nvim_set_keymap(...)
+        else
+            vim.api.nvim_buf_set_keymap(bufnr, ...)
+        end
     end
 
     local keymapOpts = {noremap = true, silent = true}
-    buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>',
-                   keymapOpts)
-    buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>',
-                   keymapOpts)
-    buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', keymapOpts)
-    buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>',
-                   keymapOpts)
-    buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>',
-                   keymapOpts)
-    buf_set_keymap('n', '<space>wa',
-                   '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', keymapOpts)
-    buf_set_keymap('n', '<space>wr',
-                   '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>',
-                   keymapOpts)
-    buf_set_keymap('n', '<space>wl',
-                   '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>',
-                   keymapOpts)
-    buf_set_keymap('n', '<space>D',
-                   '<cmd>lua vim.lsp.buf.type_definition()<CR>', keymapOpts)
-    buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>',
-                   keymapOpts)
-    buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>',
-                   keymapOpts)
-    buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>',
-                   keymapOpts)
-    buf_set_keymap('n', '<space>e',
-                   '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>',
-                   keymapOpts)
-    buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>',
-                   keymapOpts)
-    buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>',
-                   keymapOpts)
-    buf_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.set_loclist()<CR>',
-                   keymapOpts)
-    buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>',
-                   keymapOpts)
+    map_key('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', keymapOpts)
+    map_key('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', keymapOpts)
+    map_key('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', keymapOpts)
+    map_key('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', keymapOpts)
+    map_key('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>',
+            keymapOpts)
+    map_key('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>',
+            keymapOpts)
+    map_key('n', '<space>wr',
+            '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', keymapOpts)
+    map_key('n', '<space>wl',
+            '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>',
+            keymapOpts)
+    map_key('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>',
+            keymapOpts)
+    map_key('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', keymapOpts)
+    map_key('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>',
+            keymapOpts)
+    map_key('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', keymapOpts)
+    map_key('n', '<space>e',
+            '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>',
+            keymapOpts)
+    map_key('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', keymapOpts)
+    map_key('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', keymapOpts)
+    map_key('n', '<space>q', '<cmd>lua vim.diagnostic.set_loclist()<CR>',
+            keymapOpts)
+    map_key('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', keymapOpts)
 end
 
 -- Add additional capabilities supported by nvim-cmp
@@ -80,7 +78,7 @@ lsp_installer.on_server_ready(function(server)
         }
     end
 
-    opts.on_attach = buf_map_keys
+    opts.on_attach = Lsp_map_keys
     opts.capabilities = capabilities
     server:setup(opts)
 end)

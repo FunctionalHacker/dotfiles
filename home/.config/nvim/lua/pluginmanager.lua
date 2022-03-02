@@ -46,11 +46,12 @@ require('packer').startup(function()
     -- Tree explorer
     use {'kyazdani42/nvim-tree.lua', requires = 'kyazdani42/nvim-web-devicons'}
 
-	-- FZF FTW
-	use { 'ibhagwan/fzf-lua',
-		-- optional for icon support
-		requires = { 'kyazdani42/nvim-web-devicons' }
-	}
+    -- Telescope and fzf extension for it
+    use {
+        'nvim-telescope/telescope.nvim',
+        requires = {{'nvim-lua/plenary.nvim'}}
+    }
+    use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}
 
     -- Do stuff as sudo
     use 'lambdalisue/suda.vim'
@@ -64,8 +65,8 @@ require('packer').startup(function()
     -- Install LSP server executables
     use 'williamboman/nvim-lsp-installer'
 
-	-- Additional LSP features for Java
-	use 'mfussenegger/nvim-jdtls'
+    -- Additional LSP features for Java
+    use 'mfussenegger/nvim-jdtls'
 
     -- Completion
     use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
@@ -73,7 +74,7 @@ require('packer').startup(function()
     use 'hrsh7th/cmp-path' -- Path source for nvim-cmp
     use 'saadparwaiz1/cmp_luasnip' -- Snippets source for nvim-cmp
     use 'L3MON4D3/LuaSnip' -- Snippets plugin
-	use "rafamadriz/friendly-snippets" -- Snippets collection
+    use "rafamadriz/friendly-snippets" -- Snippets collection
 
     -- treesitter syntax highlight
     use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}

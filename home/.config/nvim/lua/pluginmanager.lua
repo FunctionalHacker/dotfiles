@@ -46,12 +46,13 @@ require('packer').startup(function()
     -- Tree explorer
     use {'kyazdani42/nvim-tree.lua', requires = 'kyazdani42/nvim-web-devicons'}
 
-    -- Telescope and fzf extension for it
+    -- Telescope
     use {
         'nvim-telescope/telescope.nvim',
         requires = {{'nvim-lua/plenary.nvim'}}
     }
-    use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}
+    use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'} -- Use fzf for fuzzy finder
+    use {'nvim-telescope/telescope-ui-select.nvim'} -- Replace vim built in select with telescope
 
     -- Do stuff as sudo
     use 'lambdalisue/suda.vim'

@@ -137,22 +137,19 @@ passync() { pass git pull && pass git push && updatesecrets }
 
 update() {
 	all() {
-		paru
-		plugins
 		{%@@ if profile == "Moria" @@%}
+		paru -Pw
 		repo
 		docker-update
 		docker system prune --volumes
+		{%@@ else @@%}
+		paru
 		{%@@ endif @@%}
+		plugins
 	}
 
 	repo() {
 		aur sync -Su --margs --noconfirm
-		update-firefox
-	}
-
-	update-firefox() {
-		aur sync -S --rebuild firefox-nightly --margs --noconfirm 
 	}
 
 	plugins() {
@@ -187,9 +184,6 @@ update() {
 			;;
 		repo)
 			repo
-			;;
-		firefox)
-			firefox
 			;;
 		*)
 			paru

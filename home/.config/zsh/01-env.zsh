@@ -39,10 +39,10 @@ export FZF_COMPLETION_TRIGGER='**'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_T_OPTS='--preview "bat --color=always --style=numbers --line-range=:500 {}"'
 _fzf_compgen_dir() {
-	fd -Ht d
+    fd -Ht d
 }
 _fzf_compgen_path() {
-	fd -Ht f
+    fd -Ht f
 }
 
 # dotfile repository location
@@ -61,9 +61,9 @@ export GPG_TTY="$(tty)"
 
 # set SSH_AUTH_SOCK if not logging in over SSH
 if [ "$SSH_CONNECTION" = "" ]; then
-	export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-	#gpgconf --launch gpg-agent
-	gpg-connect-agent updatestartuptty /bye >/dev/null
+    export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+    #gpgconf --launch gpg-agent
+    gpg-connect-agent updatestartuptty /bye >/dev/null
 fi
 
 # Enable grc colorization of supported commands

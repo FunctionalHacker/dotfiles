@@ -1,7 +1,7 @@
 # install zinit if it's not already installed
 if [ ! -f ~/.zinit/bin/zinit.zsh ]; then
-	mkdir ~/.zinit
-	git clone https://github.com/zdharma-continuum/zinit.git ~/.zinit/bin
+    mkdir ~/.zinit
+    git clone https://github.com/zdharma-continuum/zinit.git ~/.zinit/bin
 fi
 
 source ~/.zinit/bin/zinit.zsh

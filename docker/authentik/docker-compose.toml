@@ -8,7 +8,7 @@ networks = ["authentik"]
 
 [services.authentik]
 container_name = "authentik"
-image = "${AUTHENTIK_IMAGE:-goauthentik.io/server}:${AUTHENTIK_TAG:-2021.10.4}"
+image = "goauthentik.io/server:latest"
 restart = "unless-stopped"
 command = "server"
 volumes = [
@@ -18,7 +18,6 @@ volumes = [
 ]
 env_file = [".env"]
 networks = ["authentik", "postgres", "proxy"]
-ports = ["9000:9000"]
 labels = [
   "traefik.enable=true",
   "traefik.http.routers.authentik-redirect.entrypoints=http",

@@ -113,6 +113,9 @@ dotfiles:
   f_loader.conf:
     src: boot/loader/loader.conf
     dst: /boot/loader/loader.conf
+  f_timesyncd.conf:
+    src: etc/systemd/timesyncd.conf
+    dst: /etc/systemd/timesyncd.conf
 profiles:
   Network:
     dotfiles:
@@ -150,6 +153,7 @@ profiles:
     - d_mkinitcpio.d
     - f_cmdline
     - f_loader.conf
+    - f_timesyncd.conf
     include:
     - Locale
     - Pacman

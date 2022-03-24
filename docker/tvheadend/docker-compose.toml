@@ -16,13 +16,14 @@ restart = "unless-stopped"
 networks = ["proxy"]
 labels = [
   "traefik.enable=true",
+  "traefik.docker.network=proxy",
   "traefik.http.routers.tvheadend-redirect.entrypoints=http",
   "traefik.http.routers.tvheadend-redirect.rule=Host(`tvheadend.korhonen.cc`)",
   "traefik.http.routers.tvheadend-redirect.middlewares=http2https@file",
   "traefik.http.routers.tvheadend.entrypoints=https",
+  "traefik.http.routers.tvheadend.middlewares=secHeaders@file",
   "traefik.http.routers.tvheadend.rule=Host(`tvheadend.korhonen.cc`)",
   "traefik.http.routers.tvheadend.service=tvheadend",
-  "traefik.docker.network=proxy",
   "traefik.http.services.tvheadend.loadbalancer.server.port=9981",
 ]
 

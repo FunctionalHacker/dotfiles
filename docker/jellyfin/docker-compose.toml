@@ -19,13 +19,14 @@ devices = [
 ]
 labels = [
   "traefik.enable=true",
+  "traefik.docker.network=proxy",
   "traefik.http.routers.jellyfin-redirect.entrypoints=http",
   "traefik.http.routers.jellyfin-redirect.rule=Host(`jellyfin.korhonen.cc`)",
   "traefik.http.routers.jellyfin-redirect.middlewares=http2https@file",
   "traefik.http.routers.jellyfin.entrypoints=https",
+  "traefik.http.routers.gitea.middlewares=secHeaders@file",
   "traefik.http.routers.jellyfin.rule=Host(`jellyfin.korhonen.cc`)",
   "traefik.http.routers.jellyfin.service=jellyfin",
-  "traefik.docker.network=proxy",
   "traefik.http.services.jellyfin.loadbalancer.server.port=8096",
 ]
 

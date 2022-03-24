@@ -19,15 +19,16 @@ volumes = [
 ]
 labels = [
   "traefik.enable=true",
+  "traefik.docker.network=proxy",
   "traefik.http.routers.redirect.entrypoints=http",
   "traefik.http.routers.redirect.rule=Host(`traefik.korhonen.cc`)",
   "traefik.http.routers.redirect.middlewares=http2https@file",
   "traefik.http.routers.dashboard.entrypoints=https",
+  "traefik.http.routers.dashboard.middlewares=secHeaders@file",
   "traefik.http.routers.dashboard.rule=Host(`traefik.korhonen.cc`)",
   "traefik.http.middlewares.dashboard-auth.basicauth.usersfile=/dashboard-users",
   "traefik.http.routers.dashboard.middlewares=dashboard-auth",
   "traefik.http.routers.dashboard.service=api@internal",
-  "traefik.docker.network=proxy",
 ]
 
 [services.fail2ban]

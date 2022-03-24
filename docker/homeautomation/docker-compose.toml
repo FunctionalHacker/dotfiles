@@ -15,13 +15,14 @@ ports = ["8123:8123", "8300:8300"]
 depends_on = ["mosquitto"]
 labels = [
   "traefik.enable=true",
+  "traefik.docker.network=proxy",
   "traefik.http.routers.home-assistant-redirect.entrypoints=http",
   "traefik.http.routers.home-assistant-redirect.rule=Host(`home.korhonen.cc`)",
   "traefik.http.routers.home-assistant-redirect.middlewares=http2https@file",
   "traefik.http.routers.home-assistant.entrypoints=https",
+  "traefik.http.routers.home-assistant.middlewares=secHeaders@file",
   "traefik.http.routers.home-assistant.rule=Host(`home.korhonen.cc`)",
   "traefik.http.routers.home-assistant.service=home-assistant",
-  "traefik.docker.network=proxy",
   "traefik.http.services.home-assistant.loadbalancer.server.port=8123",
 ]
 
@@ -70,13 +71,14 @@ restart = "unless-stopped"
 depends_on = ["home-assistant"]
 labels = [
   "traefik.enable=true",
+  "traefik.docker.network=proxy",
   "traefik.http.routers.node-red-redirect.entrypoints=http",
   "traefik.http.routers.node-red-redirect.rule=Host(`node.korhonen.cc`)",
   "traefik.http.routers.node-red-redirect.middlewares=http2https@file",
   "traefik.http.routers.node-red.entrypoints=https",
   "traefik.http.routers.node-red.rule=Host(`node.korhonen.cc`)",
+  "traefik.http.routers.node-red.middlewares=secHeaders@file",
   "traefik.http.routers.node-red.service=node-red",
-  "traefik.docker.network=proxy",
   "traefik.http.services.node-red.loadbalancer.server.port=1880",
 ]
 

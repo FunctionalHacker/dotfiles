@@ -13,6 +13,7 @@ ease deployment of my dotfiles.
 
 This repository lives at https://git.korhonen.cc/FunctionalHacker/dotfiles[My git server],
 but it is also mirrored to:
+
 * https://gitlab.com/FunctionalHacker/dotfiles[GitLab]
 * https://github.com/FunctionalHacker/dotfiles[GitHub]
 * https://bitbucket.org/FunctionalHacker/dotfiles[Bitbucket]

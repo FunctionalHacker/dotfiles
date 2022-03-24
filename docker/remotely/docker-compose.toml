@@ -7,13 +7,14 @@ networks = ["proxy"]
 volumes = ["/docker/remotely:/remotely-data"]
 labels = [
   "traefik.enable=true",
+  "traefik.docker.network=proxy",
   "traefik.http.routers.remotely-redirect.entrypoints=http",
   "traefik.http.routers.remotely-redirect.rule=Host(`remotely.korhonen.cc`)",
   "traefik.http.routers.remotely-redirect.middlewares=http2https@file",
   "traefik.http.routers.remotely.entrypoints=https",
+  "traefik.http.routers.remotely.middlewares=secHeaders@file,compress@file",
   "traefik.http.routers.remotely.rule=Host(`remotely.korhonen.cc`)",
   "traefik.http.routers.remotely.service=remotely",
-  "traefik.docker.network=proxy",
   "traefik.http.services.remotely.loadbalancer.server.port=5000",
 ]
 

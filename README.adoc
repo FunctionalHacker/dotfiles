@@ -1,6 +1,6 @@
 == FunctionalHacker’s dotfiles
 
-image::https://i.imgur.com/lz1Q4Zz.png?raw=true%22[screenshot of my
+image:https://i.imgur.com/lz1Q4Zz.png?raw=true%22[screenshot of my
 setup]
 
 My personal dotfiles for my workstations, mostly for easy access for

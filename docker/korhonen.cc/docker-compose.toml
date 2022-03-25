@@ -4,7 +4,7 @@
 image = "nginx"
 container_name = "korhonen.cc"
 volumes = [
-  "/docker/korhonen.cc:/korhonen.cc:ro",
+  "/var/www/korhonen.cc:/korhonen.cc:ro",
   "./nginx.conf:/etc/nginx/conf.d/default.conf",
 ]
 networks = ["proxy"]

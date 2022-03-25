@@ -21,6 +21,58 @@ labels = [
   "traefik.http.services.gitea.loadbalancer.server.port=3000",
 ]
 
+[services.drone]
+image = "drone/drone:2"
+container_name = "drone"
+volumes = ["/docker/drone:/data"]
+environment = [
+  "DRONE_GITEA_SERVER=https://git.korhonen.cc",
+  "DRONE_GITEA_CLIENT_ID=${GITEA_CLIENT_ID}",
+  "DRONE_GITEA_CLIENT_SECRET=${GITEA_CLIENT_SECRET}",
+  "DRONE_RPC_SECRET=${DRONE_RPC_SECRET}",
+  "DRONE_SERVER_HOST=drone.korhonen.cc",
+  "DRONE_SERVER_PROTO=https",
+  "DRONE_USER_CREATE=username:FunctionalHacker,admin:true",
+]
+env_file = [".env"]
+networks = ["proxy"]
+labels = [
+  "traefik.enable=true",
+  "traefik.docker.network=proxy",
+  "traefik.http.routers.drone-redirect.entrypoints=http",
+  "traefik.http.routers.drone-redirect.rule=Host(`drone.korhonen.cc`)",
+  "traefik.http.routers.drone-redirect.middlewares=http2https@file",
+  "traefik.http.routers.drone.entrypoints=https",
+  "traefik.http.routers.drone.middlewares=secHeaders@file,compress@file",
+  "traefik.http.routers.drone.rule=Host(`drone.korhonen.cc`)",
+  "traefik.http.routers.drone.service=drone",
+  "traefik.http.services.drone.loadbalancer.server.port=80",
+]
+
+[services.drone-runner]
+image = "drone/drone-runner-docker:1"
+container_name = "drone-runner"
+volumes = ["/var/run/docker.sock:/var/run/docker.sock"]
+environment = [
+  "DRONE_RPC_HOST=drone.korhonen.cc",
+  "DRONE_RPC_PROTO=https",
+  "DRONE_RPC_SECRET=${DRONE_RPC_SECRET}",
+]
+env_file = [".env"]
+networks = ["proxy"]
+labels = [
+  "traefik.enable=true",
+  "traefik.docker.network=proxy",
+  "traefik.http.routers.drone-runner-redirect.entrypoints=http",
+  "traefik.http.routers.drone-runner-redirect.rule=Host(`runner.drone.korhonen.cc`)",
+  "traefik.http.routers.drone-runner-redirect.middlewares=http2https@file",
+  "traefik.http.routers.drone-runner.entrypoints=https",
+  "traefik.http.routers.drone-runner.middlewares=secHeaders@file,compress@file",
+  "traefik.http.routers.drone-runner.rule=Host(`runner.drone.korhonen.cc`)",
+  "traefik.http.routers.drone-runner.service=drone-runner",
+  "traefik.http.services.drone-runner.loadbalancer.server.port=3000",
+]
+
 [networks]
 
 [networks.postgres]

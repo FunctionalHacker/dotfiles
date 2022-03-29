@@ -210,6 +210,9 @@ alias archiso='curl "http://mirror.rackspace.com/archlinux/iso/$(date +%Y.%m).01
 cgpgtar() { tar cf - --zstd $1 | gpg -e -z 0 > $1.tar.zst.gpg }
 xgpgtar() { gpg -d $1 | tar x --zstd }
 
+# Switch to different yubikey
+gpg-learn-card='gpg-connect-agent "scd serialno" "learn --force" /bye'
+
 btw, () {
 	echo "                 I use"
 	echo "[38;2;23;147;209m                   ▄

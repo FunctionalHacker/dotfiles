@@ -211,7 +211,7 @@ cgpgtar() { tar cf - --zstd $1 | gpg -e -z 0 > $1.tar.zst.gpg }
 xgpgtar() { gpg -d $1 | tar x --zstd }
 
 # Switch to different yubikey
-gpg-learn-card='gpg-connect-agent "scd serialno" "learn --force" /bye'
+alias switch-yubikey='gpg-connect-agent "scd serialno" "learn --force" /bye'
 
 btw, () {
 	echo "                 I use"

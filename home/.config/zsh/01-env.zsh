@@ -55,6 +55,7 @@ export GIT_PAGER="$EDITOR -R +\"lua require 'pager'\""
 export PARU_PAGER="$PAGER -c 'set ft=PKGBUILD'"
 export AUR_PAGER=$PAGER
 export MANPAGER="$EDITOR +\"lua require 'pager'\" +Man!"
+export SYSTEMD_EDITOR=$EDITOR
 
 # Use GPG for SSH authentication
 export GPG_TTY="$(tty)"
@@ -70,4 +71,4 @@ fi
 [[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh
 
 # Disable dotdrop submodule auto update
-DOTDROP_AUTOUPDATE=no
+export DOTDROP_AUTOUPDATE=no

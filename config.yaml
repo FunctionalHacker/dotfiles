@@ -257,6 +257,8 @@ profiles:
     include:
     - terminal
     - pacman
+    dotfiles:
+    - f_zprofile
   Gondor:
     include:
     - terminal

@@ -12,6 +12,7 @@ volumes = [
 restart = "unless-stopped"
 networks = ["homeautomation", "postgres", "proxy"]
 ports = ["8123:8123", "8300:8300"]
+extra_hosts = ["host.docker.internal:host-gateway"]
 depends_on = ["mosquitto"]
 labels = [
   "traefik.enable=true",

@@ -108,6 +108,9 @@ require('packer').startup(function()
         run = function() vim.fn['firenvim#install'](0) end
     }
 
+	-- Vim <3 Asciidoctor
+	use 'habamax/vim-asciidoctor'
+
 end)
 
 -- Install plugins if packer was not installed

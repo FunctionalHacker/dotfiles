@@ -163,7 +163,7 @@ update() {
 		for dir in $HOME/git/dotfiles/docker/*; do
 			cd $dir
 			if [[ -f "DISABLED" ]]; then
-				echo "$dir stack is disabled, skipping..."
+				echo "$(basename $dir) stack is disabled, skipping..."
 			else
 				dct pull
 				dct up -d

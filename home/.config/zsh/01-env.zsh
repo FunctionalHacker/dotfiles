@@ -56,6 +56,7 @@ export PARU_PAGER="$PAGER -c 'set ft=PKGBUILD'"
 export AUR_PAGER=$PAGER
 export MANPAGER="$EDITOR +\"lua require 'pager'\" +Man!"
 export SYSTEMD_EDITOR=$EDITOR
+export SYSTEMD_PAGER=less
 
 # Use GPG for SSH authentication
 export GPG_TTY="$(tty)"

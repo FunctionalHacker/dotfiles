@@ -34,6 +34,7 @@ require('packer').startup(function()
     -- Tabline/bufferline
     use {
         'akinsho/nvim-bufferline.lua',
+        tag = "*",
         requires = 'kyazdani42/nvim-web-devicons'
     }
 
@@ -108,8 +109,8 @@ require('packer').startup(function()
         run = function() vim.fn['firenvim#install'](0) end
     }
 
-	-- Vim <3 Asciidoctor
-	use 'habamax/vim-asciidoctor'
+    -- Vim <3 Asciidoctor
+    use 'habamax/vim-asciidoctor'
 
 end)
 

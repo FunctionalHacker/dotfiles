@@ -137,13 +137,11 @@ passync() { pass git pull && pass git push && updatesecrets }
 
 update() {
 	all() {
+		paru
 		{%@@ if profile == "Moria" @@%}
-		paru -Pw
 		repo
 		docker-update
 		docker system prune --volumes
-		{%@@ else @@%}
-		paru
 		{%@@ endif @@%}
 		plugins
 	}
@@ -167,8 +165,8 @@ update() {
 			else
 				dct pull
 				dct up -d
-				cd ..
 			fi
+			cd ..
 		done
 	}
 

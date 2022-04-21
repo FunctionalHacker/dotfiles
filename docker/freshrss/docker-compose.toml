@@ -29,6 +29,7 @@ image = "schklom/bibliogram"
 container_name = "bibliogram"
 restart = "unless-stopped"
 networks = ["freshrss", "proxy"]
+volumes = ["/docker/freshrss/bibliogram/config.js:/app/config.js:ro"]
 labels = [
   "traefik.enable=true",
   "traefik.docker.network=proxy",

@@ -5,6 +5,10 @@ alias gs='git status'
 alias gpull='git pull'
 alias gpush='git push'
 
+# Rename grc alias from forgit since it
+# collides with the grc colorizer
+forgit_revert_commit=fgrc
+
 # Modern replacement for ls
 alias ls='exa'
 

@@ -38,6 +38,7 @@
 
 [alias]
 	mergetest = !git switch test && git pull && git merge --no-ff -m \"Merge $1 features to test\" $1
+	upstream = !git push -u origin HEAD
 
 [color]
 	pager = no

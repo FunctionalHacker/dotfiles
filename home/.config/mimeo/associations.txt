@@ -17,7 +17,10 @@ mpvqueue %U
   ^https?://(?:[a-z0-9\-]+\.)+[a-z]{2,6}(?:/[^/#?]+)+\.(?:mp4|mkv|webm|avi|3gp|gif|gifv)
 
 mpvqueue %U
-  ^https://www.facebook.com/watch/?v=.*
+  ^https?://www.facebook.com/watch/?v=.*
+
+mpvqueue %U
+  ^https?://www.facebook.com/.*/videos/.*
 
 mpvqueue %U
   ^https://fb.watch/.*
@@ -31,12 +34,6 @@ mpvqueue %U
 mpvqueue %U
   ^https?://v.redd.it/.*
 
-imgurviewer %U
-  ^https?://(www.)?imgur.com/a/
-
-imgurviewer %U
-  ^https?://(www.)?imgur.com/gallery/
-
 imageviewer %U
   ^https?://(?:[a-z0-9\-]+\.)+[a-z]{2,6}(?:/[^/#?]+)+\.(?:jpg|jpeg|png|svg)
 
@@ -49,5 +46,5 @@ alacritty -e rtv "%U"
 alacritty -e rtv "%U"
   ^https?://redd.it.*
 
-mpv "$(yle-dl --showurl %U)"
+mpvqueue $(yle-dl --showurl %U) # TODO Command substition not working in mimeo
   ^https?://areena.yle.fi.*

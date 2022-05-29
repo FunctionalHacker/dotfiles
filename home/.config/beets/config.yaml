@@ -1,5 +1,5 @@
-directory: ~/music
-library: ~/music/beets.db
+directory: ~/Music
+library: ~/Music/beets.db
 plugins: 
 - acousticbrainz
 - check
@@ -38,7 +38,7 @@ replaygain:
   backend: gstreamer
   auto: yes
 musicbrainz:
-  user: ReekyMarko
+  user: FunctionalHacker
   pass: "{{@@ env['PASS_MUSICBRAINZ'] @@}}"
 mbcollection:
   auto: "yes"

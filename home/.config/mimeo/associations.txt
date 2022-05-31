@@ -34,6 +34,9 @@ mpvqueue %U
 mpvqueue %U
   ^https?://v.redd.it/.*
 
+mpvqueue %U
+  ^https?://areena.yle.fi.*
+
 imageviewer %U
   ^https?://(?:[a-z0-9\-]+\.)+[a-z]{2,6}(?:/[^/#?]+)+\.(?:jpg|jpeg|png|svg)
 
@@ -45,6 +48,3 @@ alacritty -e rtv "%U"
 
 alacritty -e rtv "%U"
   ^https?://redd.it.*
-
-mpvqueue $(yle-dl --showurl %U) # TODO Command substition not working in mimeo
-  ^https?://areena.yle.fi.*

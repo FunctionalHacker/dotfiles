@@ -7,7 +7,7 @@ restart = "unless-stopped"
 networks = ["nextcloud", "proxy"]
 volumes = [
   "./nginx.conf:/etc/nginx/nginx.conf",
-  "/docker/nextcloud:/var/www/html:ro",
+  "/docker/nextcloud:/var/www/html:z",
 ]
 depends_on = ["nextcloud"]
 labels = [
@@ -18,7 +18,7 @@ labels = [
   "traefik.http.routers.nextcloud.entrypoints=https",
   "traefik.http.routers.nextcloud.rule=Host(`cloud.korhonen.cc`)",
   "traefik.http.routers.nextcloud.service=nextcloud",
-  "traefik.http.routers.nextcloud.middlewares=secHeaders@file,nextcloud-dav@file,compress@file",
+  "traefik.http.routers.nextcloud.middlewares=secHeaders@file,nextcloud-dav@file,nextcloud-webfinger@file,compress@file",
   "traefik.docker.network=proxy",
   "traefik.http.services.nextcloud.loadbalancer.server.port=80",
 ]
@@ -30,7 +30,7 @@ restart = "unless-stopped"
 user = "33:33"
 networks = ["nextcloud", "postgres", "proxy"]
 volumes = [
-  "/docker/nextcloud:/var/www/html",
+  "/docker/nextcloud:/var/www/html:z",
   "/mnt/Storage/Nextcloud:/var/www/html/data",
   "/mnt/Storage/Syncthing:/Syncthing",
   "/mnt/Storage/Media/Music:/Music",

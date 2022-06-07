@@ -130,8 +130,8 @@ cpufreq() { watch -n 1 eval "cat /proc/cpuinfo | grep MHz" }
 
 # dotdrop
 updatesecrets() { bash $DOTREPO/secrets/secrets.sh; chmod 600 $DOTREPO/secrets/secrets }
-dotdrop() { source $DOTREPO/secrets/secrets && $DOTREPO/dotdrop.sh $@ }
-sdotdrop() { source $DOTREPO/secrets/secrets && sudo -E $DOTREPO/dotdrop.sh --cfg=$DOTREPO/config-root.yaml $@ }
+dotdrop() { source $DOTREPO/secrets/secrets && $DOTREPO/dotdrop.sh --cfg=$DOTREPO/config.toml $@ }
+sdotdrop() { source $DOTREPO/secrets/secrets && sudo -E $DOTREPO/dotdrop.sh --cfg=$DOTREPO/config-root.toml $@ }
 compdef _dotdrop-completion.zsh sdotdrop
 alias dotgit='git -C $DOTREPO'
 dotsync() { cd $DOTREPO && gpull && ga && gc && gpush && cd $OLDPWD }

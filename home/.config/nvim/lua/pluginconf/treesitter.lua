@@ -10,5 +10,5 @@ require'nvim-treesitter.configs'.setup {
     context_commentstring = {enable = true}
 }
 
-vim.wo.foldmethod = 'expr'
-vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
+--vim.wo.foldmethod = 'expr'
+--im.wo.foldexpr = 'nvim_treesitter#foldexpr()'

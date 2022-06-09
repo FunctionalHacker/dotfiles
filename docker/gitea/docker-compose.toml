@@ -1,8 +1,8 @@
 [services]
 
 [services.gitea]
+image = "functionalhacker/gitea-asciidoc"
 container_name = "gitea"
-build = "."
 environment = ["TZ=Europe/Helsinki", "USER_UID=1000", "USER_GID=1000"]
 restart = "unless-stopped"
 networks = ["postgres", "proxy"]

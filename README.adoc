@@ -20,5 +20,5 @@ but it is also mirrored to:
 * https://codeberg.org/FunctionalHacker/dotfiles[codeberg]
 
 If you have any ideas for improvements, questions or anything of this
-sort, you can open an issue or a pull request in either my git server
+sort, you can open an issue or a pull request at my git server
 (registrations open for anyone), or any of the mirrors.

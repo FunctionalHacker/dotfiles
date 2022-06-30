@@ -145,7 +145,7 @@ update() {
 		{%@@ if profile == "Moria" @@%}
 		repo
 		docker-update
-		docker system prune --volumes
+		docker system prune --volumes -a
 		{%@@ endif @@%}
 		plugins
 	}

@@ -305,7 +305,7 @@ include = ["base", "terminal", "email", "media", "sway", "pacman", "gpg"]
 dotfiles = ["f_paru.conf", "f_gitconfig", "f_foot.ini"]
 
 [profiles.Moria]
-include = ["terminal", "pacman"]
+include = ["terminal", "pacman", "media"]
 dotfiles = ["f_zprofile"]
 
 [profiles.Gondor]

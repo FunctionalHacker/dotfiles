@@ -48,10 +48,6 @@ o.splitright = true
 o.ignorecase = true
 o.smartcase = true
 
--- Enable filetype.lua
-g.do_filetype_lua = 1
-g.did_load_filetypes = 0
-
 -- Use mouse
 o.mouse = 'a'
 

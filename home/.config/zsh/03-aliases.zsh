@@ -145,7 +145,6 @@ update() {
 		{%@@ if profile == "Moria" @@%}
 		repo
 		docker-update
-		docker system prune --volumes -a
 		{%@@ endif @@%}
 		plugins
 	}
@@ -172,6 +171,7 @@ update() {
 			fi
 			cd ..
 		done
+		docker system prune -af --volumes
 	}
 
 	if [ $# -eq 0 ]; then

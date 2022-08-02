@@ -86,8 +86,8 @@ dst = "~/.config/bspwm/bspwmrc"
 src = ".config/bspwm/bspwmrc"
 
 [dotfiles.f_gitconfig]
-dst = "~/.gitconfig"
-src = ".gitconfig"
+dst = "~/.config/git/config"
+src = ".config/git/config"
 
 [dotfiles.f_libra_config]
 dst = "~/.config/libra/config.toml"

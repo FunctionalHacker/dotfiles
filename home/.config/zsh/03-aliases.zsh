@@ -154,15 +154,16 @@ update() {
 		plugins
 	}
 
-	repo() {
-		aur sync -Su --margs --noconfirm
-	}
-
 	plugins() {
 		nvim +PackerSync +TSUpdate
 		zinit self-update
 		zinit update -p
 		$HOME/.tmux/plugins/tpm/bin/update_plugins all
+	}
+
+	{%@@ if profile == "Moria" @@%}
+	repo() {
+		aur sync -Su --margs --noconfirm
 	}
 
 	docker-update() {
@@ -179,13 +180,12 @@ update() {
 		docker system prune -af --volumes
 	}
 
-	apt() {
+	{%@@ endif @@%}
+	{%@@ if profile == "mko-laptop" @@%}
+	apt-upd() {
 		sudo apt update && sudo apt full-upgrade -y && sudo apt autoremove -y && sudo apt autoclean -y
 	}
-
-	if [ $# -eq 0 ]; then
-		1=all
-	fi
+	{%@@ endif @@%}
 
 	case "$1" in
 		all)
@@ -204,17 +204,19 @@ update() {
 		{%@@ endif @@%}
 		{%@@ if profile == "mko-laptop" @@%}
 		apt)
-			apt
+			apt-upd
 			;;
 		{%@@ endif @@%}
 		*)
-			all
+		{%@@ if profile == "mko-laptop" @@%}
+			apt-upd
 			;;
+		{%@@ else @@%}
+			paru
+			;;
+		{%@@ endif @@%}
 	esac
 }
-
-# remove unneeded packages
-autoremove() { sudo pacman -Rns $(pacman -Qdtq) }
 
 # turn on usb tethering on my android phone
 tether() { adb shell su -c "service call connectivity 33 i32 1 s16 me" > /dev/null }

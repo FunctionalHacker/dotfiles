@@ -141,7 +141,12 @@ passync() { pass git pull && pass git push && updatesecrets }
 
 update() {
 	all() {
+		{%@@ if profile == "Moria" or profile == 'Mirkwood' @@%}
 		paru
+		{%@@ endif @@%}
+		{%@@ if profile == "mko-laptop" @@%}
+		apt
+		{%@@ endif @@%}
 		{%@@ if profile == "Moria" @@%}
 		repo
 		docker-update
@@ -174,8 +179,12 @@ update() {
 		docker system prune -af --volumes
 	}
 
+	apt() {
+		sudo apt update && sudo apt full-upgrade -y && sudo apt autoremove -y && sudo apt autoclean -y
+	}
+
 	if [ $# -eq 0 ]; then
-		1=base
+		1=all
 	fi
 
 	case "$1" in
@@ -185,14 +194,21 @@ update() {
 		plugins)
 			plugins
 			;;
+		{%@@ if profile == "Moria" @@%}
 		docker)
 			docker-update
 			;;
 		repo)
 			repo
 			;;
+		{%@@ endif @@%}
+		{%@@ if profile == "mko-laptop" @@%}
+		apt)
+			apt
+			;;
+		{%@@ endif @@%}
 		*)
-			paru
+			all
 			;;
 	esac
 }

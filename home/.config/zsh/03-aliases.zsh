@@ -155,7 +155,7 @@ update() {
 	}
 
 	plugins() {
-		nvim +PackerSync +TSUpdate
+		nvim -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 		zinit self-update
 		zinit update -p
 		$HOME/.tmux/plugins/tpm/bin/update_plugins all

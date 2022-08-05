@@ -79,7 +79,12 @@ require('packer').startup(function()
     use "rafamadriz/friendly-snippets" -- Snippets collection
 
     -- treesitter syntax highlight
-    use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
+    use {
+        'nvim-treesitter/nvim-treesitter',
+        run = function()
+            require('nvim-treesitter.install').update({with_sync = true})
+        end
+    }
 
     -- treesitter plugin for commentstring
     use 'JoosepAlviste/nvim-ts-context-commentstring'
@@ -112,8 +117,8 @@ require('packer').startup(function()
     -- Vim <3 Asciidoctor
     use 'habamax/vim-asciidoctor'
 
-	-- Modern filetype.vim replacement
-	use("nathom/filetype.nvim")
+    -- Modern filetype.vim replacement
+    use("nathom/filetype.nvim")
 
 end)
 

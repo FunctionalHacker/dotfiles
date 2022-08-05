@@ -1,5 +1,5 @@
 [actions]
-nvim-packer-sync = "nvim +PackerSync"
+nvim-packer-sync = "nvim -c 'autocmd User PackerComplete quitall' -c 'PackerSync'"
 
 [config]
 backup = true

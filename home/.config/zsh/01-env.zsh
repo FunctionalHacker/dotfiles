@@ -51,7 +51,7 @@ export DOTREPO="$HOME/git/dotfiles"
 # nvim ftw!
 export EDITOR=nvim
 export PAGER="$EDITOR -R +\"lua require 'pager'\""
-export GIT_PAGER="$EDITOR -R +\"lua require 'pager'\""
+export GIT_PAGER="$EDITOR -c 'set ft=git' -R +\"lua require 'pager'\""
 export PARU_PAGER="$PAGER -c 'set ft=PKGBUILD'"
 export AUR_PAGER=$EDITOR
 export MANPAGER="$EDITOR +\"lua require 'pager'\" +Man!"

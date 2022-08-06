@@ -102,9 +102,6 @@ clean() {
 alias startvpn='sudo systemctl start wg-quick@wg0.service'
 alias stopvpn='sudo systemctl stop wg-quick@wg0.service'
 
-# connect to metropolia vpn
-alias metropoliavpn='sudo openconnect -u markoak --passwd-on-stdin vpn.metropolia.fi'
-
 # read qrcode from selection
 qr() { grim -g "$(slurp -d)" - | zbarimg PNG:- }
 
@@ -117,21 +114,13 @@ cpick() { grim -g "$(slurp -p)" -t ppm - | convert - -format "%[pixel:p{0,0}]" t
 #iwctl aliases
 alias i='iwctl station wlan0'
 
-# change cpu power settings
-gpulow() { 
-	echo low | sudo tee /sys/class/drm/card0/device/power_dpm_force_performance_level
-}
-gpuauto() {
-	echo auto | sudo tee /sys/class/drm/card0/device/power_dpm_force_performance_level
-}
-
 # monitor cpu freq
 cpufreq() { watch -n 1 eval "cat /proc/cpuinfo | grep MHz" }
 
 # dotdrop
+dotdrop() { source $DOTREPO/secrets/secrets && $DOTREPO/dotdrop/dotdrop.sh --cfg=$DOTREPO/config.toml $@ }
+sdotdrop() { source $DOTREPO/secrets/secrets && sudo -E $DOTREPO/dotdrop/dotdrop.sh --cfg=$DOTREPO/config-root.toml $@ }
 updatesecrets() { bash $DOTREPO/secrets/secrets.sh; chmod 600 $DOTREPO/secrets/secrets }
-dotdrop() { source $DOTREPO/secrets/secrets && $DOTREPO/dotdrop.sh --cfg=$DOTREPO/config.toml $@ }
-sdotdrop() { source $DOTREPO/secrets/secrets && sudo -E $DOTREPO/dotdrop.sh --cfg=$DOTREPO/config-root.toml $@ }
 compdef _dotdrop-completion.zsh sdotdrop
 alias dotgit='git -C $DOTREPO'
 dotsync() { cd $DOTREPO && gpull && ga && gc && gpush && cd $OLDPWD }

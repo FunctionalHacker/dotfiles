@@ -134,7 +134,7 @@ update() {
 		paru
 		{%@@ endif @@%}
 		{%@@ if profile == "mko-laptop" @@%}
-		apt
+		apt-upd
 		{%@@ endif @@%}
 		{%@@ if profile == "Moria" @@%}
 		repo

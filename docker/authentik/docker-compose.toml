@@ -1,7 +1,7 @@
 [services]
 
 [services.redis]
-container_name = "authentik-redis"
+container_name = "redis-authentik"
 image = "redis:alpine"
 restart = "unless-stopped"
 networks = ["authentik"]

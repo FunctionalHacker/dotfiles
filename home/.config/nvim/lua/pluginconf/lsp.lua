@@ -1,4 +1,4 @@
-local lsp_installer = require("nvim-lsp-installer")
+local lsp_installer = require('nvim-lsp-installer')
 
 local M = {}
 
@@ -47,15 +47,18 @@ end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
+-- Setup LSP signature plugin
+require('lsp_signature').setup()
+
 -- Register a handler that will be called for all installed servers.
 lsp_installer.on_server_ready(function(server)
     -- Don't setup jdtls here since it is done by nvim-jdtls
-    if server.name == "jdtls" then return end
+    if server.name == 'jdtls' then return end
 
     local opts = {}
 
     -- Lua specific settings
-    if server.name == "sumneko_lua" then
+    if server.name == 'sumneko_lua' then
         local runtime_path = vim.split(package.path, ';')
         opts.settings = {
             Lua = {
@@ -71,7 +74,7 @@ lsp_installer.on_server_ready(function(server)
                 },
                 workspace = {
                     -- Make the server aware of Neovim runtime files
-                    library = vim.api.nvim_get_runtime_file("", true)
+                    library = vim.api.nvim_get_runtime_file('', true)
                 },
                 -- Do not send telemetry data containing a randomized but unique identifier
                 telemetry = {enable = false}

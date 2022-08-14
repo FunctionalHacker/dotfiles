@@ -1,11 +1,11 @@
-require("catppuccin").setup({
+require('catppuccin').setup({
     transparent_background = false,
     term_colors = false,
-    compile = {enabled = true, path = vim.fn.stdpath "cache" .. "/catppuccin"},
+    compile = {enabled = true, path = vim.fn.stdpath 'cache' .. '/catppuccin'},
     styles = {
-        comments = {"italic"},
-        functions = {"italic"},
-        keywords = {"italic"},
+        comments = {'italic'},
+        functions = {'italic'},
+        keywords = {'italic'},
         strings = {},
         variables = {}
     },
@@ -14,16 +14,16 @@ require("catppuccin").setup({
         native_lsp = {
             enabled = true,
             virtual_text = {
-                errors = {"italic"},
-                hints = {"italic"},
-                warnings = {"italic"},
-                information = {"italic"}
+                errors = {'italic'},
+                hints = {'italic'},
+                warnings = {'italic'},
+                information = {'italic'}
             },
             underlines = {
-                errors = {"underline"},
-                hints = {"underline"},
-                warnings = {"underline"},
-                information = {"underline"}
+                errors = {'underline'},
+                hints = {'underline'},
+                warnings = {'underline'},
+                information = {'underline'}
             }
         },
         lsp_trouble = false,

@@ -120,9 +120,6 @@ require('packer').startup(function()
     -- Vim <3 Asciidoctor
     use 'habamax/vim-asciidoctor'
 
-    -- Modern filetype.vim replacement
-    use('nathom/filetype.nvim')
-
 end)
 
 -- Install plugins if packer was not installed

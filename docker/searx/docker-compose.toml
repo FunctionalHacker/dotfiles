@@ -5,20 +5,21 @@ version = "3.7"
 [services.searx]
 container_name = "searx"
 image = "searxng/searxng:latest"
+restart = "unless-stopped"
 networks = ["searx", "proxy"]
 volumes = ["/docker/searx:/etc/searxng:rw"]
-environment = ["SEARXNG_BASE_URL=https://searx.korhonen.cc/"]
+environment = ["SEARXNG_BASE_URL=https://search.korhonen.cc/"]
 cap_drop = ["ALL"]
 cap_add = ["CHOWN", "SETGID", "SETUID", "DAC_OVERRIDE"]
 labels = [
   "traefik.enable=true",
   "traefik.docker.network=proxy",
   "traefik.http.routers.searx-redirect.entrypoints=http",
-  "traefik.http.routers.searx-redirect.rule=Host(`searx.korhonen.cc`)",
+  "traefik.http.routers.searx-redirect.rule=Host(`search.korhonen.cc`)",
   "traefik.http.routers.searx-redirect.middlewares=http2https@file",
   "traefik.http.routers.searx.entrypoints=https",
   "traefik.http.routers.searx.middlewares=secHeaders@file,compress@file",
-  "traefik.http.routers.searx.rule=Host(`searx.korhonen.cc`)",
+  "traefik.http.routers.searx.rule=Host(`search.korhonen.cc`)",
   "traefik.http.routers.searx.service=searx",
   "traefik.http.services.searx.loadbalancer.server.port=8080",
 ]
@@ -33,6 +34,7 @@ max-file = "1"
 [services.redis]
 container_name = "redis-searx"
 image = "redis:alpine"
+restart = "unless-stopped"
 command = "redis-server --save \"\" --appendonly \"no\""
 networks = ["searx"]
 tmpfs = ["/var/lib/redis"]

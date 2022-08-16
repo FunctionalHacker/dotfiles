@@ -17,6 +17,10 @@ workdir = "~/.config/sdotdrop"
 dst = "/etc/udev/rules.d/60-uinput-permissions.rules"
 src = "etc/udev/rules.d/60-uinput-permissions.rules"
 
+[dotfiles."f_yubikey_udev.rules"]
+dst = "/etc/udev/rules.d/20-yubikey.rules"
+src = "etc/udev/rules.d/20-yubikey.rules"
+
 [dotfiles.d_bin]
 dst = "/usr/local/bin"
 src = "usr/local/bin"
@@ -175,6 +179,7 @@ dotfiles = [
   "f_sshd_config",
   "f_logind.conf",
   "f_60-uinput-permissions.rules",
+  "f_yubikey_udev.rules",
   "f_freetype2.sh",
   "f_fonts.conf",
   "f_99-lowbat.rules",
@@ -206,4 +211,4 @@ include = ["Locale"]
 include = ["Pacman"]
 
 [profiles.mko-laptop]
-dotfiles = ["f_cpupower"]
+dotfiles = ["f_cpupower", "f_yubikey_udev.rules"]

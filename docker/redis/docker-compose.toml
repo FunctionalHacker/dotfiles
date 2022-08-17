@@ -7,7 +7,7 @@ restart = "unless-stopped"
 volumes = ["/docker/redis/redis.conf:/etc/redis.conf", "redis_temp:/tmp/redis"]
 
 [services.redis_temp]
-image = "busybox"
+image = "busybox:stable"
 container_name = "redis_temp"
 command = "chmod -R 777 /tmp/redis"
 volumes = ["redis_temp:/tmp/redis"]

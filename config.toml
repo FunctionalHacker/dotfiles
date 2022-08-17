@@ -14,8 +14,6 @@ longkey = false
 showdiff = false
 workdir = "~/.config/dotdrop"
 
-[dotfiles]
-
 [dotfiles.d_systemd]
 dst = "~/.config/systemd/user"
 src = ".config/systemd/user"
@@ -181,7 +179,7 @@ dst = "~/.config/zsh"
 src = ".config/fontconfig/fonts.conf"
 dst = "~/.config/fontconfig/fonts.conf"
 
-[dotfiles.f_ripgrep_ignore]
+[dotfiles.f_ignore]
 src = ".ignore"
 dst = "~/.ignore"
 
@@ -230,29 +228,43 @@ dst = "~/.config/electron12-flags.conf"
 src = ".pam_environment"
 dst = "~/.pam_environment"
 
-[profiles]
+[profiles.os_arch]
+include = ["terminal"]
+dotfiles = ["f_makepkg.conf", "f_paru.conf"]
 
-[profiles.base]
-dotfiles = ["d_systemd"]
+[profiles.os_arch.variables]
+os = "arch"
+
+[profiles.os_ubuntu]
+include = ["terminal"]
+
+[profiles.os_ubuntu.variables]
+os = "ubuntu"
+
+[profiles.os_termux]
+include = ["terminal"]
+
+[profiles.os_termux.variables]
+os = "termux"
 
 [profiles.terminal]
 dotfiles = [
+  "d_nvim_ftplugin",
+  "d_nvim_lua",
+  "d_zsh",
+  "f_alacritty.yml",
+  "f_authorized_keys",
+  "f_gitconfig",
   "f_hushlogin",
-  "f_ripgrep_ignore",
+  "f_ignore",
+  "f_mailcap",
+  "f_nvim_init",
+  "f_ranger.conf",
   "f_ranger_commands.py",
   "f_rtv.cfg",
-  "f_mailcap",
-  "d_zsh",
-  "f_zshrc",
-  "f_tmux.conf",
-  "f_ranger.conf",
   "f_ssh.conf",
-  "f_authorized_keys",
-  "f_nvim_init",
-  "d_nvim_lua",
-  "d_nvim_ftplugin",
-  "f_gitconfig",
-  "f_alacritty.yml",
+  "f_tmux.conf",
+  "f_zshrc",
 ]
 
 [profiles.email]
@@ -260,17 +272,17 @@ dotfiles = ["d_neomutt", "d_imapnotify", "f_mbsyncrc", "f_msmtp_config"]
 
 [profiles.media]
 dotfiles = [
+  "d_mpv",
+  "f_abcde.conf",
   "f_beets_config",
   "f_beets_whitelist",
-  "f_abcde.conf",
-  "d_mpv",
-  "f_youtube-dl_config",
-  "f_mpd.conf",
-  "f_ncmpcpp_bindings",
-  "f_ncmpcpp.conf",
   "f_libra_config",
-  "f_mpdscribble.conf",
+  "f_mpd.conf",
   "f_mpdris2.conf",
+  "f_mpdscribble.conf",
+  "f_ncmpcpp.conf",
+  "f_ncmpcpp_bindings",
+  "f_youtube-dl_config",
 ]
 
 [profiles.sway]
@@ -278,19 +290,14 @@ dotfiles = [
   "d_sway",
   "d_waybar",
   "d_wofi",
-  "f_mako_config",
-  "f_redshift.conf",
   "d_zathura",
-  "f_mimeo_associations.txt",
-  "f_tdesktop_lang.strings",
-  "f_fonts.conf",
-  "f_zprofile",
   "f_electron-flags.conf",
   "f_electron12-flags.conf",
+  "f_fonts.conf",
+  "f_foot.ini",
+  "f_mako_config",
+  "f_redshift.conf",
 ]
-
-[profiles.pacman]
-dotfiles = ["f_makepkg.conf", "f_paru.conf"]
 
 [profiles.gpg]
 dotfiles = [
@@ -301,27 +308,30 @@ dotfiles = [
 ]
 
 [profiles.Mirkwood]
-include = ["base", "terminal", "email", "media", "sway", "pacman", "gpg"]
-dotfiles = ["f_paru.conf", "f_gitconfig", "f_foot.ini"]
+include = ["os_arch", "email", "media", "sway", "gpg"]
+dotfiles = ["d_systemd"]
 
 [profiles.Moria]
-include = ["terminal", "pacman", "media"]
+include = ["os_arch", "media", "gpg"]
 dotfiles = ["f_zprofile"]
 
 [profiles.Gondor]
-include = ["terminal", "pacman"]
+include = ["os_arch"]
 
 [profiles.mko-laptop]
-include = ["terminal", "media", "gpg"]
+include = ["os_ubuntu", "media", "gpg"]
+
+[profiles.Isengard]
+include = ["os_termux"]
 
 [profiles.Edoras]
-include = ["terminal", "pacman"]
+include = ["os_arch"]
 
 [profiles.TakamakiPC]
-include = ["terminal", "pacman"]
+include = ["os_arch"]
 
 [profiles.localhost]
-include = ["terminal"]
+include = ["os_arch"]
 
 [profiles.ViiruJaTeippi]
 include = ["terminal"]

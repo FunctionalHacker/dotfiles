@@ -40,6 +40,11 @@ function command_not_found_handler {
         done
     fi
 }
+{%@@ if os == "termux" @@%}
+function command_not_found_handler {
+	$PREFIX/libexec/termux/command-not-found $1
+}
+{%@@ endif @@%}
 
 # search and install/remove packages with fzf
 pi() { 

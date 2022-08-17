@@ -73,3 +73,8 @@ fi
 
 # Disable dotdrop submodule auto update
 export DOTDROP_AUTOUPDATE=no
+
+{%@@ if os == "arch" @@%}
+# Enable pkgfile command not found handler
+source /usr/share/doc/pkgfile/command-not-found.zsh
+{%@@ endif @@%}

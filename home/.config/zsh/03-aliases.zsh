@@ -118,7 +118,7 @@ alias i='iwctl station wlan0'
 cpufreq() { watch -n 1 eval "cat /proc/cpuinfo | grep MHz" }
 
 # dotdrop
-dotdrop() { source $DOTREPO/secrets/secrets && $DOTREPO/dotdrop/dotdrop.sh --cfg=$DOTREPO/config.toml {%@@ if profile == "Isengard" @@%} -p isengard{%@@ endif @@%}$@ }
+dotdrop() { source $DOTREPO/secrets/secrets && $DOTREPO/dotdrop/dotdrop.sh --cfg=$DOTREPO/config.toml {%@@ if profile == "Isengard" @@%} -p isengard{%@@ endif @@%} $@ }
 sdotdrop() { source $DOTREPO/secrets/secrets && sudo -E $DOTREPO/dotdrop/dotdrop.sh --cfg=$DOTREPO/config-root.toml $@ }
 updatesecrets() { bash $DOTREPO/secrets/secrets.sh; chmod 600 $DOTREPO/secrets/secrets }
 compdef _dotdrop-completion.zsh sdotdrop

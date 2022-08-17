@@ -311,15 +311,24 @@ dotfiles = [
 include = ["os_arch", "email", "media", "sway", "gpg"]
 dotfiles = ["d_systemd"]
 
+[profiles.Mirkwood.variables]
+wayland = true
+
 [profiles.Moria]
 include = ["os_arch", "media", "gpg"]
 dotfiles = ["f_zprofile"]
+
+[profiles.Moria.variables]
+wayland = true
 
 [profiles.Gondor]
 include = ["os_arch"]
 
 [profiles.mko-laptop]
 include = ["os_ubuntu", "media", "gpg"]
+
+[profiles.mko-laptop.variables]
+wayland = false
 
 [profiles.Isengard]
 include = ["os_termux"]
@@ -329,6 +338,9 @@ include = ["os_arch"]
 
 [profiles.TakamakiPC]
 include = ["os_arch"]
+
+[profiles.TakamakiPC.variables]
+wayland = false
 
 [profiles.localhost]
 include = ["os_arch"]

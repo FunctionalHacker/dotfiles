@@ -39,12 +39,12 @@ zinit ice lucid atinit'zpcompinit'
 zinit light zdharma-continuum/fast-syntax-highlighting
 
 # use fzf with zsh
-{%@@ if profile == "mko-laptop" @@%}
-# Source from home directory since mko-laptop is ubuntu and it has an
+{%@@ if os == "arch" @@%}
+source /usr/share/fzf/key-bindings.zsh
+source /usr/share/fzf/completion.zsh
+{%@@ elif os == "ubuntu" @@%}
+# Source from home directory since ubuntu has
 # old version of FZF in it's repositories
 source ~/Software/fzf/shell/key-bindings.zsh
 source ~/Software/fzf/shell/completion.zsh
-{%@@ else @@%}
-source /usr/share/fzf/key-bindings.zsh
-source /usr/share/fzf/completion.zsh
 {%@@ endif @@%}

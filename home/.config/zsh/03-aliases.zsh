@@ -42,6 +42,7 @@ function command_not_found_handler {
 }
 {%@@ if os == "termux" @@%}
 function command_not_found_handler {
+    printf 'zsh: command not found: %s\n' "$1"
 	$PREFIX/libexec/termux/command-not-found $1
 }
 {%@@ endif @@%}

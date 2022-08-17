@@ -12,7 +12,7 @@ forgit_revert_commit=fgrc
 # Modern replacement for ls
 alias ls='exa'
 
-{%@@ if profile != "mko-laptop" @@%}
+{%@@ if os == "arch" @@%}
 # Command not found handler
 # source https://wiki.archlinux.org/title/Zsh#pacman_-F_%22command_not_found%22_handler
 function command_not_found_handler {
@@ -40,7 +40,6 @@ function command_not_found_handler {
         done
     fi
 }
-{%@@ endif @@%}
 
 # search and install/remove packages with fzf
 pi() { 
@@ -59,6 +58,7 @@ pr() {
 		paru -Rns $(echo $SELECTED_PKGS)
 	fi
 }
+{%@@ endif @@%}
 
 # find and open man pages with fzf
 fman() {
@@ -130,17 +130,22 @@ passync() { pass git pull && pass git push && updatesecrets }
 
 update() {
 	all() {
-		{%@@ if profile == "Moria" or profile == 'Mirkwood' @@%}
-		paru
-		{%@@ endif @@%}
-		{%@@ if profile == "mko-laptop" @@%}
-		apt-upd
-		{%@@ endif @@%}
+		packages
 		{%@@ if profile == "Moria" @@%}
 		repo
 		docker-update
 		{%@@ endif @@%}
 		plugins
+	}
+
+	packages() {
+		{%@@ if os == "arch" @@%}
+		paru
+		{%@@ elif os == "ubuntu" @@%}
+		sudo apt update && sudo apt full-upgrade -y && sudo apt autoremove -y && sudo apt autoclean -y
+		{%@@ elif os == "termux" @@%}
+		pkg update
+		{%@@ endif @@%}
 	}
 
 	plugins() {
@@ -156,26 +161,22 @@ update() {
 	}
 
 	docker-update() {
+		prevpwddocker=$PWD
 		for dir in $HOME/git/dotfiles/docker/*; do
 			cd $dir
-			if [[ -f "DISABLED" ]]; then
+			if [[ -f "$dir/DISABLED" ]]; then
 				echo "$(basename $dir) stack is disabled, skipping..."
 			else
-				dct pull
-				dct up -d
+				dct -f $dir/docker-compose.toml pull
+				dct -f $dir/docker-compose.toml up -d
 			fi
 			cd ..
 		done
+		cd $prevpwddocker
 		docker system prune -af --volumes
 	}
 
 	{%@@ endif @@%}
-	{%@@ if profile == "mko-laptop" @@%}
-	apt-upd() {
-		sudo apt update && sudo apt full-upgrade -y && sudo apt autoremove -y && sudo apt autoclean -y
-	}
-	{%@@ endif @@%}
-
 	case "$1" in
 		all)
 			all
@@ -191,19 +192,9 @@ update() {
 			repo
 			;;
 		{%@@ endif @@%}
-		{%@@ if profile == "mko-laptop" @@%}
-		apt)
-			apt-upd
-			;;
-		{%@@ endif @@%}
 		*)
-		{%@@ if profile == "mko-laptop" @@%}
-			apt-upd
+			packages
 			;;
-		{%@@ else @@%}
-			paru
-			;;
-		{%@@ endif @@%}
 	esac
 }
 

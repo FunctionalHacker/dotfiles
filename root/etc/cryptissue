@@ -47,3 +47,4 @@ Please return it to me! Below are my contact details
 Name: 		{{@@ env['ME_FULLNAME'] @@}}
 Address: 	{{@@ env['ME_ADDRESS'] @@}}
 Phone: 		{{@@ env['ME_PHONE'] @@}}
+Email: 		{{@@ env['ME_EMAIL'] @@}}

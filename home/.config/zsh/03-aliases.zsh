@@ -23,6 +23,7 @@ function command_not_found_handler {
 }
 {%@@ endif @@%}
 
+{%@@ if os == "arch" @@%}
 # search and install/remove packages with fzf
 pi() { 
 	SELECTED_PKGS="$(paru -Slq | fzf --header='Install packages' -m --preview 'paru -Si {1}')"
@@ -40,6 +41,7 @@ pr() {
 		paru -Rns $(echo $SELECTED_PKGS)
 	fi
 }
+{%@@ endif @@%}
 
 # find and open man pages with fzf
 fman() {

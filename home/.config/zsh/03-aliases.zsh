@@ -106,7 +106,7 @@ sdotdrop() { source $DOTREPO/secrets/secrets && sudo -E $DOTREPO/dotdrop/dotdrop
 updatesecrets() { bash $DOTREPO/secrets/secrets.sh; chmod 600 $DOTREPO/secrets/secrets }
 compdef _dotdrop-completion.zsh sdotdrop
 alias dotgit='git -C $DOTREPO'
-dotsync() { cd $DOTREPO && gpull && ga && gc && gpush && cd $OLDPWD }
+dotsync() { cd $DOTREPO && gac && gpull && gpush && cd $OLDPWD }
 
 # sync password manager
 passync() { pass git pull && pass git push && updatesecrets }

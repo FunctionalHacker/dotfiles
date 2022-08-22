@@ -65,7 +65,7 @@ require('packer').startup(function()
     use 'neovim/nvim-lspconfig'
 
     -- Install LSP server executables
-    use 'williamboman/nvim-lsp-installer'
+    use {"williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim"}
 
     -- Additional LSP features for Java
     use 'mfussenegger/nvim-jdtls'

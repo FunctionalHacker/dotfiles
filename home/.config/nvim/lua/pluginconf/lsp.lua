@@ -1,6 +1,5 @@
-local lsp_installer = require('nvim-lsp-installer')
-
 local M = {}
+local lspconfig = require('lspconfig');
 
 M.lsp_map_keys = function(server, bufnr)
     local function map_key(...)
@@ -50,41 +49,38 @@ capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 -- Setup LSP signature plugin
 require('lsp_signature').setup()
 
--- Register a handler that will be called for all installed servers.
-lsp_installer.on_server_ready(function(server)
-    -- Don't setup jdtls here since it is done by nvim-jdtls
-    if server.name == 'jdtls' then return end
+-- Setup mason
+require("mason").setup()
+require("mason-lspconfig").setup({automatic_installation = true})
 
-    local opts = {}
+-- LSP servers setup
+lspconfig.tsserver.setup {{}, on_attach = M.lsp_map_keys}
+lspconfig.yamlls.setup {{}, on_attach = M.lsp_map_keys}
+lspconfig.jsonls.setup {{}, on_attach = M.lsp_map_keys}
 
-    -- Lua specific settings
-    if server.name == 'sumneko_lua' then
-        local runtime_path = vim.split(package.path, ';')
-        opts.settings = {
-            Lua = {
-                runtime = {
-                    -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-                    version = 'LuaJIT',
-                    -- Setup your lua path
-                    path = runtime_path
-                },
-                diagnostics = {
-                    -- Get the language server to recognize the `vim` global
-                    globals = {'vim'}
-                },
-                workspace = {
-                    -- Make the server aware of Neovim runtime files
-                    library = vim.api.nvim_get_runtime_file('', true)
-                },
-                -- Do not send telemetry data containing a randomized but unique identifier
-                telemetry = {enable = false}
-            }
+lspconfig.sumneko_lua.setup {
+    settings = {
+        Lua = {
+            runtime = {
+                -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+                version = 'LuaJIT',
+                -- Setup your lua path
+                path = vim.split(package.path, ';')
+            },
+            diagnostics = {
+                -- Get the language server to recognize the `vim` global
+                globals = {'vim'}
+            },
+            workspace = {
+                -- Make the server aware of Neovim runtime files
+                library = vim.api.nvim_get_runtime_file('', true)
+            },
+            -- Do not send telemetry data containing a randomized but unique identifier
+            telemetry = {enable = false}
         }
-    end
-
-    opts.on_attach = M.lsp_map_keys
-    opts.capabilities = capabilities
-    server:setup(opts)
-end)
+    },
+    on_attach = M.lsp_map_keys,
+    capabilities = capabilities
+}
 
 return M

@@ -1,23 +1,25 @@
 local fn = vim.fn
-local cmd = vim.cmd
 
 -- Install packer if it's not yet installed
 local install_path = fn.stdpath('data') .. '/site/pack/packer/opt/packer.nvim'
-local packer_not_installed = fn.empty(fn.glob(install_path))
-
-if packer_not_installed > 0 then
-    print('Packer is not installed, cloning it now...')
-    cmd('silent !git clone https://github.com/wbthomason/packer.nvim ' ..
-            install_path)
+if fn.empty(fn.glob(install_path)) > 0 then
+    print('installing packer')
+    Packer_bootstrap = fn.system({
+        'git', 'clone', '--depth', '1',
+        'https://github.com/wbthomason/packer.nvim', install_path
+    })
+    vim.o.runtimepath = vim.fn.stdpath('data') .. '/site/pack/*/start/*,' ..
+                            vim.o.runtimepath
+    print('installed packer')
 end
 
 -- Configure packer
-cmd 'packadd packer.nvim'
-local use = require('packer').use
+vim.cmd [[packadd packer.nvim]]
 require('packer').startup(function()
+local use = require('packer').use
 
     -- The plugin manager itself
-    use {'wbthomason/packer.nvim', opt = true}
+    use {'wbthomason/packer.nvim', opt=true}
 
     -- Colorscheme
     use({'catppuccin/nvim', as = 'catppuccin'})
@@ -120,7 +122,22 @@ require('packer').startup(function()
     -- Vim <3 Asciidoctor
     use 'habamax/vim-asciidoctor'
 
+    -- Sync plugins if Packer was just
+    -- installed
+    if Packer_bootstrap then
+        print('syncing')
+        require('packer').sync()
+        print('synced')
+    end
 end)
 
--- Install plugins if packer was not installed
-if packer_not_installed > 0 then cmd 'PackerInstall' end
+-- Source configurations
+require 'plugins/lualine'
+require 'plugins/bufferline'
+require 'plugins/lsp'
+require 'plugins/completion'
+require 'plugins/treesitter'
+require 'plugins/indent-blankline'
+require 'plugins/nvim-tree'
+require 'plugins/colorscheme'
+require 'plugins/telescope'

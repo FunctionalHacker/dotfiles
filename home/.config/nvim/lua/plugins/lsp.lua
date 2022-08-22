@@ -58,6 +58,7 @@ require("mason-lspconfig").setup({automatic_installation = true})
 lspconfig.tsserver.setup {{}, on_attach = M.lsp_map_keys}
 lspconfig.yamlls.setup {{}, on_attach = M.lsp_map_keys}
 lspconfig.jsonls.setup {{}, on_attach = M.lsp_map_keys}
+lspconfig.html.setup {{}, on_attach = M.lsp_map_keys}
 
 lspconfig.sumneko_lua.setup {
     settings = {

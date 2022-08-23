@@ -1,20 +1,12 @@
 local map = vim.keymap.set
 
--- Open/close tree browser
-map('n', '<C-T>', '<cmd>NvimTreeToggle<CR>')
-
 -- Telescope
-map('n', '<C-f>', '<cmd>Telescope find_files find_command=fd,-Ht,f<CR>')
-map('n', '<C-g>', '<cmd>Telescope live_grep<CR>')
-
--- Completion
--- Navigate completions with tab and shift tab
-map('i', '<S-Tab>', 'pumvisible() ? "\\<C-p>" : "\\<Tab>"', {expr = true})
-map('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', {expr = true})
+--map('n', '<C-f>', '<cmd>Telescope find_files find_command=fd,-Ht,f<CR>')
+--map('n', '<C-g>', '<cmd>Telescope live_grep<CR>')
 
 -- Navigate between buffers
-map('n', '<C-N>', ':bn<CR>', {silent = true})
-map('n', '<C-B>', ':bp<CR>', {silent = true})
+map('n', '<C-N>', vim.cmd.bn, {silent = true})
+map('n', '<C-B>', vim.cmd.bp, {silent = true})
 
 -- Navigate between splits
 map('n', '<C-H>', '<C-W><C-H>')
@@ -23,4 +15,7 @@ map('n', '<C-K>', '<C-W><C-K>')
 map('n', '<C-L>', '<C-W><C-L>')
 
 -- Run Neoformat
-map('n', '<M-f>', '<cmd>Neoformat<CR>')
+map('n', '<M-f>', vim.cmd.Neoformat)
+
+-- Exit terminal insert mode with esc
+map('t', '<Esc>', '<C-\\><C-n>')

@@ -31,7 +31,7 @@
 	tool = nvim-diff
 
 [difftool "nvim-diff"]
-	cmd = nvim -d -R
+	cmd = nvim -d $LOCAL $REMOTE
 
 [pull]
 	rebase = merges

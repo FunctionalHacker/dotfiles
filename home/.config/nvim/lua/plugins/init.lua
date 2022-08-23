@@ -60,14 +60,22 @@ require('packer').startup(function()
     -- Do stuff as sudo
     use 'lambdalisue/suda.vim'
 
-    -- Read editorconfig settings
-    use 'editorconfig/editorconfig-vim'
+	-- Display possible keybinds
+	use {
+		'folke/which-key.nvim',
+		config = function()
+			require('which-key').setup {}
+		end
+	}
+
+	-- Read editorconfig settings
+	use 'editorconfig/editorconfig-vim'
 
     -- Configs for built-in LSP
     use 'neovim/nvim-lspconfig'
 
     -- Install LSP server executables
-    use {"williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim"}
+    use {'williamboman/mason.nvim', 'williamboman/mason-lspconfig.nvim'}
 
     -- Additional LSP features for Java
     use 'mfussenegger/nvim-jdtls'
@@ -86,8 +94,8 @@ require('packer').startup(function()
     use 'rafamadriz/friendly-snippets' -- Snippets collection
 	-- Enable brackets for completions
 	use {
-		"windwp/nvim-autopairs",
-		config = function() require("nvim-autopairs").setup {} end
+		'windwp/nvim-autopairs',
+		config = function() require('nvim-autopairs').setup {} end
 	}
 
     -- treesitter syntax highlight

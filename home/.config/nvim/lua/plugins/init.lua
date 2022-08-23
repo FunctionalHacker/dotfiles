@@ -4,7 +4,7 @@ local fn = vim.fn
 local install_path = fn.stdpath('data') .. '/site/pack/packer/opt/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
 	print('Installing Packer')
-	Packer_bootstrap = fn.system({
+	Packer_installed = fn.system({
 		'git', 'clone', '--depth', '1',
 		'https://github.com/wbthomason/packer.nvim', install_path
 	})
@@ -19,7 +19,7 @@ require('packer').startup(function()
 	local use = require('packer').use
 
 	-- The plugin manager itself
-	use { 'wbthomason/packer.nvim', opt = true }
+	use {'wbthomason/packer.nvim', opt=true}
 
 	-- Colorscheme
 	use {
@@ -178,8 +178,7 @@ end)
 
 -- Sync plugins if Packer was just
 -- installed
-if Packer_bootstrap then
+if Packer_installed then
 	print('Syncing plugins')
 	require('packer').sync()
-	print('Synced')
 end

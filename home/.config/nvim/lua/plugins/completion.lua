@@ -50,8 +50,18 @@ cmp.setup {
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
     { name = 'path' },
+    { name = 'git' },
+    { name = 'buffer' },
   },
 }
+
+-- Enable autopairs when enter is processed
+-- on completion
+local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
+cmp.event:on(
+	'confirm_done',
+	cmp_autopairs.on_confirm_done()
+)
 
 -- load friendly-snippets to luasnip
 require('luasnip/loaders/from_vscode').lazy_load()

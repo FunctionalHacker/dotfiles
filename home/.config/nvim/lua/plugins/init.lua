@@ -3,157 +3,183 @@ local fn = vim.fn
 -- Install packer if it's not yet installed
 local install_path = fn.stdpath('data') .. '/site/pack/packer/opt/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
-    print('Installing Packer')
-    Packer_bootstrap = fn.system({
-        'git', 'clone', '--depth', '1',
-        'https://github.com/wbthomason/packer.nvim', install_path
-    })
-    vim.o.runtimepath = vim.fn.stdpath('data') .. '/site/pack/*/start/*,' ..
-                            vim.o.runtimepath
-    print('Installed Packer')
+	print('Installing Packer')
+	Packer_bootstrap = fn.system({
+		'git', 'clone', '--depth', '1',
+		'https://github.com/wbthomason/packer.nvim', install_path
+	})
+	vim.o.runtimepath = vim.fn.stdpath('data') .. '/site/pack/*/start/*,' ..
+		vim.o.runtimepath
+	print('Installed Packer')
 end
 
 -- Configure packer
 vim.cmd [[packadd packer.nvim]]
 require('packer').startup(function()
-    local use = require('packer').use
+	local use = require('packer').use
 
-    -- The plugin manager itself
-    use {'wbthomason/packer.nvim', opt = true}
+	-- The plugin manager itself
+	use { 'wbthomason/packer.nvim', opt = true }
 
-    -- Colorscheme
-    use({'catppuccin/nvim', as = 'catppuccin'})
+	-- Colorscheme
+	use {
+		'catppuccin/nvim',
+		as = 'catppuccin',
+		config = require('plugins.colorscheme'),
+	}
 
-    -- Git in signcolumn
-    use 'airblade/vim-gitgutter'
+	-- Git in signcolumn
+	use 'airblade/vim-gitgutter'
 
-    -- Statusline
-    use {
-        'hoob3rt/lualine.nvim',
-        requires = {'kyazdani42/nvim-web-devicons', opt = true}
-    }
+	-- Statusline
+	use {
+		'hoob3rt/lualine.nvim',
+		requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+		config = function()
+			require('lualine').setup {
+				options = { theme = 'catppuccin' }
+			}
+		end,
+	}
 
-    -- Tabline/bufferline
-    use {
-        'akinsho/nvim-bufferline.lua',
-        tag = '*',
-        requires = 'kyazdani42/nvim-web-devicons'
-    }
+	-- Tabline/bufferline
+	use {
+		'akinsho/nvim-bufferline.lua',
+		tag = '*',
+		requires = 'kyazdani42/nvim-web-devicons',
+		config = function() require('bufferline').setup {} end
+	}
 
-    -- Git commands
-    use 'tpope/vim-fugitive'
+	-- Git commands
+	use 'tpope/vim-fugitive'
 
-    -- Indent characters
-    use 'lukas-reineke/indent-blankline.nvim'
+	-- Indent characters
+	use {
+		'lukas-reineke/indent-blankline.nvim',
+		config = require('plugins.indent-blankline')
+	}
 
-    -- Tree explorer
-    use {'kyazdani42/nvim-tree.lua', requires = 'kyazdani42/nvim-web-devicons'}
+	-- Tree explorer
+	use {
+		'kyazdani42/nvim-tree.lua',
+		requires = 'kyazdani42/nvim-web-devicons',
+		config = function() require('nvim-tree').setup {} end
+	}
 
-    -- Telescope
-    use {
-        'nvim-telescope/telescope.nvim',
-        requires = {{'nvim-lua/plenary.nvim'}}
-    }
-    use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'} -- Use fzf for fuzzy finder
-    use {'nvim-telescope/telescope-ui-select.nvim'} -- Replace vim built in select with telescope
+	-- Telescope
+	use {
+		'nvim-telescope/telescope.nvim',
+		config = require('plugins.telescope'),
+		requires = {
+			{ 'nvim-lua/plenary.nvim' }, -- Internal dep for telescope
+			{ 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }, -- Use fzf for fuzzy finder
+			{ 'nvim-telescope/telescope-ui-select.nvim' } -- Replace vim built in select with telescope
+		}
+	}
 
-    -- Do stuff as sudo
-    use 'lambdalisue/suda.vim'
+	-- Do stuff as sudo
+	use 'lambdalisue/suda.vim'
 
 	-- Display possible keybinds
 	use {
 		'folke/which-key.nvim',
-		config = function()
-			require('which-key').setup {}
-		end
+		config = function() require('which-key').setup {} end
 	}
 
 	-- Read editorconfig settings
 	use 'editorconfig/editorconfig-vim'
 
-    -- Configs for built-in LSP
-    use 'neovim/nvim-lspconfig'
-
-    -- Install LSP server executables
-    use {'williamboman/mason.nvim', 'williamboman/mason-lspconfig.nvim'}
-
-    -- Additional LSP features for Java
-    use 'mfussenegger/nvim-jdtls'
-
-    -- Display function signature
-    use {'ray-x/lsp_signature.nvim'}
-
-    -- Completion
-    use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
-    use 'hrsh7th/cmp-nvim-lsp' -- LSP source for nvim-cmp
-    use 'hrsh7th/cmp-path' -- Path source for nvim-cmp
-    use 'petertriho/cmp-git' -- Git source for nvim-cmp
-    use 'hrsh7th/cmp-buffer' -- Buffer source for nvim-cmp
-    use 'saadparwaiz1/cmp_luasnip' -- Snippets source for nvim-cmp
-    use 'L3MON4D3/LuaSnip' -- Snippets plugin
-    use 'rafamadriz/friendly-snippets' -- Snippets collection
-	-- Enable brackets for completions
+	-- Install LSP server executables
 	use {
-		'windwp/nvim-autopairs',
-		config = function() require('nvim-autopairs').setup {} end
+		'williamboman/mason.nvim',
+		config = function() require('mason').setup {} end
+	}
+	use {
+		'williamboman/mason-lspconfig.nvim',
+		config = function()
+			require('mason-lspconfig').setup { automatic_installation = true }
+		end
 	}
 
-    -- treesitter syntax highlight
-    use {
-        'nvim-treesitter/nvim-treesitter',
-        run = function()
-            require('nvim-treesitter.install').update({with_sync = true})
-        end
-    }
+	-- Configs for built-in LSP
+	use {
+		'neovim/nvim-lspconfig',
+		config = require('plugins.lspconfig').setup
+	}
 
-    -- treesitter plugin for commentstring
-    use 'JoosepAlviste/nvim-ts-context-commentstring'
+	-- Additional LSP features for Java
+	use 'mfussenegger/nvim-jdtls'
 
-    -- Additional plugins for formats not supported
-    -- by treesitter
-    use 'jamespeapen/swayconfig.vim'
+	-- Display function signature
+	use 'ray-x/lsp_signature.nvim'
 
-    -- mappings for commenting in code
-    use 'tpope/vim-commentary'
+	-- Completion
+	use {
+		'hrsh7th/nvim-cmp',
+		requires = {
+			{ 'hrsh7th/cmp-nvim-lsp' }, -- LSP source
+			{ 'hrsh7th/cmp-path' }, -- Path source
+			{ 'petertriho/cmp-git', requires = "nvim-lua/plenary.nvim" }, -- Git source
+			{ 'hrsh7th/cmp-buffer' }, -- Buffer source
+			{ 'saadparwaiz1/cmp_luasnip' }, -- Snippets source
+			{ 'L3MON4D3/LuaSnip' }, -- Snippets plugin
+			{ 'rafamadriz/friendly-snippets' }, -- Snippets collection
+		},
+		config = require('plugins.cmp'),
+	}
 
-    -- we all know this one
-    use 'tpope/vim-surround'
+	-- Automatic brackets
+	use {
+		'windwp/nvim-autopairs',
+		config = function() require('nvim-autopairs').setup{} end
+	}
 
-    -- Formatter plugin
-    use 'sbdchd/neoformat'
+	-- treesitter
+	use {
+		'nvim-treesitter/nvim-treesitter',
+		run = function()
+			require('nvim-treesitter.install').update({ with_sync = true })
+		end,
+		config = require('plugins.treesitter')
+	}
 
-    -- Make editing passwords safer
-    use {
-        'https://git.zx2c4.com/password-store',
-        rtp = 'contrib/vim/redact_pass.vim'
-    }
+	-- treesitter plugin for commentstring
+	use 'JoosepAlviste/nvim-ts-context-commentstring'
 
-    -- Neovim inside Firefox
-    use {
-        'glacambre/firenvim',
-        run = function() vim.fn['firenvim#install'](0) end
-    }
+	-- Additional plugins for formats not supported
+	-- by treesitter
+	use 'jamespeapen/swayconfig.vim'
 
-    -- Vim <3 Asciidoctor
-    use 'habamax/vim-asciidoctor'
+	-- mappings for commenting in code
+	use 'tpope/vim-commentary'
+
+	-- we all know this one
+	use 'tpope/vim-surround'
+
+	-- Formatter plugin
+	use 'sbdchd/neoformat'
+
+	-- Make editing passwords safer
+	use {
+		'https://git.zx2c4.com/password-store',
+		rtp = 'contrib/vim/redact_pass.vim'
+	}
+
+	-- Neovim inside Firefox
+	use {
+		'glacambre/firenvim',
+		run = function() vim.fn['firenvim#install'](0) end
+	}
+
+	-- Vim <3 Asciidoctor
+	use 'habamax/vim-asciidoctor'
 
 end)
 
 -- Sync plugins if Packer was just
 -- installed
 if Packer_bootstrap then
-    print('Syncing plugins')
-    require('packer').sync()
-    print('Synced')
+	print('Syncing plugins')
+	require('packer').sync()
+	print('Synced')
 end
-
--- Source configurations
-require 'plugins/lualine'
-require 'plugins/bufferline'
-require 'plugins/lsp'
-require 'plugins/completion'
-require 'plugins/treesitter'
-require 'plugins/indent-blankline'
-require 'plugins/nvim-tree'
-require 'plugins/colorscheme'
-require 'plugins/telescope'

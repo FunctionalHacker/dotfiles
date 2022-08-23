@@ -3,20 +3,20 @@ local fn = vim.fn
 -- Install packer if it's not yet installed
 local install_path = fn.stdpath('data') .. '/site/pack/packer/opt/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
-    print('installing packer')
+    print('Installing Packer')
     Packer_bootstrap = fn.system({
         'git', 'clone', '--depth', '1',
         'https://github.com/wbthomason/packer.nvim', install_path
     })
     vim.o.runtimepath = vim.fn.stdpath('data') .. '/site/pack/*/start/*,' ..
                             vim.o.runtimepath
-    print('installed packer')
+    print('Installed Packer')
 end
 
 -- Configure packer
 vim.cmd [[packadd packer.nvim]]
 require('packer').startup(function()
-local use = require('packer').use
+	local use = require('packer').use
 
     -- The plugin manager itself
     use {'wbthomason/packer.nvim', opt=true}
@@ -122,14 +122,15 @@ local use = require('packer').use
     -- Vim <3 Asciidoctor
     use 'habamax/vim-asciidoctor'
 
-    -- Sync plugins if Packer was just
-    -- installed
-    if Packer_bootstrap then
-        print('syncing')
-        require('packer').sync()
-        print('synced')
-    end
 end)
+
+-- Sync plugins if Packer was just
+-- installed
+if Packer_bootstrap then
+    print('Syncing plugins')
+    require('packer').sync()
+    print('Synced')
+end
 
 -- Source configurations
 require 'plugins/lualine'

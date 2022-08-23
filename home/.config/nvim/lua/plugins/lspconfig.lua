@@ -50,27 +50,27 @@ function M.map_keys(server, bufnr)
     map_key('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', keymapOpts)
     map_key('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>',
             keymapOpts)
-    map_key('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>',
+    map_key('n', '<leader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>',
             keymapOpts)
-    map_key('n', '<space>wr',
+    map_key('n', '<leader>wr',
             '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', keymapOpts)
-    map_key('n', '<space>wl',
+    map_key('n', '<leader>wl',
             '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>',
             keymapOpts)
-    map_key('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>',
+    map_key('n', '<leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>',
             keymapOpts)
-    map_key('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', keymapOpts)
-    map_key('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>',
+    map_key('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', keymapOpts)
+    map_key('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>',
             keymapOpts)
     map_key('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', keymapOpts)
-    map_key('n', '<space>e',
+    map_key('n', '<leader>e',
             '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>',
             keymapOpts)
     map_key('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', keymapOpts)
     map_key('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', keymapOpts)
-    map_key('n', '<space>q', '<cmd>lua vim.diagnostic.set_loclist()<CR>',
+    map_key('n', '<leader>q', '<cmd>lua vim.diagnostic.set_loclist()<CR>',
             keymapOpts)
-    map_key('n', '<space>f', '<cmd>lua vim.lsp.buf.format()<CR>', keymapOpts)
+    map_key('n', '<leader>f', '<cmd>lua vim.lsp.buf.format()<CR>', keymapOpts)
 end
 
 function M.setup()

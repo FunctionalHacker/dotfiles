@@ -63,3 +63,6 @@ cmd 'filetype plugin indent on'
 
 -- Disable auto commenting
 o.formatoptions = 'cro'
+
+-- Set leader
+g.mapleader = " "

@@ -59,6 +59,7 @@ lspconfig.tsserver.setup {{}, on_attach = M.lsp_map_keys}
 lspconfig.yamlls.setup {{}, on_attach = M.lsp_map_keys}
 lspconfig.jsonls.setup {{}, on_attach = M.lsp_map_keys}
 lspconfig.html.setup {{}, on_attach = M.lsp_map_keys}
+lspconfig.marksman.setup {{}, on_attach = M.lsp_map_keys}
 
 lspconfig.sumneko_lua.setup {
     settings = {

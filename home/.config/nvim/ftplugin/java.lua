@@ -17,4 +17,4 @@ require('jdtls').start_or_attach({
     }
 })
 
-require('plugins.lspconfig').lsp_map_keys('jdtls', nil)
+require('plugins.lspconfig').map_keys('jdtls', nil)

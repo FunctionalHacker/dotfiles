@@ -1,3 +1,35 @@
+-- Pairs of server name and settings.
+-- This is iterated through and every
+-- server is setup with lspconfig
+Servers = {
+    html = {},
+    jsonls = {},
+    lemminx = {},
+    marksman = {},
+    yamlls = {},
+    tsserver = {},
+    sumneko_lua = {
+        Lua = {
+            runtime = {
+                -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+                version = 'LuaJIT',
+                -- Setup your lua path
+                path = vim.split(package.path, ';')
+            },
+            diagnostics = {
+                -- Get the language server to recognize the `vim` global
+                globals = {'vim'}
+            },
+            workspace = {
+                -- Make the server aware of Neovim runtime files
+                library = vim.api.nvim_get_runtime_file('', true)
+            },
+            -- Do not send telemetry data containing a randomized but unique identifier
+            telemetry = {enable = false}
+        }
+    }
+}
+
 M = {}
 
 function M.map_keys(server, bufnr)
@@ -42,36 +74,6 @@ function M.map_keys(server, bufnr)
 end
 
 function M.setup()
-    -- Pairs of server name and settings.
-    -- This is iterated through and every
-    -- server is setup with lspconfig
-    local servers = {
-        html = {},
-        jsonls = {},
-        marksman = {},
-        yamlls = {},
-        tsserver = {},
-        sumneko_lua = {
-            Lua = {
-                runtime = {
-                    -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-                    version = 'LuaJIT',
-                    -- Setup your lua path
-                    path = vim.split(package.path, ';')
-                },
-                diagnostics = {
-                    -- Get the language server to recognize the `vim` global
-                    globals = {'vim'}
-                },
-                workspace = {
-                    -- Make the server aware of Neovim runtime files
-                    library = vim.api.nvim_get_runtime_file('', true)
-                },
-                -- Do not send telemetry data containing a randomized but unique identifier
-                telemetry = {enable = false}
-            }
-        }
-    }
 
     local function on_attach(server, bufnr)
         -- Setup lsp signature plugin
@@ -82,7 +84,7 @@ function M.setup()
     end
 
     -- Setup every defined server
-    for server, settings in pairs(servers) do
+    for server, settings in pairs(Servers) do
         require('lspconfig')[server].setup {
             on_attach = on_attach,
             settings = settings,

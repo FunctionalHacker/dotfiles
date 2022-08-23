@@ -1,3 +1,1 @@
-require'lualine'.setup {
-    options = {theme = 'catppuccin'},
-}
+require'lualine'.setup {options = {theme = 'catppuccin'}}

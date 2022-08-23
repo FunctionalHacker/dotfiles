@@ -38,11 +38,9 @@ cmd 'highlight SignColumn guibg=transparent'
 -- Use suda by default
 g.suda_smart_edit = 1
 
-
 -- Split direction
 o.splitbelow = true
 o.splitright = true
-
 
 -- Case insensitive search
 o.ignorecase = true

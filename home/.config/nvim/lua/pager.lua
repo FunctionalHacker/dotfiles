@@ -2,4 +2,4 @@
 require 'common'
 
 MapKey('n', 'q', '<cmd>q<CR>')
---vim.cmd('set nomodifiable')
+-- vim.cmd('set nomodifiable')

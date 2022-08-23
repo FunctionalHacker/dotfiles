@@ -16,10 +16,10 @@ end
 -- Configure packer
 vim.cmd [[packadd packer.nvim]]
 require('packer').startup(function()
-	local use = require('packer').use
+    local use = require('packer').use
 
     -- The plugin manager itself
-    use {'wbthomason/packer.nvim', opt=true}
+    use {'wbthomason/packer.nvim', opt = true}
 
     -- Colorscheme
     use({'catppuccin/nvim', as = 'catppuccin'})

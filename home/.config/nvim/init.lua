@@ -1,5 +1,4 @@
 require 'autocmd'
 require 'keybinds'
 require 'settings'
-require 'common'
 require 'plugins/init'

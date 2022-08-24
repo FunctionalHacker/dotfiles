@@ -1,21 +1,21 @@
 directory: ~/Music
 library: ~/Music/beets.db
-plugins: 
-- acousticbrainz
-- check
-- edit 
-- fetchart 
-- follow
-- fuzzy 
-- info
-- lastgenre 
-- lyrics 
-- mbcollection
-- mpdupdate
-- play 
-- replaygain
-- thumbnails 
-- web 
+plugins:
+  - acousticbrainz
+  - check
+  - edit
+  - fetchart
+  - follow
+  - fuzzy
+  - info
+  - lastgenre
+  - lyrics
+  - mbcollection
+  - mpdupdate
+  - play
+  - replaygain
+  - thumbnails
+  - web
 import:
   copy: no
   move: yes
@@ -23,12 +23,12 @@ import:
 lastgenre:
   whitelist: ~/.config/beets/whitelist
 lyrics:
-  fallback: ''
+  fallback: ""
 play:
   command: mpv
 mpd:
-    host: localhost
-    port: 6600
+  host: localhost
+  port: 6600
 follow:
   email: reekymarko@reekynet.com
   password: "{{@@ env['PASS_MUSPY'] @@}}"

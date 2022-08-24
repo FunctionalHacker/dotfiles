@@ -28,6 +28,9 @@ require('packer').startup(function()
         config = require('plugins.colorscheme')
     }
 
+	-- Startup screen/dashboard
+	use 'glepnir/dashboard-nvim'
+
     -- Git in signcolumn
     use 'airblade/vim-gitgutter'
 

@@ -1,25 +1,23 @@
 local fn = vim.fn
 
 -- Install packer if it's not yet installed
-local install_path = fn.stdpath('data') .. '/site/pack/packer/opt/packer.nvim'
+local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
     print('Installing Packer')
-    Packer_installed = fn.system({
+    Packer_bootstrap = fn.system({
         'git', 'clone', '--depth', '1',
         'https://github.com/wbthomason/packer.nvim', install_path
     })
-    vim.o.runtimepath = vim.fn.stdpath('data') .. '/site/pack/*/start/*,' ..
-                            vim.o.runtimepath
+	vim.cmd [[packadd packer.nvim]]
     print('Installed Packer')
 end
 
 -- Configure packer
-vim.cmd [[packadd packer.nvim]]
 require('packer').startup(function()
     local use = require('packer').use
 
     -- The plugin manager itself
-    use {'wbthomason/packer.nvim', opt = true}
+    use {'wbthomason/packer.nvim'}
 
     -- Colorscheme
     use {
@@ -173,6 +171,12 @@ require('packer').startup(function()
 
     -- Vim <3 Asciidoctor
     use 'habamax/vim-asciidoctor'
+
+	-- If Packer was just installed,
+	-- sync plugins
+	if Packer_bootstrap then
+		require('packer').sync()
+	end
 
 end)
 

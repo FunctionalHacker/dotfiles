@@ -7,6 +7,7 @@ Servers = {
     lemminx = {},
     marksman = {},
     yamlls = {},
+	taplo = {},
     tsserver = {},
     sumneko_lua = {
         Lua = {

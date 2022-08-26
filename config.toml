@@ -33,7 +33,7 @@ src = ".config/imapnotify"
 [dotfiles.d_nvim]
 actions = ["nvim-packer-sync"]
 dst = "~/.config/nvim"
-src = ".config/nvim/lua"
+src = ".config/nvim"
 
 [dotfiles.d_sway]
 dst = "~/.config/sway"

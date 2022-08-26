@@ -96,14 +96,14 @@ require('packer').startup(function()
         config = function() require('mason').setup {} end
     }
     use {
-        'williamboman/mason-lspconfig.nvim',
+        'williamboman/mason-lspconfig.nvim', after = 'mason',
         config = function()
             require('mason-lspconfig').setup {automatic_installation = true}
         end
     }
 
     -- Configs for built-in LSP
-    use {'neovim/nvim-lspconfig', config = require('plugins.lspconfig').setup}
+    use {'neovim/nvim-lspconfig', after = 'mason-lspconfig', config = require('plugins.lspconfig').setup}
 
     -- Additional LSP features for Java
     use 'mfussenegger/nvim-jdtls'

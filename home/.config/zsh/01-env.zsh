@@ -61,12 +61,18 @@ export SYSTEMD_PAGER=less
 # Use GPG for SSH authentication
 export GPG_TTY="$(tty)"
 
+{%@@ if os == "arch" @@%}
 # set SSH_AUTH_SOCK if not logging in over SSH
 if [ "$SSH_CONNECTION" = "" ]; then
     export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
     #gpgconf --launch gpg-agent
     gpg-connect-agent updatestartuptty /bye >/dev/null
 fi
+{%@@ elif os == "termux" @@%}
+if ! pgrep okc-ssh-agent > /dev/null; then
+	okc-ssh-agent > "$PREFIX/tmp/okc-ssh-agent.env"
+fi
+{%@@ endif @@%}
 
 # Enable grc colorization of supported commands
 [[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh

@@ -43,6 +43,10 @@ pr() {
 }
 {%@@ endif @@%}
 
+{%@@ if os == "termux" @@%}
+alias okc-gpg='gpg'
+{%@@ endif @@%}
+
 # find and open man pages with fzf
 fman() {
 	man -k . | fzf --prompt='Man> ' | awk '{print $1}' | xargs -r man

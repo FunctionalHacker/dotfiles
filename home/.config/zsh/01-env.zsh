@@ -69,9 +69,7 @@ if [ "$SSH_CONNECTION" = "" ]; then
     gpg-connect-agent updatestartuptty /bye >/dev/null
 fi
 {%@@ elif os == "termux" @@%}
-if ! pgrep okc-ssh-agent > /dev/null; then
-	okc-ssh-agent > "$PREFIX/tmp/okc-ssh-agent.env"
-fi
+eval $(okc-ssh-agent)
 {%@@ endif @@%}
 
 # Enable grc colorization of supported commands

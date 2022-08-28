@@ -44,7 +44,7 @@ pr() {
 {%@@ endif @@%}
 
 {%@@ if os == "termux" @@%}
-alias okc-gpg='gpg'
+alias gp='okc-gpg'
 {%@@ endif @@%}
 
 # find and open man pages with fzf

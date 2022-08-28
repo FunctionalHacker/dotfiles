@@ -5,7 +5,7 @@
 	email = marko@korhonen.cc
 	{%@@ endif @@%}
 	name = Marko Korhonen
-	signingkey = C514037F1EFF4FA6
+	signingkey = F2B9F713E7ED627336DD85E444FA3F28CD931BB0
 
 [commit]
 	signoff = true

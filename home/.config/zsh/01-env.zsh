@@ -58,19 +58,16 @@ export MANPAGER="$EDITOR +\"lua require 'pager'\" +Man!"
 export SYSTEMD_EDITOR=$EDITOR
 export SYSTEMD_PAGER=less
 
-# Use GPG for SSH authentication
-export GPG_TTY="$(tty)"
-
-{%@@ if os == "arch" @@%}
-# set SSH_AUTH_SOCK if not logging in over SSH
 if [ "$SSH_CONNECTION" = "" ]; then
+{%@@ if os == "arch" or os == "ubuntu" @@%}
+	# set SSH_AUTH_SOCK if not logging in over SSH
+	export GPG_TTY="$(tty)"
     export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-    #gpgconf --launch gpg-agent
-    gpg-connect-agent updatestartuptty /bye >/dev/null
-fi
+    gpgconf --launch gpg-agent
 {%@@ elif os == "termux" @@%}
-eval $(okc-ssh-agent)
+	eval $(okc-ssh-agent)
 {%@@ endif @@%}
+fi
 
 # Enable grc colorization of supported commands
 [[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh

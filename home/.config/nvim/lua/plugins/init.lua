@@ -171,6 +171,9 @@ require('packer').startup(function()
 
     -- Vim <3 Asciidoctor
     use 'habamax/vim-asciidoctor'
+	
+	-- Edit GPG encrypted files transparently
+	use 'jamessan/vim-gnupg'
 
 	-- If Packer was just installed,
 	-- sync plugins

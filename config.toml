@@ -59,9 +59,9 @@ src = ".mbsyncrc"
 dst = "~/.config/alacritty/alacritty.yml"
 src = ".config/alacritty/alacritty.yml"
 
-[dotfiles.f_authorized_keys]
-dst = "~/.ssh/authorized_keys"
-src = ".ssh/authorized_keys"
+[dotfiles.d_ssh]
+dst = "~/.ssh"
+src = ".ssh"
 
 [dotfiles.f_beets_config]
 dst = "~/.config/beets/config.yaml"
@@ -242,9 +242,9 @@ os = "termux"
 [profiles.terminal]
 dotfiles = [
   "d_nvim",
+  "d_ssh",
   "d_zsh",
   "f_alacritty.yml",
-  "f_authorized_keys",
   "f_gitconfig",
   "f_hushlogin",
   "f_ignore",
@@ -252,7 +252,6 @@ dotfiles = [
   "f_ranger.conf",
   "f_ranger_commands.py",
   "f_rtv.cfg",
-  "f_ssh.conf",
   "f_tmux.conf",
   "f_zshrc",
 ]

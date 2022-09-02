@@ -74,10 +74,7 @@ require('packer').startup(function()
     use 'lambdalisue/suda.vim'
 
     -- Display possible keybinds
-    use {
-        'folke/which-key.nvim',
-        config = require('plugins.which-key')
-    }
+    use {'folke/which-key.nvim', config = require('plugins.which-key')}
 
     -- Read editorconfig settings
     use 'editorconfig/editorconfig-vim'

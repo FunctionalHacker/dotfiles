@@ -1,8 +1,6 @@
 local o = vim.o
 local g = vim.g
 
------- Appearance ------
-
 -- True colors
 o.termguicolors = true
 
@@ -26,8 +24,6 @@ o.laststatus = 3
 
 -- Hide cmdline
 o.cmdheight = 0
-
------- Misc -------
 
 -- Use suda by default
 g.suda_smart_edit = 1

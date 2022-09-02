@@ -10,12 +10,10 @@ return function()
 
     -- nvim-cmp setup
     local cmp = require 'cmp'
+    if not cmp then return end
+
     cmp.setup {
-        snippet = {
-            expand = function(args)
-                require('luasnip').lsp_expand(args.body)
-            end
-        },
+        snippet = {expand = function(args) luasnip.lsp_expand(args.body) end},
         mapping = {
             ['<C-p>'] = cmp.mapping.select_prev_item(),
             ['<C-n>'] = cmp.mapping.select_next_item(),
@@ -59,4 +57,14 @@ return function()
 
     -- load friendly-snippets to luasnip
     require('luasnip/loaders/from_vscode').lazy_load()
+
+    -- Register snippet parameter navigation keybindings
+    local mappings = {
+        ['<c-j>'] = {luasnip.jump(1)},
+        ['<c-k>'] = {luasnip.jump(-1)}
+    }
+
+    local wk = require('which-key')
+    wk.register(mappings, {mode = "n"})
+    wk.register(mappings, {mode = "s"})
 end

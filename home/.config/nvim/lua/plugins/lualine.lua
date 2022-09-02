@@ -1,1 +1,1 @@
-require'lualine'.setup {options = {theme = 'catppuccin'}}
+return function() require('lualine').setup() end

@@ -8,7 +8,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
         'git', 'clone', '--depth', '1',
         'https://github.com/wbthomason/packer.nvim', install_path
     })
-	vim.cmd [[packadd packer.nvim]]
+    vim.cmd [[packadd packer.nvim]]
     print('Installed Packer')
 end
 
@@ -20,26 +20,20 @@ require('packer').startup(function()
     use {'wbthomason/packer.nvim'}
 
     -- Colorscheme
-    use {
-        'catppuccin/nvim',
-        as = 'catppuccin',
-        config = require('plugins.colorscheme')
-    }
-
-	-- Startup screen/dashboard
-	use 'glepnir/dashboard-nvim'
-
-    -- Git in signcolumn
-    use 'airblade/vim-gitgutter'
+    use {'rebelot/kanagawa.nvim', config = require('plugins.colorscheme')}
 
     -- Statusline
     use {
-        'hoob3rt/lualine.nvim',
+        'nvim-lualine/lualine.nvim',
         requires = {'kyazdani42/nvim-web-devicons', opt = true},
-        config = function()
-            require('lualine').setup {options = {theme = 'catppuccin'}}
-        end
+        config = require('plugins.lualine')
     }
+
+    -- Startup screen/dashboard
+    use 'glepnir/dashboard-nvim'
+
+    -- Git in signcolumn
+    use 'airblade/vim-gitgutter'
 
     -- Tabline/bufferline
     use {
@@ -82,9 +76,7 @@ require('packer').startup(function()
     -- Display possible keybinds
     use {
         'folke/which-key.nvim',
-        config = function()
-            require('which-key').setup {spelling = {enabled = true}}
-        end
+        config = require('plugins.which-key')
     }
 
     -- Read editorconfig settings
@@ -97,6 +89,7 @@ require('packer').startup(function()
     }
     use {
         'williamboman/mason-lspconfig.nvim',
+        requires = {'ii14/emmylua-nvim'}, -- vim api documentation for lua lsp
         config = function()
             require('mason-lspconfig').setup {automatic_installation = true}
         end
@@ -115,13 +108,14 @@ require('packer').startup(function()
     use {
         'hrsh7th/nvim-cmp',
         requires = {
-            {'hrsh7th/cmp-nvim-lsp'}, -- LSP source
-            {'hrsh7th/cmp-path'}, -- Path source
-            {'petertriho/cmp-git', requires = "nvim-lua/plenary.nvim"}, -- Git source
             {'hrsh7th/cmp-buffer'}, -- Buffer source
-            {'saadparwaiz1/cmp_luasnip'}, -- Snippets source
+            {'petertriho/cmp-git', requires = "nvim-lua/plenary.nvim"}, -- Git source
             {'L3MON4D3/LuaSnip'}, -- Snippets plugin
-            {'rafamadriz/friendly-snippets'} -- Snippets collection
+            {'hrsh7th/cmp-nvim-lsp'}, -- LSP source
+            {'hrsh7th/cmp-nvim-lua'}, -- Neovim Lua API documentation
+            {'hrsh7th/cmp-path'}, -- Path source
+            {'rafamadriz/friendly-snippets'}, -- Snippets collection
+            {'saadparwaiz1/cmp_luasnip'} -- Snippets source
         },
         config = require('plugins.cmp')
     }
@@ -171,15 +165,13 @@ require('packer').startup(function()
 
     -- Vim <3 Asciidoctor
     use 'habamax/vim-asciidoctor'
-	
-	-- Edit GPG encrypted files transparently
-	use 'jamessan/vim-gnupg'
 
-	-- If Packer was just installed,
-	-- sync plugins
-	if Packer_bootstrap then
-		require('packer').sync()
-	end
+    -- Edit GPG encrypted files transparently
+    use 'jamessan/vim-gnupg'
+
+    -- If Packer was just installed,
+    -- sync plugins
+    if Packer_bootstrap then require('packer').sync() end
 
 end)
 

@@ -34,3 +34,8 @@ o.smartcase = true
 
 -- Set leader
 g.mapleader = " "
+
+-- Indentation settings
+o.tabstop = 4
+o.shiftwidth = 4
+o.smartindent = true

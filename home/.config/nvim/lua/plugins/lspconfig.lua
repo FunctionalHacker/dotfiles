@@ -2,6 +2,7 @@
 -- This is iterated through and every
 -- server is setup with lspconfig
 Servers = {
+    bashls = {},
     html = {},
     jsonls = {},
     lemminx = {},

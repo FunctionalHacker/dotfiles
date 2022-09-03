@@ -80,22 +80,17 @@ require('packer').startup(function()
     use 'editorconfig/editorconfig-vim'
 
     -- Package manager for LSP servers, DAP servers etc.
-    use {
-        'williamboman/mason.nvim',
-        config = require('plugins.mason').setup
-    }
+    use {'williamboman/mason.nvim', config = require('plugins.mason').setup}
 
     -- Install LSP server executables with Mason
     use {
         'williamboman/mason-lspconfig.nvim',
-        after = 'mason',
         config = require('plugins.mason').lspconfig_setup
     }
 
     -- Configs for built-in LSP
     use {
         'neovim/nvim-lspconfig',
-        after = 'mason-lspconfig',
         config = require('plugins.lspconfig').setup
     }
 

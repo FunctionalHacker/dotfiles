@@ -86,7 +86,6 @@ require('packer').startup(function()
     }
     use {
         'williamboman/mason-lspconfig.nvim',
-        requires = {'ii14/emmylua-nvim'}, -- vim api documentation for lua lsp
         config = function()
             require('mason-lspconfig').setup {automatic_installation = true}
         end
@@ -101,20 +100,28 @@ require('packer').startup(function()
     -- Display function signature
     use 'ray-x/lsp_signature.nvim'
 
+    -- Snippets plugin
+    use {
+        'L3MON4D3/LuaSnip',
+        requires = {'rafamadriz/friendly-snippets'}, -- Snippets collection
+        config = require('plugins.luasnip')
+    }
+
+    -- vim api documentation for lua lsp
+    use {'ii14/emmylua-nvim'}
+
     -- Completion
     use {
         'hrsh7th/nvim-cmp',
         requires = {
             {'hrsh7th/cmp-buffer'}, -- Buffer source
             {'petertriho/cmp-git', requires = "nvim-lua/plenary.nvim"}, -- Git source
-            {'L3MON4D3/LuaSnip'}, -- Snippets plugin
             {'hrsh7th/cmp-nvim-lsp'}, -- LSP source
-            {'hrsh7th/cmp-nvim-lua'}, -- Neovim Lua API documentation
+            {'hrsh7th/cmp-nvim-lua'}, -- Neovim Lua API documentation source
             {'hrsh7th/cmp-path'}, -- Path source
-            {'rafamadriz/friendly-snippets'}, -- Snippets collection
             {'saadparwaiz1/cmp_luasnip'} -- Snippets source
         },
-        config = require('plugins.cmp')
+        config = require('plugins.cmp'),
     }
 
     -- Automatic brackets
@@ -174,7 +181,7 @@ end)
 
 -- Sync plugins if Packer was just
 -- installed
-if Packer_installed then
+if Packer_bootstrap then
     print('Syncing plugins')
     require('packer').sync()
 end

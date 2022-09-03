@@ -1,16 +1,14 @@
 return function()
+    local cmp = require('cmp')
+    local luasnip = require('luasnip')
+
+    if not cmp then return end
+
     -- Setup git completion source
     require("cmp_git").setup()
 
     -- Set completeopt to have a better completion experience
     vim.o.completeopt = 'menuone,noselect'
-
-    -- luasnip setup
-    local luasnip = require 'luasnip'
-
-    -- nvim-cmp setup
-    local cmp = require 'cmp'
-    if not cmp then return end
 
     cmp.setup {
         snippet = {expand = function(args) luasnip.lsp_expand(args.body) end},
@@ -52,19 +50,7 @@ return function()
 
     -- Enable autopairs when enter is processed
     -- on completion
-    local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
+    local cmp_autopairs = require('nvim-autopairs.completion.cmp')
     cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
 
-    -- load friendly-snippets to luasnip
-    require('luasnip/loaders/from_vscode').lazy_load()
-
-    -- Register snippet parameter navigation keybindings
-    local snippet_mappings = {
-        ['<c-j>'] = {luasnip.jump(1)},
-        ['<c-k>'] = {luasnip.jump(-1)}
-    }
-
-    local wk = require('which-key')
-    wk.register(snippet_mappings, {mode = "i"})
-    wk.register(snippet_mappings, {mode = "s"})
 end

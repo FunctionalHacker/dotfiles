@@ -16,8 +16,10 @@ o.hidden = true
 -- Show line numbers
 o.number = true
 
--- Blinking cursor
-o.guicursor = 'a:blinkon1'
+o.guicursor = table.concat({
+    'i:ver1', -- Vertical bar cursor in insert mode
+    'a:blinkon1' -- Blinking cursor in all modes
+}, ',')
 
 -- Enable global statusline
 o.laststatus = 3

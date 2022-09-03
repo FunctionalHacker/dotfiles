@@ -19,7 +19,7 @@ zinit ice lucid
 zinit light zsh-users/zsh-history-substring-search
 
 # fzf git awesomeness
-zinit ice wait'1' lucid atload'source $HOME/.config/zsh/03-aliases.zsh'
+zinit ice wait'1' lucid atload'source $HOME/.config/zsh/04-aliases.zsh'
 zinit light wfxr/forgit
 
 # lots of completions

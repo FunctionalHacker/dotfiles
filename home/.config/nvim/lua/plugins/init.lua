@@ -79,20 +79,25 @@ require('packer').startup(function()
     -- Read editorconfig settings
     use 'editorconfig/editorconfig-vim'
 
-    -- Install LSP server executables
+    -- Package manager for LSP servers, DAP servers etc.
     use {
         'williamboman/mason.nvim',
-        config = function() require('mason').setup {} end
+        config = require('plugins.mason').setup
     }
+
+    -- Install LSP server executables with Mason
     use {
         'williamboman/mason-lspconfig.nvim',
-        config = function()
-            require('mason-lspconfig').setup {automatic_installation = true}
-        end
+        after = 'mason',
+        config = require('plugins.mason').lspconfig_setup
     }
 
     -- Configs for built-in LSP
-    use {'neovim/nvim-lspconfig', config = require('plugins.lspconfig').setup}
+    use {
+        'neovim/nvim-lspconfig',
+        after = 'mason-lspconfig',
+        config = require('plugins.lspconfig').setup
+    }
 
     -- Additional LSP features for Java
     use 'mfussenegger/nvim-jdtls'
@@ -121,7 +126,7 @@ require('packer').startup(function()
             {'hrsh7th/cmp-path'}, -- Path source
             {'saadparwaiz1/cmp_luasnip'} -- Snippets source
         },
-        config = require('plugins.cmp'),
+        config = require('plugins.cmp')
     }
 
     -- Automatic brackets

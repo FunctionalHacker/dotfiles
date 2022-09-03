@@ -1,3 +1,3 @@
-require 'keybinds'
-require 'settings'
-require 'plugins/init'
+require('keybinds')
+require('settings')
+require('plugins.init')

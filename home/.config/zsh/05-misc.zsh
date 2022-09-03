@@ -1,6 +1,6 @@
 # Launch tmux if logging in over ssh
 if [[ -z "$TMUX" ]] && [ "$SSH_CONNECTION" != "" ]; then
-    tmux attach-session -t ssh_tmux || tmux new-session -s ssh_tmux
+    exec tmux attach-session -t ssh_tmux || exec tmux new-session -s ssh_tmux
 fi
 
 # share history between running zsh instances

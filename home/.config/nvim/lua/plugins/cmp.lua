@@ -59,12 +59,12 @@ return function()
     require('luasnip/loaders/from_vscode').lazy_load()
 
     -- Register snippet parameter navigation keybindings
-    local mappings = {
+    local snippet_mappings = {
         ['<c-j>'] = {luasnip.jump(1)},
         ['<c-k>'] = {luasnip.jump(-1)}
     }
 
     local wk = require('which-key')
-    wk.register(mappings, {mode = "n"})
-    wk.register(mappings, {mode = "s"})
+    wk.register(snippet_mappings, {mode = "i"})
+    wk.register(snippet_mappings, {mode = "s"})
 end

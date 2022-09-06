@@ -24,8 +24,7 @@ o.guicursor = table.concat({
 -- Enable global statusline
 o.laststatus = 3
 
--- Hide cmdline
-o.cmdheight = 0
+o.cmdheight = 1
 
 -- Use suda by default
 g.suda_smart_edit = 1

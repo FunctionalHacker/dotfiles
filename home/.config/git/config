@@ -46,3 +46,7 @@
 
 [init]
 	defaultBranch = main
+
+[credential]
+	helper = cache --timeout=600
+	helper = !pass-git-helper $@

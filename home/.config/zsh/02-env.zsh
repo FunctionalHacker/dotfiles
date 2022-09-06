@@ -61,11 +61,12 @@ export MANPAGER="$EDITOR +\"lua require 'pager'\" +Man!"
 export SYSTEMD_EDITOR=$EDITOR
 export SYSTEMD_PAGER=less
 
+{%@@ if os == "arch" or os == "ubuntu" @@%}
 if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
 	export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
 fi
-{%@@ if os == "termux" @@%}
-
+gpgconf --launch gpg-agent
+{%@@ elif os == "termux" @@%}
 eval $(okc-ssh-agent)
 {%@@ endif @@%}
 

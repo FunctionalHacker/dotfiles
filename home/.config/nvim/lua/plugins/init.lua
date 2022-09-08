@@ -89,10 +89,7 @@ require('packer').startup(function()
     }
 
     -- Configs for built-in LSP
-    use {
-        'neovim/nvim-lspconfig',
-        config = require('plugins.lspconfig').setup
-    }
+    use {'neovim/nvim-lspconfig', config = require('plugins.lspconfig').setup}
 
     -- Additional LSP features for Java
     use 'mfussenegger/nvim-jdtls'
@@ -172,6 +169,12 @@ require('packer').startup(function()
 
     -- Edit GPG encrypted files transparently
     use 'jamessan/vim-gnupg'
+
+    -- High performance color highlighter
+    use {
+        'norcalli/nvim-colorizer.lua',
+        config = function() require('colorizer').setup() end
+    }
 
     -- If Packer was just installed,
     -- sync plugins

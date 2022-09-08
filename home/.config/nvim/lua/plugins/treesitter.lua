@@ -3,8 +3,8 @@ return function()
         ensure_installed = {
             'bash', 'c', 'css', 'dockerfile', 'html', 'http', 'java', 'json',
             'json5', 'latex', 'lua', 'make', 'markdown', 'php', 'python',
-            'regex', 'rst', 'scss', 'toml', 'tsx', 'typescript', 'javascript',
-            'yaml'
+            'regex', 'rasi', 'rst', 'scss', 'toml', 'tsx', 'typescript',
+            'javascript', 'yaml'
         },
         highlight = {enable = true},
         indent = {enable = true},

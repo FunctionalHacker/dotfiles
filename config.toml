@@ -31,7 +31,7 @@ dst = "~/.config/imapnotify"
 src = ".config/imapnotify"
 
 [dotfiles.d_nvim]
-actions = [ "nvim-packer-sync",]
+actions = ["nvim-packer-sync"]
 dst = "~/.config/nvim"
 src = ".config/nvim"
 
@@ -229,58 +229,101 @@ src = ".config/wal"
 dst = "~/.config/wal"
 
 [profiles.os_arch]
-include = [ "terminal",]
-dotfiles = [ "f_makepkg.conf", "f_paru.conf",]
+include = ["terminal"]
+dotfiles = ["f_makepkg.conf", "f_paru.conf"]
 
 [profiles.os_ubuntu]
-include = [ "terminal",]
+include = ["terminal"]
 
 [profiles.os_termux]
-include = [ "terminal",]
+include = ["terminal"]
 
 [profiles.terminal]
-dotfiles = [ "d_nvim", "d_ssh", "d_zsh", "f_alacritty.yml", "f_gitconfig", "f_hushlogin", "f_ignore", "f_mailcap", "f_ranger.conf", "f_ranger_commands.py", "f_rtv.cfg", "f_tmux.conf", "f_zshrc",]
+dotfiles = [
+  "d_wal",
+  "d_nvim",
+  "d_ssh",
+  "d_zsh",
+  "f_alacritty.yml",
+  "f_gitconfig",
+  "f_hushlogin",
+  "f_ignore",
+  "f_mailcap",
+  "f_ranger.conf",
+  "f_ranger_commands.py",
+  "f_rtv.cfg",
+  "f_tmux.conf",
+  "f_zshrc",
+]
 
 [profiles.email]
-dotfiles = [ "d_neomutt", "d_imapnotify", "f_mbsyncrc", "f_msmtp_config",]
+dotfiles = ["d_neomutt", "d_imapnotify", "f_mbsyncrc", "f_msmtp_config"]
 
 [profiles.media]
-dotfiles = [ "d_mpv", "f_abcde.conf", "f_beets_config", "f_beets_whitelist", "f_libra_config", "f_mpd.conf", "f_mpdris2.conf", "f_mpdscribble.conf", "f_ncmpcpp.conf", "f_ncmpcpp_bindings", "f_youtube-dl_config",]
+dotfiles = [
+  "d_mpv",
+  "f_abcde.conf",
+  "f_beets_config",
+  "f_beets_whitelist",
+  "f_libra_config",
+  "f_mpd.conf",
+  "f_mpdris2.conf",
+  "f_mpdscribble.conf",
+  "f_ncmpcpp.conf",
+  "f_ncmpcpp_bindings",
+  "f_youtube-dl_config",
+]
 
 [profiles.sway]
-dotfiles = [ "d_sway", "d_waybar", "d_wofi", "d_zathura", "f_electron-flags.conf", "f_electron12-flags.conf", "f_fonts.conf", "f_foot.ini", "f_mako_config", "f_redshift.conf",]
+dotfiles = [
+  "d_sway",
+  "d_waybar",
+  "d_wofi",
+  "d_zathura",
+  "f_electron-flags.conf",
+  "f_electron12-flags.conf",
+  "f_fonts.conf",
+  "f_foot.ini",
+  "f_mako_config",
+  "f_redshift.conf",
+]
 
 [profiles.gpg]
-dotfiles = [ "f_gpg-agent.conf", "f_gpg.conf", "f_gpg_scdaemon.conf", "f_pam_environment",]
+dotfiles = [
+  "f_gpg-agent.conf",
+  "f_gpg.conf",
+  "f_gpg_scdaemon.conf",
+  "f_pam_environment",
+]
 
 [profiles.Mirkwood]
-include = [ "os_arch", "email", "media", "sway", "gpg",]
-dotfiles = [ "d_systemd", "d_rofi", "d_wal",]
+include = ["os_arch", "email", "media", "sway", "gpg"]
+dotfiles = ["d_systemd", "d_rofi"]
 
 [profiles.Moria]
-include = [ "os_arch", "media", "gpg",]
-dotfiles = [ "f_zprofile",]
+include = ["os_arch", "media", "gpg"]
+dotfiles = ["f_zprofile"]
 
 [profiles.Gondor]
-include = [ "os_arch",]
+include = ["os_arch"]
 
 [profiles.mko-laptop]
-include = [ "os_ubuntu", "media", "gpg",]
+include = ["os_ubuntu", "media", "gpg"]
 
 [profiles.Isengard]
-include = [ "os_termux",]
+include = ["os_termux"]
 
 [profiles.Edoras]
-include = [ "os_arch",]
+include = ["os_arch"]
 
 [profiles.TakamakiPC]
-include = [ "os_arch",]
+include = ["os_arch"]
 
 [profiles.localhost]
-include = [ "os_arch",]
+include = ["os_arch"]
 
 [profiles.ViiruJaTeippi]
-include = [ "terminal",]
+include = ["terminal"]
 
 [profiles.os_arch.variables]
 os = "arch"

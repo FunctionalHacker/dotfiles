@@ -1,9 +1,0 @@
-rofi.lines: 5
-rofi.eh: 2
-rofi.padding: 50
-rofi.fullscreen: false
-rofi.bw: 0
-rofi.separator-style: none
-rofi.hide-scrollbar: true
-rofi.font: Overpass 22
-rofi.theme: ~/.config/rofi/gruvbox-dark.rasi

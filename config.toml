@@ -87,6 +87,10 @@ src = ".config/git/config"
 dst = "~/.config/libra/config.toml"
 src = ".config/libra/config.toml"
 
+[dotfiles.f_librewolf_overrides]
+dst = "~/.librewolf/librewolf.overrides.cfg"
+src = ".librewolf/librewolf.overrides.cfg"
+
 [dotfiles.f_mailcap]
 dst = "~/.mailcap"
 src = ".mailcap"
@@ -298,11 +302,11 @@ dotfiles = [
 
 [profiles.Mirkwood]
 include = ["os_arch", "email", "media", "sway", "gpg"]
-dotfiles = ["d_systemd", "d_rofi"]
+dotfiles = ["d_systemd", "d_rofi", "f_librewolf_overrides"]
 
 [profiles.Moria]
 include = ["os_arch", "media", "gpg"]
-dotfiles = ["f_zprofile"]
+dotfiles = ["f_zprofile",  "f_librewolf_overrides"]
 
 [profiles.Gondor]
 include = ["os_arch"]

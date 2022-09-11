@@ -1,7 +1,7 @@
 // vim: ft=rasi
 
 configuration {
-	font: "Overpass 10";
+	font: "Overpass 15";
 	show-icons: true;
 	terminal: "foot";
 	// modi: "run,ssh";

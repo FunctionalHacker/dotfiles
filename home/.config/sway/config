@@ -1,3 +1,4 @@
 # vim:ft=i3config
 
+include ~/.cache/wal/colors-sway
 include ~/.config/sway/conf.d/*.conf

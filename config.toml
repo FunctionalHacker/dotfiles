@@ -306,13 +306,14 @@ dotfiles = ["d_systemd", "d_rofi", "f_librewolf_overrides"]
 
 [profiles.Moria]
 include = ["os_arch", "media", "gpg"]
-dotfiles = ["f_zprofile",  "f_librewolf_overrides"]
+dotfiles = ["f_zprofile", "f_librewolf_overrides"]
 
 [profiles.Gondor]
 include = ["os_arch"]
 
 [profiles.mko-laptop]
 include = ["os_ubuntu", "media", "gpg"]
+dotfiles = ["f_librewolf_overrides"]
 
 [profiles.Isengard]
 include = ["os_termux"]

@@ -1,0 +1,29 @@
+[services.umami]
+image = "docker.umami.is/umami-software/umami:postgresql-latest"
+container_name = "umami"
+restart = "unless-stopped"
+networks = ["postgres", "proxy"]
+env_file = ".env"
+environment = { DATABASE_URL = "postgresql://umami:${POSTGRES_PASS}@postgres:5432/umami", HASH_SALT = "${HASH_SALT}" }
+labels = [
+  "traefik.enable=true",
+  "traefik.docker.network=proxy",
+  "traefik.http.routers.umami-redirect.entrypoints=http",
+  "traefik.http.routers.umami-redirect.rule=Host(`umami.korhonen.cc`)",
+  "traefik.http.routers.umami-redirect.middlewares=http2https@file",
+  "traefik.http.routers.umami.entrypoints=https",
+  "traefik.http.routers.umami.middlewares=secHeaders@file,compress@file",
+  "traefik.http.routers.umami.rule=Host(`umami.korhonen.cc`)",
+  "traefik.http.routers.umami.service=umami",
+  "traefik.http.services.umami.loadbalancer.server.port=3000",
+]
+
+[services.umami.logging.options]
+max-size = "10m"
+max-file = "10"
+
+[networks.postgres]
+external = true
+
+[networks.proxy]
+external = true

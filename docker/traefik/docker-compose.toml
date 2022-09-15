@@ -1,5 +1,3 @@
-[services]
-
 [services.traefik]
 image = "traefik:latest"
 container_name = "traefik"
@@ -46,8 +44,6 @@ volumes = [
   "/docker/homeautomation/home-assistant/home-assistant.log:/var/log/hass",
   "/mnt/Storage/Nextcloud/nextcloud.log:/var/log/nextcloud:ro",
 ]
-
-[networks]
 
 [networks.proxy]
 external = true

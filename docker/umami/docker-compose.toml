@@ -20,7 +20,7 @@ labels = [
 [services.umami.environment]
 DATABASE_URL = "postgresql://umami:${POSTGRES_PASS}@postgres:5432/umami"
 HASH_SALT = "${HASH_SALT}"
-TRACKER_SCRIPT_NAME = "ua9quuaW.js"
+TRACKER_SCRIPT_NAME = "ua9quuaW"
 
 [services.umami.logging.options]
 max-size = "10m"

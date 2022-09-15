@@ -4,7 +4,6 @@ container_name = "umami"
 restart = "unless-stopped"
 networks = ["postgres", "proxy"]
 env_file = ".env"
-environment = { DATABASE_URL = "postgresql://umami:${POSTGRES_PASS}@postgres:5432/umami", HASH_SALT = "${HASH_SALT}" }
 labels = [
   "traefik.enable=true",
   "traefik.docker.network=proxy",
@@ -17,6 +16,11 @@ labels = [
   "traefik.http.routers.umami.service=umami",
   "traefik.http.services.umami.loadbalancer.server.port=3000",
 ]
+
+[services.umami.environment]
+DATABASE_URL = "postgresql://umami:${POSTGRES_PASS}@postgres:5432/umami"
+HASH_SALT = "${HASH_SALT}"
+TRACKER_SCRIPT_NAME = "ua9quuaW.js"
 
 [services.umami.logging.options]
 max-size = "10m"

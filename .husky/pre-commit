@@ -1,0 +1,39 @@
+#!/bin/sh
+
+# Exit on error
+set -e
+
+# Source husky
+# shellcheck disable=SC1091
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo "FunctionalHacker's dotfile pre-commit hook start"
+printf "Using shell: %s \n" "$(readlink /proc/$$/exe)"
+
+# All staged files
+staged_files=$(git diff --name-only --cached)
+
+# Run taplo on staged TOML files
+staged_toml=$(echo "$staged_files" | grep ".toml$" || true)
+num_staged_toml=$(echo "$staged_toml" | grep -vce '^$')
+if [ "$num_staged_toml" -ne "0" ]; then
+  printf '\nFormatting %s staged TOML files with taplo\n' "$num_staged_toml"
+  taplo format "$staged_toml"
+  printf "Re-staging\n"
+  git add "$staged_toml"
+fi
+
+# Run lua-format on staged Lua files
+staged_lua=$(echo "$staged_files" | grep ".lua$" || true)
+num_staged_lua=$(echo "$staged_lua" | grep -vce '^$')
+if [ "$num_staged_lua" -ne "0" ]; then
+  printf '\nFormatting %s staged Lua files with lua-format\n' "$num_staged_lua"
+  lua-format -i "$staged_lua"
+  printf "Re-staging\n\n"
+  git add "$staged_lua"
+fi
+
+# Run prettier on all other staged files
+# that are supported
+echo "Running prettier on all supported files"
+npx pretty-quick --staged

@@ -23,7 +23,7 @@ import:
 lastgenre:
   whitelist: ~/.config/beets/whitelist
 lyrics:
-  fallback: ""
+  fallback: ''
 play:
   command: mpv
 mpd:
@@ -41,5 +41,5 @@ musicbrainz:
   user: FunctionalHacker
   pass: "{{@@ env['PASS_MUSICBRAINZ'] @@}}"
 mbcollection:
-  auto: "yes"
-  collection: "a4955b5c-db7f-4e27-9887-f77f820bad34"
+  auto: 'yes'
+  collection: 'a4955b5c-db7f-4e27-9887-f77f820bad34'

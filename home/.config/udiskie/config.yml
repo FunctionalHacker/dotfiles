@@ -1,5 +1,0 @@
-{%@@ if profile == "ReekyPC" @@%}
-device_config:
-    - id_uuid: 10879044936567925003
-      ignore:true
-{%@@ endif @@%}

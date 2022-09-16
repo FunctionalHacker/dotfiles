@@ -2,7 +2,7 @@
 
 source $DOTREPO/secrets/env
 
-cat <<SECRET > $DOTREPO/secrets/secrets
+cat <<SECRET >$DOTREPO/secrets/secrets
 export PASS_LIBREFM="$PASS_LIBREFM"
 export PASS_MUSICBRAINZ="$PASS_MUSICBRAINZ"
 export PASS_LISTENBRAINZ="$PASS_LISTENBRAINZ"

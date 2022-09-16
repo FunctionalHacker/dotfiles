@@ -8,7 +8,7 @@ echo "FunctionalHacker's dotfile pre-commit hook start"
 printf "Using shell: %s \n" "$(readlink /proc/$$/exe)"
 
 # All staged files
-staged_files=$(git diff --name-only --cached)
+staged_files=$(git diff --name-only --cached --diff-filter=d)
 
 # Run taplo on staged TOML files
 staged_toml=$(echo "$staged_files" | grep '.toml$' || true)

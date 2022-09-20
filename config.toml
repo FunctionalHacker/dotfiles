@@ -328,8 +328,7 @@ include = ["os_arch"]
 include = ["os_arch"]
 
 [profiles.ViiruJaTeippi]
-os = "ubuntu"
-include = ["terminal"]
+include = ["terminal", "os_ubuntu"]
 
 [profiles.os_arch.variables]
 os = "arch"

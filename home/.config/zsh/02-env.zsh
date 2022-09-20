@@ -26,10 +26,10 @@ setopt no_complete_aliases
 export USRNAME=$USER
 
 # Add ~/.local/bin to path
-export PATH="/home/$USER/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
 # Add ~/.cargo/bin to path
-export PATH="/home/$USER/.cargo/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
 
 # go path
 export GOPATH=~/.go

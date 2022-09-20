@@ -314,6 +314,7 @@ dotfiles = ["f_librewolf_overrides"]
 
 [profiles.Isengard]
 include = ["terminal"]
+dotfiles = ["f_distro"]
 
 [profiles.Edoras]
 include = ["terminal"]

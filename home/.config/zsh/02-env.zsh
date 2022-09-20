@@ -25,8 +25,8 @@ setopt no_complete_aliases
 # Variable to pass to sdotdrop to get current user
 export USRNAME=$USER
 
-# Add ~/.bin to path
-export PATH="/home/$USER/.bin:$PATH"
+# Add ~/.local/bin to path
+export PATH="/home/$USER/.local/bin:$PATH"
 
 # Add ~/.cargo/bin to path
 export PATH="/home/$USER/.cargo/bin:$PATH"

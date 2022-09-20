@@ -228,6 +228,10 @@ dst = "~/.config/electron12-flags.conf"
 src = ".pam_environment"
 dst = "~/.pam_environment"
 
+[dotfiles.f_distro]
+src = ".distro"
+dst = "~/.distro"
+
 [dotfiles.d_wal]
 src = ".config/wal"
 dst = "~/.config/wal"
@@ -295,7 +299,7 @@ dotfiles = [
 
 [profiles.Mirkwood]
 include = ["pacman", "terminal", "email", "media", "sway", "gpg"]
-dotfiles = ["d_systemd", "d_rofi", "f_librewolf_overrides"]
+dotfiles = ["d_systemd", "d_rofi", "f_librewolf_overrides", "f_distro"]
 
 [profiles.Moria]
 include = ["pacman", "terminal", "media", "gpg"]
@@ -322,6 +326,7 @@ include = ["terminal"]
 
 [profiles.ViiruJaTeippi]
 include = ["terminal"]
+dotfiles = ["f_distro"]
 
 [profiles.Mirkwood.variables]
 wayland = true

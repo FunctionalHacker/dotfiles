@@ -248,3 +248,6 @@ dct() {
 
 	yj -ty < $file_path | docker compose -f - $@
 }
+
+# enable https://github.com/nvbn/thefuck
+eval $(thefuck --alias)

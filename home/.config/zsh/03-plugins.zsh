@@ -39,12 +39,8 @@ zinit ice lucid atinit'zpcompinit'
 zinit light zdharma-continuum/fast-syntax-highlighting
 
 # use fzf with zsh
-{%@@ if distro_id == "arch" @@%}
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
-{%@@ elif distro_id == "ubuntu" @@%}
-# Source from home directory since ubuntu has
-# old version of FZF in it's repositories
-source ~/Software/fzf/shell/key-bindings.zsh
-source ~/Software/fzf/shell/completion.zsh
-{%@@ endif @@%}
+
+# enable https://github.com/nvbn/thefuck
+eval $(thefuck --alias)

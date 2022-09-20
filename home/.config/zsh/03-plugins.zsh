@@ -39,6 +39,10 @@ zinit ice lucid atinit'zpcompinit'
 zinit light zdharma-continuum/fast-syntax-highlighting
 
 # use fzf with zsh
+{%@@ if distro_id == "termux" @@%}
+source $PREFIX/share/fzf/key-bindings.zsh
+source $PREFIX/share/fzf/completion.zsh
+{%@@ else @@%}
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
 

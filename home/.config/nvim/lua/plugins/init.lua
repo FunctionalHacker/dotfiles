@@ -20,10 +20,7 @@ require('packer').startup(function()
     use {'wbthomason/packer.nvim'}
 
     -- Colorscheme
-    use {
-        'FunctionalHacker/pywal.nvim',
-        config = function() require('pywal').setup() end
-    }
+  use 'rebelot/kanagawa.nvim'
 
     -- Statusline
     use {

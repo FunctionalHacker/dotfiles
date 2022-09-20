@@ -328,6 +328,9 @@ include = ["terminal"]
 include = ["terminal"]
 dotfiles = ["f_distro"]
 
+[profiles.Isengard.variables]
+distro_id = "termux"
+
 [profiles.Mirkwood.variables]
 wayland = true
 

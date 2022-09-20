@@ -33,8 +33,10 @@ pi() {
 	if [ -n "$SELECTED_PKGS" ]; then
     {%@@ if distro_id == "arch" @@%}
     cmd="paru -S $(echo $SELECTED_PKGS)"
-    {%@@ else @@%}
+    {%@@ elif distro_id == "ubuntu" @@%}
     cmd="sudo apt install $(echo $SELECTED_PKGS)"
+    {%@@ elif distro_id == "termux" @@%}
+    cmd="apt install $(echo $SELECTED_PKGS)"
     {%@@ endif @@%}
 
 		# Append the expanded command to history
@@ -54,8 +56,10 @@ pr() {
 	if [ -n "$SELECTED_PKGS" ]; then
     {%@@ if distro_id == "arch" @@%}
     cmd="paru -Rns $(echo $SELECTED_PKGS)"
-    {%@@ else @@%}
+    {%@@ elif distro_id == "ubuntu" @@%}
     cmd="sudo apt remove $(echo $SELECTED_PKGS)"
+    {%@@ elif distro_id == "termux" @@%}
+    cmd="apt remove $(echo $SELECTED_PKGS)"
     {%@@ endif @@%}
 
 		# Append the expanded command to history

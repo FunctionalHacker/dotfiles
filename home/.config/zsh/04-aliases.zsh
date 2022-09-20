@@ -26,7 +26,7 @@ function command_not_found_handler {
 # search and install/remove packages with fzf
 pi() {
   {%@@ if distro_id == "arch" @@%}
-	SELECTED_PKGS="$(paru -Slq | fzf --header='Install packages' -m --preview 'paru -Si {1}')"
+	SELECTED_PKGS="$(paru -Slq | fzf --header='Install packages' -m --preview 'paru -Si {1}' | tr '\n' ' ')"
   {%@@ else @@%}
 	SELECTED_PKGS="$(apt list 2>/dev/null | cut -d '/' -f 1 | tail +2 | fzf --header='Install packages' -m --preview 'apt show 2>/dev/null {1}')"
   {%@@ endif @@%}
@@ -47,7 +47,7 @@ pi() {
 
 pr() {
   {%@@ if distro_id == "arch" @@%}
-	SELECTED_PKGS="$(paru -Qsq | fzf --header='Remove packages' -m --preview 'paru -Si {1}')"
+	SELECTED_PKGS="$(paru -Qsq | fzf --header='Remove packages' -m --preview 'paru -Si {1}' | tr '\n' ' ')"
   {%@@ else @@%}
 	SELECTED_PKGS="$(apt list --installed 2>/dev/null | cut -d '/' -f 1 | tail +2 | fzf --header='Remove packages' -m --preview 'apt show 2>/dev/null {1}')"
   {%@@ endif @@%}

@@ -28,7 +28,7 @@ pi() {
   {%@@ if distro_id == "arch" @@%}
 	SELECTED_PKGS="$(paru -Slq | fzf --header='Install packages' -m --preview 'paru -Si {1}')"
   {%@@ else @@%}
-	SELECTED_PKGS="$(apt list 2>/dev/null | cut -d '/' -f 1 | tail +2 | fzf --header='Install packages' -m --preview 'apt show {1}')"
+	SELECTED_PKGS="$(apt list 2>/dev/null | cut -d '/' -f 1 | tail +2 | fzf --header='Install packages' -m --preview 'apt show 2>/dev/null {1}')"
   {%@@ endif @@%}
 	if [ -n "$SELECTED_PKGS" ]; then
     {%@@ if distro_id == "arch" @@%}

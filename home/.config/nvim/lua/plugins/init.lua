@@ -20,7 +20,10 @@ require('packer').startup(function()
     use {'wbthomason/packer.nvim'}
 
     -- Colorscheme
-  use 'rebelot/kanagawa.nvim'
+    use {
+        'rebelot/kanagawa.nvim',
+        config = function() vim.cmd('colorscheme kanagawa') end
+    }
 
     -- Statusline
     use {

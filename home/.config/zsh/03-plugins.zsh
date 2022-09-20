@@ -45,6 +45,7 @@ source $PREFIX/share/fzf/completion.zsh
 {%@@ else @@%}
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
+{%@@ endif @@%}
 
 # enable https://github.com/nvbn/thefuck
 eval $(thefuck --alias)

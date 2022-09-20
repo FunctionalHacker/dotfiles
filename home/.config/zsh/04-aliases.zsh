@@ -44,12 +44,25 @@ pi() {
     eval "$cmd"
 	fi
 }
+
 pr() {
+  {%@@ if distro_id == "arch" @@%}
 	SELECTED_PKGS="$(paru -Qsq | fzf --header='Remove packages' -m --preview 'paru -Si {1}')"
+  {%@@ else @@%}
+	SELECTED_PKGS="$(apt list --installed 2>/dev/null | cut -d '/' -f 1 | tail +2 | fzf --header='Remove packages' -m --preview 'apt show 2>/dev/null {1}')"
+  {%@@ endif @@%}
 	if [ -n "$SELECTED_PKGS" ]; then
+    {%@@ if distro_id == "arch" @@%}
+    cmd="paru -Rns $(echo $SELECTED_PKGS)"
+    {%@@ else @@%}
+    cmd="sudo apt remove $(echo $SELECTED_PKGS)"
+    {%@@ endif @@%}
+
 		# Append the expanded command to history
-		print -s "paru -Rns $(echo $SELECTED_PKGS)"
-		paru -Rns $(echo $SELECTED_PKGS)
+		print -s "$cmd"
+
+    # Finally, excecute the command
+    eval "$cmd"
 	fi
 }
 

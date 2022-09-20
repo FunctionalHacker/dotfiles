@@ -35,7 +35,7 @@ export PATH="/home/$USER/.cargo/bin:$PATH"
 export GOPATH=~/.go
 
 # fzf settings
-export FD_COMMAND='fd -HLt'
+export FD_COMMAND='fd --strip-cwd-prefix -HLt'
 export FZF_DEFAULT_COMMAND="$FD_COMMAND f"
 export FZF_ALT_C_COMMAND="$FD_COMMAND d"
 export FZF_DEFAULT_OPTS='-m --ansi --bind ctrl-a:toggle-all,ctrl-d:deselect-all,ctrl-t:toggle-all'

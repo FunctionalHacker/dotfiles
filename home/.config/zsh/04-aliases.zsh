@@ -246,5 +246,5 @@ dct() {
 		return 1
 	fi
 
-	yj -ty < $file_path | docker-compose -f - $@
+	yj -ty < $file_path | docker compose -f - $@
 }

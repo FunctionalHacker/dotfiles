@@ -23,14 +23,25 @@ function command_not_found_handler {
 }
 {%@@ endif @@%}
 
-{%@@ if distro_id == "arch" @@%}
 # search and install/remove packages with fzf
 pi() {
+  {%@@ if distro_id == "arch" @@%}
 	SELECTED_PKGS="$(paru -Slq | fzf --header='Install packages' -m --preview 'paru -Si {1}')"
+  {%@@ else @@%}
+	SELECTED_PKGS="$(apt list 2>/dev/null | cut -d '/' -f 1 | tail +2 | fzf --header='Install packages' -m --preview 'apt show {1}')"
+  {%@@ endif @@%}
 	if [ -n "$SELECTED_PKGS" ]; then
+    {%@@ if distro_id == "arch" @@%}
+    cmd="paru -S $(echo $SELECTED_PKGS)"
+    {%@@ else @@%}
+    cmd="sudo apt install $(echo $SELECTED_PKGS)"
+    {%@@ endif @@%}
+
 		# Append the expanded command to history
-		print -s "paru -S $(echo $SELECTED_PKGS)"
-		paru -S $(echo $SELECTED_PKGS)
+		print -s "$cmd"
+
+    # Finally, excecute the command
+    eval "$cmd"
 	fi
 }
 pr() {
@@ -41,7 +52,6 @@ pr() {
 		paru -Rns $(echo $SELECTED_PKGS)
 	fi
 }
-{%@@ endif @@%}
 
 {%@@ if distro_id == "termux" @@%}
 alias gp='okc-gpg'

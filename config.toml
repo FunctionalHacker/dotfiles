@@ -232,15 +232,8 @@ dst = "~/.pam_environment"
 src = ".config/wal"
 dst = "~/.config/wal"
 
-[profiles.os_arch]
-include = ["terminal"]
+[profiles.pacman]
 dotfiles = ["f_makepkg.conf", "f_paru.conf"]
-
-[profiles.os_ubuntu]
-include = ["terminal"]
-
-[profiles.os_termux]
-include = ["terminal"]
 
 [profiles.terminal]
 dotfiles = [
@@ -301,43 +294,34 @@ dotfiles = [
 ]
 
 [profiles.Mirkwood]
-include = ["os_arch", "email", "media", "sway", "gpg"]
+include = ["pacman", "terminal", "email", "media", "sway", "gpg"]
 dotfiles = ["d_systemd", "d_rofi", "f_librewolf_overrides"]
 
 [profiles.Moria]
-include = ["os_arch", "media", "gpg"]
+include = ["pacman", "terminal", "media", "gpg"]
 dotfiles = ["f_zprofile", "f_librewolf_overrides"]
 
 [profiles.Gondor]
-include = ["os_arch"]
+include = ["pacman", "terminal"]
 
 [profiles.mko-laptop]
-include = ["os_ubuntu", "media", "gpg"]
+include = ["terminal", "media", "gpg"]
 dotfiles = ["f_librewolf_overrides"]
 
 [profiles.Isengard]
-include = ["os_termux"]
+include = ["terminal"]
 
 [profiles.Edoras]
-include = ["os_arch"]
+include = ["terminal"]
 
 [profiles.TakamakiPC]
-include = ["os_arch"]
+include = ["terminal"]
 
 [profiles.localhost]
-include = ["os_arch"]
+include = ["terminal"]
 
 [profiles.ViiruJaTeippi]
-include = ["terminal", "os_ubuntu"]
-
-[profiles.os_arch.variables]
-os = "arch"
-
-[profiles.os_ubuntu.variables]
-os = "ubuntu"
-
-[profiles.os_termux.variables]
-os = "termux"
+include = ["terminal"]
 
 [profiles.Mirkwood.variables]
 wayland = true
@@ -346,7 +330,7 @@ wayland = true
 wayland = true
 
 [profiles.mko-laptop.variables]
-wayland = false
+wayland = true
 
 [profiles.TakamakiPC.variables]
 wayland = false

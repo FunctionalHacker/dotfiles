@@ -39,10 +39,10 @@ zinit ice lucid atinit'zpcompinit'
 zinit light zdharma-continuum/fast-syntax-highlighting
 
 # use fzf with zsh
-{%@@ if os == "arch" @@%}
+{%@@ if distro_id == "arch" @@%}
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
-{%@@ elif os == "ubuntu" @@%}
+{%@@ elif distro_id == "ubuntu" @@%}
 # Source from home directory since ubuntu has
 # old version of FZF in it's repositories
 source ~/Software/fzf/shell/key-bindings.zsh

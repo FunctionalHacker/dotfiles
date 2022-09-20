@@ -13,19 +13,19 @@ forgit_revert_commit=fgrc
 alias ls='exa'
 
 # Enable command not found handler
-{%@@ if os == "arch" @@%}
+{%@@ if distro_id == "arch" @@%}
 source /usr/share/doc/pkgfile/command-not-found.zsh
-{%@@ elif os == "ubuntu" @@%}
+{%@@ elif distro_id == "ubuntu" @@%}
 source /etc/zsh_command_not_found
-{%@@ elif os == "termux" @@%}
+{%@@ elif distro_id == "termux" @@%}
 function command_not_found_handler {
 	$PREFIX/libexec/termux/command-not-found $1
 }
 {%@@ endif @@%}
 
-{%@@ if os == "arch" @@%}
+{%@@ if distro_id == "arch" @@%}
 # search and install/remove packages with fzf
-pi() { 
+pi() {
 	SELECTED_PKGS="$(paru -Slq | fzf --header='Install packages' -m --preview 'paru -Si {1}')"
 	if [ -n "$SELECTED_PKGS" ]; then
 		# Append the expanded command to history
@@ -33,7 +33,7 @@ pi() {
 		paru -S $(echo $SELECTED_PKGS)
 	fi
 }
-pr() { 
+pr() {
 	SELECTED_PKGS="$(paru -Qsq | fzf --header='Remove packages' -m --preview 'paru -Si {1}')"
 	if [ -n "$SELECTED_PKGS" ]; then
 		# Append the expanded command to history
@@ -43,7 +43,7 @@ pr() {
 }
 {%@@ endif @@%}
 
-{%@@ if os == "termux" @@%}
+{%@@ if distro_id == "termux" @@%}
 alias gp='okc-gpg'
 {%@@ endif @@%}
 
@@ -126,11 +126,11 @@ update() {
 	}
 
 	packages() {
-		{%@@ if os == "arch" @@%}
+		{%@@ if distro_id == "arch" @@%}
 		paru
-		{%@@ elif os == "ubuntu" @@%}
+		{%@@ elif distro_id == "ubuntu" @@%}
 		sudo apt update && sudo apt full-upgrade -y && sudo apt autoremove -y && sudo apt autoclean -y
-		{%@@ elif os == "termux" @@%}
+		{%@@ elif distro_id == "termux" @@%}
 		pkg update
 		{%@@ endif @@%}
 	}

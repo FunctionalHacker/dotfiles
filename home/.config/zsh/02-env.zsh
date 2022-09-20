@@ -28,6 +28,9 @@ export USRNAME=$USER
 # Add ~/.bin to path
 export PATH="/home/$USER/.bin:$PATH"
 
+# Add ~/.cargo/bin to path
+export PATH="/home/$USER/.cargo/bin:$PATH"
+
 # go path
 export GOPATH=~/.go
 

@@ -36,11 +36,11 @@ export GOPATH=~/.go
 
 # fzf settings
 export FD_COMMAND='fd -HLt'
-export FZF_DEFAULT_COMMAND="$FD_COMMAND f --strip-cwd-prefix"
+export FZF_DEFAULT_COMMAND="$FD_COMMAND f"
 export FZF_ALT_C_COMMAND="$FD_COMMAND d"
 export FZF_DEFAULT_OPTS='-m --ansi --bind ctrl-a:toggle-all,ctrl-d:deselect-all,ctrl-t:toggle-all'
 export FZF_COMPLETION_TRIGGER='**'
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND --strip-cwd-prefix"
 export FZF_CTRL_T_OPTS='--preview "bat --color=always --style=numbers --line-range=:500 {}"'
 _fzf_compgen_path() {
 	resultcmd="$FZF_DEFAULT_COMMAND . $1"

@@ -149,10 +149,6 @@ dst = "/etc/mkinitcpio.d"
 src = "etc/kernel/cmdline"
 dst = "/etc/kernel/cmdline"
 
-[dotfiles."f_loader.conf"]
-src = "boot/loader/loader.conf"
-dst = "/boot/loader/loader.conf"
-
 [dotfiles."f_timesyncd.conf"]
 src = "etc/systemd/timesyncd.conf"
 dst = "/etc/systemd/timesyncd.conf"
@@ -191,7 +187,6 @@ dotfiles = [
   "f_cpupower",
   "d_mkinitcpio.d",
   "f_cmdline",
-  "f_loader.conf",
   "f_timesyncd.conf",
 ]
 include = ["Locale", "Pacman", "Network"]

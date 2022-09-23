@@ -32,7 +32,6 @@ networks = ["nextcloud", "postgres", "proxy"]
 volumes = [
   "/docker/nextcloud:/var/www/html:z",
   "/mnt/Storage/Nextcloud:/var/www/html/data",
-  "/mnt/Storage/Media/Music:/Music",
   "/etc/localtime:/etc/localtime:ro",
 ]
 environment = [

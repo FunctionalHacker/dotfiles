@@ -77,7 +77,6 @@ environment = [
   "password=${COLLABORA_PASSWORD}",
   "username=${COLLABORA_USERNAME}",
   "domain=collabora.korhonen.cc",
-  "DONT_GEN_SSL_CERT=yes",
 ]
 networks = ["proxy"]
 labels = [

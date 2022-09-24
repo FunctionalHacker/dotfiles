@@ -69,7 +69,29 @@ command = [
   "--static-auth-secret=${STATIC_AUTH_SECRET}",
 ]
 
-[networks]
+[services.collabora]
+image = "collabora/code"
+restart = "unless-stopped"
+env_file = ".env"
+environment = [
+  "password=${COLLABORA_PASSWORD}",
+  "username=${COLLABORA_USERNAME}",
+  "domain=collabora.korhonen.cc",
+  "DONT_GEN_SSL_CERT=yes",
+]
+networks = ["proxy"]
+labels = [
+  "traefik.enable=true",
+  "traefik.http.routers.collabora-redirect.entrypoints=http",
+  "traefik.http.routers.collabora-redirect.rule=Host(`collabora.korhonen.cc`)",
+  "traefik.http.routers.collabora-redirect.middlewares=http2https@file",
+  "traefik.http.routers.collabora.entrypoints=https",
+  "traefik.http.routers.collabora.rule=Host(`collabora.korhonen.cc`)",
+  "traefik.http.routers.collabora.service=collabora",
+  "traefik.http.routers.collabora.middlewares=secHeaders@file,compress@file",
+  "traefik.docker.network=proxy",
+  "traefik.http.services.collabora.loadbalancer.server.port=9980",
+]
 
 [networks.nextcloud]
 external = false

@@ -75,9 +75,10 @@ container_name = "collabora"
 restart = "unless-stopped"
 env_file = ".env"
 environment = [
-  "password=${COLLABORA_PASSWORD}",
   "username=${COLLABORA_USERNAME}",
+  "password=${COLLABORA_PASSWORD}",
   "domain=collabora.korhonen.cc",
+  'extra\_params=--o:ssl.enable=false --o:ssl.termination=true --o:net.post\_allow.host\[0\]=cloud.korhonen.cc',
 ]
 networks = ["proxy"]
 labels = [

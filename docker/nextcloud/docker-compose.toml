@@ -71,6 +71,7 @@ command = [
 
 [services.collabora]
 image = "collabora/code"
+container_name = "collabora"
 restart = "unless-stopped"
 env_file = ".env"
 environment = [

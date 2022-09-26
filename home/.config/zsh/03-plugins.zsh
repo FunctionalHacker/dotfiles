@@ -48,8 +48,4 @@ source /usr/share/fzf/completion.zsh
 {%@@ endif @@%}
 
 # enable https://github.com/nvbn/thefuck
-{%@@ if distro_id == "termux" @@%}
 eval $(TF_SHELL=zsh thefuck --alias)
-{%@@ else @@%}
-eval $(thefuck --alias)
-{%@@ endif @@%}

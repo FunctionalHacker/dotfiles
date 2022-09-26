@@ -52,3 +52,4 @@ source /usr/share/fzf/completion.zsh
 eval $(TF_SHELL=zsh thefuck --alias)
 {%@@ else @@%}
 eval $(thefuck --alias)
+{%@@ endif @@%}

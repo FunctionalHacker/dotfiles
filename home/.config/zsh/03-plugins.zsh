@@ -1,7 +1,7 @@
 # install zinit if it's not already installed
 if [ ! -f ~/.zinit/bin/zinit.zsh ]; then
-    mkdir ~/.zinit
-    git clone https://github.com/zdharma-continuum/zinit.git ~/.zinit/bin
+  mkdir ~/.zinit
+  git clone https://github.com/zdharma-continuum/zinit.git ~/.zinit/bin
 fi
 
 source ~/.zinit/bin/zinit.zsh
@@ -48,4 +48,7 @@ source /usr/share/fzf/completion.zsh
 {%@@ endif @@%}
 
 # enable https://github.com/nvbn/thefuck
+{%@@ if distro_id == "termux" @@%}
+eval $(TF_SHELL=zsh thefuck --alias)
+{%@@ else @@%}
 eval $(thefuck --alias)

@@ -14,7 +14,6 @@ command = "server"
 volumes = [
   "/docker/authentik/media:/media",
   "/docker/authentik/custom-templates:/templates",
-  "/docker/authentik/geoip:/geoip",
 ]
 env_file = [".env"]
 networks = ["authentik", "postgres", "proxy"]
@@ -43,7 +42,6 @@ volumes = [
   "/docker/authentik/media:/media",
   "/var/run/docker.sock:/var/run/docker.sock",
   "/docker/authentik/custom-templates:/templates",
-  "/docker/authentik/geoip:/geoip",
 ]
 environment = [
   "AUTHENTIK_POSTGRESQL__HOST",
@@ -53,17 +51,6 @@ environment = [
   "AUTHENTIK_SECRET_KEY",
 ]
 env_file = [".env"]
-
-[services.geoipupdate]
-container_name = "authentik-geoip"
-image = "maxmindinc/geoipupdate:latest"
-volumes = ["/docker/authentik/geoip:/usr/share/GeoIP"]
-env_file = [".env"]
-networks = ["authentik"]
-
-[services.geoipupdate.environment]
-GEOIPUPDATE_EDITION_IDS = "GeoLite2-City"
-GEOIPUPDATE_FREQUENCY = "8"
 
 [networks]
 

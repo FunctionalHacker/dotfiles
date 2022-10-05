@@ -115,7 +115,7 @@ require('packer').startup(function()
         'hrsh7th/nvim-cmp',
         requires = {
             {'hrsh7th/cmp-buffer'}, -- Buffer source
-            {'petertriho/cmp-git', requires = "nvim-lua/plenary.nvim"}, -- Git source
+            {'petertriho/cmp-git', requires = 'nvim-lua/plenary.nvim'}, -- Git source
             {'hrsh7th/cmp-nvim-lsp'}, -- LSP source
             {'hrsh7th/cmp-nvim-lua'}, -- Neovim Lua API documentation source
             {'hrsh7th/cmp-path'}, -- Path source
@@ -170,12 +170,12 @@ require('packer').startup(function()
     -- Vim <3 Asciidoctor
     use 'habamax/vim-asciidoctor'
 
-    -- Markdown preview plugin
+    -- Markdown preview
     use({
-        "iamcco/markdown-preview.nvim",
-        run = "cd app && npm install",
-        setup = function() vim.g.mkdp_filetypes = {"markdown"} end,
-        ft = {"markdown"}
+        'iamcco/markdown-preview.nvim',
+        run = 'cd app && npm install',
+        setup = function() vim.g.mkdp_filetypes = {'markdown'} end,
+        ft = {'markdown'}
     })
 
     -- Edit GPG encrypted files transparently

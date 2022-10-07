@@ -11,8 +11,6 @@ longkey = false
 showdiff = false
 workdir = "~/.config/sdotdrop"
 
-[dotfiles]
-
 [dotfiles."f_60-uinput-permissions.rules"]
 dst = "/etc/udev/rules.d/60-uinput-permissions.rules"
 src = "etc/udev/rules.d/60-uinput-permissions.rules"
@@ -153,7 +151,9 @@ dst = "/etc/kernel/cmdline"
 src = "etc/systemd/timesyncd.conf"
 dst = "/etc/systemd/timesyncd.conf"
 
-[profiles]
+[dotfiles.f_sudoers_pacman]
+src = "etc/sudoers.d/pacman"
+dst = "/etc/sudoers.d/pacman"
 
 [profiles.Network]
 dotfiles = ["d_network", "f_networkd.conf"]
@@ -162,7 +162,12 @@ dotfiles = ["d_network", "f_networkd.conf"]
 dotfiles = ["f_locale.conf", "f_locale.gen"]
 
 [profiles.Pacman]
-dotfiles = ["f_pacman.conf", "f_pacman_zsh_hook", "f_pacserve.service.conf"]
+dotfiles = [
+  "f_pacman.conf",
+  "f_pacman_zsh_hook",
+  "f_pacserve.service.conf",
+  "f_sudoers_pacman",
+]
 
 [profiles.Mirkwood]
 dotfiles = [

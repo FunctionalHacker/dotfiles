@@ -155,6 +155,10 @@ dst = "/etc/systemd/timesyncd.conf"
 src = "etc/sudoers.d/pacman"
 dst = "/etc/sudoers.d/pacman"
 
+[dotfiles."f_doas.conf"]
+src = "etc/doas.conf"
+dst = "/etc/doas.conf"
+
 [profiles.Network]
 dotfiles = ["d_network", "f_networkd.conf"]
 
@@ -171,34 +175,35 @@ dotfiles = [
 
 [profiles.Mirkwood]
 dotfiles = [
-  "f_getty.conf",
-  "f_cryptissue",
-  "f_welcomemessage.conf",
   "d_bin",
+  "d_mkinitcpio.d",
+  "f_20-quiet-printk.conf",
+  "f_60-uinput-permissions.rules",
+  "f_99-lowbat.rules",
   "f_adb.service",
   "f_bluetooth.conf",
-  "f_sshd_config",
-  "f_logind.conf",
-  "f_60-uinput-permissions.rules",
-  "f_yubikey_udev.rules",
-  "f_freetype2.sh",
-  "f_fonts.conf",
-  "f_99-lowbat.rules",
-  "f_ignore",
-  "f_mkinitcpio.conf",
-  "f_vconsole.conf",
-  "f_20-quiet-printk.conf",
-  "f_system.conf",
-  "f_cpupower",
-  "d_mkinitcpio.d",
   "f_cmdline",
+  "f_cpupower",
+  "f_cryptissue",
+  "f_doas.conf",
+  "f_fonts.conf",
+  "f_freetype2.sh",
+  "f_getty.conf",
+  "f_ignore",
+  "f_logind.conf",
+  "f_mkinitcpio.conf",
+  "f_sshd_config",
+  "f_system.conf",
   "f_timesyncd.conf",
+  "f_vconsole.conf",
+  "f_welcomemessage.conf",
+  "f_yubikey_udev.rules",
 ]
 include = ["Locale", "Pacman", "Network"]
 
 [profiles.Moria]
 include = ["Locale", "Pacman", "Network"]
-dotfiles = ["f_sshd_config", "f_99-sysctl.conf", "f_cpupower"]
+dotfiles = ["f_99-sysctl.conf", "f_cpupower", "f_doas.conf", "f_sshd_config"]
 
 [profiles.Gondor]
 include = ["Locale", "Pacman"]

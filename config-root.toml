@@ -207,7 +207,7 @@ dotfiles = ["f_99-sysctl.conf", "f_cpupower", "f_doas.conf", "f_sshd_config"]
 
 [profiles.Gondor]
 include = ["Locale", "Pacman"]
-dotfiles = ["f_sshd_config"]
+dotfiles = ["f_doas.conf", "f_sshd_config"]
 
 [profiles.localhost]
 include = ["Locale"]

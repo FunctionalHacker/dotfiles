@@ -34,7 +34,7 @@ pi() {
     {%@@ if distro_id == "arch" @@%}
     cmd="paru -S $(echo $SELECTED_PKGS)"
     {%@@ elif distro_id == "ubuntu" @@%}
-    cmd="sudo apt install $(echo $SELECTED_PKGS)"
+    cmd="doas apt install $(echo $SELECTED_PKGS)"
     {%@@ elif distro_id == "termux" @@%}
     cmd="apt install $(echo $SELECTED_PKGS)"
     {%@@ endif @@%}
@@ -57,7 +57,7 @@ pr() {
     {%@@ if distro_id == "arch" @@%}
     cmd="paru -Rns $(echo $SELECTED_PKGS)"
     {%@@ elif distro_id == "ubuntu" @@%}
-    cmd="sudo apt remove $(echo $SELECTED_PKGS)"
+    cmd="doas apt remove $(echo $SELECTED_PKGS)"
     {%@@ elif distro_id == "termux" @@%}
     cmd="apt remove $(echo $SELECTED_PKGS)"
     {%@@ endif @@%}
@@ -106,15 +106,15 @@ clean() {
 	DFCMD="df -h / | tail -n 1 | cut -d' ' -f8- | cut -d' ' -f1 | sed 's/[^0-9]*//g'"
 	SPACEBEFORE=$(eval "$DFCMD")
 	trash-empty 10
-	sudo journalctl --vacuum-size=500M
+  doas journalctl --vacuum-size=500M
 	paru -Sc
 	SPACEAFTER=$(eval "$DFCMD")
 	echo "Saved $(calc $SPACEAFTER - $SPACEBEFORE)G of space"
 }
 
 # connect to wireguard
-alias startvpn='sudo systemctl start wg-quick@wg0.service'
-alias stopvpn='sudo systemctl stop wg-quick@wg0.service'
+alias startvpn='doas systemctl start wg-quick@wg0.service'
+alias stopvpn='doas systemctl stop wg-quick@wg0.service'
 
 # read qrcode from selection
 qr() { grim -g "$(slurp -d)" - | zbarimg PNG:- }
@@ -156,7 +156,7 @@ update() {
 		{%@@ if distro_id == "arch" @@%}
 		paru
 		{%@@ elif distro_id == "ubuntu" @@%}
-		sudo apt update && sudo apt full-upgrade -y && sudo apt autoremove -y && sudo apt autoclean -y
+		doas apt update && doas apt full-upgrade -y && doas apt autoremove -y && doas apt autoclean -y
 		{%@@ elif distro_id == "termux" @@%}
 		pkg update
 		{%@@ endif @@%}
@@ -219,7 +219,7 @@ update() {
 tether() { adb shell su -c "service call connectivity 33 i32 1 s16 me" > /dev/null }
 
 # update arch mirrorlist
-alias reflect='sudo reflector --latest 200 --threads 8 --verbose --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist'
+alias reflect='doas reflector --latest 200 --threads 8 --verbose --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist'
 
 # default icon for notify-send
 alias notify-send='notify-send --icon=alarm'

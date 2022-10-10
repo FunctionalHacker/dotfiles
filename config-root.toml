@@ -216,4 +216,4 @@ include = ["Locale"]
 include = ["Pacman"]
 
 [profiles.mko-laptop]
-dotfiles = ["f_cpupower", "f_yubikey_udev.rules"]
+dotfiles = ["f_cpupower", "f_yubikey_udev.rules", "f_doas.conf"]

@@ -169,7 +169,9 @@ update() {
 		nvim --headless +TSUpdateSync +qa
 		zinit self-update
 		zinit update -p
+		{%@@ if profile == "Moria" @@%}
 		$HOME/.tmux/plugins/tpm/bin/update_plugins all
+		{%@@ endif @@%}
 	}
 
 	{%@@ if profile == "Moria" @@%}

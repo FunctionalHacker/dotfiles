@@ -158,7 +158,7 @@ update() {
 		{%@@ elif distro_id == "ubuntu" @@%}
 		doas apt update && doas apt full-upgrade -y && doas apt autoremove -y && doas apt autoclean -y
 		{%@@ elif distro_id == "termux" @@%}
-		pkg update
+		pkg update && pkg upgrade
 		{%@@ endif @@%}
 	}
 

@@ -299,7 +299,7 @@ dotfiles = [
 
 [profiles.Mirkwood]
 include = ["pacman", "terminal", "email", "media", "sway", "gpg"]
-dotfiles = ["d_systemd", "d_rofi", "f_librewolf_overrides", "f_distro"]
+dotfiles = ["d_rofi", "f_librewolf_overrides", "f_distro"]
 
 [profiles.Moria]
 include = ["pacman", "terminal", "media", "gpg"]

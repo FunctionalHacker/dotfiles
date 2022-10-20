@@ -33,7 +33,7 @@ require('packer').startup(function()
     }
 
     -- Startup screen/dashboard
-    use 'glepnir/dashboard-nvim'
+    --use 'glepnir/dashboard-nvim'
 
     -- Git in signcolumn
     use 'airblade/vim-gitgutter'
@@ -69,7 +69,8 @@ require('packer').startup(function()
         requires = {
             {'nvim-lua/plenary.nvim'}, -- Internal dep for telescope
             {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}, -- Use fzf for fuzzy finder
-            {'nvim-telescope/telescope-ui-select.nvim'} -- Replace vim built in select with telescope
+            {'nvim-telescope/telescope-ui-select.nvim'}, -- Replace vim built in select with telescope
+            {'zane-/cder.nvim'}, -- cd plugin for telescope
         }
     }
 

@@ -4,8 +4,15 @@ local g = vim.g
 -- True colors
 o.termguicolors = true
 
+-- Font for nvim GUI's
+o.guifont = 'Fira Code:h14'
+
 -- Floating window transparency
 o.winblend = 10
+
+-- Set window title
+o.title = true
+o.titlestring = 'NeoVim: ' .. vim.fn.getcwd()
 
 -- Diff settings
 o.diffopt = 'filler,internal,algorithm:histogram,indent-heuristic'

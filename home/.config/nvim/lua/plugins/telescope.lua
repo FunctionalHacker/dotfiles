@@ -8,6 +8,7 @@ return function()
 
     telescope.load_extension('fzf')
     telescope.load_extension('ui-select')
+    telescope.load_extension('cder')
 
     -- Keybinds
     vim.keymap.set('n', '<C-t>', vim.cmd.Telescope)

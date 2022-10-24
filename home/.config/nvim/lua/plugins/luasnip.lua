@@ -7,9 +7,9 @@ return function()
 
     -- Register snippet navigation keybindings
     local snippet_mappings = {
-        ['<c-j>'] = {function() luasnip.jump(1) end},
+        ['<c-j>'] = {function()luasnip.jump(1) end},
         ['<c-k>'] = {function() luasnip.jump(-1) end}
     }
-    wk.register(snippet_mappings, {mode = "i"})
-    wk.register(snippet_mappings, {mode = "s"})
+    --wk.register(snippet_mappings, {mode = "i"})
+    --wk.register(snippet_mappings, {mode = "s"})
 end

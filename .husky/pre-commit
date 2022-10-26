@@ -26,7 +26,7 @@ num_staged_lua=$(echo "$staged_lua" | grep -vce '^$' || true)
 if [ "$num_staged_lua" -gt 0 ]; then
   printf '\nFormatting %s staged Lua files with stylua\n' "$num_staged_lua"
 
-  for file in $staged_lua;do
+  for file in $staged_lua; do
     stylua "$file"
   done
 

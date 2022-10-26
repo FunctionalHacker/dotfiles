@@ -5,17 +5,17 @@ local g = vim.g
 o.termguicolors = true
 
 -- Font for nvim GUI's
-o.guifont = 'Fira Code:h14'
+o.guifont = "Fira Code:h14"
 
 -- Floating window transparency
 o.winblend = 10
 
 -- Set window title
 o.title = true
-o.titlestring = 'NeoVim: ' .. vim.fn.getcwd()
+o.titlestring = "NeoVim: " .. vim.fn.getcwd()
 
 -- Diff settings
-o.diffopt = 'filler,internal,algorithm:histogram,indent-heuristic'
+o.diffopt = "filler,internal,algorithm:histogram,indent-heuristic"
 
 -- Allow switching buffers with unsaved changes
 o.hidden = true
@@ -24,9 +24,9 @@ o.hidden = true
 o.number = true
 
 o.guicursor = table.concat({
-    'i:ver1', -- Vertical bar cursor in insert mode
-    'a:blinkon1' -- Blinking cursor in all modes
-}, ',')
+	"i:ver1", -- Vertical bar cursor in insert mode
+	"a:blinkon1", -- Blinking cursor in all modes
+}, ",")
 
 -- Enable global statusline
 o.laststatus = 3

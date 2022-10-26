@@ -25,7 +25,7 @@ staged_lua=$(echo "$staged_files" | grep '.lua$' || true)
 num_staged_lua=$(echo "$staged_lua" | grep -vce '^$' || true)
 if [ "$num_staged_lua" -gt 0 ]; then
   printf '\nFormatting %s staged Lua files with lua-format\n' "$num_staged_lua"
-  lua-format -i "$staged_lua"
+  stylua "$staged_lua"
   printf "Re-staging\n\n"
   git add "$staged_lua"
 fi

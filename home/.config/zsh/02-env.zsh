@@ -31,6 +31,9 @@ export PATH="$HOME/.local/bin:$PATH"
 # Add ~/.cargo/bin to path
 export PATH="$HOME/.cargo/bin:$PATH"
 
+# Add ~/.local/share/nvim/mason/bin to path
+export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
+
 # go path
 export GOPATH=~/.go
 

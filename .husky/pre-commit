@@ -17,7 +17,7 @@ if [ "$num_staged_toml" -gt 0 ]; then
   printf '\nFormatting %s staged TOML files with taplo\n' "$num_staged_toml"
   taplo format "$staged_toml"
   printf "Re-staging\n"
-  git add "$staged_toml"
+  git add $staged_toml
 fi
 
 # Run lua-format on staged Lua files
@@ -39,9 +39,9 @@ staged_sh=$(echo "$staged_files" | grep -E '(.sh$|pre-commit)' || true)
 num_staged_sh=$(echo "$staged_sh" | grep -vce '^$' || true)
 if [ "$num_staged_sh" -gt 0 ]; then
   printf '\nFormatting %s staged shell scripts with shfmt\n' "$num_staged_sh"
-  shfmt -w "$staged_sh"
+  shfmt -w $staged_sh
   printf "Re-staging\n\n"
-  git add "$staged_sh"
+  git add $staged_sh
 fi
 
 # Run prettier on all other staged files

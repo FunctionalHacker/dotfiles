@@ -46,12 +46,12 @@ export FZF_COMPLETION_TRIGGER='**'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND --strip-cwd-prefix"
 export FZF_CTRL_T_OPTS='--preview "bat --color=always --style=numbers --line-range=:500 {}"'
 _fzf_compgen_path() {
-	resultcmd="$FZF_DEFAULT_COMMAND . $1"
-	eval ${resultcmd}
+  resultcmd="$FZF_DEFAULT_COMMAND . $1"
+  eval ${resultcmd}
 }
 _fzf_compgen_dir() {
-	resultcmd="$FZF_ALT_C_COMMAND . $1"
-	eval ${resultcmd}
+  resultcmd="$FZF_ALT_C_COMMAND . $1"
+  eval ${resultcmd}
 }
 
 # dotfile repository location
@@ -72,7 +72,7 @@ export NEOVIDE_MULTIGRID=1
 
 {%@@ if distro_id == "arch" or distro_id == "ubuntu" @@%}
 if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
-	export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+  export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
 fi
 gpgconf --launch gpg-agent
 {%@@ elif distro_id == "termux" @@%}

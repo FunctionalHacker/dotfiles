@@ -1,5 +1,5 @@
 [services.umami]
-image = "docker.umami.is/umami-software/umami:postgresql-latest"
+image = "ghcr.io/umami-software/umami:postgresql-latest"
 container_name = "umami"
 restart = "unless-stopped"
 networks = ["postgres", "proxy"]

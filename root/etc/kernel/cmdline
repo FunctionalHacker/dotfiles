@@ -1,1 +1,5 @@
+{%@@ if profile == "Mirkwood" @@%}
 cryptdevice=UUID=19fa8fab-c5fe-454a-9a17-b7185ce975ea:cryptroot:allow-discards root=/dev/mapper/cryptroot rootflags=subvol=root resume=/dev/mapper/cryptroot resume_offset=10530935 rw quiet splash vga=current idle=nomwait amdgpu.ppfeaturemask=0xffffffff bgrt_disable
+{%@@ elif profile == "Moria" @@%}
+cryptdevice=UUID=d99b4607-f836-4305-82f3-448a8ea7c1e6:cryptroot:allow-discards root=/dev/mapper/cryptroot rootflags=subvol=root ip=:::::eth0:dhcp netconf_timeout=60 rw quiet splash vga=current bgrt_disable
+{%@@ endif @@%}

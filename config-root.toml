@@ -203,7 +203,13 @@ include = ["Locale", "Pacman", "Network"]
 
 [profiles.Moria]
 include = ["Locale", "Pacman", "Network"]
-dotfiles = ["f_99-sysctl.conf", "f_cpupower", "f_doas.conf", "f_sshd_config"]
+dotfiles = [
+  "f_99-sysctl.conf",
+  "f_cpupower",
+  "f_doas.conf",
+  "f_sshd_config",
+  "f_cmdline",
+]
 
 [profiles.Gondor]
 include = ["Locale", "Pacman"]

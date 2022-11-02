@@ -6,7 +6,6 @@ PRESETS=('default' 'fallback')
 
 default_image="/boot/initramfs-linux.img"
 default_efi_image="/boot/EFI/Linux/archlinux-linux.efi"
-default_options="--splash /usr/share/systemd/bootctl/splash-arch.bmp"
 
 fallback_image="/boot/initramfs-linux-fallback.img"
 fallback_efi_image="/boot/EFI/Linux/archlinux-linux-fallback.efi"

@@ -195,7 +195,7 @@ dotfiles = [
   "f_ignore",
   "f_logind.conf",
   "f_mkinitcpio.conf",
-  "f_plymouthd",
+  "f_plymouthd.conf",
   "f_sshd_config",
   "f_system.conf",
   "f_timesyncd.conf",
@@ -212,7 +212,7 @@ dotfiles = [
   "f_cpupower",
   "f_doas.conf",
   "f_mkinitcpio.conf",
-  "f_plymouthd",
+  "f_plymouthd.conf",
   "f_sshd_config",
 ]
 

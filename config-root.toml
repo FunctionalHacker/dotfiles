@@ -83,6 +83,10 @@ src = "etc/pacman.conf"
 dst = "/etc/pacman.d/hooks/zsh.hook"
 src = "etc/pacman.d/hooks/zsh.hook"
 
+[dotfiles."f_plymouthd.conf"]
+src = "etc/plymouth/plymouthd.conf"
+dst = "/etc/plymouth/plymouthd.conf"
+
 [dotfiles.f_sshd_config]
 dst = "/etc/ssh/sshd_config"
 src = "etc/ssh/sshd_config"
@@ -191,10 +195,10 @@ dotfiles = [
   "f_ignore",
   "f_logind.conf",
   "f_mkinitcpio.conf",
+  "f_plymouthd",
   "f_sshd_config",
   "f_system.conf",
   "f_timesyncd.conf",
-  "f_vconsole.conf",
   "f_welcomemessage.conf",
   "f_yubikey_udev.rules",
 ]
@@ -204,10 +208,12 @@ include = ["Locale", "Pacman", "Network"]
 include = ["Locale", "Pacman", "Network"]
 dotfiles = [
   "f_99-sysctl.conf",
+  "f_cmdline",
   "f_cpupower",
   "f_doas.conf",
+  "f_mkinitcpio.conf",
+  "f_plymouthd",
   "f_sshd_config",
-  "f_cmdline",
 ]
 
 [profiles.Gondor]

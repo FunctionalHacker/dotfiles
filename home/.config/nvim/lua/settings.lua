@@ -7,6 +7,12 @@ o.termguicolors = true
 -- Font for nvim GUI's
 o.guifont = "Fira Code:h14"
 
+-- Hide mouse when typing in neovide
+g.neovide_hide_mouse_when_typing = true
+
+-- Enable cursor particles in neovide
+g.neovide_cursor_vfx_mode = 'railgun'
+
 -- Floating window transparency
 o.winblend = 10
 

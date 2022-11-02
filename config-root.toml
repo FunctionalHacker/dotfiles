@@ -188,7 +188,6 @@ dotfiles = [
   "f_doas.conf",
   "f_fonts.conf",
   "f_freetype2.sh",
-  "f_getty.conf",
   "f_ignore",
   "f_logind.conf",
   "f_mkinitcpio.conf",

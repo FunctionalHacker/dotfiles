@@ -207,6 +207,7 @@ include = ["Locale", "Pacman", "Network"]
 [profiles.Moria]
 include = ["Locale", "Pacman", "Network"]
 dotfiles = [
+  "d_mkinitcpio.d",
   "f_99-sysctl.conf",
   "f_cmdline",
   "f_cpupower",

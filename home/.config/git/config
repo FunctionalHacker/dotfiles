@@ -20,10 +20,11 @@
 
 [merge]
 	prompt = false
+  conflictstyle = diff3
 	tool = nvim-merge
 
 [mergetool "nvim-merge"]
-	cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+	cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
 	keepBackup = false
 
 [diff]
@@ -50,3 +51,6 @@
 [credential]
 	helper = cache --timeout=600
 	helper = !pass-git-helper $@
+
+[rerere]
+  enabled = true

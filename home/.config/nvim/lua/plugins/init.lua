@@ -41,8 +41,13 @@ require("packer").startup(function()
 	-- Startup screen/dashboard
 	--use 'glepnir/dashboard-nvim'
 
-	-- Git in signcolumn
-	use("airblade/vim-gitgutter")
+	-- Git status in signcolumn
+	use({
+		"lewis6991/gitsigns.nvim",
+		config = function()
+			require("gitsigns").setup()
+		end,
+	})
 
 	-- Tabline/bufferline
 	use({

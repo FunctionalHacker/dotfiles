@@ -303,7 +303,7 @@ dotfiles = ["d_rofi", "f_librewolf_overrides", "f_distro"]
 
 [profiles.Moria]
 include = ["pacman", "terminal", "media", "gpg"]
-dotfiles = ["f_zprofile", "f_librewolf_overrides"]
+dotfiles = ["f_librewolf_overrides"]
 
 [profiles.Gondor]
 include = ["pacman", "terminal"]

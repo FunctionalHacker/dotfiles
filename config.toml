@@ -1,5 +1,6 @@
 [actions]
 nvim-packer-sync = "nvim -c 'autocmd User PackerComplete quitall' -c 'PackerSync'"
+dconf-load = "dconf load / < ~/.config/dconf.ini"
 
 [config]
 backup = true
@@ -228,13 +229,14 @@ dst = "~/.config/electron12-flags.conf"
 src = ".pam_environment"
 dst = "~/.pam_environment"
 
-[dotfiles.f_distro]
-src = ".distro"
-dst = "~/.distro"
-
 [dotfiles.d_wal]
 src = ".config/wal"
 dst = "~/.config/wal"
+
+[dotfiles."f_dconf.ini"]
+src = ".config/dconf.ini"
+dst = "~/.config/dconf.ini"
+actions = ["dconf-load"]
 
 [profiles.pacman]
 dotfiles = ["f_makepkg.conf", "f_paru.conf"]
@@ -299,11 +301,11 @@ dotfiles = [
 
 [profiles.Mirkwood]
 include = ["pacman", "terminal", "email", "media", "sway", "gpg"]
-dotfiles = ["d_rofi", "f_librewolf_overrides", "f_distro"]
+dotfiles = ["d_rofi", "f_librewolf_overrides", "f_dconf.ini"]
 
 [profiles.Moria]
 include = ["pacman", "terminal", "media", "gpg"]
-dotfiles = ["f_librewolf_overrides"]
+dotfiles = ["f_librewolf_overrides", "f_dconf.ini"]
 
 [profiles.Gondor]
 include = ["pacman", "terminal"]
@@ -314,7 +316,7 @@ dotfiles = ["f_librewolf_overrides"]
 
 [profiles.Isengard]
 include = ["terminal"]
-dotfiles = ["f_distro"]
+dotfiles = []
 
 [profiles.Edoras]
 include = ["terminal"]
@@ -327,7 +329,7 @@ include = ["terminal"]
 
 [profiles.ViiruJaTeippi]
 include = ["terminal"]
-dotfiles = ["f_distro"]
+dotfiles = []
 
 [profiles.Mirkwood.variables]
 wayland = true

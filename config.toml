@@ -312,7 +312,7 @@ include = ["pacman", "terminal"]
 
 [profiles.mko-laptop]
 include = ["terminal", "media", "gpg"]
-dotfiles = ["f_librewolf_overrides"]
+dotfiles = ["f_librewolf_overrides", "f_dconf.ini"]
 
 [profiles.Isengard]
 include = ["terminal"]

@@ -2,7 +2,7 @@
 
 [services.postgres]
 container_name = "postgres"
-image = "postgres:14"
+image = "postgres:15"
 environment = ["TZ=Europe/Helsinki", "POSTGRES_PASSWORD=12345"]
 ports = ["5432:5432"]
 networks = ["postgres"]

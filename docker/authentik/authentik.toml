@@ -1,0 +1,64 @@
+[services.redis]
+image = "docker.io/library/redis:alpine"
+command = "--save 60 1 --loglevel warning"
+restart = "unless-stopped"
+volumes = ["redis:/data"]
+
+[services.redis.healthcheck]
+test = ["CMD-SHELL", "redis-cli ping | grep PONG"]
+start_period = "20s"
+interval = "30s"
+retries = 5
+timeout = "3s"
+
+[services.server]
+image = "${AUTHENTIK_IMAGE:-ghcr.io/goauthentik/server}:${AUTHENTIK_TAG:-2022.10.1}"
+restart = "unless-stopped"
+command = "server"
+volumes = [
+  "/docker/authentik/media:/media",
+  "/docker/authentik/custom-templates:/templates",
+  "/docker/authentik/geoip:/geoip",
+]
+env_file = [".env"]
+ports = [
+  "0.0.0.0:${AUTHENTIK_PORT_HTTP:-9000}:9000",
+  "0.0.0.0:${AUTHENTIK_PORT_HTTPS:-9443}:9443",
+]
+
+[services.server.environment]
+AUTHENTIK_REDIS__HOST = "redis"
+AUTHENTIK_POSTGRESQL__HOST = "postgresql"
+AUTHENTIK_POSTGRESQL__USER = "${PG_USER:-authentik}"
+AUTHENTIK_POSTGRESQL__NAME = "${PG_DB:-authentik}"
+AUTHENTIK_POSTGRESQL__PASSWORD = "${PG_PASS}"
+
+[services.worker]
+image = "${AUTHENTIK_IMAGE:-ghcr.io/goauthentik/server}:${AUTHENTIK_TAG:-2022.10.1}"
+restart = "unless-stopped"
+command = "worker"
+user = "root"
+volumes = [
+  "./media:/media",
+  "./certs:/certs",
+  "/var/run/docker.sock:/var/run/docker.sock",
+  "./custom-templates:/templates",
+  "geoip:/geoip",
+]
+env_file = [".env"]
+
+[services.worker.environment]
+AUTHENTIK_REDIS__HOST = "redis"
+AUTHENTIK_POSTGRESQL__HOST = "postgresql"
+AUTHENTIK_POSTGRESQL__USER = "${PG_USER:-authentik}"
+AUTHENTIK_POSTGRESQL__NAME = "${PG_DB:-authentik}"
+AUTHENTIK_POSTGRESQL__PASSWORD = "${PG_PASS}"
+
+[services.geoipupdate]
+image = "maxmindinc/geoipupdate:latest"
+volumes = ["geoip:/usr/share/GeoIP"]
+env_file = [".env"]
+
+[services.geoipupdate.environment]
+GEOIPUPDATE_EDITION_IDS = "GeoLite2-City"
+GEOIPUPDATE_FREQUENCY = "8"

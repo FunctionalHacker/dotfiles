@@ -5,6 +5,7 @@ restart = "unless-stopped"
 ports = ["80:80", "443:443/tcp", "443:443/udp"]
 environment = [
   "TZ=Europe/Helsinki",
+  "ADMIN_EMAIL",
   "CF_API_EMAIL=${ADMIN_EMAIL}",
   "CF_API_KEY",
   "CF_ZONE_API_TOKEN",

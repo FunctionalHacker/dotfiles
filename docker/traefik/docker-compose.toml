@@ -3,7 +3,13 @@ image = "traefik:latest"
 container_name = "traefik"
 restart = "unless-stopped"
 ports = ["80:80", "443:443/tcp", "443:443/udp"]
-environment = ["TZ=Europe/Helsinki"]
+environment = [
+  "TZ=Europe/Helsinki",
+  "CF_API_EMAIL",
+  "CF_API_KEY",
+  "CF_ZONE_API_TOKEN",
+  "CF_DNS_API_TOKEN",
+]
 security_opt = ["no-new-privileges:true"]
 networks = ["proxy"]
 volumes = [

@@ -1,19 +1,26 @@
-[services]
-
 [services.redis]
-container_name = "redis-authentik"
 image = "redis:alpine"
-restart = "unless-stopped"
+container_name = "authentik-redis"
 networks = ["authentik"]
+restart = "unless-stopped"
+volumes = ["/docker/authentik/redis:/data"]
 
-[services.authentik]
+[services.redis.healthcheck]
+test = ["CMD-SHELL", "redis-cli ping | grep PONG"]
+start_period = "20s"
+interval = "30s"
+retries = 5
+timeout = "3s"
+
+[services.server]
+image = "ghcr.io/goauthentik/server:latest"
 container_name = "authentik"
-image = "goauthentik.io/server:latest"
 restart = "unless-stopped"
 command = "server"
 volumes = [
   "/docker/authentik/media:/media",
   "/docker/authentik/custom-templates:/templates",
+  "/docker/authentik/geoip:/geoip",
 ]
 env_file = [".env"]
 networks = ["authentik", "postgres", "proxy"]
@@ -25,34 +32,60 @@ labels = [
   "traefik.http.routers.authentik-redirect.middlewares=http2https@file",
   "traefik.http.routers.authentik.entrypoints=https",
   "traefik.http.routers.authentik.middlewares=secHeaders@file,compress@file",
+  "traefik.http.routers.authentik-rtr-outpost.rule=HostRegexp(`{subdomain:[a-z0-9-]+}.korhonen.cc`) && PathPrefix(`/outpost.goauthentik.io/`)",
   "traefik.http.routers.authentik.rule=Host(`sso.korhonen.cc`)",
   "traefik.http.routers.authentik.service=authentik",
   "traefik.http.services.authentik.loadbalancer.server.port=9000",
 ]
 
-[services.authentik-worker]
+[services.worker]
+image = "ghcr.io/goauthentik/server:latest"
 container_name = "authentik-worker"
-image = "${AUTHENTIK_IMAGE:-goauthentik.io/server}:${AUTHENTIK_TAG:-2021.10.4}"
 restart = "unless-stopped"
 command = "worker"
-networks = ["authentik", "postgres"]
 user = "root"
 volumes = [
   "/docker/authentik/backups:/backups",
+  "/docker/authentik/custom-templates:/templates",
+  "/docker/authentik/geoip:/geoip",
   "/docker/authentik/media:/media",
   "/var/run/docker.sock:/var/run/docker.sock",
-  "/docker/authentik/custom-templates:/templates",
-]
-environment = [
-  "AUTHENTIK_POSTGRESQL__HOST",
-  "AUTHENTIK_POSTGRESQL__USER",
-  "AUTHENTIK_POSTGRESQL__NAME",
-  "AUTHENTIK_POSTGRESQL__PASSWORD",
-  "AUTHENTIK_SECRET_KEY",
 ]
 env_file = [".env"]
+networks = ["authentik", "postgres"]
 
-[networks]
+[services.geoipupdate]
+image = "maxmindinc/geoipupdate:latest"
+container_name = "authentik-geoipupdate"
+restart = "unless-stopped"
+networks = ["authentik"]
+volumes = ["/docker/authentik/geoip:/usr/share/GeoIP"]
+env_file = [".env"]
+
+[services.geoipupdate.environment]
+GEOIPUPDATE_EDITION_IDS = "GeoLite2-City"
+GEOIPUPDATE_FREQUENCY = "8"
+
+[services.whoami-test]
+image = "traefik/whoami"
+container_name = "whoami-test"
+restart = "unless-stopped"
+security_opt = ["no-new-privileges:true"]
+networks = ["proxy"]
+environment = ["TZ"]
+labels = [
+  "traefik.enable=true",
+  "traefik.docker.network=proxy",
+  "traefik.http.routers.whoami-test-redirect.entrypoints=http",
+  "traefik.http.routers.whoami-test-redirect.rule=Host(`whoami-test.korhonen.cc`)",
+  "traefik.http.routers.whoami-test-redirect.middlewares=http2https@file",
+  "traefik.http.routers.whoami-test.entrypoints=https",
+  "traefik.http.routers.whoami-test.middlewares=secHeaders@file,compress@file,authentik@file",
+  "traefik.http.routers.whoami-test.rule=Host(`whoami-test.korhonen.cc`)",
+  "traefik.http.routers.whoami-test.service=whoami-test",
+  "traefik.http.services.whoami-test.loadbalancer.server.port=80",
+]
+
 
 [networks.authentik]
 external = true

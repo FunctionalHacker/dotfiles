@@ -5,7 +5,7 @@ restart = "unless-stopped"
 ports = ["80:80", "443:443/tcp", "443:443/udp"]
 environment = [
   "TZ=Europe/Helsinki",
-  "CF_API_EMAIL",
+  "CF_API_EMAIL=${ADMIN_EMAIL}",
   "CF_API_KEY",
   "CF_ZONE_API_TOKEN",
   "CF_DNS_API_TOKEN",
@@ -15,9 +15,8 @@ networks = ["proxy"]
 volumes = [
   "/etc/localtime:/etc/localtime:ro",
   "/var/run/docker.sock:/var/run/docker.sock:ro",
-  "/docker/traefik/traefik/traefik.toml:/traefik.toml:ro",
-  "/docker/traefik/traefik/dynamic.toml:/dynamic.toml:ro",
-  "/docker/traefik/traefik/dashboard-users:/dashboard-users:ro",
+  "./traefik.toml:/traefik.toml:ro",
+  "./dynamic.toml:/dynamic.toml:ro",
   "/docker/traefik/traefik/acme.json:/acme.json",
   "/docker/traefik/traefik/log:/var/log",
 ]

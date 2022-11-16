@@ -28,7 +28,6 @@ exposedByDefault = false
 filename = "/dynamic.toml"
 
 [certificatesResolvers.letsEncrypt.acme]
-email = "{{env 'ADMIN_EMAIL'}}"
 storage = "acme.json"
 
 [certificatesResolvers.letsEncrypt.acme.dnsChallenge]

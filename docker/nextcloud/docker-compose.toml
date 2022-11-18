@@ -49,6 +49,13 @@ labels = [
   "ofelia.job-exec.nextcloud.schedule=0 */5 * * * *",
   "ofelia.job-exec.nextcloud.command=php /var/www/html/cron.php",
   "ofelia.job-exec.nextcloud.user=www-data",
+  "ofelia.smtp-host=${SMTP_HOST}",
+  "ofelia.smtp-port=${SMTP_PORT}",
+  "ofelia.smtp-user=${SMTP_USER}",
+  "ofelia.smtp-password=${SMTP_PASSWORD}",
+  "ofelia.email-to=${EMAIL_TO}",
+  "ofelia.email-from=${EMAIL_FROM}",
+  "ofelia.mail-only-on-error",
 ]
 
 [services.redis]

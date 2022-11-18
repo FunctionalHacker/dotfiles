@@ -13,7 +13,7 @@ retries = 5
 timeout = "3s"
 
 [services.server]
-image = "ghcr.io/goauthentik/server:latest"
+image = "ghcr.io/goauthentik/server"
 container_name = "authentik"
 restart = "unless-stopped"
 command = "server"
@@ -39,7 +39,7 @@ labels = [
 ]
 
 [services.worker]
-image = "ghcr.io/goauthentik/server:latest"
+image = "ghcr.io/goauthentik/server"
 container_name = "authentik-worker"
 restart = "unless-stopped"
 command = "worker"
@@ -55,7 +55,7 @@ env_file = [".env"]
 networks = ["authentik", "postgres"]
 
 [services.geoipupdate]
-image = "maxmindinc/geoipupdate:latest"
+image = "maxmindinc/geoipupdate"
 container_name = "authentik-geoipupdate"
 restart = "unless-stopped"
 networks = ["authentik"]

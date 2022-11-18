@@ -1,5 +1,5 @@
 [services.traefik]
-image = "traefik:latest"
+image = "traefik"
 container_name = "traefik"
 restart = "unless-stopped"
 ports = ["80:80", "443:443/tcp", "443:443/udp"]
@@ -34,7 +34,7 @@ labels = [
 ]
 
 [services.fail2ban]
-image = "crazymax/fail2ban:latest"
+image = "crazymax/fail2ban"
 container_name = "fail2ban"
 restart = "unless-stopped"
 network_mode = "host"

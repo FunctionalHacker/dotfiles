@@ -8,7 +8,7 @@ volumes = [
   "/etc/localtime:/etc/localtime:ro",
 ]
 restart = "unless-stopped"
-networks = ["homeautomation", "postgres", "proxy", "authentik"]
+networks = ["homeautomation", "postgres", "proxy"]
 ports = ["8123:8123", "8300:8300"]
 extra_hosts = ["host.docker.internal:host-gateway"]
 depends_on = ["mosquitto"]
@@ -19,7 +19,7 @@ labels = [
   "traefik.http.routers.home-assistant-redirect.rule=Host(`home.korhonen.cc`)",
   "traefik.http.routers.home-assistant-redirect.middlewares=http2https@file",
   "traefik.http.routers.home-assistant.entrypoints=https",
-  "traefik.http.routers.home-assistant.middlewares=secHeaders@file,compress@file,authentik@file",
+  "traefik.http.routers.home-assistant.middlewares=secHeaders@file,compress@file",
   "traefik.http.routers.home-assistant.rule=Host(`home.korhonen.cc`)",
   "traefik.http.routers.home-assistant.service=home-assistant",
   "traefik.http.services.home-assistant.loadbalancer.server.port=8123",
@@ -65,7 +65,4 @@ external = false
 external = true
 
 [networks.proxy]
-external = true
-
-[networks.authentik]
 external = true

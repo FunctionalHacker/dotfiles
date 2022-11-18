@@ -1,0 +1,9 @@
+[services.ofelia]
+image = "mcuadros/ofelia"
+container_name = "ofelia"
+volumes = [
+  "/etc/localtime:/etc/localtime:ro",
+  "/var/run/docker.sock:/var/run/docker.sock:ro"
+]
+network_mode = "none"
+command = "daemon --docker"

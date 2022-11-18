@@ -1,6 +1,6 @@
 [services.searx]
 container_name = "searx"
-image = "searxng/searxng:latest"
+image = "searxng/searxng"
 restart = "unless-stopped"
 networks = ["searx", "proxy"]
 volumes = [

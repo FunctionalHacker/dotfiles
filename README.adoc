@@ -1,4 +1,4 @@
-= FunctionalHacker’s dotfiles
+= FunctionalHacker's dotfiles
 
 image:https://i.imgur.com/lz1Q4Zz.png?raw=true%22[screenshot of my
 setup]

@@ -68,6 +68,9 @@ permanent = true
 regex = "^https?://www\\.(.+)"
 replacement = "https://${1}"
 
+[http.serversTransports.ignorecert]
+insecureSkipVerify = true
+
 [tls.options.default]
 minVersion = "VersionTLS12"
 cipherSuites = [

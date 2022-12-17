@@ -14,7 +14,7 @@ environment = [
   "WOODPECKER_HOST=https://ci.korhonen.cc",
   "WOODPECKER_ADMIN=FunctionalHacker",
 ]
-networks = ["proxy"]
+networks = ["proxy", "default"]
 labels = [
   "traefik.enable=true",
   "traefik.docker.network=proxy",

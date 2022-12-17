@@ -1,0 +1,86 @@
+[services.mastodon]
+image = "lscr.io/linuxserver/mastodon:latest"
+container_name = "mastodon"
+restart = "unless-stopped"
+env_file = ".env"
+environment = [
+  "PUID=1000",
+  "PGID=985",
+  "TZ=Europe/Helsinki",
+  "LOCAL_DOMAIN=korhonen.cc",
+  "WEB_DOMAIN=social.korhonen.cc",
+  "REDIS_HOST=redis",
+  "REDIS_PORT=6379",
+  "DB_HOST=postgres",
+  "DB_PORT=5432",
+  "DB_NAME=mastodon",
+  "DB_USER=mastodon",
+  "DB_PASS",
+  "VAPID_PRIVATE_KEY",
+  "VAPID_PUBLIC_KEY",
+  "SECRET_KEY_BASE",
+  "OTP_SECRET",
+  "SMTP_SERVER=smtp.migadu.com",
+  "SMTP_PORT=465",
+  "SMTP_TLS=true",
+  "SMTP_ENABLE_STARTTLS_AUTO=false",
+  "SMTP_AUTH_METHOD=plain",
+  "SMTP_LOGIN",
+  "SMTP_PASSWORD",
+  "SMTP_FROM_ADDRESS=social@korhonen.cc",
+  "S3_ENABLED=false",
+  "ES_ENABLED=true",
+  "ES_HOST=elasticsearch",
+  "ES_PORT=9200",
+  "ES_USER=elastic",
+  "ES_PASS=changeme",
+]
+networks = ["mastodon", "proxy", "postgres"]
+volumes = ["/docker/mastodon:/config"]
+labels = [
+  "traefik.enable=true",
+  "traefik.docker.network=proxy",
+  "traefik.http.routers.mastodon-redirect.entrypoints=http",
+  "traefik.http.routers.mastodon-redirect.rule=Host(`social.korhonen.cc`)",
+  "traefik.http.routers.mastodon-redirect.middlewares=http2https@file",
+  "traefik.http.routers.mastodon.entrypoints=https",
+  "traefik.http.routers.mastodon.middlewares=secHeaders@file,compress@file",
+  "traefik.http.routers.mastodon.rule=Host(`social.korhonen.cc`)",
+  "traefik.http.routers.mastodon.service=mastodon",
+  "traefik.http.services.mastodon.loadbalancer.server.port=443",
+  "traefik.http.services.mastodon.loadbalancer.server.scheme=https",
+  "traefik.http.services.mastodon.loadbalancer.serverstransport=ignorecert@file",
+]
+
+[services.elasticsearch]
+image = "docker.elastic.co/elasticsearch/elasticsearch:8.5.3"
+container_name = "mastodon-elasticsearch"
+restart = "unless-stopped"
+volumes = ["/docker/mastodon/elasticsearch:/usr/share/elasticsearch/data"]
+networks = ["mastodon"]
+environment = [
+  "cluster.name=mastodon-es-cluster",
+  "node.name=mastodon-node",
+  "discovery.type=single-node",
+  "bootstrap.memory_lock=true",
+  "ES_JAVA_OPTS=-Xms200m -Xmx200m",
+]
+[services.elasticsearch.ulimits.memlock]
+soft = -1
+hard = -1
+
+[services.redis]
+image = "redis:alpine"
+container_name = "mastodon-redis"
+networks = ["mastodon"]
+restart = "unless-stopped"
+
+
+[networks.mastodon]
+external = false
+
+[networks.proxy]
+external = true
+
+[networks.postgres]
+external = true

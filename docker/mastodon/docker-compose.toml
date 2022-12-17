@@ -29,11 +29,22 @@ environment = [
   "SMTP_PASSWORD",
   "SMTP_FROM_ADDRESS=social@korhonen.cc",
   "S3_ENABLED=false",
-  "ES_ENABLED=true",
+  "ES_ENABLED=false",
   "ES_HOST=elasticsearch",
   "ES_PORT=9200",
   "ES_USER=elastic",
   "ES_PASS=changeme",
+  "OIDC_ENABLED=true",
+  "OMNIAUTH_ONLY=true",
+  "OIDC_DISPLAY_NAME=Korhonen SSO",
+  "OIDC_DISCOVERY=true",
+  "OIDC_AUTH_ENDPOINT=https://sso.korhonen.cc/application/o/mastodon/.well-known/openid-configuration",
+  "OIDC_ISSUER=https://sso.korhonen.cc/application/o/mastodon/",
+  "OIDC_SCOPE=openid,profile,email",
+  "OIDC_UID_FIELD=preferred_username",
+  "OIDC_CLIENT_ID",
+  "OIDC_CLIENT_SECRET",
+  "OIDC_REDIRECT_URI=https://social.korhonen.cc/auth/auth/openid_connect/callback",
 ]
 networks = ["mastodon", "proxy", "postgres"]
 volumes = ["/docker/mastodon:/config"]

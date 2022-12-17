@@ -40,19 +40,6 @@ environment = [
   "WOODPECKER_SERVER=woodpecker:9000",
   "WOODPECKER_AGENT_SECRET",
 ]
-networks = ["proxy"]
-labels = [
-  "traefik.enable=true",
-  "traefik.docker.network=proxy",
-  "traefik.http.routers.woodpecker-agent-redirect.entrypoints=http",
-  "traefik.http.routers.woodpecker-agent-redirect.rule=Host(`agent.ci.korhonen.cc`)",
-  "traefik.http.routers.woodpecker-agent-redirect.middlewares=http2https@file",
-  "traefik.http.routers.woodpecker-agent.entrypoints=https",
-  "traefik.http.routers.woodpecker-agent.middlewares=secHeaders@file,compress@file",
-  "traefik.http.routers.woodpecker-agent.rule=Host(`agent.ci.korhonen.cc`)",
-  "traefik.http.routers.woodpecker-agent.service=woodpecker-agent",
-  "traefik.http.services.woodpecker-agent.loadbalancer.server.port=3000",
-]
 
 [networks.proxy]
 external = true

@@ -45,6 +45,7 @@ environment = [
   "OIDC_CLIENT_ID",
   "OIDC_CLIENT_SECRET",
   "OIDC_REDIRECT_URI=https://social.korhonen.cc/auth/auth/openid_connect/callback",
+  "OIDC_SECURITY_ASSUME_EMAIL_IS_VERIFIED=true",
 ]
 networks = ["mastodon", "proxy", "postgres"]
 volumes = ["/docker/mastodon:/config"]

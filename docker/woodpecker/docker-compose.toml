@@ -1,0 +1,58 @@
+[services.woodpecker]
+image = "woodpeckerci/woodpecker-server"
+container_name = "woodpecker"
+restart = "unless-stopped"
+volumes = ["/docker/woodpecker/:/var/lib/woodpecker/"]
+env_file = [".env"]
+environment = [
+  "WOODPECKER_OPEN=true",
+  "WOODPECKER_GITEA=true",
+  "WOODPECKER_GITEA_URL=https://git.korhonen.cc",
+  "WOODPECKER_GITEA_CLIENT",
+  "WOODPECKER_GITEA_SECRET",
+  "WOODPECKER_AGENT_SECRET",
+  "WOODPECKER_HOST=https://ci.korhonen.cc",
+  "WOODPECKER_ADMIN=FunctionalHacker",
+]
+networks = ["proxy"]
+labels = [
+  "traefik.enable=true",
+  "traefik.docker.network=proxy",
+  "traefik.http.routers.woodpecker-redirect.entrypoints=http",
+  "traefik.http.routers.woodpecker-redirect.rule=Host(`ci.korhonen.cc`)",
+  "traefik.http.routers.woodpecker-redirect.middlewares=http2https@file",
+  "traefik.http.routers.woodpecker.entrypoints=https",
+  "traefik.http.routers.woodpecker.middlewares=secHeaders@file,compress@file",
+  "traefik.http.routers.woodpecker.rule=Host(`ci.korhonen.cc`)",
+  "traefik.http.routers.woodpecker.service=woodpecker",
+  "traefik.http.services.woodpecker.loadbalancer.server.port=8000",
+]
+
+[services.woodpecker-agent]
+image = "woodpeckerci/woodpecker-agent"
+container_name = "woodpecker-agent"
+command = "agent"
+restart = "unless-stopped"
+depends_on = ["woodpecker"]
+volumes = ["/var/run/docker.sock:/var/run/docker.sock"]
+env_file = [".env"]
+environment = [
+  "WOODPECKER_SERVER=woodpecker:9000",
+  "WOODPECKER_AGENT_SECRET",
+]
+networks = ["proxy"]
+labels = [
+  "traefik.enable=true",
+  "traefik.docker.network=proxy",
+  "traefik.http.routers.woodpecker-agent-redirect.entrypoints=http",
+  "traefik.http.routers.woodpecker-agent-redirect.rule=Host(`agent.ci.korhonen.cc`)",
+  "traefik.http.routers.woodpecker-agent-redirect.middlewares=http2https@file",
+  "traefik.http.routers.woodpecker-agent.entrypoints=https",
+  "traefik.http.routers.woodpecker-agent.middlewares=secHeaders@file,compress@file",
+  "traefik.http.routers.woodpecker-agent.rule=Host(`agent.ci.korhonen.cc`)",
+  "traefik.http.routers.woodpecker-agent.service=woodpecker-agent",
+  "traefik.http.services.woodpecker-agent.loadbalancer.server.port=3000",
+]
+
+[networks.proxy]
+external = true

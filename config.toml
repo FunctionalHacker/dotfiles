@@ -238,6 +238,11 @@ src = ".config/dconf.ini"
 dst = "~/.config/dconf.ini"
 actions = ["dconf-load"]
 
+[dotfiles."f_docker-config.json"]
+src = ".docker/config.json"
+dst = "~/.docker/config.json"
+chmod = "600"
+
 [profiles.pacman]
 dotfiles = ["f_makepkg.conf", "f_paru.conf"]
 
@@ -301,7 +306,12 @@ dotfiles = [
 
 [profiles.Mirkwood]
 include = ["pacman", "terminal", "email", "media", "sway", "gpg"]
-dotfiles = ["d_rofi", "f_librewolf_overrides", "f_dconf.ini"]
+dotfiles = [
+  "d_rofi",
+  "f_librewolf_overrides",
+  "f_dconf.ini",
+  "f_docker-config.json",
+]
 
 [profiles.Moria]
 include = ["pacman", "terminal", "media", "gpg"]
@@ -316,7 +326,6 @@ dotfiles = ["f_librewolf_overrides", "f_dconf.ini"]
 
 [profiles.Isengard]
 include = ["terminal"]
-dotfiles = []
 
 [profiles.Edoras]
 include = ["terminal"]
@@ -329,7 +338,6 @@ include = ["terminal"]
 
 [profiles.ViiruJaTeippi]
 include = ["terminal"]
-dotfiles = []
 
 [profiles.Mirkwood.variables]
 wayland = true

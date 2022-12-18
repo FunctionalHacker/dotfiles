@@ -1,0 +1,39 @@
+[services.misskey]
+image = "misskey/misskey"
+container_name = "misskey"
+restart = "unless-stopped"
+depends_on = ["redis"]
+ports = ["3082:3000"]
+networks = ["misskey", "proxy", "postgres"]
+volumes = [
+  "/docker/misskey/files:/misskey/files",
+  "/docker/misskey/config:/misskey/.config:ro",
+]
+labels = [
+  "traefik.enable=true",
+  "traefik.docker.network=proxy",
+  "traefik.http.routers.misskey-redirect.entrypoints=http",
+  "traefik.http.routers.misskey-redirect.rule=Host(`social.korhonen.cc`)",
+  "traefik.http.routers.misskey-redirect.middlewares=http2https@file",
+  "traefik.http.routers.misskey.entrypoints=https",
+  "traefik.http.routers.misskey.middlewares=secHeaders@file,compress@file",
+  "traefik.http.routers.misskey.rule=Host(`social.korhonen.cc`)",
+  "traefik.http.routers.misskey.service=misskey",
+  "traefik.http.services.misskey.loadbalancer.server.port=3000",
+]
+
+[services.redis]
+image = "redis"
+container_name = "misskey-redis"
+restart = "unless-stopped"
+networks = ["misskey"]
+volumes = ["/docker/misskey/redis:/data"]
+
+[networks.misskey]
+internal = true
+
+[networks.proxy]
+external = true
+
+[networks.postgres]
+external = true

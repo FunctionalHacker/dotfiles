@@ -23,10 +23,10 @@ labels = [
 ]
 
 [services.elasticsearch]
-image = "docker.elastic.co/elasticsearch/elasticsearch:8.5.3"
+image = "docker.elastic.co/elasticsearch/elasticsearch:7.17.8"
 container_name = "misskey-elasticsearch"
 restart = "unless-stopped"
-volumes = ["/docker/misskey/elasticsearch:/usr/share/elasticsearch/data"]
+volumes = ["/docker/misskey/elasticsearch/:/usr/share/elasticsearch/data"]
 networks = ["misskey"]
 environment = [
   "cluster.name=misskey-es-cluster",

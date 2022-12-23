@@ -5,4 +5,4 @@ ALL_kver="/boot/vmlinuz-linux-zen"
 ALL_microcode=(/boot/*-ucode.img)
 
 default_image="/boot/initramfs-linux-zen.img"
-default_efi_image="/boot/EFI/Linux/archlinux-linux-zen.efi"
+default_uki="/boot/EFI/Linux/archlinux-linux-zen.efi"

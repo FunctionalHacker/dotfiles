@@ -133,6 +133,7 @@ require("packer").startup(function()
 			{ "hrsh7th/cmp-nvim-lsp" }, -- LSP source
 			{ "hrsh7th/cmp-nvim-lua" }, -- Neovim Lua API documentation source
 			{ "hrsh7th/cmp-path" }, -- Path source
+			{ "hrsh7th/cmp-cmdline" }, -- cmdline source
 			{ "saadparwaiz1/cmp_luasnip" }, -- Snippets source
 		},
 		config = require("plugins.cmp"),
@@ -182,6 +183,9 @@ require("packer").startup(function()
 		"glacambre/firenvim",
 		run = function()
 			vim.fn["firenvim#install"](0)
+		end,
+		setup = function()
+			require("plugins/firenvim")
 		end,
 	})
 

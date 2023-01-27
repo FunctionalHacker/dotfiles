@@ -200,7 +200,6 @@ dotfiles = [
   "f_system.conf",
   "f_timesyncd.conf",
   "f_welcomemessage.conf",
-  "f_yubikey_udev.rules",
 ]
 include = ["Locale", "Pacman", "Network"]
 

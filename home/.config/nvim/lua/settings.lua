@@ -1,6 +1,9 @@
 local o = vim.o
 local g = vim.g
 
+-- Relative line numbers
+o.relativenumber = true
+
 -- True colors
 o.termguicolors = true
 

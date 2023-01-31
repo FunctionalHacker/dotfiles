@@ -44,7 +44,7 @@ volumes = [
   "/etc/localtime:/etc/localtime:ro",
   "/docker/traefik/traefik/log:/var/log/traefik:ro",
   "/docker/traefik/fail2ban:/data",
-  "/docker/gitea/gitea/log/gitea.log:/var/log/gitea:ro",
+  "/docker/forgejo/gitea/log/gitea.log:/var/log/forgejo:ro",
   "/docker/homeautomation/home-assistant/home-assistant.log:/var/log/hass",
   "/mnt/Storage/Nextcloud/nextcloud.log:/var/log/nextcloud:ro",
 ]

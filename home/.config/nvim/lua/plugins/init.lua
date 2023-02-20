@@ -135,6 +135,7 @@ require("packer").startup(function()
 			{ "hrsh7th/cmp-path" }, -- Path source
 			{ "hrsh7th/cmp-cmdline" }, -- cmdline source
 			{ "saadparwaiz1/cmp_luasnip" }, -- Snippets source
+			{ "f3fora/cmp-spell" }, -- Spell check source
 		},
 		config = require("plugins.cmp"),
 	})

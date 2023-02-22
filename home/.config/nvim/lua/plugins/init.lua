@@ -26,7 +26,7 @@ local plugins = {
 	{
 		"nvim-lualine/lualine.nvim",
 		dependencies = { "kyazdani42/nvim-web-devicons" },
-		config = require("plugins.lualine"),
+		config = true,
 	},
 
 	-- Git status in signcolumn
@@ -74,22 +74,23 @@ local plugins = {
 			"zane-/cder.nvim", -- cd plugin for telescope
 		},
 	},
+
 	-- Do stuff as sudo
 	"lambdalisue/suda.vim",
 
 	-- Display possible keybinds
-	{ "folke/which-key.nvim", config = require("plugins.which-key") },
+	{ "folke/which-key.nvim", config = true },
 
 	-- Read editorconfig settings
 	"editorconfig/editorconfig-vim",
 
 	-- Package manager for LSP servers, DAP adapters etc.
-	{ "williamboman/mason.nvim", config = require("plugins.mason").setup },
+	{ "williamboman/mason.nvim", config = true },
 
 	-- Install LSP server executables with Mason
 	{
 		"williamboman/mason-lspconfig.nvim",
-		config = require("plugins.mason").lspconfig_setup,
+		config = true,
 	},
 
 	-- Configs for built-in LSP
@@ -98,6 +99,7 @@ local plugins = {
 	-- Additional LSP features for Java
 	"mfussenegger/nvim-jdtls",
 
+	-- DAP plugin
 	{ "mfussenegger/nvim-dap", config = require("plugins.dap") },
 
 	-- Display function signature
@@ -111,7 +113,7 @@ local plugins = {
 	},
 
 	-- vim api documentation for lua lsp
-	{ "ii14/emmylua-nvim" },
+	"ii14/emmylua-nvim",
 
 	-- Completion
 	{
@@ -195,9 +197,7 @@ local plugins = {
 	-- High performance color highlighter
 	{
 		"norcalli/nvim-colorizer.lua",
-		config = function()
-			require("colorizer").setup()
-		end,
+		config = true,
 	},
 }
 

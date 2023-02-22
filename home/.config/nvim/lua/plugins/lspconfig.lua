@@ -1,7 +1,7 @@
 -- Pairs of server name and settings.
 -- This is iterated through and every
 -- server is setup with lspconfig
-Servers = {
+local servers = {
 	bashls = {},
 	html = {},
 	jsonls = {},
@@ -30,9 +30,9 @@ Servers = {
 	},
 }
 
-M = {}
+local m = {}
 
-function M.map_keys()
+function m.map_keys()
 	-- Register keybindings via which-key
 	-- to get documentation in which-key
 	local wk = require("which-key")
@@ -69,19 +69,19 @@ function M.map_keys()
 	})
 end
 
-function M.setup()
+function m.setup()
 	local function on_attach()
 		-- Setup lsp signature plugin
 		require("lsp_signature").setup({})
 
 		-- Setup keybinds
-		M.map_keys()
+		m.map_keys()
 	end
 
 	local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 	-- Setup every defined server
-	for server, settings in pairs(Servers) do
+	for server, settings in pairs(servers) do
 		require("lspconfig")[server].setup({
 			on_attach = on_attach,
 			settings = settings,
@@ -92,4 +92,4 @@ function M.setup()
 	end
 end
 
-return M
+return m

@@ -83,7 +83,7 @@ local plugins = {
 	-- Read editorconfig settings
 	"editorconfig/editorconfig-vim",
 
-	-- Package manager for LSP servers, DAP servers etc.
+	-- Package manager for LSP servers, DAP adapters etc.
 	{ "williamboman/mason.nvim", config = require("plugins.mason").setup },
 
 	-- Install LSP server executables with Mason
@@ -97,6 +97,8 @@ local plugins = {
 
 	-- Additional LSP features for Java
 	"mfussenegger/nvim-jdtls",
+
+	{ "mfussenegger/nvim-dap", config = require("plugins.dap") },
 
 	-- Display function signature
 	"ray-x/lsp_signature.nvim",

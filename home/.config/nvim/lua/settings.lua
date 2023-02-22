@@ -56,3 +56,12 @@ g.mapleader = " "
 o.tabstop = 4
 o.shiftwidth = 4
 o.smartindent = true
+
+-- Firenvim settings
+vim.g.firenvim_config = {
+	localSettings = {
+		[".*"] = {
+			takeOver = "never",
+		},
+	},
+}

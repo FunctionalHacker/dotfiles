@@ -164,7 +164,7 @@ update() {
 
 	plugins() {
 		echo "Updating NeoVim plugins"
-		nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+		nvim --headless "+Lazy! sync" +qa
 		echo "Updating NeoVim TreeSitter"
 		nvim --headless +TSUpdateSync +qa
 		zinit self-update

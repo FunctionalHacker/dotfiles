@@ -1,229 +1,202 @@
-local fn = vim.fn
-
--- Install packer if it's not yet installed
-local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-if fn.empty(fn.glob(install_path)) > 0 then
-	print("Installing Packer")
-	Packer_bootstrap = fn.system({
+-- Install lazy if it's not yet installed
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+	vim.fn.system({
 		"git",
 		"clone",
-		"--depth",
-		"1",
-		"https://github.com/wbthomason/packer.nvim",
-		install_path,
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		"--branch=stable", -- latest stable release
+		lazypath,
 	})
-	vim.cmd([[packadd packer.nvim]])
-	print("Installed Packer")
 end
+vim.opt.rtp:prepend(lazypath)
 
--- Configure packer
-require("packer").startup(function()
-	local use = require("packer").use
-
-	-- The plugin manager itself
-	use({ "wbthomason/packer.nvim" })
-
+-- Configure lazy
+local plugins = {
 	-- Colorscheme
-	use({
+	{
 		"rebelot/kanagawa.nvim",
 		config = function()
 			vim.cmd("colorscheme kanagawa")
 		end,
-	})
+	},
 
 	-- Statusline
-	use({
+	{
 		"nvim-lualine/lualine.nvim",
-		requires = { "kyazdani42/nvim-web-devicons", opt = true },
+		dependencies = { "kyazdani42/nvim-web-devicons" },
 		config = require("plugins.lualine"),
-	})
-
-	-- Startup screen/dashboard
-	--use 'glepnir/dashboard-nvim'
+	},
 
 	-- Git status in signcolumn
-	use({
+	{
 		"lewis6991/gitsigns.nvim",
-		config = function()
-			require("gitsigns").setup()
-		end,
-	})
+		config = true,
+	},
 
 	-- Tabline/bufferline
-	use({
-		"akinsho/nvim-bufferline.lua",
-		tag = "*",
-		requires = "kyazdani42/nvim-web-devicons",
-		config = function()
-			require("bufferline").setup({})
-		end,
-	})
+	{
+		"akinsho/bufferline.nvim",
+		version = "v3.*",
+		dependencies = { "kyazdani42/nvim-web-devicons" },
+		config = true,
+	},
 
 	-- Git commands
-	use("tpope/vim-fugitive")
+	"tpope/vim-fugitive",
 
 	-- Indent characters
-	use({
+	{
 		"lukas-reineke/indent-blankline.nvim",
 		config = require("plugins.indent-blankline"),
-	})
+	},
 
 	-- Tree explorer
-	use({
+	{
 		"kyazdani42/nvim-tree.lua",
-		requires = "kyazdani42/nvim-web-devicons",
+		dependencies = { "kyazdani42/nvim-web-devicons" },
 		config = require("plugins.nvim-tree"),
-	})
+	},
 
 	-- Telescope
-	use({
+	{
 		"nvim-telescope/telescope.nvim",
 		config = require("plugins.telescope"),
-		requires = {
-			{ "nvim-lua/plenary.nvim" }, -- Internal dep for telescope
-			{ "nvim-telescope/telescope-fzf-native.nvim", run = "make" }, -- Use fzf for fuzzy finder
-			{ "nvim-telescope/telescope-ui-select.nvim" }, -- Replace vim built in select with telescope
-			{ "zane-/cder.nvim" }, -- cd plugin for telescope
+		dependencies = {
+			"nvim-lua/plenary.nvim", -- Internal dep for telescope
+			-- Use fzf for fuzzy finder
+			{
+				"nvim-telescope/telescope-fzf-native.nvim",
+				build = "make",
+			},
+			"nvim-telescope/telescope-ui-select.nvim", -- Replace vim built in select with telescope
+			"zane-/cder.nvim", -- cd plugin for telescope
 		},
-	})
-
+	},
 	-- Do stuff as sudo
-	use("lambdalisue/suda.vim")
+	"lambdalisue/suda.vim",
 
 	-- Display possible keybinds
-	use({ "folke/which-key.nvim", config = require("plugins.which-key") })
+	{ "folke/which-key.nvim", config = require("plugins.which-key") },
 
 	-- Read editorconfig settings
-	use("editorconfig/editorconfig-vim")
+	"editorconfig/editorconfig-vim",
 
 	-- Package manager for LSP servers, DAP servers etc.
-	use({ "williamboman/mason.nvim", config = require("plugins.mason").setup })
+	{ "williamboman/mason.nvim", config = require("plugins.mason").setup },
 
 	-- Install LSP server executables with Mason
-	use({
+	{
 		"williamboman/mason-lspconfig.nvim",
 		config = require("plugins.mason").lspconfig_setup,
-	})
+	},
 
 	-- Configs for built-in LSP
-	use({ "neovim/nvim-lspconfig", config = require("plugins.lspconfig").setup })
+	{ "neovim/nvim-lspconfig", config = require("plugins.lspconfig").setup },
 
 	-- Additional LSP features for Java
-	use("mfussenegger/nvim-jdtls")
+	"mfussenegger/nvim-jdtls",
 
 	-- Display function signature
-	use("ray-x/lsp_signature.nvim")
+	"ray-x/lsp_signature.nvim",
 
 	-- Snippets plugin
-	use({
+	{
 		"L3MON4D3/LuaSnip",
-		requires = { "rafamadriz/friendly-snippets" }, -- Snippets collection
+		dependencies = { "rafamadriz/friendly-snippets" }, -- Snippets collection
 		config = require("plugins.luasnip"),
-	})
+	},
 
 	-- vim api documentation for lua lsp
-	use({ "ii14/emmylua-nvim" })
+	{ "ii14/emmylua-nvim" },
 
 	-- Completion
-	use({
+	{
 		"hrsh7th/nvim-cmp",
-		requires = {
-			{ "hrsh7th/cmp-buffer" }, -- Buffer source
-			{ "petertriho/cmp-git", requires = "nvim-lua/plenary.nvim" }, -- Git source
-			{ "hrsh7th/cmp-nvim-lsp" }, -- LSP source
-			{ "hrsh7th/cmp-nvim-lua" }, -- Neovim Lua API documentation source
-			{ "hrsh7th/cmp-path" }, -- Path source
-			{ "hrsh7th/cmp-cmdline" }, -- cmdline source
-			{ "saadparwaiz1/cmp_luasnip" }, -- Snippets source
-			{ "f3fora/cmp-spell" }, -- Spell check source
+		dependencies = {
+			"hrsh7th/cmp-buffer", -- Buffer source
+			{ "petertriho/cmp-git", dependencies = { "nvim-lua/plenary.nvim" } }, -- Git source
+			"hrsh7th/cmp-nvim-lsp", -- LSP source
+			"hrsh7th/cmp-nvim-lua", -- Neovim Lua API documentation source
+			"hrsh7th/cmp-path", -- Path source
+			"hrsh7th/cmp-cmdline", -- cmdline source
+			"saadparwaiz1/cmp_luasnip", -- Snippets source
+			"f3fora/cmp-spell", -- Spell check source
 		},
 		config = require("plugins.cmp"),
-	})
+	},
 
 	-- Automatic brackets
-	use({
+	{
 		"windwp/nvim-autopairs",
-		config = function()
-			require("nvim-autopairs").setup({})
-		end,
-	})
+		config = true,
+	},
 
 	-- treesitter
-	use({
+	{
 		"nvim-treesitter/nvim-treesitter",
-		run = function()
+		build = function()
 			require("nvim-treesitter.install").update({ with_sync = true })
 		end,
 		config = require("plugins.treesitter"),
-	})
+	},
 
 	-- treesitter plugin for commentstring
-	use("JoosepAlviste/nvim-ts-context-commentstring")
+	"JoosepAlviste/nvim-ts-context-commentstring",
 
 	-- Additional plugins for formats not supported
 	-- by treesitter
-	use("jamespeapen/swayconfig.vim")
+	"jamespeapen/swayconfig.vim",
 
 	-- mappings for commenting in code
-	use("tpope/vim-commentary")
+	"tpope/vim-commentary",
 
 	-- we all know this one
-	use("tpope/vim-surround")
+	"tpope/vim-surround",
 
 	-- Formatter plugin
-	use("sbdchd/neoformat")
+	"sbdchd/neoformat",
 
 	-- Make editing passwords safer
-	use({
+	{
 		"https://git.zx2c4.com/password-store",
 		rtp = "contrib/vim/redact_pass.vim",
-	})
+	},
 
 	-- Neovim inside Firefox
-	use({
+	{
 		"glacambre/firenvim",
-		run = function()
+		build = function()
 			vim.fn["firenvim#install"](0)
 		end,
-		setup = function()
-			require("plugins/firenvim")
-		end,
-	})
+	},
 
 	-- Vim <3 Asciidoctor
-	use("habamax/vim-asciidoctor")
+	"habamax/vim-asciidoctor",
 
 	-- Markdown preview
-	use({
+	{
 		"iamcco/markdown-preview.nvim",
-		run = "cd app && npm install",
+		build = "cd app && npm install",
 		setup = function()
 			vim.g.mkdp_filetypes = { "markdown" }
 		end,
 		ft = { "markdown" },
-	})
+	},
 
 	-- Edit GPG encrypted files transparently
-	use("jamessan/vim-gnupg")
+	"jamessan/vim-gnupg",
 
 	-- High performance color highlighter
-	use({
+	{
 		"norcalli/nvim-colorizer.lua",
 		config = function()
 			require("colorizer").setup()
 		end,
-	})
+	},
+}
 
-	-- If Packer was just installed,
-	-- sync plugins
-	if Packer_bootstrap then
-		require("packer").sync()
-	end
-end)
+local lazy_opts = {}
 
--- Sync plugins if Packer was just
--- installed
-if Packer_bootstrap then
-	print("Syncing plugins")
-	require("packer").sync()
-end
+require("lazy").setup(plugins, lazy_opts)

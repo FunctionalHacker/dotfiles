@@ -1,5 +1,4 @@
 [actions]
-nvim-packer-sync = "nvim -c 'autocmd User PackerComplete quitall' -c 'PackerSync'"
 dconf-load = "dconf load / < ~/.config/dconf.ini"
 
 [config]
@@ -32,7 +31,6 @@ dst = "~/.config/imapnotify"
 src = ".config/imapnotify"
 
 [dotfiles.d_nvim]
-actions = ["nvim-packer-sync"]
 dst = "~/.config/nvim"
 src = ".config/nvim"
 

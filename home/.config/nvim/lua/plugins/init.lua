@@ -163,7 +163,9 @@ local plugins = {
 	-- Make editing passwords safer
 	{
 		"https://git.zx2c4.com/password-store",
-		rtp = "contrib/vim/redact_pass.vim",
+		config = function(plugin)
+			vim.opt.rtp:append(plugin.dir .. "contrib/vim/redact_pass.vim")
+		end,
 	},
 
 	-- Neovim inside Firefox
@@ -181,7 +183,7 @@ local plugins = {
 	{
 		"iamcco/markdown-preview.nvim",
 		build = "cd app && npm install",
-		setup = function()
+		config = function()
 			vim.g.mkdp_filetypes = { "markdown" }
 		end,
 		ft = { "markdown" },

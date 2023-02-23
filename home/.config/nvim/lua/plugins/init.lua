@@ -149,10 +149,6 @@ local plugins = {
 	-- treesitter plugin for commentstring
 	"JoosepAlviste/nvim-ts-context-commentstring",
 
-	-- Additional plugins for formats not supported
-	-- by treesitter
-	"jamespeapen/swayconfig.vim",
-
 	-- mappings for commenting in code
 	"tpope/vim-commentary",
 

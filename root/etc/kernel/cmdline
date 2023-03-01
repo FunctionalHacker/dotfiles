@@ -1,5 +1,5 @@
 {%@@ if profile == "Mirkwood" @@%}
 cryptdevice=UUID=19fa8fab-c5fe-454a-9a17-b7185ce975ea:cryptroot:allow-discards root=/dev/mapper/cryptroot rootflags=subvol=root resume=/dev/mapper/cryptroot resume_offset=10530935 rw idle=nomwait amdgpu.ppfeaturemask=0xffffffff quiet splash vt.global_cursor_default=0 fbcon=nodefer log_level=3 udev.log_level=3
 {%@@ elif profile == "Moria" @@%}
-cryptdevice=UUID=d99b4607-f836-4305-82f3-448a8ea7c1e6:cryptroot:allow-discards root=/dev/mapper/cryptroot rootflags=subvol=root ip=:::::eth0:dhcp netconf_timeout=60 rw quiet splash vt.global_cursor_default=0 fbcon=nodefer log_level=3 udev.log_level=3
+cryptdevice=UUID=51115cf2-6a44-4f8c-8aa2-ff9d834953d8:cryptroot root=/dev/mapper/cryptroot rootflags=subvol=root ip=:::::eth0:dhcp netconf_timeout=60 rw quiet splash vt.global_cursor_default=0 fbcon=nodefer log_level=3 udev.log_level=3
 {%@@ endif @@%}

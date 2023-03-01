@@ -10,6 +10,7 @@ local servers = {
 	yamlls = {},
 	taplo = {},
 	tsserver = {},
+  rust_analyzer = {},
 	lua_ls = {
 		Lua = {
 			runtime = {

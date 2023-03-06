@@ -32,11 +32,11 @@ pi() {
   {%@@ endif @@%}
 	if [ -n "$SELECTED_PKGS" ]; then
     {%@@ if distro_id == "arch" @@%}
-    cmd="paru -S $(echo $SELECTED_PKGS)"
+    cmd="paru -S $SELECTED_PKGS"
     {%@@ elif distro_id == "ubuntu" @@%}
-    cmd="doas apt install $(echo $SELECTED_PKGS)"
+    cmd="doas apt install $SELECTED_PKGS"
     {%@@ elif distro_id == "termux" @@%}
-    cmd="apt install $(echo $SELECTED_PKGS)"
+    cmd="apt install $SELECTED_PKGS"
     {%@@ endif @@%}
 
 		# Append the expanded command to history
@@ -55,11 +55,11 @@ pr() {
   {%@@ endif @@%}
 	if [ -n "$SELECTED_PKGS" ]; then
     {%@@ if distro_id == "arch" @@%}
-    cmd="paru -Rns $(echo $SELECTED_PKGS)"
+    cmd="paru -Rns $SELECTED_PKGS"
     {%@@ elif distro_id == "ubuntu" @@%}
-    cmd="doas apt remove $(echo $SELECTED_PKGS)"
+    cmd="doas apt remove $SELECTED_PKGS"
     {%@@ elif distro_id == "termux" @@%}
-    cmd="apt remove $(echo $SELECTED_PKGS)"
+    cmd="apt remove $SELECTED_PKGS"
     {%@@ endif @@%}
 
 		# Append the expanded command to history
@@ -69,6 +69,22 @@ pr() {
     eval "$cmd"
 	fi
 }
+
+{%@@ if profile == "Moria" @@%}
+# Add packages to repo with fzf
+ra() {
+	SELECTED_PKGS="$(paru -Slqa | fzf --header='Add packages to repo' -m --preview 'paru -Si {1}' | tr '\n' ' ')"
+	if [ -n "$SELECTED_PKGS" ]; then
+    cmd="aur -S $SELECTED_PKGS"
+
+		# Append the expanded command to history
+		print -s "$cmd"
+
+    # Finally, excecute the command
+    eval "$cmd"
+	fi
+}
+{%@@ endif @@%}
 
 {%@@ if distro_id == "termux" @@%}
 alias gp='okc-gpg'

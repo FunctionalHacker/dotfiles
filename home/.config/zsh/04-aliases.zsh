@@ -75,7 +75,7 @@ pr() {
 ra() {
 	SELECTED_PKGS="$(paru -Slqa | fzf --header='Add packages to repo' -m --preview 'paru -Si {1}' | tr '\n' ' ')"
 	if [ -n "$SELECTED_PKGS" ]; then
-    cmd="aur -S $SELECTED_PKGS"
+    cmd="aur sync -S $SELECTED_PKGS"
 
 		# Append the expanded command to history
 		print -s "$cmd"

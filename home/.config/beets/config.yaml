@@ -5,7 +5,7 @@ plugins:
   - check
   - edit
   - fetchart
-  - follow
+  #  - follow
   - fuzzy
   - info
   - lastgenre

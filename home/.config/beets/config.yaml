@@ -25,10 +25,11 @@ lastgenre:
 lyrics:
   fallback: ''
 play:
-  command: mpv
+  command: mpv --no-vid --no-resume-playback
 mpd:
   host: localhost
   port: 6600
+  password: "{{@@ env['PASS_MPD_ADMIN'] @@}}"
 follow:
   email: reekymarko@reekynet.com
   password: "{{@@ env['PASS_MUSPY'] @@}}"

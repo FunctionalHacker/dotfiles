@@ -143,9 +143,17 @@ dst = "/etc/default/cpupower"
 src = "etc/pacserve/pacserve.service.conf"
 dst = "/etc/pacserve/pacserve.service.conf"
 
-[dotfiles."d_mkinitcpio.d"]
-src = "etc/mkinitcpio.d"
-dst = "/etc/mkinitcpio.d"
+[dotfiles."f_mkinitcpio_linux.preset"]
+src = "etc/mkinitcpio.d/linux.preset"
+dst = "/etc/mkinitcpio.d/linux.preset"
+
+[dotfiles."f_mkinitcpio_linux-cachyos.preset"]
+src = "etc/mkinitcpio.d/linux-cachyos.preset"
+dst = "/etc/mkinitcpio.d/linux-cachyos.preset"
+
+[dotfiles."f_mkinitcpio_linux-zen.preset"]
+src = "etc/mkinitcpio.d/linux-zen.preset"
+dst = "/etc/mkinitcpio.d/linux-zen.preset"
 
 [dotfiles.f_cmdline]
 src = "etc/kernel/cmdline"
@@ -180,7 +188,6 @@ dotfiles = [
 [profiles.Mirkwood]
 dotfiles = [
   "d_bin",
-  "d_mkinitcpio.d",
   "f_20-quiet-printk.conf",
   "f_60-uinput-permissions.rules",
   "f_99-lowbat.rules",
@@ -195,6 +202,8 @@ dotfiles = [
   "f_ignore",
   "f_logind.conf",
   "f_mkinitcpio.conf",
+  "f_mkinitcpio_linux.preset",
+  "f_mkinitcpio_linux-cachyos.preset",
   "f_plymouthd.conf",
   "f_sshd_config",
   "f_system.conf",
@@ -206,12 +215,13 @@ include = ["Locale", "Pacman", "Network"]
 [profiles.Moria]
 include = ["Locale", "Pacman", "Network"]
 dotfiles = [
-  "d_mkinitcpio.d",
   "f_99-sysctl.conf",
   "f_cmdline",
   "f_cpupower",
   "f_doas.conf",
   "f_mkinitcpio.conf",
+  "f_mkinitcpio_linux.preset",
+  "f_mkinitcpio_linux-cachyos.preset",
   "f_plymouthd.conf",
   "f_sshd_config",
   "f_getty6conf",

@@ -63,6 +63,9 @@ permanent = true
 regex = "https://(.*)/.well-known/(webfinger|nodeinfo)"
 replacement = "https://${1}/index.php/.well-known/${2}"
 
+[http.middlewares.nextcloud-security-headers.headers.customResponseHeaders]
+X-Robots-Tag = "noindex,nofollow"
+
 [http.middlewares.www2non-www.redirectregex]
 permanent = true
 regex = "^https?://www\\.(.+)"

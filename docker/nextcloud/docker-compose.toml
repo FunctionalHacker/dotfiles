@@ -18,7 +18,7 @@ labels = [
   "traefik.http.routers.nextcloud.entrypoints=https",
   "traefik.http.routers.nextcloud.rule=Host(`cloud.korhonen.cc`)",
   "traefik.http.routers.nextcloud.service=nextcloud",
-  "traefik.http.routers.nextcloud.middlewares=secHeaders@file,nextcloud-redirect-dav@file,nextcloud-redirect-extra@file,compress@file",
+  "traefik.http.routers.nextcloud.middlewares=secHeaders@file,nextcloud-security-headers@file,nextcloud-redirect-dav@file,nextcloud-redirect-extra@file,compress@file",
   "traefik.docker.network=proxy",
   "traefik.http.services.nextcloud.loadbalancer.server.port=80",
 ]

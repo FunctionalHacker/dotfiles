@@ -55,13 +55,13 @@ addVaryHeader = true
 
 [http.middlewares.nextcloud-redirect-dav.redirectRegex]
 permanent = true
-regex = "https://(.*)/.well-known/(card|cal)dav"
-replacement = "https://${1}/remote.php/dav/"
+regex = "https://cloud.korhonen.cc/.well-known/(card|cal)dav"
+replacement = "https://cloud.korhonen.cc/remote.php/dav/"
 
 [http.middlewares.nextcloud-redirect-extra.redirectRegex]
 permanent = true
-regex = "https://(.*)/.well-known/(webfinger|nodeinfo)"
-replacement = "https://${1}/index.php/.well-known/${2}"
+regex = "https://korhonen.cc/.well-known/(webfinger|nodeinfo)"
+replacement = "https://korhonen.cc/index.php/.well-known/${2}"
 
 [http.middlewares.nextcloud-security-headers.headers.customResponseHeaders]
 X-Robots-Tag = "noindex,nofollow"

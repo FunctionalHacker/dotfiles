@@ -60,8 +60,8 @@ replacement = "https://cloud.korhonen.cc/remote.php/dav/"
 
 [http.middlewares.nextcloud-redirect-extra.redirectRegex]
 permanent = true
-regex = "https://korhonen.cc/.well-known/(webfinger|nodeinfo)"
-replacement = "https://korhonen.cc/index.php/.well-known/${2}"
+regex = "https://cloud.korhonen.cc/.well-known/(.*)"
+replacement = "https://cloud.korhonen.cc/index.php/.well-known/${1}"
 
 [http.middlewares.nextcloud-security-headers.headers.customResponseHeaders]
 X-Robots-Tag = "noindex,nofollow"

@@ -41,7 +41,7 @@ hard = -1
 
 [services.redis]
 image = "redis"
-container_name = "misskey-redis"
+container_name = "redis-misskey"
 restart = "unless-stopped"
 networks = ["misskey"]
 volumes = ["/docker/misskey/redis:/data"]

@@ -1,6 +1,6 @@
 [services.redis]
 image = "redis:alpine"
-container_name = "authentik-redis"
+container_name = "redis-authentik"
 networks = ["authentik"]
 restart = "unless-stopped"
 volumes = ["/docker/authentik/redis:/data"]

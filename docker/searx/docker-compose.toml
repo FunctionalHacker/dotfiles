@@ -5,7 +5,6 @@ restart = "unless-stopped"
 networks = ["searx", "proxy"]
 volumes = [
   "/docker/searx:/etc/searxng",
-  "redis_temp:/tmp/redis",
   #"/docker/searx/logo.png:/usr/local/searxng/searx/static/themes/simple/img/searxng.png:ro"
 ]
 environment = ["SEARXNG_BASE_URL=https://search.korhonen.cc/"]
@@ -31,8 +30,14 @@ driver = "json-file"
 max-size = "1m"
 max-file = "1"
 
-[volumes.redis_temp]
-external = true
+[services.redis]
+container_name = "redis-searx"
+image = "redis:alpine"
+command = "redis-server --save \"\" --appendonly \"no\""
+networks = ["searx"]
+tmpfs = ["/var/lib/redis"]
+cap_drop = ["ALL"]
+cap_add = ["SETGID", "SETUID", "DAC_OVERRIDE"]
 
 [networks.searx.ipam]
 driver = "default"

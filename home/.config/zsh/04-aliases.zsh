@@ -180,9 +180,7 @@ update() {
 
 	plugins() {
 		echo "Updating NeoVim plugins"
-		nvim --headless "+Lazy! sync" +qa
-		echo "Updating NeoVim TreeSitter"
-		nvim --headless +TSUpdateSync +qa
+		nvim --headless -c "Lazy! sync" -c 'TSUpdateSync' -c 'MasonToolsUpdate' -c 'qa'
 		zinit self-update
 		zinit update -p
 		{%@@ if profile == "Moria" @@%}

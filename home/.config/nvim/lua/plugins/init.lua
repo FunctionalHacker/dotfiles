@@ -93,6 +93,11 @@ local plugins = {
     config = true,
   },
 
+  {
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    config = true,
+  },
+
   -- Configs for built-in LSP
   { "neovim/nvim-lspconfig", config = require("plugins.lspconfig").setup },
 

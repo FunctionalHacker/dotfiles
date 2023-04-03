@@ -203,6 +203,9 @@ local plugins = {
     "norcalli/nvim-colorizer.lua",
     config = true,
   },
+
+  -- Caddyfile syntax support
+  "isobit/vim-caddyfile",
 }
 
 local lazy_opts = {}

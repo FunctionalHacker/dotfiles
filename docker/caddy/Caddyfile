@@ -116,12 +116,17 @@ korhonen.cc, *.korhonen.cc {
 			# Tells nextcloud to remove /index.php from URLs in links
 			env front_controller_active true
 		}
-		file_server browse
+		file_server
 	}
 
 	@tvheadend host tvheadend.korhonen.cc
 	handle @tvheadend {
 		reverse_proxy tvheadend:9981
+	}
+
+	@collabora host collabora.korhonen.cc
+	handle @collabora {
+		reverse_proxy collabora:9980
 	}
 
 	# Fallback for unhandled domains

@@ -12,6 +12,11 @@ korhonen.cc, *.korhonen.cc {
 		Referrer-Policy strict-origin-when-cross-origin
 	}
 
+	@homepage-redir host www.korhonen.cc
+	handle @homepage-redir {
+		redir https://korhonen.cc
+	}
+
 	@homepage host korhonen.cc
 	handle @homepage {
 		root * /var/www/korhonen.cc

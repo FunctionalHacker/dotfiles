@@ -15,18 +15,6 @@ environment = [
   "WOODPECKER_ADMIN=FunctionalHacker",
 ]
 networks = ["proxy", "default"]
-labels = [
-  "traefik.enable=true",
-  "traefik.docker.network=proxy",
-  "traefik.http.routers.woodpecker-redirect.entrypoints=http",
-  "traefik.http.routers.woodpecker-redirect.rule=Host(`ci.korhonen.cc`)",
-  "traefik.http.routers.woodpecker-redirect.middlewares=http2https@file",
-  "traefik.http.routers.woodpecker.entrypoints=https",
-  "traefik.http.routers.woodpecker.middlewares=secHeaders@file,compress@file",
-  "traefik.http.routers.woodpecker.rule=Host(`ci.korhonen.cc`)",
-  "traefik.http.routers.woodpecker.service=woodpecker",
-  "traefik.http.services.woodpecker.loadbalancer.server.port=8000",
-]
 
 [services.woodpecker-agent]
 image = "woodpeckerci/woodpecker-agent"

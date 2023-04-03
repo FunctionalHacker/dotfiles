@@ -4,8 +4,12 @@ korhonen.cc, *.korhonen.cc {
 		resolvers 1.1.1.1
 	}
 
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+	}
+
 	@homepage host korhonen.cc
-  handle @homepage {
+	handle @homepage {
 		root * /var/www/korhonen.cc
 		file_server
 	}
@@ -69,11 +73,45 @@ korhonen.cc, *.korhonen.cc {
 
 	@umami host umami.korhonen.cc
 	handle @umami {
-    reverse_proxy umami:3000
+		reverse_proxy umami:3000
+	}
+
+	@nextcloud host cloud.korhonen.cc
+	handle @nextcloud {
+		encode gzip
+
+		# .htaccess / data / config / ... shouldn't be accessible from outside
+		@forbidden {
+			path /.htaccess
+			path /data/*
+			path /config/*
+			path /db_structure
+			path /.xml
+			path /README
+			path /3rdparty/*
+			path /lib/*
+			path /templates/*
+			path /occ
+			path /console.php
+		}
+		handle @forbidden {
+			respond 404
+		}
+
+		redir /.well-known/carddav /remote.php/dav 301
+		redir /.well-known/caldav /remote.php/dav 301
+
+		root * /var/www/nextcloud
+		php_fastcgi nextcloud:9000 {
+			root /var/www/html
+			# Tells nextcloud to remove /index.php from URLs in links
+			env front_controller_active true
+		}
+		file_server browse
 	}
 
 	# Fallback for unhandled domains
 	handle {
-		redir https://korhonen.cc/404.html
+		redir https://korhonen.cc/404.html 301
 	}
 }

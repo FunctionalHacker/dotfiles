@@ -18,7 +18,7 @@ korhonen.cc, *.korhonen.cc {
 
 	@index host index.korhonen.cc
 	handle @index {
-		root * /docker/index.korhonen.cc
+		root * /var/www/index.korhonen.cc
 		file_server browse
 	}
 

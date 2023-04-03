@@ -4,20 +4,8 @@ container_name = "forgejo"
 environment = ["TZ=Europe/Helsinki", "USER_UID=1000", "USER_GID=1000"]
 restart = "unless-stopped"
 networks = ["postgres", "proxy"]
-ports = ["3000:3000", "22:22"]
+ports = ["22:22"]
 volumes = ["/docker/forgejo:/data", "/etc/localtime:/etc/localtime:ro"]
-labels = [
-  "traefik.enable=true",
-  "traefik.docker.network=proxy",
-  "traefik.http.routers.forgejo-redirect.entrypoints=http",
-  "traefik.http.routers.forgejo-redirect.rule=Host(`git.korhonen.cc`)",
-  "traefik.http.routers.forgejo-redirect.middlewares=http2https@file",
-  "traefik.http.routers.forgejo.entrypoints=https",
-  "traefik.http.routers.forgejo.middlewares=secHeaders@file,compress@file",
-  "traefik.http.routers.forgejo.rule=Host(`git.korhonen.cc`)",
-  "traefik.http.routers.forgejo.service=forgejo",
-  "traefik.http.services.forgejo.loadbalancer.server.port=3000",
-]
 
 [networks.postgres]
 external = true

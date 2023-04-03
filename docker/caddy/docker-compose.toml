@@ -1,0 +1,18 @@
+[services.caddy]
+image = "slothcroissant/caddy-cloudflaredns"
+container_name = "caddy"
+restart = "unless-stopped"
+ports = ["80:80", "443:443/tcp", "443:443/udp"]
+networks = ["proxy"]
+volumes = [
+  "/docker/caddy/data:/data",
+  "/docker/caddy/config:/config",
+  "/var/www/korhonen.cc:/var/www/korhonen.cc",
+  "/var/www/wkd:/var/www/wkd",
+  "/var/www/index.korhonen.cc:/var/www/index.korhonen.cc",
+  "./Caddyfile:/etc/caddy/Caddyfile",
+]
+environment = ["CLOUDFLARE_EMAIL", "CLOUDFLARE_API_TOKEN", "ACME_AGREE=true"]
+
+[networks.proxy]
+external = true

@@ -12,18 +12,6 @@ volumes = [
 dns = ["127.0.0.1", "1.1.1.1"]
 cap_add = ["NET_ADMIN"]
 restart = "unless-stopped"
-labels = [
-  "traefik.enable=true",
-  "traefik.docker.network=proxy",
-  "traefik.http.routers.pihole-redirect.entrypoints=http",
-  "traefik.http.routers.pihole-redirect.rule=Host(`pihole.korhonen.cc`)",
-  "traefik.http.routers.pihole-redirect.middlewares=http2https@file",
-  "traefik.http.routers.pihole.entrypoints=https",
-  "traefik.http.routers.pihole.middlewares=secHeaders@file,compress@file",
-  "traefik.http.routers.pihole.rule=Host(`pihole.korhonen.cc`)",
-  "traefik.http.routers.pihole.service=pihole",
-  "traefik.http.services.pihole.loadbalancer.server.port=80",
-]
 
 [services.pihole.environment]
 TZ = "Europe/Helsinki"

@@ -9,18 +9,6 @@ volumes = [
   "/docker/misskey/files:/misskey/files",
   "/docker/misskey/config:/misskey/.config:ro",
 ]
-labels = [
-  "traefik.enable=true",
-  "traefik.docker.network=proxy",
-  "traefik.http.routers.misskey-redirect.entrypoints=http",
-  "traefik.http.routers.misskey-redirect.rule=Host(`social.korhonen.cc`)",
-  "traefik.http.routers.misskey-redirect.middlewares=http2https@file",
-  "traefik.http.routers.misskey.entrypoints=https",
-  "traefik.http.routers.misskey.middlewares=secHeaders@file,compress@file",
-  "traefik.http.routers.misskey.rule=Host(`social.korhonen.cc`)",
-  "traefik.http.routers.misskey.service=misskey",
-  "traefik.http.services.misskey.loadbalancer.server.port=3000",
-]
 
 [services.elasticsearch]
 image = "docker.elastic.co/elasticsearch/elasticsearch:7.17.8"

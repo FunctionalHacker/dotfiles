@@ -9,35 +9,11 @@ ports = ["3478:3478/udp"]
 command = "headscale serve"
 restart = "unless-stopped"
 networks = ["postgres"]
-labels = [
-  "traefik.enable=true",
-  "traefik.docker.network=proxy",
-  "traefik.http.routers.headscale-redirect.entrypoints=http",
-  "traefik.http.routers.headscale-redirect.rule=PathPrefix(`/`)&&Host(`headscale.korhonen.cc`)",
-  "traefik.http.routers.headscale-redirect.middlewares=http2https@file",
-  "traefik.http.routers.headscale.entrypoints=https",
-  "traefik.http.routers.headscale.middlewares=secHeaders@file,compress@file",
-  "traefik.http.routers.headscale.rule=PathPrefix(`/`) && Host(`headscale.korhonen.cc`)",
-  "traefik.http.routers.headscale.service=headscale",
-  "traefik.http.services.headscale.loadbalancer.server.port=8080",
-]
 
 [services.headscale-ui]
 image = "ghcr.io/gurucomputing/headscale-ui"
 container_name = "headscale-ui"
 restart = "unless-stopped"
-labels = [
-  "traefik.enable=true",
-  "traefik.docker.network=proxy",
-  "traefik.http.routers.headscale-ui-redirect.entrypoints=http",
-  "traefik.http.routers.headscale-ui-redirect.rule=PathPrefix(`/web`)&&Host(`headscale.korhonen.cc`)",
-  "traefik.http.routers.headscale-ui-redirect.middlewares=http2https@file",
-  "traefik.http.routers.headscale-ui.entrypoints=https",
-  "traefik.http.routers.headscale-ui.middlewares=secHeaders@file,compress@file",
-  "traefik.http.routers.headscale-ui.rule=PathPrefix(`/web`)&&Host(`headscale.korhonen.cc`)",
-  "traefik.http.routers.headscale-ui.service=headscale-ui",
-  "traefik.http.services.headscale-ui.loadbalancer.server.port=80",
-]
 
 [networks.postgres]
 external = true

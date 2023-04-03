@@ -24,19 +24,6 @@ volumes = [
 ]
 env_file = [".env"]
 networks = ["authentik", "postgres", "proxy"]
-labels = [
-  "traefik.enable=true",
-  "traefik.docker.network=proxy",
-  "traefik.http.routers.authentik-redirect.entrypoints=http",
-  "traefik.http.routers.authentik-redirect.rule=Host(`sso.korhonen.cc`)",
-  "traefik.http.routers.authentik-redirect.middlewares=http2https@file",
-  "traefik.http.routers.authentik.entrypoints=https",
-  "traefik.http.routers.authentik.middlewares=secHeaders@file,compress@file",
-  "traefik.http.routers.authentik-rtr-outpost.rule=HostRegexp(`{subdomain:[a-z0-9-]+}.korhonen.cc`) && PathPrefix(`/outpost.goauthentik.io/`)",
-  "traefik.http.routers.authentik.rule=Host(`sso.korhonen.cc`)",
-  "traefik.http.routers.authentik.service=authentik",
-  "traefik.http.services.authentik.loadbalancer.server.port=9000",
-]
 
 [services.worker]
 image = "ghcr.io/goauthentik/server"
@@ -73,19 +60,6 @@ restart = "unless-stopped"
 security_opt = ["no-new-privileges:true"]
 networks = ["proxy"]
 environment = ["TZ"]
-labels = [
-  "traefik.enable=true",
-  "traefik.docker.network=proxy",
-  "traefik.http.routers.whoami-test-redirect.entrypoints=http",
-  "traefik.http.routers.whoami-test-redirect.rule=Host(`whoami-test.korhonen.cc`)",
-  "traefik.http.routers.whoami-test-redirect.middlewares=http2https@file",
-  "traefik.http.routers.whoami-test.entrypoints=https",
-  "traefik.http.routers.whoami-test.middlewares=secHeaders@file,compress@file,authentik@file",
-  "traefik.http.routers.whoami-test.rule=Host(`whoami-test.korhonen.cc`)",
-  "traefik.http.routers.whoami-test.service=whoami-test",
-  "traefik.http.services.whoami-test.loadbalancer.server.port=80",
-]
-
 
 [networks.authentik]
 external = true

@@ -95,9 +95,7 @@ fman() {
 	man -k . | fzf --prompt='Man> ' | awk '{print $1}' | xargs -r man
 }
 
-# I'm retarded so I need this
-alias :q='exit'
-alias :wq='exit'
+alias :q='cowsay "You are not in vim anymore"'
 
 alias reboot-kodi='systemctl reboot --boot-loader-entry=kodi.conf'
 

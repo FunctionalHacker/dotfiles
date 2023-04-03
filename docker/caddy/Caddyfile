@@ -119,6 +119,11 @@ korhonen.cc, *.korhonen.cc {
 		file_server browse
 	}
 
+	@tvheadend host tvheadend.korhonen.cc
+	handle @tvheadend {
+		reverse_proxy tvheadend:9981
+	}
+
 	# Fallback for unhandled domains
 	handle {
 		redir https://korhonen.cc/404.html 301

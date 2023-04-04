@@ -4,6 +4,8 @@ korhonen.cc, *.korhonen.cc {
 		resolvers 1.1.1.1
 	}
 
+	encode zstd gzip
+
 	header {
 		Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
 	}
@@ -83,8 +85,6 @@ korhonen.cc, *.korhonen.cc {
 
 	@nextcloud host cloud.korhonen.cc
 	handle @nextcloud {
-		encode gzip
-
 		# .htaccess / data / config / ... shouldn't be accessible from outside
 		@forbidden {
 			path /.htaccess

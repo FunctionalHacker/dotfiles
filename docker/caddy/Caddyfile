@@ -125,6 +125,11 @@ korhonen.cc, *.korhonen.cc {
 		reverse_proxy collabora:9980
 	}
 
+	@grafana host grafana.korhonen.cc
+	handle @grafana {
+		reverse_proxy grafana:3000
+	}
+
 	# Fallback for unhandled domains
 	handle {
 		redir https://korhonen.cc/404.html 301

@@ -2,6 +2,7 @@
 image = "jellyfin/jellyfin"
 container_name = "jellyfin"
 environment = ["TZ=Europe/Helsinki"]
+ports = ["8096:8096"]
 networks = ["proxy", "authentik"]
 restart = "unless-stopped"
 volumes = [

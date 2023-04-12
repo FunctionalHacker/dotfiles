@@ -81,9 +81,6 @@ local plugins = {
   -- Display possible keybinds
   { "folke/which-key.nvim", config = true },
 
-  -- Read editorconfig settings
-  "editorconfig/editorconfig-vim",
-
   -- Package manager for LSP servers, DAP adapters etc.
   { "williamboman/mason.nvim", config = true },
 

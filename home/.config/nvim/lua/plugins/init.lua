@@ -203,6 +203,14 @@ local plugins = {
 
   -- Caddyfile syntax support
   "isobit/vim-caddyfile",
+
+  -- Startup dashboard
+  {
+    "glepnir/dashboard-nvim",
+    event = "VimEnter",
+    config = require("plugins.dashboard"),
+    dependencies = { { "kyazdani42/nvim-web-devicons" } },
+  },
 }
 
 local lazy_opts = {}

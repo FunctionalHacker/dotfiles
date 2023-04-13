@@ -6,16 +6,16 @@ return function()
         enable = true,
       },
       shortcut = {
-        { desc = " Update", group = "@property", action = "Lazy update", key = "u" },
+        { icon = "🧲 ", desc = "Update", group = "@property", action = "Lazy update", key = "u" },
         {
-          icon = " ",
+          icon = "🖹 ",
           icon_hl = "@variable",
           desc = "Files",
           group = "Label",
           action = "Telescope find_files",
           key = "f",
         },
-        { desc = "Quit", action = "q", key = "q" },
+        { icon = "❌ ", desc = "Quit", action = "q", key = "q" },
       },
     },
   })

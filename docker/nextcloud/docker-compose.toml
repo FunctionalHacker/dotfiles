@@ -10,7 +10,6 @@ volumes = [
   "/etc/localtime:/etc/localtime:ro",
 ]
 environment = [
-  "TZ=Europe/Helsinki",
   "REDIS_HOST=redis",
   "REDIS_HOST_PASSWORD=123",
   "TRUSTED_PROXIES=traefik",

@@ -95,10 +95,6 @@ src = "etc/ssh/sshd_config"
 dst = "/etc/welcomemessage.conf"
 src = "etc/welcomemessage.conf"
 
-[dotfiles."f_getty6conf"]
-src = "etc/systemd/system/getty@tty6.service.d/override.conf"
-dst = "/etc/systemd/system/getty@tty6.service.d/override.conf"
-
 [dotfiles."f_99-conbee-usb-serial.rules"]
 src = "etc/udev/rules.d/99-conbee-usb-serial.rules"
 dst = "/etc/udev/rules.d/99-conbee-usb-serial.rules"
@@ -224,7 +220,6 @@ dotfiles = [
   "f_mkinitcpio_linux-cachyos.preset",
   "f_plymouthd.conf",
   "f_sshd_config",
-  "f_getty6conf",
 ]
 
 [profiles.Gondor]

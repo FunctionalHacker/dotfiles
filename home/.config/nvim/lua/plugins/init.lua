@@ -82,21 +82,15 @@ local plugins = {
   { "folke/which-key.nvim", config = true },
 
   -- Package manager for LSP servers, DAP adapters etc.
-  { "williamboman/mason.nvim", config = true },
-
-  -- Install LSP server executables with Mason
   {
-    "williamboman/mason-lspconfig.nvim",
-    config = true,
+    "williamboman/mason.nvim",
+    config = require("plugins.mason").setup,
+    dependencies = {
+      "neovim/nvim-lspconfig",
+      "williamboman/mason-lspconfig.nvim",
+      "WhoIsSethDaniel/mason-tool-installer.nvim",
+    },
   },
-
-  {
-    "WhoIsSethDaniel/mason-tool-installer.nvim",
-    config = true,
-  },
-
-  -- Configs for built-in LSP
-  { "neovim/nvim-lspconfig", config = require("plugins.lspconfig").setup },
 
   -- Additional LSP features for Java
   "mfussenegger/nvim-jdtls",

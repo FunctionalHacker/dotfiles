@@ -50,6 +50,9 @@ function m.setup()
         },
       })
     end,
+
+    -- Don't set up jdtls, it is set up by nvim-jdtls
+    ["jdtls"] = function() end,
   })
 end
 

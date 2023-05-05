@@ -4,7 +4,7 @@ local workspace_dir = nvim_local_dir .. "/jdtls-workspaces/" .. project_name
 
 require("jdtls").start_or_attach({
   cmd = {
-    "/usr/lib/jvm/java-17-openjdk-amd64/bin/java",
+    "/usr/lib/jvm/java-19-openjdk-amd64/bin/java",
     "-Declipse.application=org.eclipse.jdt.ls.core.id1",
     "-Dosgi.bundles.defaultStartLevel=4",
     "-Declipse.product=org.eclipse.jdt.ls.core.product",

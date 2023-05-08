@@ -295,5 +295,6 @@ alias dslr-webcam='pkill -f gphoto2; gphoto2 --stdout --capture-movie | ffmpeg -
 clock() {
   while true; do
     printf '%s\r' "$(date)"
+    sleep 0.1
   done
 }

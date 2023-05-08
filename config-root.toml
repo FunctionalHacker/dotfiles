@@ -159,6 +159,10 @@ dst = "/etc/sudoers.d/pacman"
 src = "etc/doas.conf"
 dst = "/etc/doas.conf"
 
+[dotfiles."f_flexo.toml"]
+src = "etc/flexo/flexo.toml"
+dst = "/etc/flexo/flexo.toml"
+
 [profiles.Network]
 dotfiles = ["d_network", "f_networkd.conf"]
 
@@ -192,6 +196,7 @@ dotfiles = [
   "f_system.conf",
   "f_timesyncd.conf",
   "f_welcomemessage.conf",
+  "f_flexo.toml",
 ]
 include = ["Locale", "Pacman", "Network"]
 
@@ -207,6 +212,7 @@ dotfiles = [
   "f_mkinitcpio_linux-lts.preset",
   "f_plymouthd.conf",
   "f_sshd_config",
+  "f_flexo.toml",
 ]
 
 [profiles.Gondor]

@@ -47,5 +47,7 @@ source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
 {%@@ endif @@%}
 
+{%@@ if distro_id != "termux" @@%}
 # enable https://github.com/nvbn/thefuck
 eval $(TF_SHELL=zsh thefuck --alias)
+{%@@ endif @@%}

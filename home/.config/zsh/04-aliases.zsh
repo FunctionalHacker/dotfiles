@@ -112,8 +112,10 @@ alias jcu='journalctl --user'
 # switch to desktop mode
 alias dock='swaymsg output eDP-1 disable'
 
+{%@@ if distro_id != "termux" @@%}
 # move to trash instead of remove
 alias rm='trash'
+{%@@ endif @@%}
 
 # clean stuff
 clean() {

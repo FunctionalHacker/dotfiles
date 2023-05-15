@@ -77,7 +77,7 @@ if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
 fi
 gpgconf --launch gpg-agent
 {%@@ elif distro_id == "termux" @@%}
-eval $(okc-ssh-agent)
+eval $(okc-ssh-agent) > /dev/null
 {%@@ endif @@%}
 
 # Enable grc colorization of supported commands

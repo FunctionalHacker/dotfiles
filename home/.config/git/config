@@ -21,18 +21,29 @@
 [merge]
 	prompt = false
   conflictstyle = diff3
-	tool = nvim-merge
+	tool = meld
 
-[mergetool "nvim-merge"]
-	cmd = nvim -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+[mergetool]
 	keepBackup = false
+	prompt = false
+
+[mergetool "nvim"]
+	cmd = nvim -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+
+[mergetool "meld"]
+  cmd = meld --diff $LOCAL $MERGED $REMOTE --diff $BASE $LOCAL --diff $BASE $REMOTE
 
 [diff]
-	prompt = false
-	tool = nvim-diff
+	tool = meld
 
-[difftool "nvim-diff"]
+[difftool]
+	prompt = false
+
+[difftool "nvim"]
 	cmd = nvim -d $LOCAL $REMOTE
+
+[difftool "meld"]
+  cmd = meld --diff $LOCAL $REMOTE
 
 [pull]
 	rebase = merges

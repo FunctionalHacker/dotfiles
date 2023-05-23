@@ -13,5 +13,6 @@ return function()
     "lspinfo",
     "man",
     "lazy",
+    "git",
   }
 end

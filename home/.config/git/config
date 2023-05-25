@@ -1,61 +1,61 @@
 [user]
-	{%@@ if profile == "mko-laptop" @@%}
-	email = marko.korhonen@rossum.fi
-	{%@@ else @@%}
-	email = marko@korhonen.cc
-	{%@@ endif @@%}
-	name = Marko Korhonen
-	signingkey = F2B9F713E7ED627336DD85E444FA3F28CD931BB0
+{%@@ if profile == "mko-laptop" @@%}
+email = marko.korhonen@rossum.fi
+{%@@ else @@%}
+email = marko@korhonen.cc
+{%@@ endif @@%}
+name = Marko Korhonen
+signingkey = F2B9F713E7ED627336DD85E444FA3F28CD931BB0
 
 [commit]
-	signoff = true
-	gpgsign = true
+signoff = true
+gpgsign = true
 
 [tag]
-	gpgSign = true
-	signoff = true
+gpgSign = true
+signoff = true
 
 [format]
-	signoff = true
+signoff = true
 
 [merge]
-	prompt = false
-  conflictstyle = diff3
-	tool = nvim
+prompt = false
+conflictstyle = diff3
+tool = nvim
 
 [mergetool]
-	keepBackup = false
-	prompt = false
+keepBackup = false
+prompt = false
 
 [mergetool "nvim"]
-	cmd = nvim -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+cmd = nvim -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
 
 [diff]
-  tool = nvim
+tool = nvim
 
 [difftool]
-	prompt = false
+prompt = false
 
 [difftool "nvim"]
-	cmd = nvim -d $LOCAL $REMOTE
+cmd = nvim -d $LOCAL $REMOTE
 
 [pull]
-	rebase = merges
+rebase = merges
 
 [alias]
-	mergetest = !git switch test && git pull && git merge --no-ff -m \"Merge $1 features to test\" $1
-	upstream = !git push -u origin HEAD
-	sync = !git pull && git push
+mergetest = !git switch test && git pull && git merge --no-ff -m \"Merge $1 features to test\" $1
+upstream = !git push -u origin HEAD
+sync = !git pull && git push
 
 [color]
-	pager = no
+pager = no
 
 [init]
-	defaultBranch = main
+defaultBranch = main
 
 [credential]
-	helper = cache --timeout=600
-	helper = !pass-git-helper $@
+helper = cache --timeout=600
+helper = !pass-git-helper $@
 
 [rerere]
-  enabled = true
+enabled = true

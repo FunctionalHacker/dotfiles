@@ -21,7 +21,7 @@
 [merge]
 	prompt = false
   conflictstyle = diff3
-	tool = meld
+	tool = nvim
 
 [mergetool]
 	keepBackup = false
@@ -29,6 +29,9 @@
 
 [mergetool "nvim"]
 	cmd = nvim -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+
+[diff]
+  tool = nvim
 
 [difftool]
 	prompt = false

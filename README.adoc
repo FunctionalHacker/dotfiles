@@ -30,6 +30,6 @@ sort, you can open an issue or a pull request at my git server
 ====
 [source,zsh]
 ----
-include::home/.config/zsh/04-aliases.zsh[]
+include::./home/.config/zsh/04-aliases.zsh[]
 ----
 ====

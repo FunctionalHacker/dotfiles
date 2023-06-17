@@ -7,15 +7,6 @@ o.relativenumber = true
 -- True colors
 o.termguicolors = true
 
--- Font for nvim GUI's
-o.guifont = "Fira Code:h14"
-
--- Hide mouse when typing in neovide
-g.neovide_hide_mouse_when_typing = true
-
--- Enable cursor particles in neovide
-g.neovide_cursor_vfx_mode = "railgun"
-
 -- Floating window transparency
 o.winblend = 10
 
@@ -33,8 +24,8 @@ o.hidden = true
 o.number = true
 
 o.guicursor = table.concat({
-	"i:ver1", -- Vertical bar cursor in insert mode
-	"a:blinkon1", -- Blinking cursor in all modes
+  "i:ver1", -- Vertical bar cursor in insert mode
+  "a:blinkon1", -- Blinking cursor in all modes
 }, ",")
 
 -- Enable global statusline
@@ -59,9 +50,9 @@ o.smartindent = true
 
 -- Firenvim settings
 vim.g.firenvim_config = {
-	localSettings = {
-		[".*"] = {
-			takeOver = "never",
-		},
-	},
+  localSettings = {
+    [".*"] = {
+      takeOver = "never",
+    },
+  },
 }

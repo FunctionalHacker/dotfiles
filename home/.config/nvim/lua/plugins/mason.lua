@@ -83,7 +83,7 @@ function m.map_keys()
       rn = { vim.lsp.buf.rename, "Rename symbol" },
       ca = { vim.lsp.buf.code_action, "Code action" },
       e = { vim.diagnostic.open_float, "Open diagnostics" },
-      f = { vim.lsp.buf.format, "Format" },
+      F = { vim.lsp.buf.format, "Format with LSP" },
     },
     K = { vim.lsp.buf.hover, "Hover" },
     ["["] = { d = { vim.diagnostic.goto_prev, "Previous diagnostic" } },

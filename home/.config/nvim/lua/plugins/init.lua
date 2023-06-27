@@ -79,7 +79,7 @@ local plugins = {
   "lambdalisue/suda.vim",
 
   -- Display possible keybinds
-  { "folke/which-key.nvim", config = true },
+  { "folke/which-key.nvim", config = require("plugins.which-key") },
 
   -- Package manager for LSP servers, DAP adapters etc.
   {

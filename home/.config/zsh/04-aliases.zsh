@@ -300,3 +300,32 @@ clock() {
     sleep 0.1
   done
 }
+
+# Change file extension made easy
+chext() {
+  file="$1"
+  new_ext="$2"
+  dest="${file%.*}.$new_ext"
+
+  help() {
+    printf "Change file extension\nUsage: chext file new_extension\nFor example: chext my_script.sh zsh"
+  }
+
+  if [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
+    help
+    return
+  fi
+
+  if [ $# -lt 2 ]; then
+    help
+    return 1
+  fi
+
+  if [ ! -e "$1" ]; then
+    echo "$file: no such file or directory"
+    help
+    return 1
+  fi
+
+  mv "$file" "$dest"
+}

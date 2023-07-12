@@ -130,6 +130,11 @@ korhonen.cc, *.korhonen.cc {
 		reverse_proxy grafana:3000
 	}
 
+	@snapdrop host snapdrop.korhonen.cc
+	handle @snapdrop {
+		reverse_proxy snapdrop
+	}
+
 	# Fallback for unhandled domains
 	handle {
 		redir https://korhonen.cc/404.html 301

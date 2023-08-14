@@ -17,7 +17,7 @@ require("jdtls").start_or_attach({
     "--add-opens",
     "java.base/java.lang=ALL-UNNAMED",
     "-jar",
-    nvim_local_dir .. "/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_1.6.500.v20230622-2056.jar",
+    nvim_local_dir .. "/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_1.6.500.v20230717-2134.jar",
     "-configuration",
     nvim_local_dir .. "/mason/packages/jdtls/config_linux",
     "-data",

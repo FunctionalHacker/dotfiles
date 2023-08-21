@@ -1,5 +1,6 @@
 return function()
   local wk = require("which-key")
+  local gitsigns = require("gitsigns")
   wk.setup({})
 
   wk.register({
@@ -10,6 +11,8 @@ return function()
   wk.register({
     ["<C-n>"] = { "<cmd>bnext<CR>", "Next buffer" },
     ["<C-b>"] = { "<cmd>bprevious<CR>", "Previous buffer" },
+    ["["] = { h = { gitsigns.prev_hunk, "Previous hunk" } },
+    ["]"] = { h = { gitsigns.next_hunk, "Next hunk" } },
   })
 
   -- Exit terminal insert mode with esc

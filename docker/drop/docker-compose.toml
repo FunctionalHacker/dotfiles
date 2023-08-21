@@ -1,0 +1,9 @@
+[services.drop]
+image = "lscr.io/linuxserver/pairdrop"
+container_name = "drop"
+restart = "unless-stopped"
+networks = ["proxy"]
+environment = ["TZ=Europe/Helsinki"]
+
+[networks.proxy]
+external = true

@@ -57,8 +57,7 @@ function m.setup()
 end
 
 function m.map_keys()
-  local wk = require("which-key")
-  wk.register({
+  require("which-key").register({
     g = {
       name = "Go to",
       d = { vim.lsp.buf.definition, "Definition" },
@@ -79,6 +78,7 @@ function m.map_keys()
           "List folders",
         },
       },
+      k = { vim.lsp.buf.signature_help, "Signature help" },
       D = { vim.lsp.buf.type_definition, "Type definition" },
       rn = { vim.lsp.buf.rename, "Rename symbol" },
       ca = { vim.lsp.buf.code_action, "Code action" },

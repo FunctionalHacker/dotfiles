@@ -99,7 +99,14 @@ local plugins = {
   { "mfussenegger/nvim-dap", config = require("plugins.dap") },
 
   -- Display function signature
-  "ray-x/lsp_signature.nvim",
+  {
+    "ray-x/lsp_signature.nvim",
+    event = "VeryLazy",
+    opts = { always_trigger = true },
+    config = function(_, opts)
+      require("lsp_signature").setup(opts)
+    end,
+  },
 
   -- Snippets plugin
   {

@@ -23,6 +23,22 @@ require("jdtls").start_or_attach({
     "-data",
     workspace_dir,
   },
+  settings = { java = { signatureHelp = { enabled = true } } },
+  completion = { favoriteStaticMembers = { "java.text.MessageFormat.format" } },
+  runtimes = {
+    {
+      name = "JavaSE-1.8",
+      path = "/usr/lib/jvm/java-8-openjdk-amd64/",
+    },
+    {
+      name = "JavaSE-11",
+      path = "/usr/lib/jvm/java-11-openjdk-amd64/",
+    },
+    {
+      name = "JavaSE-19",
+      path = "/usr/lib/jvm/java-19-openjdk-amd64/",
+    },
+  },
 })
 
 require("plugins.mason").map_keys()

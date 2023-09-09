@@ -10,7 +10,7 @@ alias gpush='git push'
 forgit_revert_commit=fgrc
 
 # Modern replacement for ls
-alias ls='exa'
+alias ls='eza --icons --git'
 
 # Enable command not found handler
 {%@@ if distro_id == "arch" @@%}

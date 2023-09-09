@@ -41,7 +41,7 @@ export GOPATH=~/.go
 export FD_COMMAND='fd -HLt'
 export FZF_DEFAULT_COMMAND="$FD_COMMAND f"
 export FZF_ALT_C_COMMAND="$FD_COMMAND d"
-export FZF_ALT_C_OPTS="--preview 'exa -l {}'"
+export FZF_ALT_C_OPTS="--preview 'eza -l {}'"
 export FZF_DEFAULT_OPTS='-m --ansi --bind ctrl-a:toggle-all,ctrl-d:deselect-all,ctrl-t:toggle-all'
 export FZF_COMPLETION_TRIGGER='**'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND --strip-cwd-prefix"
@@ -77,7 +77,7 @@ if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
 fi
 gpgconf --launch gpg-agent
 {%@@ elif distro_id == "termux" @@%}
-eval $(okc-ssh-agent) > /dev/null
+eval $(okc-ssh-agent) >/dev/null
 {%@@ endif @@%}
 
 # Enable grc colorization of supported commands

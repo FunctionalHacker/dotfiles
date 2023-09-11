@@ -209,16 +209,19 @@ update() {
 		cd $prevpwddocker
 		docker system prune -af --volumes
 	}
+	{%@@ endif @@%}
 
   dotfiles() {
     dotgit pull
     dotdrop install
   }
 
-	{%@@ endif @@%}
 	case "$1" in
 		all)
 			all
+			;;
+    dotfiles)
+      dotfiles
 			;;
 		plugins)
 			plugins

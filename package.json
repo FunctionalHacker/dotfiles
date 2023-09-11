@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "gitea:/FunctionalHacker/dotfiles"
+    "url": "https://git.korhonen.cc/FunctionalHacker/dotfiles"
   },
   "author": "",
   "license": "MIT",

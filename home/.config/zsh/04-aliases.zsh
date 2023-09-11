@@ -240,6 +240,29 @@ update() {
 	esac
 }
 
+_update() {
+  local commands=(
+    "all:Update everything"
+    "dotfiles:Update dotfiles"
+    "plugins:Update plugins for NeoVim and ZSH"
+		{%@@ if profile == "Moria" @@%}
+    "repo:Update packages in Korhonen AUR repository"
+    "docker:Update all Docker containers"
+		{%@@ endif @@%}
+  )
+
+  _arguments \
+    '1: :->command' \
+    '*:: :->args'
+
+  case "$state" in
+    (command)
+      _describe -t commands 'available commands' commands
+      ;;
+  esac
+}
+compdef _update update
+
 # turn on usb tethering on my android phone
 tether() { adb shell su -c "service call connectivity 33 i32 1 s16 me" > /dev/null }
 

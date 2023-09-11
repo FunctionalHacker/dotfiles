@@ -216,28 +216,33 @@ update() {
     dotdrop install
   }
 
-	case "$1" in
-		all)
-			all
-			;;
-    dotfiles)
-      dotfiles
-			;;
-		plugins)
-			plugins
-			;;
-		{%@@ if profile == "Moria" @@%}
-		docker)
-			docker-update
-			;;
-		repo)
-			repo
-			;;
-		{%@@ endif @@%}
-		*)
-			packages
-			;;
-	esac
+  if [ $# -eq 0 ]; then
+    packages  # Update only packages if no option was provided
+  else
+    case "$1" in
+      all)
+        all
+        ;;
+      dotfiles)
+        dotfiles
+        ;;
+      plugins)
+        plugins
+        ;;
+        {%@@ if profile == "Moria" @@%}
+        docker)
+        docker-update
+        ;;
+      repo)
+        repo
+        ;;
+        {%@@ endif @@%}
+        *)
+        echo "Unknown option: $1"
+        return 1
+        ;;
+    esac
+  fi
 }
 
 _update() {

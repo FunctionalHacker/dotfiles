@@ -4,7 +4,7 @@ return function()
 
   telescope.setup({
     defaults = { path_display = { "smart" } },
-    pickers = { find_files = { find_command = { "fd", "-Ht", "f" } } },
+    pickers = { find_files = { find_command = { "fd", "-Ht", "f" } }, lsp_references = { show_line = false } },
   })
 
   telescope.load_extension("fzf")

@@ -57,13 +57,14 @@ function m.setup()
 end
 
 function m.map_keys()
+  local telescope_builtin = require("telescope.builtin")
   require("which-key").register({
     g = {
       name = "Go to",
       d = { vim.lsp.buf.definition, "Definition" },
       D = { vim.lsp.buf.declaration, "Declaration" },
-      i = { vim.lsp.buf.implementation, "Implementation" },
-      r = { vim.lsp.buf.references, "References" },
+      i = { telescope_builtin.lsp_implementations, "Implementation" },
+      r = { telescope_builtin.lsp_references, "References" },
     },
     ["<leader>"] = {
       name = "Leader",

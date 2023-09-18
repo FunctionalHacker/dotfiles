@@ -3,8 +3,10 @@ return function()
   local builtin = require("telescope.builtin")
 
   telescope.setup({
-    defaults = { path_display = { "smart" } },
-    pickers = { find_files = { find_command = { "fd", "-Ht", "f" } }, lsp_references = { show_line = false } },
+    pickers = {
+      find_files = { find_command = { "fd", "-Ht", "f" } },
+      lsp_references = { show_line = false },
+    },
   })
 
   telescope.load_extension("fzf")

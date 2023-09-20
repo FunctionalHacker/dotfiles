@@ -12,6 +12,13 @@ function m.setup()
   -- Inform lsp about completion capabilities from cmp
   local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
+  -- Neovim hasn't added foldingRange to default capabilities, users must add it manually
+  -- for ufo
+  capabilities.textDocument.foldingRange = {
+    dynamicRegistration = false,
+    lineFoldingOnly = true,
+  }
+
   require("mason").setup()
   local mason_lsp = require("mason-lspconfig")
   mason_lsp.setup()

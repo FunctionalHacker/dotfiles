@@ -47,6 +47,11 @@ pi() {
 	fi
 }
 
+mkcd() {
+  mkdir -p $1
+  cd $1
+}
+
 pr() {
   {%@@ if distro_id == "arch" @@%}
 	SELECTED_PKGS="$(paru -Qsq | fzf --header='Remove packages' -m --preview 'paru -Si {1}' | tr '\n' ' ')"

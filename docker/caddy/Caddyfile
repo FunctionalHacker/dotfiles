@@ -82,6 +82,7 @@ korhonen.cc, *.korhonen.cc {
 	@umami host umami.korhonen.cc
 	handle @umami {
 		reverse_proxy umami:3000
+    rewrite /ua9quuaW.js /script.js
 	}
 
 	@nextcloud host cloud.korhonen.cc

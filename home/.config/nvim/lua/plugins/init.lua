@@ -212,6 +212,13 @@ local plugins = {
     config = require("plugins.dashboard"),
     dependencies = { { "kyazdani42/nvim-web-devicons" } },
   },
+
+  -- Better folds
+  {
+    "kevinhwang91/nvim-ufo",
+    dependencies = { "kevinhwang91/promise-async" },
+    config = require("plugins.ufo"),
+  },
 }
 
 local lazy_opts = {}

@@ -49,10 +49,16 @@ o.shiftwidth = 4
 o.smartindent = true
 
 -- Firenvim settings
-vim.g.firenvim_config = {
+g.firenvim_config = {
   localSettings = {
     [".*"] = {
       takeOver = "never",
     },
   },
 }
+
+-- Fold settings (for ufo)
+o.foldcolumn = "1"
+o.foldlevel = 99
+o.foldlevelstart = 99
+o.foldenable = true

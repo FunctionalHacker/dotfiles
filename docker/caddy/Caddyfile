@@ -25,6 +25,7 @@ korhonen.cc, *.korhonen.cc {
 	handle @wkd {
 		root * /var/www/wkd
 		file_server browse
+    header Access-Control-Allow-Origin "*"
 	}
 
 	@index host index.korhonen.cc

@@ -14,7 +14,7 @@ return function()
   telescope.load_extension("cder")
 
   -- Keybinds
-  vim.keymap.set("n", "<C-t>", vim.cmd.Telescope)
+  vim.keymap.set("n", "<C-s>", vim.cmd.Telescope)
   vim.keymap.set("n", "<C-f>", builtin.find_files)
   vim.keymap.set("n", "<C-g>", builtin.live_grep)
 end

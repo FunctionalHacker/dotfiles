@@ -51,3 +51,7 @@ source /usr/share/fzf/completion.zsh
 # enable https://github.com/nvbn/thefuck
 eval $(TF_SHELL=zsh thefuck --alias)
 {%@@ endif @@%}
+
+# Generate completions at runtime
+zinit ice lucid
+zinit light RobSis/zsh-completion-generator

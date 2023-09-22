@@ -72,6 +72,7 @@ function m.map_keys()
       D = { vim.lsp.buf.declaration, "Declaration" },
       i = { telescope_builtin.lsp_implementations, "Implementation" },
       r = { telescope_builtin.lsp_references, "References" },
+      s = { telescope_builtin.lsp_document_symbols, "Symbols" },
     },
     ["<leader>"] = {
       name = "Leader",

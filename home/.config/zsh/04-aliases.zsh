@@ -182,6 +182,7 @@ update() {
 		{%@@ elif distro_id == "termux" @@%}
 		pkg update && pkg upgrade --yes
     pip install --upgrade $(pip list --outdated | tail -n +3 | awk '{print $1}')
+    cargo install-update -a
 		{%@@ endif @@%}
 	}
 

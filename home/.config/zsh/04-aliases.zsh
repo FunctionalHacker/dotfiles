@@ -181,6 +181,7 @@ update() {
 		doas apt update && doas apt full-upgrade -y && doas apt autoremove -y && doas apt autoclean -y
 		{%@@ elif distro_id == "termux" @@%}
 		pkg update && pkg upgrade --yes
+    pip install --upgrade $(pip list --outdated | tail -n +3 | awk '{print $1}')
 		{%@@ endif @@%}
 	}
 

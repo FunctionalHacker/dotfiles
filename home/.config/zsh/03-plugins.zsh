@@ -53,5 +53,5 @@ eval $(TF_SHELL=zsh thefuck --alias)
 {%@@ endif @@%}
 
 # Generate completions at runtime
-zinit ice lucid
+zinit ice wait'2' lucid
 zinit light RobSis/zsh-completion-generator

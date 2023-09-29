@@ -68,7 +68,7 @@ function m.map_keys()
   require("which-key").register({
     g = {
       name = "Go to",
-      d = { vim.lsp.buf.definition, "Definition" },
+      d = { telescope_builtin.lsp_definitions, "Definition" },
       D = { vim.lsp.buf.declaration, "Declaration" },
       i = { telescope_builtin.lsp_implementations, "Implementation" },
       r = { telescope_builtin.lsp_references, "References" },

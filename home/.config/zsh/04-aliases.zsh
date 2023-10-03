@@ -181,8 +181,10 @@ update() {
 		doas apt update && doas apt full-upgrade -y && doas apt autoremove -y && doas apt autoclean -y
 		{%@@ elif distro_id == "termux" @@%}
 		pkg update && pkg upgrade --yes
-    pip install --upgrade $(pip list --outdated | tail -n +3 | awk '{print $1}')
-    cargo install-update -a
+		{%@@ endif @@%}
+		{%@@ if distro_id == "termux" or distro_id == "ubuntu" @@%}
+    pip-update-installed
+    cargo-update-installed
 		{%@@ endif @@%}
 	}
 
@@ -195,6 +197,14 @@ update() {
 		$HOME/.tmux/plugins/tpm/bin/update_plugins all
 		{%@@ endif @@%}
 	}
+
+  pip-update-installed() {
+    pip install --upgrade $(pip list --outdated | tail -n +3 | awk '{print $1}')
+  }
+
+  cargo-update-installed() {
+    cargo install-update -a
+  }
 
 	{%@@ if profile == "Moria" @@%}
 	repo() {

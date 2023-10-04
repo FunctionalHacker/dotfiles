@@ -8,6 +8,9 @@ return function()
 
   -- Setup git completion source
   require("cmp_git").setup()
+  --
+  -- Setup copilot source
+  require("copilot_cmp").setup()
 
   -- Set completeopt to have a better completion experience
   vim.o.completeopt = "menuone,noselect"
@@ -49,6 +52,7 @@ return function()
       end,
     },
     sources = {
+      { name = "copilot" },
       { name = "nvim_lsp" },
       { name = "nvim_lua" },
       { name = "luasnip" },

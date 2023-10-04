@@ -130,6 +130,7 @@ local plugins = {
       "hrsh7th/cmp-cmdline", -- cmdline source
       "saadparwaiz1/cmp_luasnip", -- Snippets source
       "f3fora/cmp-spell", -- Spell check source
+      "zbirenbaum/copilot-cmp", -- Copilot source
     },
     config = require("plugins.cmp"),
   },
@@ -221,7 +222,15 @@ local plugins = {
   },
 
   -- GitHub Copilot
-  { "zbirenbaum/copilot.lua", config = true },
+  {
+    "zbirenbaum/copilot.lua",
+    config = function()
+      require("copilot").setup({
+        suggestion = { enabled = false },
+        panel = { enabled = false },
+      })
+    end,
+  },
 }
 
 local lazy_opts = {}

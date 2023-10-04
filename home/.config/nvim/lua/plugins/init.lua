@@ -219,7 +219,9 @@ local plugins = {
     dependencies = { "kevinhwang91/promise-async" },
     config = require("plugins.ufo"),
   },
-  "github/copilot.vim",
+
+  -- GitHub Copilot
+  { "zbirenbaum/copilot.lua", config = true },
 }
 
 local lazy_opts = {}

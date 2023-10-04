@@ -10,7 +10,7 @@ return function()
   require("cmp_git").setup()
   --
   -- Setup copilot source
-  require("copilot_cmp").setup()
+  require("copilot_cmp").setup({ fix_pairs = true })
 
   -- Set completeopt to have a better completion experience
   vim.o.completeopt = "menuone,noselect"

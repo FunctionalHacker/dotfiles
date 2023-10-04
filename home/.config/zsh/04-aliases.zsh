@@ -176,7 +176,7 @@ update() {
 
 	packages() {
 		{%@@ if distro_id == "arch" @@%}
-		paru
+		paru -Syu --noconfirm
 		{%@@ elif distro_id == "ubuntu" @@%}
 		doas apt update && doas apt full-upgrade -y && doas apt autoremove -y && doas apt autoclean -y
 		{%@@ elif distro_id == "termux" @@%}

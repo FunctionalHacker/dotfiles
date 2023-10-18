@@ -211,7 +211,7 @@ update() {
 		aur sync -Su --margs --noconfirm
 	}
 
-	docker-update() {
+	local docker-update() {
 		prevpwddocker=$PWD
 		for dir in $HOME/git/dotfiles/docker/*; do
 			cd $dir
@@ -225,6 +225,10 @@ update() {
 		done
 		cd $prevpwddocker
 		docker system prune -af --volumes
+
+    occ upgrade
+    occ app:update --all
+    occ db:add-missing-indices
 	}
 	{%@@ endif @@%}
 

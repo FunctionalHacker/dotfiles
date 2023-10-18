@@ -280,20 +280,6 @@ dotfiles = [
   "f_youtube-dl_config",
 ]
 
-[profiles.sway]
-dotfiles = [
-  "d_sway",
-  "d_waybar",
-  "d_wofi",
-  "d_zathura",
-  "f_electron-flags.conf",
-  "f_electron12-flags.conf",
-  "f_fonts.conf",
-  "f_foot.ini",
-  "f_mako_config",
-  "f_redshift.conf",
-]
-
 [profiles.gpg]
 dotfiles = [
   "f_gpg-agent.conf",
@@ -303,17 +289,23 @@ dotfiles = [
 ]
 
 [profiles.Mirkwood]
-include = ["pacman", "terminal", "email", "media", "sway", "gpg"]
+include = ["pacman", "terminal", "email", "media", "gpg"]
 dotfiles = [
   "d_rofi",
   "f_librewolf_overrides",
   "f_dconf.ini",
   "f_docker-config.json",
+  "f_fonts.conf",
 ]
 
 [profiles.Moria]
 include = ["pacman", "terminal", "media", "gpg"]
-dotfiles = ["f_librewolf_overrides", "f_dconf.ini", "f_zprofile"]
+dotfiles = [
+  "f_librewolf_overrides",
+  "f_dconf.ini",
+  "f_zprofile",
+  "f_fonts.conf",
+]
 
 [profiles.Gondor]
 include = ["pacman", "terminal"]

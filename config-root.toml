@@ -224,6 +224,13 @@ dotfiles = [
   "f_flexo.toml",
 ]
 
+[profiles.Tirion]
+dotfiles = [
+  "f_doas.conf",
+  "f_ignore",
+  "f_sshd_config",
+]
+
 [profiles.Gondor]
 include = ["Locale", "Pacman"]
 dotfiles = ["f_doas.conf", "f_sshd_config"]

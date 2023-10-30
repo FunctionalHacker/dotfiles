@@ -307,6 +307,9 @@ dotfiles = [
   "f_fonts.conf",
 ]
 
+[profiles.Tirion]
+include = ["terminal", "gpg"]
+
 [profiles.Gondor]
 include = ["pacman", "terminal"]
 

@@ -33,7 +33,7 @@ pi() {
 	if [ -n "$SELECTED_PKGS" ]; then
     {%@@ if distro_id == "arch" @@%}
     cmd="paru -S $SELECTED_PKGS"
-    {%@@ elif distro_id == "ubuntu" @@%}
+    {%@@ elif distro_id == "ubuntu" or distro_id == "debian" @@%}
     cmd="doas apt install $SELECTED_PKGS"
     {%@@ elif distro_id == "termux" @@%}
     cmd="apt install $SELECTED_PKGS"
@@ -61,7 +61,7 @@ pr() {
 	if [ -n "$SELECTED_PKGS" ]; then
     {%@@ if distro_id == "arch" @@%}
     cmd="paru -Rns $SELECTED_PKGS"
-    {%@@ elif distro_id == "ubuntu" @@%}
+    {%@@ elif distro_id == "ubuntu" or distro_id == "debian" @@%}
     cmd="doas apt remove $SELECTED_PKGS"
     {%@@ elif distro_id == "termux" @@%}
     cmd="apt remove $SELECTED_PKGS"
@@ -177,12 +177,12 @@ update() {
 	packages() {
 		{%@@ if distro_id == "arch" @@%}
 		paru -Syu --noconfirm
-		{%@@ elif distro_id == "ubuntu" @@%}
+		{%@@ elif distro_id == "ubuntu" or distro_id == "debian" @@%}
 		doas apt update && doas apt full-upgrade -y && doas apt autoremove -y && doas apt autoclean -y
 		{%@@ elif distro_id == "termux" @@%}
 		pkg update && pkg upgrade --yes
 		{%@@ endif @@%}
-		{%@@ if distro_id == "termux" or distro_id == "ubuntu" @@%}
+		{%@@ if distro_id == "termux" or distro_id == "ubuntu" or distro_id == "debian" @@%}
     pip-update-installed
     cargo-update-installed
 		{%@@ endif @@%}

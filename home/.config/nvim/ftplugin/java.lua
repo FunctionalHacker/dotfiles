@@ -11,6 +11,8 @@ require("jdtls").start_or_attach({
     "-Dlog.protocol=true",
     "-Dlog.level=ALL",
     "-Xms1g",
+    "-javaagent:" .. nvim_local_dir .. "/mason/share/jdtls/lombok.jar",
+    "-Xbootclasspath/a:" .. nvim_local_dir .. "/mason/share/jdtls/lombok.jar",
     "--add-modules=ALL-SYSTEM",
     "--add-opens",
     "java.base/java.util=ALL-UNNAMED",

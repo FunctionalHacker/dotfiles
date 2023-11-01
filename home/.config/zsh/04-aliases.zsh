@@ -1,3 +1,8 @@
+# Fix sudo and doas not expanding aliases
+# see: https://unix.stackexchange.com/questions/148545/why-does-sudo-ignore-aliases
+alias sudo='sudo '
+alias doas='doas '
+
 # git shorthands
 alias gc='git commit'
 alias gac='ga && gc'

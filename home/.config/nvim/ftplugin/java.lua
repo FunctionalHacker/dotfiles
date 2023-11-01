@@ -1,4 +1,5 @@
 local nvim_local_dir = vim.fn.expand("~/.local/share/nvim")
+local lombok_jar = nvim_local_dir .. "/mason/packages/jdtls/lombok.jar"
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 local workspace_dir = nvim_local_dir .. "/jdtls-workspaces/" .. project_name
 
@@ -11,13 +12,13 @@ require("jdtls").start_or_attach({
     "-Dlog.protocol=true",
     "-Dlog.level=ALL",
     "-Xms1g",
-    "-javaagent:" .. nvim_local_dir .. "/mason/share/jdtls/lombok.jar",
-    "-Xbootclasspath/a:" .. nvim_local_dir .. "/mason/share/jdtls/lombok.jar",
     "--add-modules=ALL-SYSTEM",
     "--add-opens",
     "java.base/java.util=ALL-UNNAMED",
     "--add-opens",
     "java.base/java.lang=ALL-UNNAMED",
+    "-javaagent:" .. lombok_jar,
+    "-Xbootclasspath/a:" .. lombok_jar,
     "-jar",
     nvim_local_dir .. "/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_1.6.500.v20230717-2134.jar",
     "-configuration",

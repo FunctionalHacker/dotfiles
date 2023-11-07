@@ -60,3 +60,6 @@ helper = !pass-git-helper $@
 
 [rerere]
 enabled = true
+
+[submodule]
+recurse = true

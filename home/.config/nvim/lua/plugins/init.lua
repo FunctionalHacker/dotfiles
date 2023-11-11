@@ -233,6 +233,4 @@ local plugins = {
   },
 }
 
-local lazy_opts = {}
-
-require("lazy").setup(plugins, lazy_opts)
+require("lazy").setup(plugins, { lockfile = "~/git/dotfiles/home/.config/nvim/lazy-lock.json" })

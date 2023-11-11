@@ -30,18 +30,23 @@ function command_not_found_handler {
 
 # search and install/remove packages with fzf
 pi() {
-  {%@@ if distro_id == "arch" @@%}
-	SELECTED_PKGS="$(paru -Slq | fzf --header='Install packages' -m --preview 'paru -Si {1}' | tr '\n' ' ')"
+  {%@@ if distro_id == "arch" or distro_id == "termux" @@%}
+  local pkgmanager='pacman'
+  if command -v paru &> /dev/null; then
+    pkgmanager='paru'
+  fi
+	SELECTED_PKGS="$($pkgmanager -Slq | fzf --header='Install packages' -m --preview "$pkgmanager -Si {1}" | tr '\n' ' ')"
   {%@@ else @@%}
 	SELECTED_PKGS="$(apt list 2>/dev/null | cut -d '/' -f 1 | tail +2 | fzf --header='Install packages' -m --preview 'apt show 2>/dev/null {1}' | tr '\n' ' ')"
   {%@@ endif @@%}
 	if [ -n "$SELECTED_PKGS" ]; then
-    {%@@ if distro_id == "arch" @@%}
-    cmd="paru -S $SELECTED_PKGS"
+    {%@@ if distro_id == "arch" or distro_id == "termux" @@%}
+    if [ pkgmanager -eq 'pacman' ] && [ distro_id -ne "termux" ]; then
+      pkgmanager="doas pacman"
+    fi
+    cmd="$pkgmanager -S $SELECTED_PKGS"
     {%@@ elif distro_id == "ubuntu" or distro_id == "debian" @@%}
     cmd="doas apt install $SELECTED_PKGS"
-    {%@@ elif distro_id == "termux" @@%}
-    cmd="apt install $SELECTED_PKGS"
     {%@@ endif @@%}
 
 		# Append the expanded command to history
@@ -185,9 +190,9 @@ update() {
 		{%@@ elif distro_id == "ubuntu" or distro_id == "debian" @@%}
 		doas apt update && doas apt full-upgrade -y && doas apt autoremove -y && doas apt autoclean -y
 		{%@@ elif distro_id == "termux" @@%}
-		pkg update && pkg upgrade --yes
+		pacman -Syu --noconfirm
 		{%@@ endif @@%}
-		{%@@ if distro_id == "termux" or distro_id == "ubuntu" or distro_id == "debian" @@%}
+		{%@@ if distro_id == "ubuntu" or distro_id == "debian" @@%}
     pip-update-installed
     cargo-update-installed
 		{%@@ endif @@%}

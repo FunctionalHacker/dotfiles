@@ -27,6 +27,9 @@ export USRNAME=$USER
 
 # Add ~/.local/bin to path
 export PATH="$HOME/.local/bin:$PATH"
+#
+# Add locally installed npm binaries to path
+export PATH="$HOME/.local/share/npm/bin:$PATH"
 
 # Add ~/.cargo/bin to path
 export PATH="$HOME/.cargo/bin:$PATH"

@@ -225,11 +225,7 @@ dotfiles = [
 ]
 
 [profiles.Tirion]
-dotfiles = [
-  "f_doas.conf",
-  "f_ignore",
-  "f_sshd_config",
-]
+dotfiles = ["f_doas.conf", "f_ignore", "f_sshd_config"]
 
 [profiles.Gondor]
 include = ["Locale", "Pacman"]

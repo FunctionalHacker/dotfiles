@@ -270,6 +270,7 @@ dotfiles = [
     "f_rtv.cfg",
     "f_tmux.conf",
     "f_zshrc",
+    "f_npmrc",
 ]
 
 [profiles.email]
@@ -317,7 +318,6 @@ dotfiles = [
     "f_dconf.ini",
     "f_docker-config.json",
     "f_fonts.conf",
-    "f_npmrc",
 ]
 
 [profiles.Mirkwood.variables]

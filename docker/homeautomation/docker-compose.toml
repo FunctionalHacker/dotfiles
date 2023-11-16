@@ -13,13 +13,6 @@ ports = ["8123:8123", "8300:8300"]
 extra_hosts = ["host.docker.internal:host-gateway"]
 depends_on = ["mosquitto"]
 
-[services.esphome]
-container_name = "esphome"
-image = "esphome/esphome"
-volumes = ["/docker/homeautomation/esphome:/config"]
-restart = "unless-stopped"
-network_mode = "host"
-
 [services.mosquitto]
 container_name = "mosquitto"
 image = "eclipse-mosquitto"

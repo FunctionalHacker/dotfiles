@@ -17,40 +17,36 @@ local plugins = {
   -- Colorscheme
   {
     "rebelot/kanagawa.nvim",
-    config = function()
-      vim.cmd("colorscheme kanagawa")
-    end,
+    config = require("plugins.colorscheme"),
+  },
+
+  -- Replace much of neovim's default UI
+  -- with a modern replacement
+  {
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    dependencies = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify" },
+    opts = require("plugins.noice"),
   },
 
   -- Statusline
   {
     "nvim-lualine/lualine.nvim",
     dependencies = { "kyazdani42/nvim-web-devicons" },
-    config = true,
-  },
-
-  -- Git status in signcolumn
-  {
-    "lewis6991/gitsigns.nvim",
-    config = true,
+    config = require("plugins.lualine"),
   },
 
   -- Tabline/bufferline
-  {
-    "akinsho/bufferline.nvim",
-    version = "v3.*",
-    dependencies = { "kyazdani42/nvim-web-devicons" },
-    config = true,
-  },
+  { "akinsho/bufferline.nvim", version = "v3.*", dependencies = { "kyazdani42/nvim-web-devicons" }, config = true },
+
+  -- Git status in signcolumn
+  { "lewis6991/gitsigns.nvim", config = true },
 
   -- Git commands
   "tpope/vim-fugitive",
 
   -- Indent characters
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    config = require("plugins.indent-blankline"),
-  },
+  { "lukas-reineke/indent-blankline.nvim", config = require("plugins.indent-blankline") },
 
   -- Tree explorer
   {
@@ -64,14 +60,19 @@ local plugins = {
     "nvim-telescope/telescope.nvim",
     config = require("plugins.telescope"),
     dependencies = {
-      "nvim-lua/plenary.nvim", -- Internal dep for telescope
+      -- Internal dependency for telescope
+      "nvim-lua/plenary.nvim",
+
       -- Use fzf for fuzzy finder
       {
         "nvim-telescope/telescope-fzf-native.nvim",
         build = "make",
       },
-      "nvim-telescope/telescope-ui-select.nvim", -- Replace vim built in select with telescope
-      "zane-/cder.nvim", -- cd plugin for telescope
+      -- Replace vim built in select with telescope
+      "nvim-telescope/telescope-ui-select.nvim",
+
+      -- cd plugin for telescope
+      "zane-/cder.nvim",
     },
   },
 
@@ -95,18 +96,11 @@ local plugins = {
   -- Additional LSP features for Java
   "mfussenegger/nvim-jdtls",
 
+  -- Show code LSP context in winbar
+  { "SmiteshP/nvim-navic", config = true, opts = { mouse = true } },
+
   -- DAP plugin
   { "mfussenegger/nvim-dap", config = require("plugins.dap") },
-
-  -- Display function signature
-  {
-    "ray-x/lsp_signature.nvim",
-    event = "VeryLazy",
-    opts = { always_trigger = true },
-    config = function(_, opts)
-      require("lsp_signature").setup(opts)
-    end,
-  },
 
   -- Snippets plugin
   {
@@ -176,9 +170,18 @@ local plugins = {
     build = function()
       vim.fn["firenvim#install"](0)
     end,
+    config = function()
+      vim.g.firenvim_config = {
+        localSettings = {
+          [".*"] = {
+            takeOver = "never",
+          },
+        },
+      }
+    end,
   },
 
-  -- Vim <3 Asciidoctor
+  -- Vim ♥️ Asciidoctor
   "habamax/vim-asciidoctor",
 
   -- Asciidoc preview
@@ -216,6 +219,7 @@ local plugins = {
 
   -- Better folds
   {
+    enabled = false,
     "kevinhwang91/nvim-ufo",
     dependencies = { "kevinhwang91/promise-async" },
     config = require("plugins.ufo"),

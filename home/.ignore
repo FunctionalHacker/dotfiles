@@ -16,3 +16,7 @@
 .android/
 .audacity-data/
 .zcompdump*
+.var/
+.npm/
+.vscode-oss/
+.git/

@@ -1,7 +1,8 @@
 local g = vim.g
+local o = vim.o
 
 -- Change scale factor with C= and C-
-g.neovide_scale_factor = 1.0
+g.neovide_scale_factor = {{@@ scale_factor|default(1.0) @@}}
 local change_scale_factor = function(delta)
   g.neovide_scale_factor = g.neovide_scale_factor * delta
 end
@@ -17,3 +18,9 @@ g.neovide_hide_mouse_when_typing = true
 
 -- Enable cursor particles in neovide
 g.neovide_cursor_vfx_mode = "railgun"
+
+-- Enable dark/light theme detection
+g.neovide_theme = "auto"
+
+-- Set font
+--o.guifont = "Hack Nerd Font Mono:h15"

@@ -15,10 +15,15 @@ return function()
     ["]"] = { h = { gitsigns.next_hunk, "Next hunk" } },
   })
 
+  -- Open cder
+  wk.register({ cd = {
+    function()
+      vim.cmd("Telescope cder")
+    end,
+    "Change directories",
+  } })
+
   -- Exit terminal insert mode with esc
   vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", {})
 
-  -- Using ufo, need to remap `zR` and `zM`. If Neovim is 0.6.1, remap yourself
-  vim.keymap.set("n", "zR", require("ufo").openAllFolds)
-  vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
 end

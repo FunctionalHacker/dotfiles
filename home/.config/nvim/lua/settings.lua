@@ -1,7 +1,9 @@
 local o = vim.o
 local g = vim.g
+o.pumblend = 10
 
 -- Relative line numbers
+o.number = true
 o.relativenumber = true
 
 -- True colors
@@ -20,8 +22,6 @@ o.diffopt = "filler,internal,algorithm:histogram,indent-heuristic"
 -- Allow switching buffers with unsaved changes
 o.hidden = true
 
--- Show line numbers
-o.number = true
 
 o.guicursor = table.concat({
   "i:ver1", -- Vertical bar cursor in insert mode
@@ -30,8 +30,6 @@ o.guicursor = table.concat({
 
 -- Enable global statusline
 o.laststatus = 3
-
-o.cmdheight = 1
 
 -- Use suda by default
 g.suda_smart_edit = 1
@@ -47,18 +45,3 @@ g.mapleader = " "
 o.tabstop = 4
 o.shiftwidth = 4
 o.smartindent = true
-
--- Firenvim settings
-g.firenvim_config = {
-  localSettings = {
-    [".*"] = {
-      takeOver = "never",
-    },
-  },
-}
-
--- Fold settings (for ufo)
-o.foldcolumn = "1"
-o.foldlevel = 99
-o.foldlevelstart = 99
-o.foldenable = true

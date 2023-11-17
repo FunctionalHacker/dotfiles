@@ -1,9 +1,10 @@
 local m = {}
 
 function m.setup()
-  local function on_attach()
-    -- Setup lsp signature plugin
-    require("lsp_signature").setup({})
+  local function on_attach(client, bufnr)
+
+    -- Attach navic
+    require("nvim-navic").attach(client, bufnr)
 
     -- Setup keybinds
     m.map_keys()

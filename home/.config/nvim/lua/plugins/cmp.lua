@@ -61,6 +61,15 @@ return function()
       { name = "spell" },
       { name = "path" },
     },
+    -- window = {
+    --   completion = {
+    --     winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
+    --   },
+
+    --   documentation = {
+    --     winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
+    --   },
+    -- },
   })
 
   -- Enable autopairs when enter is processed

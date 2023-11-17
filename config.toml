@@ -1,5 +1,8 @@
+#:schema ../../dotdrop-config-schema.json
+
 [actions]
 dconf-load = "dconf load / < ~/.config/dconf.ini"
+kanagawa-compile = "vim +KanagawaCompile +qa"
 
 [config]
 backup = true
@@ -33,6 +36,8 @@ src = ".config/imapnotify"
 [dotfiles.d_nvim]
 dst = "~/.config/nvim"
 src = ".config/nvim"
+instignore = [""]
+actions = ["kanagawa-compile"]
 
 [dotfiles.d_rofi]
 dst = "~/.config/rofi"
@@ -331,6 +336,7 @@ dotfiles = ["f_librewolf_overrides", "f_dconf.ini"]
 
 [profiles.mko-laptop.variables]
 wayland = true
+scale_factor = 1.5
 
 [profiles.Isengard]
 include = ["terminal"]

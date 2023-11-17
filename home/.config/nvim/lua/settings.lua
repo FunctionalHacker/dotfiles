@@ -9,6 +9,9 @@ o.relativenumber = true
 -- True colors
 o.termguicolors = true
 
+-- Enable cursorline highlighting
+o.cursorline = true
+
 -- Floating window transparency
 o.winblend = 10
 

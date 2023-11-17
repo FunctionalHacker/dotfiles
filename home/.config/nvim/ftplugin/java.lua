@@ -2,7 +2,7 @@ local nvim_local_dir = vim.fn.expand("~/.local/share/nvim")
 local lombok_jar = nvim_local_dir .. "/mason/packages/jdtls/lombok.jar"
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 local workspace_dir = nvim_local_dir .. "/jdtls-workspaces/" .. project_name
-local mason = require("plugins.mason")
+local lsp = require("plugins.lsp")
 
 require("jdtls").start_or_attach({
   cmd = {
@@ -45,8 +45,8 @@ require("jdtls").start_or_attach({
   handlers = {
     ["language/status"] = function() end,
   },
-  capabilities = mason.get_capabilities(),
-  on_attach = mason.on_attach,
+  capabilities = lsp.get_capabilities(),
+  on_attach = lsp.on_attach,
 })
 
 function RunJava()

@@ -85,7 +85,7 @@ local plugins = {
   -- Package manager for LSP servers, DAP adapters etc.
   {
     "williamboman/mason.nvim",
-    config = require("plugins.mason").setup,
+    config = require("plugins.lsp").setup,
     dependencies = {
       "neovim/nvim-lspconfig",
       "williamboman/mason-lspconfig.nvim",

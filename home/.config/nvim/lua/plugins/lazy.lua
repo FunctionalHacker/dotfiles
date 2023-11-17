@@ -36,8 +36,14 @@ local plugins = {
     config = require("plugins.lualine"),
   },
 
-  -- Tabline/bufferline
-  { "akinsho/bufferline.nvim", version = "v3.*", dependencies = { "kyazdani42/nvim-web-devicons" }, config = true },
+  -- bufferline
+  {
+    "akinsho/bufferline.nvim",
+    version = "v3.*",
+    dependencies = { "kyazdani42/nvim-web-devicons" },
+    config = true,
+    opts = { options = { themeable = true } },
+  },
 
   -- Git status in signcolumn
   { "lewis6991/gitsigns.nvim", config = true },

@@ -110,7 +110,7 @@ local plugins = {
   },
 
   -- vim api documentation for lua lsp
-  "ii14/emmylua-nvim",
+  { "ii14/emmylua-nvim", ft = { "lua" } },
 
   -- Completion
   {
@@ -182,10 +182,10 @@ local plugins = {
   },
 
   -- Vim ♥️ Asciidoctor
-  "habamax/vim-asciidoctor",
+  { "habamax/vim-asciidoctor", ft = { "asciidoctor", "asciidoc" } },
 
   -- Asciidoc preview
-  { "tigion/nvim-asciidoc-preview", ft = { "asciidoctor" } },
+  { "tigion/nvim-asciidoc-preview", ft = { "asciidoctor", "asciidoc" } },
 
   -- Markdown preview
   {
@@ -198,7 +198,7 @@ local plugins = {
   },
 
   -- Edit GPG encrypted files transparently
-  "jamessan/vim-gnupg",
+  { "jamessan/vim-gnupg", ft = { "gpg" } },
 
   -- High performance color highlighter
   {
@@ -207,7 +207,7 @@ local plugins = {
   },
 
   -- Caddyfile syntax support
-  "isobit/vim-caddyfile",
+  { "isobit/vim-caddyfile", ft = "caddyfile" },
 
   -- Startup dashboard
   {

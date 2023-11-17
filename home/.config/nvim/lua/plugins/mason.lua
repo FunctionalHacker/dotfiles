@@ -1,34 +1,16 @@
 local m = {}
 
 function m.setup()
-  local function on_attach(client, bufnr)
-
-    -- Attach navic
-    require("nvim-navic").attach(client, bufnr)
-
-    -- Setup keybinds
-    m.map_keys()
-  end
-
-  -- Inform lsp about completion capabilities from cmp
-  local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
-  -- Neovim hasn't added foldingRange to default capabilities, users must add it manually
-  -- for ufo
-  capabilities.textDocument.foldingRange = {
-    dynamicRegistration = false,
-    lineFoldingOnly = true,
-  }
-
   require("mason").setup()
   local mason_lsp = require("mason-lspconfig")
   mason_lsp.setup()
+  local capabilities = m.get_capabilities()
 
   mason_lsp.setup_handlers({
     -- Default handler
     function(server_name)
       require("lspconfig")[server_name].setup({
-        on_attach = on_attach,
+        on_attach = m.on_attach,
         capabilities = capabilities,
       })
     end,
@@ -36,7 +18,7 @@ function m.setup()
     -- Override lua_ls settings
     ["lua_ls"] = function()
       require("lspconfig").lua_ls.setup({
-        on_attach = on_attach,
+        on_attach = m.on_attach,
         capabilities = capabilities,
         settings = {
           Lua = {
@@ -99,6 +81,33 @@ function m.map_keys()
     ["["] = { d = { vim.diagnostic.goto_prev, "Previous diagnostic" } },
     ["]"] = { d = { vim.diagnostic.goto_next, "Next diagnostic" } },
   })
+end
+
+function m.on_attach(client, bufnr)
+  -- Attach navic if document symbols are available
+  if client.server_capabilities.documentSymbolProvider then
+    require("nvim-navic").attach(client, bufnr)
+  end
+
+  -- Setup keybinds
+  m.map_keys()
+end
+
+function m.get_capabilities()
+  -- Combine built-in LSP and cmp cabaibilities
+  local capabilities = vim.tbl_deep_extend(
+    "force",
+    vim.lsp.protocol.make_client_capabilities(),
+    require("cmp_nvim_lsp").default_capabilities()
+  )
+
+  -- Neovim hasn't added foldingRange to default capabilities, users must add it manually
+  -- for ufo
+  --capabilities.textDocument.foldingRange = {
+  --  dynamicRegistration = false,
+  --  lineFoldingOnly = true,
+  --}
+  return capabilities
 end
 
 return m

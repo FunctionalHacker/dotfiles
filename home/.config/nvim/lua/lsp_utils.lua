@@ -1,51 +1,9 @@
+-- This module contains lsp related
+-- reusable functions
 local m = {}
 
-function m.setup()
-  require("mason").setup()
-  local mason_lsp = require("mason-lspconfig")
-  mason_lsp.setup()
-  local capabilities = m.get_capabilities()
-
-  mason_lsp.setup_handlers({
-    -- Default handler
-    function(server_name)
-      require("lspconfig")[server_name].setup({
-        on_attach = m.on_attach,
-        capabilities = capabilities,
-      })
-    end,
-
-    -- Override lua_ls settings
-    ["lua_ls"] = function()
-      require("lspconfig").lua_ls.setup({
-        on_attach = m.on_attach,
-        capabilities = capabilities,
-        settings = {
-          Lua = {
-            runtime = {
-              -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-              version = "LuaJIT",
-            },
-            diagnostics = {
-              -- Get the language server to recognize the `vim` global
-              globals = { "vim" },
-            },
-            workspace = {
-              -- Make the server aware of Neovim runtime files
-              library = vim.api.nvim_get_runtime_file("", true),
-            },
-            -- Do not send telemetry data containing a randomized but unique identifier
-            telemetry = { enable = false },
-          },
-        },
-      })
-    end,
-
-    -- Don't set up jdtls, it is set up by nvim-jdtls
-    ["jdtls"] = function() end,
-  })
-end
-
+-- Map LSP specific keybinds.
+-- This makes them only available when LSP is running
 function m.map_keys()
   local telescope_builtin = require("telescope.builtin")
   require("which-key").register({
@@ -82,6 +40,7 @@ function m.map_keys()
     ["]"] = { d = { vim.diagnostic.goto_next, "Next diagnostic" } },
   })
 end
+
 
 function m.on_attach(client, bufnr)
   -- Attach navic if document symbols are available

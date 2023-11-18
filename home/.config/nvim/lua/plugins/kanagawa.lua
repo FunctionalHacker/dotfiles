@@ -1,5 +1,7 @@
-return function()
-  require("kanagawa").setup({
+-- Colorscheme
+return {
+  "rebelot/kanagawa.nvim",
+  opts = {
     compile = true,
     dimInactive = true,
     colors = {
@@ -42,7 +44,8 @@ return function()
         PmenuThumb = { bg = theme.ui.bg_p2 },
       }
     end,
-  })
-
-  vim.cmd("colorscheme kanagawa")
-end
+  },
+  config = function()
+    vim.cmd("colorscheme kanagawa")
+  end,
+}

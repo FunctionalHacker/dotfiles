@@ -1,5 +1,9 @@
-return function()
-  require("dashboard").setup({
+-- Startup dashboard
+return {
+  "glepnir/dashboard-nvim",
+  event = "VimEnter",
+  dependencies = { { "kyazdani42/nvim-web-devicons" } },
+  opts = {
     theme = "hyper",
     config = {
       week_header = {
@@ -18,5 +22,5 @@ return function()
         { icon = "❌ ", desc = "Quit", action = "q", key = "q" },
       },
     },
-  })
-end
+  },
+}

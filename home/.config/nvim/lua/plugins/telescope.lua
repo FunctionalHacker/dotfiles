@@ -45,11 +45,11 @@ return {
       },
     },
   },
-  config = function(spec)
+  config = function(_, opts)
     local telescope = require("telescope")
     local builtin = require("telescope.builtin")
 
-    telescope.setup(spec.opts)
+    telescope.setup(opts)
 
     telescope.load_extension("fzf")
     telescope.load_extension("ui-select")

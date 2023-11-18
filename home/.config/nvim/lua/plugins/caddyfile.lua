@@ -1,2 +1,5 @@
 -- Caddyfile syntax support
-return { "isobit/vim-caddyfile", ft = "caddyfile" }
+return {
+  "isobit/vim-caddyfile",
+  ft = "caddyfile",
+}

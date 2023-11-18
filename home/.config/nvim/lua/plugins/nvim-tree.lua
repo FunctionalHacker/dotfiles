@@ -11,8 +11,8 @@ return {
       highlight_git = true,
     },
   },
-  config = function(spec)
-    require("nvim-tree").setup(spec.opts)
+  config = function(_, opts)
+    require("nvim-tree").setup(opts)
 
     -- Open/close with alt-o
     vim.keymap.set("n", "<M-o>", vim.cmd.NvimTreeToggle)

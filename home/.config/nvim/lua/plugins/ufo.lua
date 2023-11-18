@@ -9,9 +9,9 @@ return {
       "imports",
     },
   },
-  config = function(spec)
+  config = function(_, opts)
     local ufo = require("ufo")
-    ufo.setup(spec.opts)
+    ufo.setup(opts)
 
     -- Using ufo, need to remap `zR` and `zM`. If Neovim is 0.6.1, remap yourself
     local keymap = vim.keymap

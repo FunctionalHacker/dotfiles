@@ -3,14 +3,23 @@ return {
   "hrsh7th/nvim-cmp",
   dependencies = {
     "hrsh7th/cmp-buffer", -- Buffer source
-    { "petertriho/cmp-git", dependencies = { "nvim-lua/plenary.nvim" } }, -- Git source
+    -- Git source
+    {
+      "petertriho/cmp-git",
+      dependencies = { "nvim-lua/plenary.nvim" },
+      config = true,
+    },
     "hrsh7th/cmp-nvim-lsp", -- LSP source
     "hrsh7th/cmp-nvim-lua", -- Neovim Lua API documentation source
     "hrsh7th/cmp-path", -- Path source
     "hrsh7th/cmp-cmdline", -- cmdline source
     "saadparwaiz1/cmp_luasnip", -- Snippets source
     "f3fora/cmp-spell", -- Spell check source
-    "zbirenbaum/copilot-cmp", -- Copilot source
+    -- Copilot source
+    {
+      "zbirenbaum/copilot-cmp",
+      opts = { fix_pairs = true },
+    },
   },
   config = function()
     local cmp = require("cmp")
@@ -19,12 +28,6 @@ return {
     if not cmp then
       return
     end
-
-    -- Setup git completion source
-    require("cmp_git").setup()
-    --
-    -- Setup copilot source
-    require("copilot_cmp").setup({ fix_pairs = true })
 
     -- Set completeopt to have a better completion experience
     vim.o.completeopt = "menuone,noselect"

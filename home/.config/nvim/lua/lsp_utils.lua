@@ -2,7 +2,7 @@
 -- reusable functions
 local m = {}
 
--- Map LSP specific keybinds.
+-- Maps LSP specific keybinds.
 -- This makes them only available when LSP is running
 function m.map_keys()
   local telescope_builtin = require("telescope.builtin")
@@ -41,7 +41,8 @@ function m.map_keys()
   })
 end
 
-
+-- Maps keys and does other needed actions
+-- when client attatches
 function m.on_attach(client, bufnr)
   -- Attach navic if document symbols are available
   if client.server_capabilities.documentSymbolProvider then
@@ -52,8 +53,9 @@ function m.on_attach(client, bufnr)
   m.map_keys()
 end
 
+-- Combine built-in LSP and cmp cabaibilities
+-- and additional capabilities from other plugins
 function m.get_capabilities()
-  -- Combine built-in LSP and cmp cabaibilities
   local capabilities = vim.tbl_deep_extend(
     "force",
     vim.lsp.protocol.make_client_capabilities(),

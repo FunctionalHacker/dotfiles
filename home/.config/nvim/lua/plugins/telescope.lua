@@ -17,6 +17,14 @@ return {
     "zane-/cder.nvim",
   },
   opts = {
+    defaults = {
+      layout_strategy = "vertical",
+      layout_defaults = {
+        vertical = {
+          preview_height = 0.5,
+        },
+      },
+    },
     pickers = {
       find_files = { find_command = { "fd", "-Ht", "f" } },
       lsp_references = { show_line = false },

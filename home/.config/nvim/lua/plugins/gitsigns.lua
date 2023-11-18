@@ -9,7 +9,6 @@ return {
     wk.register({
       ["["] = { h = { gitsigns.prev_hunk, "Previous hunk" } },
       ["]"] = { h = { gitsigns.next_hunk, "Next hunk" } },
-    }, { prefix = "<leader>" })
-
+    })
   end,
 }

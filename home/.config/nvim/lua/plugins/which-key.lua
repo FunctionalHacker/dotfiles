@@ -15,14 +15,6 @@ return {
       ["<C-b>"] = { "<cmd>bprevious<CR>", "Previous buffer" },
     })
 
-    -- Open cder
-    wk.register({ cd = {
-      function()
-        vim.cmd("Telescope cder")
-      end,
-      "Change directories",
-    } })
-
     -- Exit terminal insert mode with esc
     vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", {})
   end,

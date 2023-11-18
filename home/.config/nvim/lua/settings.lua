@@ -25,7 +25,6 @@ o.diffopt = "filler,internal,algorithm:histogram,indent-heuristic"
 -- Allow switching buffers with unsaved changes
 o.hidden = true
 
-
 o.guicursor = table.concat({
   "i:ver1", -- Vertical bar cursor in insert mode
   "a:blinkon1", -- Blinking cursor in all modes

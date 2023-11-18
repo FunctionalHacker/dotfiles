@@ -56,8 +56,16 @@ return {
     telescope.load_extension("cder")
 
     -- Keybinds
-    vim.keymap.set("n", "<C-s>", vim.cmd.Telescope)
-    vim.keymap.set("n", "<C-f>", builtin.find_files)
-    vim.keymap.set("n", "<C-g>", builtin.live_grep)
+    require("which-key").register({
+      cd = {
+        function()
+          vim.cmd("Telescope cder")
+        end,
+        "Change directories",
+      },
+      ["<C-s>"] = { vim.cmd.Telescope, "Open Telescope" },
+      ["<C-f>"] = { builtin.find_files, "Telescope find files" },
+      ["<C-g>"] = { builtin.live_grep, "Telescope live grep" },
+    })
   end,
 }

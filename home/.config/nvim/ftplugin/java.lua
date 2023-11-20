@@ -26,7 +26,12 @@ require("jdtls").start_or_attach({
     "-data",
     workspace_dir,
   },
-  settings = { java = { signatureHelp = { enabled = true } } },
+  settings = {
+    java = {
+      signatureHelp = { enabled = true },
+      autobuild = { enabled = false },
+    },
+  },
   completion = { favoriteStaticMembers = { "java.text.MessageFormat.format" } },
   runtimes = {
     {

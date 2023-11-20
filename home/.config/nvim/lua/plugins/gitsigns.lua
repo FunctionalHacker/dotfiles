@@ -5,8 +5,7 @@ return {
     local gitsigns = require("gitsigns")
     gitsigns.setup()
 
-    local wk = require("which-key")
-    wk.register({
+    require("which-key").register({
       ["["] = { h = { gitsigns.prev_hunk, "Previous hunk" } },
       ["]"] = { h = { gitsigns.next_hunk, "Next hunk" } },
     })

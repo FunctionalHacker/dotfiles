@@ -18,4 +18,17 @@ return {
       lsp_doc_border = true,
     },
   },
+  config = function(_, opts)
+    local noice = require("noice")
+    noice.setup(opts)
+
+    require("which-key").register({
+      d = {
+        function()
+          vim.cmd("NoiceDismiss")
+        end,
+        "Dismiss notifications",
+      },
+    }, { prefix = "<leader>" })
+  end,
 }

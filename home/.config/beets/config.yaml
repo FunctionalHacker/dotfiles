@@ -2,7 +2,7 @@ directory: ~/Music
 library: ~/Music/beets.db
 plugins:
   - acousticbrainz
-  - check
+  #  - check
   - edit
   - fetchart
   #  - follow
@@ -10,8 +10,8 @@ plugins:
   - info
   - lastgenre
   - lyrics
-  - mbcollection
-  - mpdupdate
+  #- mbcollection
+  #- mpdupdate
   - play
   - replaygain
   - thumbnails

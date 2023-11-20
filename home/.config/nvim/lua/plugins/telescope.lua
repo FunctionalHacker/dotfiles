@@ -17,6 +17,7 @@ return {
     "zane-/cder.nvim",
   },
   opts = {
+    -- Set layout to vertical
     defaults = {
       layout_strategy = "vertical",
       layout_defaults = {
@@ -29,7 +30,7 @@ return {
       find_files = { find_command = { "fd", "-Ht", "f" } },
       lsp_references = { show_line = false },
       live_grep = {
-        additional_args = function(opts)
+        additional_args = function()
           return { "--hidden" }
         end,
       },
@@ -55,15 +56,15 @@ return {
   },
   config = function(_, opts)
     local telescope = require("telescope")
-    local builtin = require("telescope.builtin")
-
     telescope.setup(opts)
 
+    -- Add extensions
     telescope.load_extension("fzf")
     telescope.load_extension("ui-select")
     telescope.load_extension("cder")
 
     -- Keybinds
+    local builtin = require("telescope.builtin")
     require("which-key").register({
       cd = {
         function()

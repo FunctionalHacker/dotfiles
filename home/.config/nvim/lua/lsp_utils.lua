@@ -4,7 +4,7 @@ local m = {}
 
 -- Maps LSP specific keybinds.
 -- This makes them only available when LSP is running
-function m.map_keys()
+local function map_keys()
   local telescope_builtin = require("telescope.builtin")
   require("which-key").register({
     g = {
@@ -42,7 +42,7 @@ function m.map_keys()
 end
 
 -- Maps keys and does other needed actions
--- when client attatches
+-- when client attaches
 function m.on_attach(client, bufnr)
   -- Attach navic if document symbols are available
   if client.server_capabilities.documentSymbolProvider then
@@ -50,7 +50,7 @@ function m.on_attach(client, bufnr)
   end
 
   -- Setup keybinds
-  m.map_keys()
+  map_keys()
 end
 
 -- Combine built-in LSP and cmp cabaibilities
@@ -62,8 +62,7 @@ function m.get_capabilities()
     require("cmp_nvim_lsp").default_capabilities()
   )
 
-  -- Neovim hasn't added foldingRange to default capabilities, users must add it manually
-  -- for ufo
+  -- Neovim hasn't added foldingRange to default capabilities, users must add it manually for ufo
   --capabilities.textDocument.foldingRange = {
   --  dynamicRegistration = false,
   --  lineFoldingOnly = true,

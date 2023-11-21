@@ -2,6 +2,7 @@
 return {
   "kevinhwang91/nvim-ufo",
   dependencies = { "kevinhwang91/promise-async" },
+  ---@type UfoConfig
   opts = {
     close_fold_kinds = {
       "imports",
@@ -17,7 +18,7 @@ return {
 
     -- Fold settings
     local o = vim.o
-    o.foldcolumn = "0"
+    o.foldcolumn = "1"
     o.foldlevel = 99
     o.foldlevelstart = 99
     o.foldenable = true

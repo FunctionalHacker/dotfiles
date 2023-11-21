@@ -1,6 +1,7 @@
 -- Colorscheme
 return {
   "rebelot/kanagawa.nvim",
+  ---@type KanagawaConfig
   opts = {
     compile = true,
     dimInactive = true,

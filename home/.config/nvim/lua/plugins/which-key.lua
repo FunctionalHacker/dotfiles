@@ -4,7 +4,7 @@ return {
   "folke/which-key.nvim",
   config = function()
     local wk = require("which-key")
-    wk.setup({})
+    wk.setup()
 
     wk.register({
       h = { "<cmd>nohlsearch<CR>", "Turn off search highlight" },

@@ -4,6 +4,7 @@ return {
   "folke/noice.nvim",
   event = "VeryLazy",
   dependencies = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify" },
+  ---@type NoiceConfig
   opts = {
     lsp = {
       -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
@@ -19,8 +20,7 @@ return {
     },
   },
   config = function(_, opts)
-    local noice = require("noice")
-    noice.setup(opts)
+    require("noice").setup(opts)
 
     require("which-key").register({
       d = {

@@ -2,8 +2,7 @@
 return {
   "sbdchd/neoformat",
   config = function()
-    local wk = require("which-key")
-    wk.register({
+    require("which-key").register({
       f = { "<cmd>Neoformat<CR>", "Format with Neoformat" },
     }, { prefix = "<leader>" })
   end,

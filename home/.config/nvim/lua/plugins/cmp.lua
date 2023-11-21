@@ -25,10 +25,6 @@ return {
     local cmp = require("cmp")
     local luasnip = require("luasnip")
 
-    if not cmp then
-      return
-    end
-
     -- Set completeopt to have a better completion experience
     vim.o.completeopt = "menuone,noselect"
 

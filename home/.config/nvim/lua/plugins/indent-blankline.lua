@@ -1,6 +1,7 @@
 -- Indent characters
 return {
   "lukas-reineke/indent-blankline.nvim",
+  ---@type ibl.config
   opts = {
     exclude = {
       filetypes = {

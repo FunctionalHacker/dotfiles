@@ -1,7 +1,5 @@
 -- Better folds
--- Disabled for now because it causes weird artifacts
 return {
-  enabled = false,
   "kevinhwang91/nvim-ufo",
   dependencies = { "kevinhwang91/promise-async" },
   opts = {
@@ -13,14 +11,13 @@ return {
     local ufo = require("ufo")
     ufo.setup(opts)
 
-    -- Using ufo, need to remap `zR` and `zM`. If Neovim is 0.6.1, remap yourself
-    local keymap = vim.keymap
-    keymap.set("n", "zR", ufo.openAllFolds)
-    keymap.set("n", "zM", ufo.closeAllFolds)
+    -- Using ufo, we need to remap `zR` and `zM`
+    vim.keymap.set("n", "zR", ufo.openAllFolds)
+    vim.keymap.set("n", "zM", ufo.closeAllFolds)
 
     -- Fold settings
     local o = vim.o
-    o.foldcolumn = "1"
+    o.foldcolumn = "0"
     o.foldlevel = 99
     o.foldlevelstart = 99
     o.foldenable = true

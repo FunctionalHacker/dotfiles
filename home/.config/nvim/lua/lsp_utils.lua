@@ -44,11 +44,6 @@ end
 -- Maps keys and does other needed actions
 -- when client attaches
 function m.on_attach(client, bufnr)
-  -- Attach navic if document symbols are available
-  if client.server_capabilities.documentSymbolProvider then
-    require("nvim-navic").attach(client, bufnr)
-  end
-
   -- Setup keybinds
   map_keys()
 end

@@ -8,16 +8,6 @@ return {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     -- Extended functionality for jdtls
     "mfussenegger/nvim-jdtls",
-    -- Neovim setup for init.lua and plugin development with full signature help, docs and completion for the nvim lua API.
-    {
-      "folke/neodev.nvim",
-      opts = {
-        override = function(_, library)
-          library.enabled = true
-          library.plugins = true
-        end,
-      },
-    },
   },
   config = function()
     require("mason").setup()

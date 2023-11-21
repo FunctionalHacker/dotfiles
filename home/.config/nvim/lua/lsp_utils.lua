@@ -63,10 +63,10 @@ function m.get_capabilities()
   )
 
   -- Neovim hasn't added foldingRange to default capabilities, users must add it manually for ufo
-  --capabilities.textDocument.foldingRange = {
-  --  dynamicRegistration = false,
-  --  lineFoldingOnly = true,
-  --}
+  capabilities.textDocument.foldingRange = {
+    dynamicRegistration = false,
+    lineFoldingOnly = true,
+  }
   return capabilities
 end
 

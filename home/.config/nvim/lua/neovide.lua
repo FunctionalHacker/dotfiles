@@ -22,5 +22,8 @@ g.neovide_cursor_vfx_mode = "railgun"
 -- Enable dark/light theme detection
 g.neovide_theme = "auto"
 
+-- Confirm quit
+g.neovide_confirm_quit = true
+
 -- Set font
 --o.guifont = "Hack Nerd Font Mono:h15"

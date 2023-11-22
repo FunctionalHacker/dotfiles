@@ -19,7 +19,6 @@ return {
           action = "Telescope find_files",
           key = "f",
         },
-        { icon = "❌ ", desc = "Quit", action = "q", key = "q" },
       },
     },
   },

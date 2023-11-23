@@ -9,8 +9,8 @@ return {
   config = function()
     local gitsigns = require("gitsigns")
     require("which-key").register({
-      ["["] = { c = { gitsigns.prev_hunk, "Previous hunk" } },
-      ["]"] = { c = { gitsigns.next_hunk, "Next hunk" } },
+      ["["] = { h = { gitsigns.prev_hunk, "Previous hunk" } },
+      ["]"] = { h = { gitsigns.next_hunk, "Next hunk" } },
     })
 
     local builtin = require("statuscol.builtin")

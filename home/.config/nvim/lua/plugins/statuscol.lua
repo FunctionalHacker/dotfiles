@@ -3,7 +3,7 @@ return {
   dependencies = {
     {
       "lewis6991/gitsigns.nvim",
-      opts = {},
+      config = true,
     },
   },
   config = function()

@@ -3,7 +3,9 @@ return {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     init = function(plugin)
-      require("nvim-treesitter.install").update({ with_sync = true })
+      require("nvim-treesitter.install").update({
+        with_sync = true,
+      })
     end,
     ---@type TSConfig
     ---@diagnostic disable-next-line: missing-fields

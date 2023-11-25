@@ -17,6 +17,13 @@ return {
 
     -- cd plugin for telescope
     "zane-/cder.nvim",
+
+    -- Switch to a project
+    {
+      "ahmedkhalf/project.nvim",
+      main = "project_nvim",
+      config = true,
+    },
   },
   opts = {
     -- Set layout to vertical
@@ -77,6 +84,11 @@ return {
       "<C-g>",
       "<cmd>Telescope live_grep<cr>",
     },
+    {
+      desc = "Change to a project",
+      "<C-p>",
+      "<cmd>Telescope projects<cr>",
+    },
   },
   config = function(_, opts)
     local telescope = require("telescope")
@@ -86,5 +98,6 @@ return {
     telescope.load_extension("fzf")
     telescope.load_extension("ui-select")
     telescope.load_extension("cder")
+    telescope.load_extension("projects")
   end,
 }

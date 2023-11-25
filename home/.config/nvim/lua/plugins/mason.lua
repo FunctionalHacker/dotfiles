@@ -8,6 +8,8 @@ return {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     -- Extended functionality for jdtls
     "mfussenegger/nvim-jdtls",
+    -- Add support for LSP file operations
+    { "antosha417/nvim-lsp-file-operations", config = true },
   },
   config = function()
     require("mason").setup()

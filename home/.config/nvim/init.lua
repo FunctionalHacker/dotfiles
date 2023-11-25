@@ -15,4 +15,9 @@ vim.opt.rtp:prepend(lazypath)
 require("settings")
 require("neovide")
 require("highlight_yank")
-require("lazy").setup("plugins")
+require("lazy").setup({
+  import = "plugins",
+  performance = {
+    disabled_plugins = { "netrwPlugin" },
+  },
+})

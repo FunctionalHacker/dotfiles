@@ -10,6 +10,9 @@ return {
     renderer = {
       highlight_git = true,
     },
+    update_focused_file = {
+      enable = true,
+    },
   },
   config = function(_, opts)
     require("nvim-tree").setup(opts)

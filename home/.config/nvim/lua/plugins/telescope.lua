@@ -1,6 +1,7 @@
 --- @type LazyPluginSpec
 return {
   "nvim-telescope/telescope.nvim",
+  lazy = false,
   dependencies = {
     -- Internal dependency for telescope
     "nvim-lua/plenary.nvim",

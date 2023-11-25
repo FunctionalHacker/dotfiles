@@ -24,7 +24,6 @@ return {
         limit = 8,
         label = "Projects",
         action = function(path)
-          -- "Telescope find_files cwd="
           require("telescope.builtin").find_files({ cwd = path })
         end,
       },

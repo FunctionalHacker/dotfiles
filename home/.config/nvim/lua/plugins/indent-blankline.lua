@@ -8,7 +8,7 @@ return {
       filetypes = {
         "",
         "checkhealth",
-        "dashboard",
+        "alpha",
         "git",
         "gitcommit",
         "TelescopePrompt",

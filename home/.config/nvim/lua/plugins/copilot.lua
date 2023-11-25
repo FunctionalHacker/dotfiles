@@ -1,4 +1,5 @@
 -- GitHub Copilot
+--- @type LazyPluginSpec
 return {
   "zbirenbaum/copilot.lua",
   opts = {

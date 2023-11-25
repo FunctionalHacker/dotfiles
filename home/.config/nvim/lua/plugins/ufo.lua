@@ -1,13 +1,15 @@
 -- Better folds
+--- @type LazyPluginSpec
 return {
   "kevinhwang91/nvim-ufo",
   dependencies = { "kevinhwang91/promise-async" },
-  ---@type UfoConfig
+  --- @type UfoConfig
   opts = {
     close_fold_kinds = {
       "imports",
     },
   },
+  --- @param opts UfoConfig
   config = function(_, opts)
     local ufo = require("ufo")
     ufo.setup(opts)

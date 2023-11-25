@@ -1,3 +1,5 @@
+-- Debug adapter for NeoVim
+--- @type LazyPluginSpec
 return {
   "mfussenegger/nvim-dap",
   config = function()

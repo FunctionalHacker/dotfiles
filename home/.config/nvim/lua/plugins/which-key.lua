@@ -1,6 +1,7 @@
 -- Display possible keybinds
 -- Here I have also defined some generic keybinds
 -- Plugin specific keybinds are set up in plugin configuration file
+--- @type LazyPluginSpec
 return {
   "folke/which-key.nvim",
   config = function()

@@ -1,10 +1,11 @@
 -- Replace much of neovim's default UI
 -- with a modern replacement
+--- @type LazyPluginSpec
 return {
   "folke/noice.nvim",
   event = "VeryLazy",
   dependencies = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify" },
-  ---@type NoiceConfig
+  --- @type NoiceConfig
   opts = {
     lsp = {
       -- override markdown rendering so that **cmp** and other plugins use **Treesitter**

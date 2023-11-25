@@ -1,5 +1,6 @@
 -- Package manager for LSP servers, DAP adapters etc.
 -- It also handles starting all of my LSP servers
+--- @type LazyPluginSpec
 return {
   "williamboman/mason.nvim",
   dependencies = {
@@ -13,7 +14,7 @@ return {
       -- Neovim setup for init.lua and plugin development with full signature help, docs and completion for the nvim lua API.
     {
       "folke/neodev.nvim",
-      ---@type LuaDevOptions
+      --- @type LuaDevOptions
       opts = {
         override = function(root_dir, library)
           local dotfiles_path = tostring(vim.fn.expand("~/git/dotfiles"))

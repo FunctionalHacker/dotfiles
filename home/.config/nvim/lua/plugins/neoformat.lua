@@ -1,4 +1,5 @@
 -- Formatter plugin
+--- @type LazyPluginSpec
 return {
   "sbdchd/neoformat",
   keys = {

@@ -1,4 +1,5 @@
 -- Make editing passwords safer
+--- @type LazyPluginSpec
 return {
   "https://git.zx2c4.com/password-store",
   config = function(plugin)

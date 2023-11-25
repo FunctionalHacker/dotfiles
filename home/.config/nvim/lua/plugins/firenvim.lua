@@ -1,4 +1,5 @@
 -- Neovim inside Firefox
+--- @type LazyPluginSpec
 return {
   "glacambre/firenvim",
   build = function()

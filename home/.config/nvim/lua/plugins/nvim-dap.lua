@@ -2,6 +2,9 @@
 --- @type LazyPluginSpec
 return {
   "mfussenegger/nvim-dap",
+  dependencies = {
+    { "rcarriga/nvim-dap-ui", config = true },
+  },
   config = function()
     local dap = require("dap")
 

@@ -1,7 +1,8 @@
 -- Colorscheme
+--- @type LazyPluginSpec
 return {
   "rebelot/kanagawa.nvim",
-  ---@type KanagawaConfig
+  --- @type KanagawaConfig
   opts = {
     compile = true,
     dimInactive = true,
@@ -46,6 +47,7 @@ return {
       }
     end,
   },
+  --- @param opts KanagawaConfig
   config = function(_, opts)
     require("kanagawa").setup(opts)
     vim.cmd("colorscheme kanagawa")

@@ -1,7 +1,8 @@
 -- Indent characters
+--- @type LazyPluginSpec
 return {
   "lukas-reineke/indent-blankline.nvim",
-  ---@type ibl.config
+  --- @type ibl.config
   opts = {
     exclude = {
       filetypes = {

@@ -1,4 +1,5 @@
 -- Tree explorer
+--- @type LazyPluginSpec
 return {
   "kyazdani42/nvim-tree.lua",
   lazy = false,

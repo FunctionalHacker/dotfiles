@@ -17,9 +17,9 @@ return {
   },
   keys = {
     {
+      desc = "Open/close nvim-tree",
       "<leader>o",
       "<cmd>NvimTreeToggle<cr>",
-      desc = "Open/close nvim-tree",
     },
   },
 }

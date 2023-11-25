@@ -19,16 +19,11 @@ return {
       lsp_doc_border = true,
     },
   },
-  config = function(_, opts)
-    require("noice").setup(opts)
-
-    require("which-key").register({
-      d = {
-        function()
-          vim.cmd("NoiceDismiss")
-        end,
-        "Dismiss notifications",
-      },
-    }, { prefix = "<leader>" })
-  end,
+  keys = {
+    {
+      desc = "Dismiss notifications",
+      "<leader>d",
+      "<cmd>NoiceDismiss<cr>",
+    },
+  },
 }

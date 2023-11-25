@@ -54,27 +54,35 @@ return {
       },
     },
   },
+  keys = {
+    {
+      desc = "Open Telescope",
+      "<C-s>",
+      "<cmd>Telescope<cr>",
+    },
+    {
+      desc = "Change directories",
+      "cd",
+      "<cmd>Telescope cder<cr>",
+    },
+    {
+      desc = "Find files",
+      "<C-f>",
+      "<cmd>Telescope find_files<cr>",
+    },
+    {
+      desc = "Grep files",
+      "<C-g>",
+      "<cmd>Telescope live_grep<cr>",
+    },
+  },
   config = function(_, opts)
     local telescope = require("telescope")
     telescope.setup(opts)
 
-    -- Add extensions
+    -- Load extensions
     telescope.load_extension("fzf")
     telescope.load_extension("ui-select")
     telescope.load_extension("cder")
-
-    -- Keybinds
-    local builtin = require("telescope.builtin")
-    require("which-key").register({
-      cd = {
-        function()
-          vim.cmd("Telescope cder")
-        end,
-        "Change directories",
-      },
-      ["<C-s>"] = { vim.cmd.Telescope, "Open Telescope" },
-      ["<C-f>"] = { builtin.find_files, "Telescope find files" },
-      ["<C-g>"] = { builtin.live_grep, "Telescope live grep" },
-    })
   end,
 }

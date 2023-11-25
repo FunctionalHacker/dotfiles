@@ -1,4 +1,5 @@
 -- Display possible keybinds
+-- Here I have also defined some generic keybinds
 -- Plugin specific keybinds are set up in plugin configuration file
 return {
   "folke/which-key.nvim",
@@ -7,12 +8,12 @@ return {
     wk.setup()
 
     wk.register({
-      h = { "<cmd>nohlsearch<CR>", "Turn off search highlight" },
+      h = { "<cmd>nohlsearch<cr>", "Turn off search highlight" },
     }, { prefix = "<leader>" })
 
     wk.register({
-      ["<C-n>"] = { "<cmd>bnext<CR>", "Next buffer" },
-      ["<C-b>"] = { "<cmd>bprevious<CR>", "Previous buffer" },
+      ["<C-n>"] = { "<cmd>bnext<cr>", "Next buffer" },
+      ["<C-b>"] = { "<cmd>bprevious<cr>", "Previous buffer" },
     })
 
     -- Exit terminal insert mode with esc

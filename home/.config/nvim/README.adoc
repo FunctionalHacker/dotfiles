@@ -1,0 +1,16 @@
+= FunctionalHacker's NeoVim configuration
+
+This is my personal NeoVim configuration I use for all text editing in my free
+time and at my day job. I mostly code in Java, TypeScript and ReactJS, with
+a bit of Rust and Python once in a blue moon.
+
+The configuration is quite minimal but still fully featured. Some highlights
+include
+
+* LSP support with neovim's built in LSP client
+** LSP servers are easily installed and auto-configured with Mason
+* Treesitter
+** Code folding
+** Code highlighting
+** Text objects
+* Lazy plugin manager for fast startup times

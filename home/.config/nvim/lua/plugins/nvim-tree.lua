@@ -1,6 +1,7 @@
 -- Tree explorer
 return {
   "kyazdani42/nvim-tree.lua",
+  lazy = false,
   dependencies = { "kyazdani42/nvim-web-devicons" },
   opts = {
     diagnostics = {
@@ -14,10 +15,11 @@ return {
       enable = true,
     },
   },
-  config = function(_, opts)
-    require("nvim-tree").setup(opts)
-
-    -- Open/close with alt-o
-    vim.keymap.set("n", "<M-o>", vim.cmd.NvimTreeToggle)
-  end,
+  keys = {
+    {
+      "<leader>o",
+      "<cmd>NvimTreeToggle<cr>",
+      desc = "Open/close nvim-tree",
+    },
+  },
 }

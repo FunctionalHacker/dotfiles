@@ -22,7 +22,9 @@ return {
     {
       "ahmedkhalf/project.nvim",
       main = "project_nvim",
-      config = true,
+      opts = {
+        patterns = { ".git" },
+      },
     },
   },
   opts = {

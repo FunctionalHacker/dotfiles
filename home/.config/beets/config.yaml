@@ -1,25 +1,21 @@
 directory: ~/Music
 library: ~/Music/beets.db
 plugins:
-  - acousticbrainz
-  #  - check
   - edit
   - fetchart
-  #  - follow
   - fuzzy
   - info
   - lastgenre
   - lyrics
-  #- mbcollection
-  #- mpdupdate
+  #  - mbcollection
+  - mpdupdate
   - play
   - replaygain
   - thumbnails
   - web
 import:
-  copy: no
-  move: yes
-  link: no
+  write: yes
+  copy: yes
 lastgenre:
   whitelist: ~/.config/beets/whitelist
 lyrics:
@@ -38,9 +34,6 @@ follow:
 replaygain:
   backend: gstreamer
   auto: yes
-musicbrainz:
-  user: FunctionalHacker
-  pass: "{{@@ env['PASS_MUSICBRAINZ'] @@}}"
-mbcollection:
-  auto: 'yes'
-  collection: 'a4955b5c-db7f-4e27-9887-f77f820bad34'
+#mbcollection:
+#  auto: 'yes'
+#  collection: 'a4955b5c-db7f-4e27-9887-f77f820bad34'

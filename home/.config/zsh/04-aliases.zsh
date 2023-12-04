@@ -170,13 +170,13 @@ passync() { pass git pull && pass git push && updatesecrets }
 
 update() {
 	all() {
+    dotfiles
 		packages
 		{%@@ if profile == "Moria" @@%}
 		repo
 		docker-update
 		{%@@ endif @@%}
 		plugins
-    dotfiles
 	}
 
 	packages() {
@@ -195,7 +195,7 @@ update() {
 
 	plugins() {
 		echo "Updating NeoVim plugins"
-		nvim --headless -c "Lazy! sync" -c 'TSUpdateSync' -c 'MasonToolsUpdate' -c 'qa'
+		nvim --headless -c "Lazy! restore" -c 'TSUpdateSync' -c 'MasonToolsUpdate' -c 'qa'
 		zinit self-update
 		zinit update -p
 		{%@@ if profile == "Moria" @@%}

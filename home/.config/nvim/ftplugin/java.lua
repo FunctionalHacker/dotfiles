@@ -1,5 +1,6 @@
 local nvim_local_dir = vim.fn.expand("~/.local/share/nvim")
-local lombok_jar = nvim_local_dir .. "/mason/packages/jdtls/lombok.jar"
+local mason_packages = nvim_local_dir .. "/mason/packages"
+local lombok_jar = mason_packages .. "/jdtls/lombok.jar"
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 local workspace_dir = nvim_local_dir .. "/jdtls-workspaces/" .. project_name
 local lsp_utils = require("lsp_utils")
@@ -49,6 +50,11 @@ require("jdtls").start_or_attach({
   },
   handlers = {
     ["language/status"] = function() end,
+  },
+  init_options = {
+    bundles = {
+      vim.fn.glob(mason_packages .. "/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-*.jar"),
+    },
   },
   capabilities = lsp_utils.get_capabilities(),
   on_attach = lsp_utils.on_attach,

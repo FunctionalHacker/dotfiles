@@ -67,10 +67,10 @@ return {
       },
       sources = {
         { name = "luasnip" },
-        { name = "copilot" },
         { name = "nvim_lsp" },
         { name = "nvim_lua" },
         { name = "git" },
+        { name = "copilot" },
         { name = "buffer" },
         { name = "spell" },
         { name = "path" },

@@ -21,7 +21,7 @@ require("jdtls").start_or_attach({
     "java.base/java.lang=ALL-UNNAMED",
     "-javaagent:" .. lombok_jar,
     "-jar",
-    nvim_local_dir .. "/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_1.6.500.v20230717-2134.jar",
+    vim.fn.glob(mason_packages .. "/jdtls/plugins/org.eclipse.equinox.launcher_*.jar"),
     "-configuration",
     nvim_local_dir .. "/mason/packages/jdtls/config_linux",
     "-data",

@@ -10,8 +10,8 @@ korhonen.cc, *.korhonen.cc {
 		Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
 	}
 
-	@homepage-redir host www.korhonen.cc
-	handle @homepage-redir {
+	@homepage-www-redir host www.korhonen.cc
+	handle @homepage-www-redir {
 		redir https://korhonen.cc
 	}
 
@@ -25,7 +25,7 @@ korhonen.cc, *.korhonen.cc {
 	handle @wkd {
 		root * /var/www/wkd
 		file_server browse
-    header Access-Control-Allow-Origin "*"
+		header Access-Control-Allow-Origin "*"
 	}
 
 	@index host index.korhonen.cc
@@ -69,11 +69,6 @@ korhonen.cc, *.korhonen.cc {
 		reverse_proxy jellyfin:8096
 	}
 
-	@misskey host social.korhonen.cc
-	handle @misskey {
-		reverse_proxy misskey:3000
-	}
-
 	@pihole host pihole.korhonen.cc
 	handle @pihole {
 		reverse_proxy pihole
@@ -82,7 +77,7 @@ korhonen.cc, *.korhonen.cc {
 	@umami host umami.korhonen.cc
 	handle @umami {
 		reverse_proxy umami:3000
-    rewrite /ua9quuaW.js /script.js
+		rewrite /ua9quuaW.js /script.js
 	}
 
 	@nextcloud host cloud.korhonen.cc
@@ -134,7 +129,13 @@ korhonen.cc, *.korhonen.cc {
 
 	@drop host drop.korhonen.cc
 	handle @drop {
-    reverse_proxy drop:3000
+		reverse_proxy drop:3000
+	}
+
+	# Redirect to new fediverse host
+	@misskey host social.korhonen.cc
+	handle @misskey {
+		redir https://korhonen.social
 	}
 
 	# Fallback for unhandled domains
@@ -143,6 +144,25 @@ korhonen.cc, *.korhonen.cc {
 	}
 }
 
-korhonen.social {
-  respond "Kbin instance coming soon"
+korhonen.social, *.korhonen.social {
+	tls {$CLOUDFLARE_EMAIL} {
+		dns cloudflare {$CLOUDFLARE_API_TOKEN}
+		resolvers 1.1.1.1
+	}
+
+	encode zstd gzip
+
+	header {
+		Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
+	}
+
+	@firefish-www-redir host www.korhonen.social
+	handle @firefish-www-redir {
+		redir https://korhonen.social
+	}
+
+	@firefish host korhonen.social
+	handle @firefish {
+		reverse_proxy firefish:3000
+	}
 }

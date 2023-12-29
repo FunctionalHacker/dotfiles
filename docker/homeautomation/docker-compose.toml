@@ -17,7 +17,7 @@ depends_on = ["mosquitto"]
 container_name = "mosquitto"
 image = "eclipse-mosquitto"
 environment = ["TZ=Europe/Helsinki"]
-ports = ["1883:1883"]
+ports = ["1883:1883", "8866:8866"]
 networks = ["homeautomation"]
 volumes = [
   "/docker/homeautomation/mosquitto:/mosquitto",

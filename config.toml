@@ -336,7 +336,7 @@ dotfiles = ["f_librewolf_overrides", "f_dconf.ini"]
 
 [profiles.mko-laptop.variables]
 wayland = true
-scale_factor = 1.5
+scale_factor = 1.25
 
 [profiles.Isengard]
 include = ["terminal"]

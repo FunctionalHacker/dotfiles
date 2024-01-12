@@ -4,10 +4,11 @@ local lombok_jar = mason_packages .. "/jdtls/lombok.jar"
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 local workspace_dir = nvim_local_dir .. "/jdtls-workspaces/" .. project_name
 local lsp_utils = require("lsp_utils")
+local java_version = 21
 
 require("jdtls").start_or_attach({
   cmd = {
-    "/usr/lib/jvm/java-19-openjdk-amd64/bin/java",
+    "/usr/lib/jvm/java-" .. java_version .. "-openjdk-amd64/bin/java",
     "-Declipse.application=org.eclipse.jdt.ls.core.id1",
     "-Dosgi.bundles.defaultStartLevel=4",
     "-Declipse.product=org.eclipse.jdt.ls.core.product",

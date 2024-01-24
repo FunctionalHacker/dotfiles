@@ -11,7 +11,7 @@ return {
     "mfussenegger/nvim-jdtls",
     -- Add support for LSP file operations
     { "antosha417/nvim-lsp-file-operations", config = true },
-      -- Neovim setup for init.lua and plugin development with full signature help, docs and completion for the nvim lua API.
+    -- Neovim setup for init.lua and plugin development with full signature help, docs and completion for the nvim lua API.
     {
       "folke/neodev.nvim",
       --- @type LuaDevOptions

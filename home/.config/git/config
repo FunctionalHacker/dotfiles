@@ -30,15 +30,6 @@ prompt = false
 [mergetool "nvim"]
 cmd = nvim +DiffviewOpen
 
-[diff]
-tool = nvim
-
-[difftool]
-prompt = false
-
-[difftool "nvim"]
-cmd = nvim +DiffviewOpen
-
 [pull]
 rebase = merges
 

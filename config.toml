@@ -332,7 +332,7 @@ include = ["pacman", "terminal"]
 
 [profiles.mko-laptop]
 include = ["terminal", "media", "gpg"]
-dotfiles = ["f_librewolf_overrides", "f_dconf.ini"]
+dotfiles = ["f_librewolf_overrides", "f_dconf.ini", "d_systemd"]
 
 [profiles.mko-laptop.variables]
 wayland = true

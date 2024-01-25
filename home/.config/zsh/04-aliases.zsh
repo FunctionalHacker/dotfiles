@@ -13,7 +13,7 @@ alias gpush='git push'
 # Open nvim with diffview
 # Handy plugin for viewing git diffs
 # and handling merges
-alias diffview='nvim +DiffviewOpen'
+alias dv='nvim +DiffviewOpen'
 
 # Rename grc alias from forgit since it
 # collides with the grc colorizer

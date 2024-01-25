@@ -1,6 +1,16 @@
 -- Display possible keybinds
 -- Here I have also defined some generic keybinds
 -- Plugin specific keybinds are set up in plugin configuration file
+
+local function toggle_theme()
+  local current_theme = vim.fn.eval("&background")
+  if current_theme == "dark" then
+    vim.cmd("set background=light")
+  else
+    vim.cmd("set background=dark")
+  end
+end
+
 --- @type LazyPluginSpec
 return {
   "folke/which-key.nvim",
@@ -10,6 +20,7 @@ return {
 
     wk.register({
       h = { "<cmd>nohlsearch<cr>", "Turn off search highlight" },
+      b = { toggle_theme, "Toggle background between dark and light" },
     }, { prefix = "<leader>" })
 
     wk.register({

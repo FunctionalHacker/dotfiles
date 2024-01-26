@@ -2,50 +2,46 @@
 -- reusable functions
 local m = {}
 
+local lsp = vim.lsp
+local diagnostic = vim.diagnostic
+
 -- Maps LSP specific keybinds.
 -- This makes them only available when LSP is running
-local function map_keys()
-  local telescope_builtin = require("telescope.builtin")
+function m.map_keys()
+  local builtin = require("telescope.builtin")
   require("which-key").register({
     g = {
       name = "Go to",
-      d = { telescope_builtin.lsp_definitions, "Definition" },
-      D = { vim.lsp.buf.declaration, "Declaration" },
-      t = { vim.lsp.buf.type_definition, "Type definition" },
-      i = { telescope_builtin.lsp_implementations, "Implementation" },
-      r = { telescope_builtin.lsp_references, "References" },
-      s = { telescope_builtin.lsp_document_symbols, "Symbols" },
+      d = { builtin.lsp_definitions, "Definition" },
+      D = { lsp.buf.declaration, "Declaration" },
+      t = { lsp.buf.type_definition, "Type definition" },
+      i = { builtin.lsp_implementations, "Implementation" },
+      r = { builtin.lsp_references, "References" },
+      s = { builtin.lsp_document_symbols, "Symbols" },
     },
     ["<leader>"] = {
       name = "Leader",
       w = {
         name = "Workspace",
-        a = { vim.lsp.buf.add_workspace_folder, "Add folder" },
-        r = { vim.lsp.buf.remove_workspace_folder, "Remove folder" },
+        a = { lsp.buf.add_workspace_folder, "Add folder" },
+        r = { lsp.buf.remove_workspace_folder, "Remove folder" },
         l = {
           function()
-            print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+            print(vim.inspect(lsp.buf.list_workspace_folders()))
           end,
           "List folders",
         },
       },
-      k = { vim.lsp.buf.signature_help, "Signature help" },
-      rn = { vim.lsp.buf.rename, "Rename symbol" },
-      ca = { vim.lsp.buf.code_action, "Code action" },
-      e = { vim.diagnostic.open_float, "Open diagnostics" },
-      F = { vim.lsp.buf.format, "Format with LSP" },
+      k = { lsp.buf.signature_help, "Signature help" },
+      rn = { lsp.buf.rename, "Rename symbol" },
+      ca = { lsp.buf.code_action, "Code action" },
+      e = { diagnostic.open_float, "Open diagnostics" },
+      F = { lsp.buf.format, "Format with LSP" },
     },
-    K = { vim.lsp.buf.hover, "Hover" },
-    ["["] = { d = { vim.diagnostic.goto_prev, "Previous diagnostic" } },
-    ["]"] = { d = { vim.diagnostic.goto_next, "Next diagnostic" } },
+    K = { lsp.buf.hover, "Hover" },
+    ["["] = { d = { diagnostic.goto_prev, "Previous diagnostic" } },
+    ["]"] = { d = { diagnostic.goto_next, "Next diagnostic" } },
   })
-end
-
--- Maps keys and does other needed actions
--- when client attaches
-function m.on_attach(client, bufnr)
-  -- Setup keybinds
-  map_keys()
 end
 
 -- Combine built-in LSP and cmp cabaibilities
@@ -53,7 +49,7 @@ end
 function m.get_capabilities()
   local capabilities = vim.tbl_deep_extend(
     "force",
-    vim.lsp.protocol.make_client_capabilities(),
+    lsp.protocol.make_client_capabilities(),
     require("cmp_nvim_lsp").default_capabilities()
   )
 

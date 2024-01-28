@@ -319,6 +319,7 @@ dotfiles = [
   "f_dconf.ini",
   "f_zprofile",
   "f_fonts.conf",
+  "d_systemd",
 ]
 
 [profiles.Moria.variables]

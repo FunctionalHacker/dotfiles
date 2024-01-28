@@ -10,6 +10,8 @@ alias gs='git status'
 alias gpull='git pull'
 alias gpush='git push'
 
+alias o='xdg-open'
+
 # Open nvim with diffview
 # Handy plugin for viewing git diffs
 # and handling merges

@@ -6,6 +6,11 @@ korhonen.cc, *.korhonen.cc {
 
 	encode zstd gzip
 
+	@static {
+		file
+		path *.ico *.css *.js *.gif *.webp *.avif *.jpg *.jpeg *.png *.svg *.woff *.woff2 *.pdf *.webmanifest
+	}
+
 	header {
 		Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
 	}
@@ -17,6 +22,7 @@ korhonen.cc, *.korhonen.cc {
 
 	@homepage host korhonen.cc
 	handle @homepage {
+		header @static Cache-Control max-age=5184000
 		root * /var/www/korhonen.cc
 		file_server
 	}

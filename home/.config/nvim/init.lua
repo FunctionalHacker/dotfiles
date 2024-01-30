@@ -17,7 +17,7 @@ require("neovide")
 require("highlight_yank")
 require("lazy").setup({
   spec = { import = "plugins" },
-  lockfile = "~/.confing/nvim/lazy-lock.json",
+  lockfile = "~/.config/nvim/lazy-lock.json",
   performance = {
     disabled_plugins = { "netrwPlugin" },
   },

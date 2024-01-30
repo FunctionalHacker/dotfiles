@@ -36,7 +36,6 @@ src = ".config/imapnotify"
 [dotfiles.d_nvim]
 dst = "~/.config/nvim"
 src = ".config/nvim"
-instignore = ["*/lazy-lock.json"]
 actions = ["kanagawa-compile"]
 
 [dotfiles.d_rofi]

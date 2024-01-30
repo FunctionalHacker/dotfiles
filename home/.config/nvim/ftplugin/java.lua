@@ -58,7 +58,7 @@ require("jdtls").start_or_attach({
     },
   },
   capabilities = lsp_utils.get_capabilities(),
-  on_attach = lsp_utils.on_attach,
+  on_attach = lsp_utils.map_keys,
 })
 
 function RunJava()

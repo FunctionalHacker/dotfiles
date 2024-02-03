@@ -306,6 +306,7 @@ dotfiles = [
   "f_dconf.ini",
   "f_docker-config.json",
   "f_fonts.conf",
+  "f_foot.ini",
 ]
 
 [profiles.Mirkwood.variables]

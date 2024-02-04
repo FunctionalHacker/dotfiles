@@ -24,8 +24,8 @@ return {
     }, { prefix = "<leader>" })
 
     wk.register({
-      ["<C-n>"] = { "<cmd>bnext<cr>", "Next buffer" },
-      ["<C-b>"] = { "<cmd>bprevious<cr>", "Previous buffer" },
+      ["<Tab>"] = { "<cmd>bnext<cr>", "Next buffer" },
+      ["<S-Tab>"] = { "<cmd>bprevious<cr>", "Previous buffer" },
     })
 
     -- Exit terminal insert mode with esc

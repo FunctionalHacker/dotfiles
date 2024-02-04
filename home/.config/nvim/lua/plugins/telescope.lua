@@ -68,7 +68,7 @@ return {
   keys = {
     {
       desc = "Open Telescope",
-      "<C-s>",
+      "t",
       "<cmd>Telescope<cr>",
     },
     {
@@ -88,7 +88,7 @@ return {
     },
     {
       desc = "Change to a project",
-      "<C-p>",
+      "<leader>p",
       "<cmd>Telescope projects<cr>",
     },
   },

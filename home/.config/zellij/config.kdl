@@ -1,0 +1,11 @@
+theme "kanagawa"
+
+keybinds {
+    unbind "Ctrl g"
+    locked {
+        bind "Ctrl l" { SwitchToMode "Normal"; }
+    }
+    shared_except "locked" {
+        bind "Ctrl l" { SwitchToMode "Locked"; }
+    }
+}

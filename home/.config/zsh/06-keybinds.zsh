@@ -44,3 +44,7 @@ bindkey -M vicmd e edit-command-line
 
 # bind delete in normal mode
 bindkey -M vicmd '^[[3~' delete-char
+
+# Rebind fzf to ctrl+f
+bindkey '^F' fzf-file-widget
+bindkey '^T' transpose-chars

@@ -22,6 +22,6 @@ require("lazy").setup({
     disabled_plugins = { "netrwPlugin" },
   },
   defaults = {
-    version = "*",
+    -- version = "*", -- Disabled for now
   },
 })

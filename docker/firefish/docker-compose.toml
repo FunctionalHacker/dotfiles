@@ -1,7 +1,7 @@
 #:schema https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json
 
 [services.firefish]
-image = "registry.joinfirefish.org/firefish/firefish:beta-amd64"
+image = "registry.firefish.dev/firefish/firefish"
 container_name = "firefish"
 restart = "unless-stopped"
 depends_on = ["redis"]

@@ -44,7 +44,7 @@ image = "instrumentisto/coturn"
 container_name = "coturn"
 restart = "unless-stopped"
 env_file = ".env"
-ports = ["3478:3478/tcp", "3478:3478/udp"]
+ports = ["3478:3478/tcp", "3478:3478/udp", "49160-49200:49160-49200/udp"]
 networks = ["nextcloud"]
 command = [
   "-n",

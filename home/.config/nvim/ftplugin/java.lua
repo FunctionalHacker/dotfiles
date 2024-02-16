@@ -4,11 +4,12 @@ local lombok_jar = mason_packages .. "/jdtls/lombok.jar"
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 local workspace_dir = nvim_local_dir .. "/jdtls-workspaces/" .. project_name
 local lsp_utils = require("lsp_utils")
+local jvm = "/usr/lib/jvm"
 local java_version = 21
 
 require("jdtls").start_or_attach({
   cmd = {
-    "/usr/lib/jvm/java-" .. java_version .. "-openjdk-amd64/bin/java",
+    jvm .. "/java-" .. java_version .. "-openjdk-amd64/bin/java",
     "-Declipse.application=org.eclipse.jdt.ls.core.id1",
     "-Dosgi.bundles.defaultStartLevel=4",
     "-Declipse.product=org.eclipse.jdt.ls.core.product",
@@ -38,15 +39,19 @@ require("jdtls").start_or_attach({
   runtimes = {
     {
       name = "JavaSE-1.8",
-      path = "/usr/lib/jvm/java-8-openjdk-amd64/",
+      path = jvm .. "/java-8-openjdk-amd64/",
     },
     {
       name = "JavaSE-11",
-      path = "/usr/lib/jvm/java-11-openjdk-amd64/",
+      path = jvm .. "/java-11-openjdk-amd64/",
     },
     {
-      name = "JavaSE-19",
-      path = "/usr/lib/jvm/java-19-openjdk-amd64/",
+      name = "JavaSE-17",
+      path = jvm .. "/java-17-openjdk-amd64/",
+    },
+    {
+      name = "JavaSE-21",
+      path = jvm .. "/java-21-openjdk-amd64/",
     },
   },
   handlers = {

@@ -18,14 +18,30 @@ return {
     local mlspc = require("mason-lspconfig")
     local lsp_utils = require("lsp_utils")
 
+    local commonLspConfigArgs = {
+      on_attach = lsp_utils.map_keys,
+      capabilities = lsp_utils.get_capabilities(),
+    }
+
     mlspc.setup()
     mlspc.setup_handlers({
       -- Default handler
       function(server_name)
-        require("lspconfig")[server_name].setup({
-          on_attach = lsp_utils.map_keys,
-          capabilities = lsp_utils.get_capabilities(),
-        })
+        require("lspconfig")[server_name].setup(commonLspConfigArgs)
+      end,
+
+      -- Disable tsserver diagnostics diagnostics
+      -- that come from ESLint
+      ["tsserver"] = function()
+        require("lspconfig").tsserver.setup(vim.tbl_extend("force", commonLspConfigArgs, {
+          settings = {
+            diagnostics = {
+              ignoredCodes = {
+                6133, -- Unused variable
+              },
+            },
+          },
+        }))
       end,
 
       -- Don't set up jdtls, it is set up by nvim-jdtls

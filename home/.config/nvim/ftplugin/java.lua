@@ -33,27 +33,29 @@ require("jdtls").start_or_attach({
     java = {
       signatureHelp = { enabled = true },
       autobuild = { enabled = false },
+      configuration = {
+        runtimes = {
+          {
+            name = "JavaSE-1.8",
+            path = jvm .. "/java-8-openjdk-amd64/",
+          },
+          {
+            name = "JavaSE-11",
+            path = jvm .. "/java-11-openjdk-amd64/",
+          },
+          {
+            name = "JavaSE-17",
+            path = jvm .. "/java-17-openjdk-amd64/",
+          },
+          {
+            name = "JavaSE-21",
+            path = jvm .. "/java-21-openjdk-amd64/",
+          },
+        },
+      },
     },
   },
   completion = { favoriteStaticMembers = { "java.text.MessageFormat.format" } },
-  runtimes = {
-    {
-      name = "JavaSE-1.8",
-      path = jvm .. "/java-8-openjdk-amd64/",
-    },
-    {
-      name = "JavaSE-11",
-      path = jvm .. "/java-11-openjdk-amd64/",
-    },
-    {
-      name = "JavaSE-17",
-      path = jvm .. "/java-17-openjdk-amd64/",
-    },
-    {
-      name = "JavaSE-21",
-      path = jvm .. "/java-21-openjdk-amd64/",
-    },
-  },
   handlers = {
     ["language/status"] = function() end,
   },

@@ -1,10 +1,11 @@
+[volumes]
+config = {}
+data = {}
+
 [services.headscale]
-image = "headscale/headscale"
+image = "headscale/headscale:0"
 container_name = "headscale"
-volumes = [
-  "/docker/headscale/config:/etc/headscale/",
-  "/docker/headscale/data:/var/lib/headscale",
-]
+volumes = ["config:/etc/headscale", "data:/var/lib/headscale"]
 ports = ["3478:3478/udp"]
 command = "headscale serve"
 restart = "unless-stopped"

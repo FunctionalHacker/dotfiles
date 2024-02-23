@@ -1,4 +1,8 @@
-#:schema https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json
+[volumes]
+files = {}
+config = {}
+redis = {}
+sonic = {}
 
 [services.firefish]
 image = "registry.firefish.dev/firefish/firefish"
@@ -9,8 +13,8 @@ ports = ["3083:3000"]
 networks = ["firefish", "proxy", "postgres"]
 environment = { NODE_ENV = "production" }
 volumes = [
-  "/docker/firefish/files:/firefish/files",
-  "/docker/firefish/config:/firefish/.config:ro",
+  "files:/firefish/files",
+  "config:/firefish/.config:ro",
 ]
 
 [services.redis]
@@ -18,7 +22,7 @@ image = "redis"
 container_name = "redis-firefish"
 restart = "unless-stopped"
 networks = ["firefish"]
-volumes = ["/docker/firefish/redis:/data"]
+volumes = ["redis:/data"]
 
 [services.sonic]
 image = "valeriansaliou/sonic:v1.4.0"
@@ -26,8 +30,8 @@ container_name = "sonic-firefish"
 logging = { driver = "none" }
 networks = ["firefish"]
 volumes = [
-  "/docker/firefish/sonic:/var/lib/sonic/store",
-  "/docker/firefish/sonic/config.cfg:/etc/sonic.cfg",
+  "sonic:/var/lib/sonic/store",
+  "/mnt/Storage/docker/firefish-sonic/config.cfg:/etc/sonic.cfg",
 ]
 env_file = ".env"
 

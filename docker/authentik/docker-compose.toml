@@ -1,9 +1,16 @@
+[volumes]
+redis = {}
+media = {}
+custom_templates = {}
+geoip = {}
+backups = {}
+
 [services.redis]
 image = "redis:alpine"
 container_name = "authentik-redis"
 networks = ["authentik"]
 restart = "unless-stopped"
-volumes = ["/docker/authentik/redis:/data"]
+volumes = ["redis:/data"]
 
 [services.redis.healthcheck]
 test = ["CMD-SHELL", "redis-cli ping | grep PONG"]
@@ -18,9 +25,9 @@ container_name = "authentik"
 restart = "unless-stopped"
 command = "server"
 volumes = [
-  "/docker/authentik/media:/media",
-  "/docker/authentik/custom-templates:/templates",
-  "/docker/authentik/geoip:/geoip",
+  "media:/media",
+  "custom_templates:/templates",
+  "geoip:/geoip",
 ]
 env_file = [".env"]
 networks = ["authentik", "postgres", "proxy"]
@@ -32,10 +39,10 @@ restart = "unless-stopped"
 command = "worker"
 user = "root"
 volumes = [
-  "/docker/authentik/backups:/backups",
-  "/docker/authentik/custom-templates:/templates",
-  "/docker/authentik/geoip:/geoip",
-  "/docker/authentik/media:/media",
+  "backups:/backups",
+  "custom_templates:/templates",
+  "geoip:/geoip",
+  "media:/media",
   "/var/run/docker.sock:/var/run/docker.sock",
 ]
 env_file = [".env"]
@@ -46,7 +53,7 @@ image = "maxmindinc/geoipupdate"
 container_name = "authentik-geoipupdate"
 restart = "unless-stopped"
 networks = ["authentik"]
-volumes = ["/docker/authentik/geoip:/usr/share/GeoIP"]
+volumes = ["geoip:/usr/share/GeoIP"]
 env_file = [".env"]
 
 [services.geoipupdate.environment]

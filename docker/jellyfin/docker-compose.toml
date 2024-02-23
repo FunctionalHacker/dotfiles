@@ -1,3 +1,13 @@
+[volumes]
+config = {}
+cache = {}
+
+[volumes.media]
+external = true
+
+[volumes.nextcloud_data]
+external = true
+
 [services.jellyfin]
 image = "jellyfin/jellyfin"
 container_name = "jellyfin"
@@ -6,10 +16,10 @@ ports = ["8096:8096"]
 networks = ["proxy", "authentik"]
 restart = "unless-stopped"
 volumes = [
-  "/docker/jellyfin/config:/config",
-  "/docker/jellyfin/cache:/cache",
-  "/mnt/Storage/Media:/media",
-  "/mnt/Storage/Nextcloud/FunctionalHacker/files/Media/Music:/media/Music",
+  "config:/config",
+  "cache:/cache",
+  "media:/media",
+  "/mnt/Storage/docker/volumes/nextcloud_data/FunctionalHacker/files/Media/Music:/media/Music",
   "/etc/localtime:/etc/localtime:ro",
 ]
 devices = [

@@ -1,12 +1,14 @@
+[volumes]
+hass = {}
+rhasspy = {}
+mosquitto = {}
+
 [services.home-assistant]
 container_name = "home-assistant"
 image = "homeassistant/home-assistant"
 environment = ["TZ=Europe/Helsinki"]
 devices = ["/dev/ttyACM0"]
-volumes = [
-  "/docker/homeautomation/home-assistant:/config",
-  "/etc/localtime:/etc/localtime:ro",
-]
+volumes = ["hass:/config", "/etc/localtime:/etc/localtime:ro"]
 restart = "unless-stopped"
 networks = ["homeautomation", "postgres", "proxy"]
 ports = ["8123:8123", "8300:8300"]
@@ -20,7 +22,7 @@ environment = ["TZ=Europe/Helsinki"]
 ports = ["1883:1883", "8866:8866"]
 networks = ["homeautomation"]
 volumes = [
-  "/docker/homeautomation/mosquitto:/mosquitto",
+  "mosquitto:/mosquitto",
   "/etc/localtime:/etc/localtime:ro",
 ]
 restart = "unless-stopped"
@@ -29,7 +31,7 @@ restart = "unless-stopped"
 container_name = "rhasspy"
 image = "rhasspy/rhasspy"
 command = "--profile en --user-profiles /profiles"
-volumes = ["/docker/homeautomation/rhasspy:/profiles"]
+volumes = ["rhasspy:/profiles"]
 environment = ["TZ=Europe/Helsinki"]
 ports = ["12101:12101"]
 networks = ["homeautomation"]

@@ -1,8 +1,11 @@
+[volumes]
+data = {}
+
 [services.woodpecker]
 image = "woodpeckerci/woodpecker-server"
 container_name = "woodpecker"
 restart = "unless-stopped"
-volumes = ["/docker/woodpecker/:/var/lib/woodpecker/"]
+volumes = ["data:/var/lib/woodpecker"]
 env_file = [".env"]
 environment = [
   "WOODPECKER_OPEN=true",
@@ -24,10 +27,7 @@ restart = "unless-stopped"
 depends_on = ["woodpecker"]
 volumes = ["/var/run/docker.sock:/var/run/docker.sock"]
 env_file = [".env"]
-environment = [
-  "WOODPECKER_SERVER=woodpecker:9000",
-  "WOODPECKER_AGENT_SECRET",
-]
+environment = ["WOODPECKER_SERVER=woodpecker:9000", "WOODPECKER_AGENT_SECRET"]
 
 [networks.proxy]
 external = true

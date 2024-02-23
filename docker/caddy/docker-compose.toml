@@ -1,14 +1,20 @@
+[volumes]
+data = {}
+config = {}
+
+[volumes.nextcloud_config]
+external = true
+
 [services.caddy]
 image = "slothcroissant/caddy-cloudflaredns"
 container_name = "caddy"
 restart = "unless-stopped"
-user = "82:82"
 ports = ["80:80", "443:443/tcp", "443:443/udp"]
 networks = ["proxy"]
 volumes = [
-  "/docker/caddy/data:/data",
-  "/docker/caddy/config:/config",
-  "/docker/nextcloud:/var/www/nextcloud",
+  "data:/data",
+  "config:/config",
+  "nextcloud_config:/var/www/nextcloud",
   "/var/www/korhonen.cc:/var/www/korhonen.cc",
   "/var/www/wkd:/var/www/wkd",
   "/var/www/index.korhonen.cc:/var/www/index.korhonen.cc",

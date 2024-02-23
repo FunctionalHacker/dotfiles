@@ -1,10 +1,13 @@
+[volumes]
+config = {}
+
 [services.searx]
 container_name = "searx"
 image = "searxng/searxng"
 restart = "unless-stopped"
 networks = ["searx", "proxy"]
 volumes = [
-  "/docker/searx:/etc/searxng",
+  "config:/etc/searxng",
   #"/docker/searx/logo.png:/usr/local/searxng/searx/static/themes/simple/img/searxng.png:ro"
 ]
 environment = ["SEARXNG_BASE_URL=https://search.korhonen.cc/"]

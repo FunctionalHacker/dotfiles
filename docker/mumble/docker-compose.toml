@@ -1,10 +1,10 @@
-[services]
+[volumes]
+config = {}
 
 [services.mumble]
 container_name = "mumble"
 image = "phlak/mumble"
-user = "1000:985"
 environment = ["TZ=Europe/Helsinki"]
 network_mode = "host"
-volumes = ["/docker/mumble:/etc/mumble", "/etc/localtime:/etc/localtime:ro"]
+volumes = ["config:/etc/mumble", "/etc/localtime:/etc/localtime:ro"]
 restart = "unless-stopped"

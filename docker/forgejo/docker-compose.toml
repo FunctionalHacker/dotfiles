@@ -1,11 +1,14 @@
+[volumes]
+data = {}
+
 [services.forgejo]
 image = "git.korhonen.cc/functionalhacker/forgejo-asciidoc"
 container_name = "forgejo"
-environment = ["TZ=Europe/Helsinki", "USER_UID=1000", "USER_GID=1000"]
+environment = ["TZ=Europe/Helsinki"]
 restart = "unless-stopped"
 networks = ["postgres", "proxy"]
 ports = ["22:22"]
-volumes = ["/docker/forgejo:/data", "/etc/localtime:/etc/localtime:ro"]
+volumes = ["data:/data", "/etc/localtime:/etc/localtime:ro"]
 
 [networks.postgres]
 external = true

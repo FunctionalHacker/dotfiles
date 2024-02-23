@@ -1,7 +1,7 @@
 [services.grafana]
 image = "grafana/grafana"
 container_name = "grafana"
-volumes = ["/docker/stats/grafana:/var/lib/grafana"]
+volumes = ["grafana:/var/lib/grafana"]
 networks = ["stats", "proxy"]
 user = "1000:984"
 env_file = [".env"]

@@ -1,18 +1,14 @@
-[services]
-
 [services.postgres]
 container_name = "postgres"
 image = "postgres:16"
-environment = ["TZ=Europe/Helsinki", "POSTGRES_PASSWORD=12345"]
-ports = ["5432:5432"]
+environment = ["TZ=Europe/Helsinki"]
+ports = ["127.0.0.1:5432:5432"]
 networks = ["postgres"]
 volumes = [
   "/docker/postgres:/var/lib/postgresql/data",
   "/etc/localtime:/etc/localtime:ro",
 ]
 restart = "unless-stopped"
-
-[networks]
 
 [networks.postgres]
 external = true

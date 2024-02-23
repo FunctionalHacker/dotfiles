@@ -1,6 +1,9 @@
 [volumes]
 data = {}
 config = {}
+wkd = {}
+korhonen_cc = {}
+index = {}
 
 [volumes.nextcloud_config]
 external = true
@@ -12,13 +15,13 @@ restart = "unless-stopped"
 ports = ["80:80", "443:443/tcp", "443:443/udp"]
 networks = ["proxy"]
 volumes = [
+  "./Caddyfile:/etc/caddy/Caddyfile",
   "data:/data",
   "config:/config",
+  "wkd:/var/www/wkd",
+  "korhonen_cc:/var/www/korhonen.cc",
+  "index:/var/www/index.korhonen.cc",
   "nextcloud_config:/var/www/nextcloud",
-  "/var/www/korhonen.cc:/var/www/korhonen.cc",
-  "/var/www/wkd:/var/www/wkd",
-  "/var/www/index.korhonen.cc:/var/www/index.korhonen.cc",
-  "./Caddyfile:/etc/caddy/Caddyfile",
 ]
 environment = ["CLOUDFLARE_EMAIL", "CLOUDFLARE_API_TOKEN", "ACME_AGREE=true"]
 

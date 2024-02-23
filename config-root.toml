@@ -167,9 +167,6 @@ dst = "/etc/doas.conf"
 src = "etc/flexo/flexo.toml"
 dst = "/etc/flexo/flexo.toml"
 
-[profiles.Network]
-dotfiles = ["d_network", "f_networkd.conf"]
-
 [profiles.Locale]
 dotfiles = ["f_locale.conf", "f_locale.gen"]
 
@@ -207,10 +204,10 @@ dotfiles = [
   "f_welcomemessage.conf",
   "f_flexo.toml",
 ]
-include = ["Locale", "Pacman", "Network"]
+include = ["Locale", "Pacman"]
 
 [profiles.Moria]
-include = ["Locale", "Pacman", "Network"]
+include = ["Locale", "Pacman"]
 dotfiles = [
   "f_99-sysctl.conf",
   "f_cmdline",

@@ -1,0 +1,34 @@
+log:
+  level: info
+
+runner:
+  file: .runner
+  capacity: 2
+  env_file: .env
+  timeout: 3h
+  insecure: false
+  fetch_timeout: 5s
+  fetch_interval: 2s
+  labels:
+    - 'docker:docker://git.korhonen.cc/functionalhacker/ubuntu-act:22.04'
+
+cache:
+  enabled: true
+  dir: ''
+  host: ''
+  port: 0
+  external_server: ''
+
+container:
+  network: ''
+  enable_ipv6: false
+  privileged: false
+  options:
+  workdir_parent:
+  valid_volumes:
+    - 'caddy_korhonen_cc'
+  docker_host: ''
+  force_pull: false
+
+host:
+  workdir_parent:

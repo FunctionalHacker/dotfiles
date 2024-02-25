@@ -17,6 +17,7 @@ container_name = "forgejo-runner"
 user = "root:root"
 volumes = [
   "runner:/data",
+  "./runner.yaml:/data/config.yaml",
   "/var/run/docker.sock:/var/run/docker.sock",
   "/etc/localtime:/etc/localtime:ro",
 ]

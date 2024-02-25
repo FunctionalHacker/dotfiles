@@ -3,7 +3,6 @@ data = {}
 config = {}
 wkd = {}
 korhonen_cc = {}
-index = {}
 
 [volumes.nextcloud_config]
 external = true
@@ -20,8 +19,8 @@ volumes = [
   "config:/config",
   "wkd:/var/www/wkd",
   "korhonen_cc:/var/www/korhonen.cc",
-  "index:/var/www/index.korhonen.cc",
   "nextcloud_config:/var/www/nextcloud",
+  "/var/www/index.korhonen.cc:/var/www/index.korhonen.cc",
 ]
 environment = ["CLOUDFLARE_EMAIL", "CLOUDFLARE_API_TOKEN", "ACME_AGREE=true"]
 

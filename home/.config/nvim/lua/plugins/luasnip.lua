@@ -5,7 +5,14 @@ return {
   -- Snippets collection
   dependencies = { "rafamadriz/friendly-snippets" },
   config = function()
-    -- load friendly-snippets to luasnip
-    require("luasnip/loaders/from_vscode").lazy_load()
+    local vsCodeLoader = require("luasnip/loaders/from_vscode")
+
+    -- Load friendly-snippets
+    vsCodeLoader.lazy_load()
+
+    -- Load my custom snippets
+    vsCodeLoader.lazy_load({
+      paths = { "./snippets" },
+    })
   end,
 }

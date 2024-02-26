@@ -1,3 +1,4 @@
+session_serialization false
 theme "kanagawa"
 
 keybinds {

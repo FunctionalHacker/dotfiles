@@ -213,6 +213,7 @@ dotfiles = [
   "f_cmdline",
   "f_cpupower",
   "f_doas.conf",
+  "f_adb.service",
   "f_mkinitcpio.conf",
   "f_mkinitcpio_linux.preset",
   "f_mkinitcpio_linux-lts.preset",

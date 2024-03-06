@@ -30,10 +30,6 @@ zinit light zsh-users/zsh-completions
 zinit ice wait'1' lucid as'completion'
 zinit snippet https://gist.githubusercontent.com/RPigott/a3efdc08fa4d5fd7df38d091ab5e8532/raw/867ac1884d97d1bd1e5d4037d4eefdf4a004e72b/_swaymsg
 
-# dotdrop completion
-zinit ice wait'1' lucid as'completion'
-zinit snippet '$DOTREPO/dotdrop/completion/_dotdrop-completion.zsh'
-
 # syntax highlighting
 zinit ice lucid atinit'zpcompinit'
 zinit light zdharma-continuum/fast-syntax-highlighting

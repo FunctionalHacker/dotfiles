@@ -38,6 +38,7 @@ return {
             diagnostics = {
               ignoredCodes = {
                 6133, -- Unused variable
+                6192, -- Unused import
               },
             },
           },

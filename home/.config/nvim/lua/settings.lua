@@ -45,5 +45,7 @@ g.mapleader = " "
 
 -- Indentation settings
 o.tabstop = 4
+o.softtabstop = -1
+o.expandtab = true
 o.shiftwidth = 4
 o.smartindent = true

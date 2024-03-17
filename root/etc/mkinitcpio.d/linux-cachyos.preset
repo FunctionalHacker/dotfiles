@@ -1,0 +1,7 @@
+PRESETS=('default')
+
+ALL_config="/etc/mkinitcpio.conf"
+ALL_kver="/boot/vmlinuz-linux-cachyos"
+
+default_image="/boot/initramfs-linux-cachyos.img"
+default_uki="/boot/EFI/Linux/archlinux-linux-cachyos.efi"

@@ -37,6 +37,7 @@ src = ".config/imapnotify"
 dst = "~/.config/nvim"
 src = ".config/nvim"
 actions = ["kanagawa-compile"]
+instignore = ["*-lock.json"]
 
 [dotfiles.d_rofi]
 dst = "~/.config/rofi"

@@ -1,6 +1,19 @@
 {
+  "bash-language-server": "5.1.2",
+  "css-lsp": "4.8.0",
+  "docker-compose-language-service": "0.2.0",
   "dockerfile-language-server": "0.11.0",
+  "eslint-lsp": "4.8.0",
+  "html-lsp": "4.8.0",
+  "java-debug-adapter": "0.55.0",
+  "jdtls": "v1.33.0",
+  "json-lsp": "4.8.0",
+  "lemminx": "0.26.1",
   "lua-language-server": "3.7.4",
+  "prettier": "3.2.5",
+  "prettierd": "0.25.2",
   "stylua": "v0.20.0",
-  "taplo": "0.8.1"
+  "taplo": "0.8.1",
+  "typescript-language-server": "4.3.3",
+  "yaml-language-server": "1.14.0"
 }

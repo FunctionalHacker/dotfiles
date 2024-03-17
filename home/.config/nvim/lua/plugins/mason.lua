@@ -12,7 +12,7 @@ return {
     {
       "zapling/mason-lock.nvim",
       opts = {
-        lockfile_path = vim.fn.expand("~/.config/nvim/mason-lock.json"),
+        lockfile_path = vim.fn.expand("~/git/dotfiles/home/.config/nvim/mason-lock.json"),
       },
     },
     -- Extended functionality for jdtls

@@ -5,8 +5,8 @@ return {
   dependencies = { "kevinhwang91/promise-async" },
   --- @type UfoConfig
   opts = {
-    close_fold_kinds = {
-      "imports",
+    close_fold_kinds_for_ft = {
+      default = { "imports" },
     },
   },
   --- @param opts UfoConfig

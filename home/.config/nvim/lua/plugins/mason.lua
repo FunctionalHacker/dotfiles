@@ -6,7 +6,15 @@ return {
   dependencies = {
     "neovim/nvim-lspconfig",
     "williamboman/mason-lspconfig.nvim",
-    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    -- Add MasonUpdateAll
+    { "Zeioth/mason-extra-cmds", config = true },
+    -- Add lockfile support
+    {
+      "zapling/mason-lock.nvim",
+      opts = {
+        lockfile_path = vim.fn.expand("~/.config/nvim/mason-lock.json"),
+      },
+    },
     -- Extended functionality for jdtls
     "mfussenegger/nvim-jdtls",
     -- Add support for LSP file operations

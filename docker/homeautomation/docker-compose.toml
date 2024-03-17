@@ -1,45 +1,105 @@
 [volumes]
 hass = {}
-rhasspy = {}
 mosquitto = {}
+piper_english = {}
+whisper_english = {}
+openwakeword_english = {}
 
 [services.home-assistant]
 container_name = "home-assistant"
 image = "homeassistant/home-assistant"
+restart = "unless-stopped"
 environment = ["TZ=Europe/Helsinki"]
 devices = ["/dev/ttyACM0"]
 volumes = ["hass:/config", "/etc/localtime:/etc/localtime:ro"]
-restart = "unless-stopped"
 networks = ["homeautomation", "postgres", "proxy"]
 ports = ["8123:8123", "8300:8300"]
 extra_hosts = ["host.docker.internal:host-gateway"]
-depends_on = ["mosquitto"]
 
 [services.mosquitto]
 container_name = "mosquitto"
 image = "eclipse-mosquitto"
+restart = "unless-stopped"
 environment = ["TZ=Europe/Helsinki"]
+networks = ["homeautomation"]
 ports = ["1883:1883", "8866:8866"]
-networks = ["homeautomation"]
-volumes = [
-  "mosquitto:/mosquitto",
-  "/etc/localtime:/etc/localtime:ro",
-]
-restart = "unless-stopped"
+volumes = ["mosquitto:/mosquitto", "/etc/localtime:/etc/localtime:ro"]
 
-[services.rhasspy]
-container_name = "rhasspy"
-image = "rhasspy/rhasspy"
-command = "--profile en --user-profiles /profiles"
-volumes = ["rhasspy:/profiles"]
+[services.piper_english]
+container_name = "piper_english"
+image = "rhasspy/wyoming-piper"
+restart = "unless-stopped"
 environment = ["TZ=Europe/Helsinki"]
-ports = ["12101:12101"]
+ports = ["10200:10200"]
 networks = ["homeautomation"]
-restart = "unless-stopped"
-depends_on = ["home-assistant"]
-devices = ["/dev/snd:/dev/snd"]
+command = ["--voice", "en_US-hfc_male-medium"]
+volumes = ["piper_english:/data", "/etc/localtime:/etc/localtime:ro"]
 
-[networks]
+[services.whisper_english]
+container_name = "whisper_english"
+image = "rhasspy/wyoming-whisper"
+restart = "unless-stopped"
+environment = ["TZ=Europe/Helsinki"]
+ports = ["10300:10300"]
+networks = ["homeautomation"]
+depends_on = ["home-assistant"]
+command = ["--model", "tiny-int8", "--language", "en"]
+volumes = ["whisper_english:/data", "/etc/localtime:/etc/localtime:ro"]
+
+[services.openwakeword_english]
+container_name = "openwakeword_english"
+image = "rhasspy/wyoming-openwakeword"
+restart = "unless-stopped"
+environment = ["TZ=Europe/Helsinki"]
+networks = ["homeautomation"]
+command = ["--preload-model", "ok_nabu"]
+depends_on = ["home-assistant"]
+volumes = ["openwakeword_english:/data", "/etc/localtime:/etc/localtime:ro"]
+
+[services.microphone]
+build = "https://github.com/rhasspy/wyoming-mic-external.git"
+image = "rhasspy/wyoming-mic-external"
+container_name = "microphone"
+restart = "unless-stopped"
+devices = ["/dev/snd:/dev/snd"]
+ports = ["10600:10600"]
+group_add = ["audio"]
+networks = ["homeautomation"]
+command = ["--device", "plughw:CARD=USB,DEV=0", "--debug"]
+volumes = ["/etc/localtime:/etc/localtime:ro"]
+
+[services.speaker]
+build = "https://github.com/rhasspy/wyoming-snd-external.git"
+image = "rhasspy/wyoming-snd-external"
+container_name = "speaker"
+restart = "unless-stopped"
+devices = ["/dev/snd:/dev/snd"]
+ports = ["10601:10601"]
+group_add = ["audio"]
+networks = ["homeautomation"]
+command = ["--device", "iec958:CARD=USB,DEV=0", "--debug"]
+volumes = ["/etc/localtime:/etc/localtime:ro"]
+
+[services.satellite]
+build = "https://github.com/rhasspy/wyoming-satellite.git"
+image = "rhasspy/wyoming-satellite"
+container_name = "satellite"
+restart = "unless-stopped"
+ports = ["10700:10700"]
+networks = ["homeautomation"]
+depends_on = ["speaker", "microphone", "whisper_english"]
+command = [
+  "--name",
+  "ha-server-satellite",
+  "--mic-uri",
+  "tcp://microphone:10600",
+  "--snd-uri",
+  "tcp://speaker:10601",
+  "--wake-uri",
+  "tcp://openwakeword_english:10400",
+  "--debug",
+]
+volumes = ["/etc/localtime:/etc/localtime:ro"]
 
 [networks.homeautomation]
 external = false

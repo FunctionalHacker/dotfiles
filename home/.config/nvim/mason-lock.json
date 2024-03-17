@@ -1,5 +1,6 @@
 {
   "dockerfile-language-server": "0.11.0",
   "lua-language-server": "3.7.4",
-  "stylua": "v0.20.0"
+  "stylua": "v0.20.0",
+  "taplo": "0.8.1"
 }

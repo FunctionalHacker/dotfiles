@@ -7,7 +7,7 @@ return {
       local dotfiles_path = tostring(vim.fn.expand("~/git/dotfiles"))
       if string.find(root_dir, dotfiles_path, 1, true) then
         library.enabled = true
-        library.plugins = true
+        library.plugins = { "nvim-dap-ui" }
       end
     end,
   },

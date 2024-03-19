@@ -5,7 +5,11 @@ local masonPkg = vim.fn.stdpath("data") .. "/mason/packages"
 return {
   "mfussenegger/nvim-dap",
   dependencies = {
-    { "rcarriga/nvim-dap-ui", config = true },
+    {
+      "rcarriga/nvim-dap-ui",
+      dependencies = { "nvim-neotest/nvim-nio" },
+      config = true,
+    },
   },
   config = function()
     local dap = require("dap")

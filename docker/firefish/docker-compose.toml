@@ -2,20 +2,17 @@
 files = {}
 config = {}
 redis = {}
-sonic = {}
+db = {}
 
 [services.firefish]
 image = "registry.firefish.dev/firefish/firefish"
 container_name = "firefish"
 restart = "unless-stopped"
 depends_on = ["redis"]
-ports = ["3083:3000"]
-networks = ["firefish", "proxy", "postgres"]
+ports = ["3084:3000"]
+networks = ["firefish", "proxy"]
 environment = { NODE_ENV = "production" }
-volumes = [
-  "files:/firefish/files",
-  "config:/firefish/.config:ro",
-]
+volumes = ["files:/firefish/files", "config:/firefish/.config:ro"]
 
 [services.redis]
 image = "redis"
@@ -24,22 +21,20 @@ restart = "unless-stopped"
 networks = ["firefish"]
 volumes = ["redis:/data"]
 
-[services.sonic]
-image = "valeriansaliou/sonic:v1.4.0"
-container_name = "sonic-firefish"
-logging = { driver = "none" }
+[services.db]
+image = "groonga/pgroonga:3.1.8-alpine-16-slim"
+container_name = "firefish-db"
 networks = ["firefish"]
-volumes = [
-  "sonic:/var/lib/sonic/store",
-  "/mnt/Storage/docker/firefish-sonic/config.cfg:/etc/sonic.cfg",
-]
-env_file = ".env"
+volumes = ["db:/var/lib/postgresql/data"]
+
+[services.db.healthcheck]
+test = "pg_isready --user=\"firefish\" --dbname=\"firefish\""
+interval = "5s"
+timeout = "5s"
+retries = 5
 
 [networks.firefish]
 internal = true
 
 [networks.proxy]
-external = true
-
-[networks.postgres]
 external = true

@@ -89,6 +89,9 @@ korhonen.cc, *.korhonen.cc {
 
 	@nextcloud host cloud.korhonen.cc
 	handle @nextcloud {
+    # Redirect login page to Authentik
+    redir /login /apps/sociallogin/custom_oidc/korhonen-sso 301
+
 		# .htaccess / data / config / ... shouldn't be accessible from outside
 		@forbidden {
 			path /.htaccess

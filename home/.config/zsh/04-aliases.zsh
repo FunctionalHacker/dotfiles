@@ -150,7 +150,9 @@ alias startvpn='doas systemctl start wg-quick@wg0.service'
 alias stopvpn='doas systemctl stop wg-quick@wg0.service'
 
 # read qrcode from selection
-qr() { grim -g "$(slurp -d)" - | zbarimg PNG:- }
+qr() {
+  gdbus call --session --dest org.gnome.Shell --object-path /org/gnome/Shell --method org.gnome.Shell.Eval 'Main.screenshotUI.open();' 2>&1 > /dev/null && wl-paste | zbarimg -q --raw PNG:-
+}
 
 # generate qr code in terminal
 alias qrencode='qrencode -t ansiutf8'

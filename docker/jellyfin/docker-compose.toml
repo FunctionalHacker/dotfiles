@@ -19,7 +19,7 @@ volumes = [
   "config:/config",
   "cache:/cache",
   "media:/media",
-  "/mnt/Storage/docker/volumes/nextcloud_data/FunctionalHacker/files/Media/Music:/media/Music",
+  "nextcloud_data:/nextcloud_data",
   "/etc/localtime:/etc/localtime:ro",
 ]
 devices = [

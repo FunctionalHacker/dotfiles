@@ -12,7 +12,7 @@ ports = ["22:22"]
 volumes = ["data:/data", "/etc/localtime:/etc/localtime:ro"]
 
 [services.runner]
-image = "code.forgejo.org/forgejo/runner:3.3.0"
+image = "code.forgejo.org/forgejo/runner:3.4.1"
 container_name = "forgejo-runner"
 user = "root:root"
 volumes = [

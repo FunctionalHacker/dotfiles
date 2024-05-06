@@ -24,6 +24,7 @@ volumes = ["redis:/data"]
 [services.db]
 image = "groonga/pgroonga:3.1.8-alpine-16-slim"
 container_name = "firefish-db"
+restart = "unless-stopped"
 networks = ["firefish"]
 volumes = ["db:/var/lib/postgresql/data"]
 

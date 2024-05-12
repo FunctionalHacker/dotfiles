@@ -8,7 +8,7 @@ korhonen_cc = {}
 external = true
 
 [services.caddy]
-image = "slothcroissant/caddy-cloudflaredns"
+image = "git.korhonen.cc/functionalhacker/caddy"
 container_name = "caddy"
 restart = "unless-stopped"
 ports = ["80:80", "443:443/tcp", "443:443/udp"]

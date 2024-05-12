@@ -23,6 +23,7 @@ volumes = [
   "/var/www/index.korhonen.cc:/var/www/index.korhonen.cc",
 ]
 environment = ["CLOUDFLARE_EMAIL", "CLOUDFLARE_API_TOKEN", "ACME_AGREE=true"]
+cap_add = ["NET_ADMIN"]
 
 [networks.proxy]
 external = true

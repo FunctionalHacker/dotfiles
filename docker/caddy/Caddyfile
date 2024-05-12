@@ -22,6 +22,16 @@ korhonen.cc, *.korhonen.cc {
 
 	@homepage host korhonen.cc
 	handle @homepage {
+		# Redirect finnish WIP
+		# @redirFinnish {
+		#     header Accept-Language *fi-FI*
+		#     not path *.js *.css *.png *.jpg *.jpeg *.svg
+		#     not path /en* /fi*
+		#   }
+		#   redir @redirFinnish /fi{uri}
+		#
+		#   uri strip_prefix /en
+
 		header @static Cache-Control max-age=5184000
 		root * /var/www/korhonen.cc
 		file_server
@@ -52,7 +62,7 @@ korhonen.cc, *.korhonen.cc {
 
 	@forgejo host git.korhonen.cc
 	handle @forgejo {
-    rewrite /user/login /user/oauth2/authentik
+		rewrite /user/login /user/oauth2/authentik
 		reverse_proxy forgejo:3000
 	}
 
@@ -89,8 +99,8 @@ korhonen.cc, *.korhonen.cc {
 
 	@nextcloud host cloud.korhonen.cc
 	handle @nextcloud {
-    # Redirect login page to Authentik
-    redir /login /apps/sociallogin/custom_oidc/korhonen-sso 301
+		# Redirect login page to Authentik
+		redir /login /apps/sociallogin/custom_oidc/korhonen-sso 301
 
 		# .htaccess / data / config / ... shouldn't be accessible from outside
 		@forbidden {
@@ -142,15 +152,22 @@ korhonen.cc, *.korhonen.cc {
 		reverse_proxy drop:3000
 	}
 
-	# Redirect to new fediverse host
-	@misskey host social.korhonen.cc
-	handle @misskey {
-		redir https://korhonen.social
+	handle {
+		respond "404 Not Found" 404
 	}
 
-	# Fallback for unhandled domains
-	handle {
-		redir https://korhonen.cc/404.html 301
+	handle_errors {
+		@homepage_404 {
+			expression {http.error.status_code} == 404
+			host korhonen.cc
+		}
+		handle @homepage_404 {
+			root * /var/www/korhonen.cc
+			rewrite * /404.html
+			file_server
+		}
+
+		respond "{err.status_code} {err.status_text}"
 	}
 }
 
@@ -174,5 +191,13 @@ korhonen.social, *.korhonen.social {
 	@firefish host korhonen.social
 	handle @firefish {
 		reverse_proxy firefish:3000
+	}
+
+	handle {
+		respond "404 Not Found" 404
+	}
+
+	handle_errors {
+		respond "{err.status_code} {err.status_text}"
 	}
 }

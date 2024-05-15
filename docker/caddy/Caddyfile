@@ -152,6 +152,11 @@ korhonen.cc, *.korhonen.cc {
 		reverse_proxy drop:3000
 	}
 
+	@ipvX host ipv6.korhonen.cc ipv4.korhonen.cc
+	handle @ipvX {
+		respond {remote_host}
+	}
+
 	handle {
 		respond "404 Not Found" 404
 	}

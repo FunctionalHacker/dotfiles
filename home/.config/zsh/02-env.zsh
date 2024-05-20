@@ -71,8 +71,9 @@ export MANPAGER="$EDITOR +\"lua require 'pager'\" +Man!"
 export SYSTEMD_EDITOR=$EDITOR
 export SYSTEMD_PAGER=less
 
-# Enable multigrid for neovide
+# neovide settings
 export NEOVIDE_MULTIGRID=1
+export NEOVIDE_FORK=1
 
 {%@@ if distro_id == "arch" or distro_id == "ubuntu" @@%}
 if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then

@@ -20,7 +20,8 @@ return {
 
     -- Switch to a project
     {
-      "ahmedkhalf/project.nvim",
+      "LennyPhoenix/project.nvim",
+      branch = "fix-get_clients",
       main = "project_nvim",
       opts = {
         patterns = { ".git" },

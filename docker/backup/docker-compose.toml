@@ -13,6 +13,7 @@ external = true
 [services.backup]
 image = "offen/docker-volume-backup:v2"
 container_name = "volume-backup"
+restart = "unless-stopped"
 environment = [
   "AWS_ENDPOINT",
   "AWS_S3_BUCKET_NAME",

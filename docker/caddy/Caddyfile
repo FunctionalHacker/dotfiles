@@ -1,3 +1,7 @@
+{
+	order umami first
+}
+
 korhonen.cc, *.korhonen.cc {
 	tls {$CLOUDFLARE_EMAIL} {
 		dns cloudflare {$CLOUDFLARE_API_TOKEN}
@@ -46,6 +50,13 @@ korhonen.cc, *.korhonen.cc {
 
 	@index host index.korhonen.cc
 	handle @index {
+		umami {
+		  event_endpoint "https://umami.korhonen.cc/api/send"
+		  website_uuid "9fe4f5c0-8e63-4479-a58d-d399cdbc0a3a"
+		  client_ip_header X-Real-IP
+		  device_detection
+		  allowed_extensions "" .tar.zst .json .html
+		}
 		root * /var/www/index.korhonen.cc
 		file_server browse
 	}

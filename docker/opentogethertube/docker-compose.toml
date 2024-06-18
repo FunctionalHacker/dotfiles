@@ -21,9 +21,10 @@ environment = [
 ports = ["8080:8080", "3002:3002"]
 networks = ["default", "postgres", "proxy"]
 depends_on = ["redis"]
+volumes = ["./production.toml:/app/env/production.toml"]
 
 [services.redis]
-container_name = "opentogethertube_redis"
+container_name = "redis-opentogethertube"
 image = "redis:alpine"
 restart = "unless-stopped"
 

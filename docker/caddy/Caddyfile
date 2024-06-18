@@ -2,21 +2,25 @@
 	order umami first
 }
 
-korhonen.cc, *.korhonen.cc {
-	tls {$CLOUDFLARE_EMAIL} {
+(common_site_settings) {
+	encode zstd gzip
+
+	tls {
 		dns cloudflare {$CLOUDFLARE_API_TOKEN}
 		resolvers 1.1.1.1
 	}
 
-	encode zstd gzip
+	header {
+		Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
+	}
+}
+
+korhonen.cc, *.korhonen.cc {
+	import common_site_settings
 
 	@static {
 		file
 		path *.ico *.css *.js *.gif *.webp *.avif *.jpg *.jpeg *.png *.svg *.woff *.woff2 *.pdf *.webmanifest
-	}
-
-	header {
-		Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
 	}
 
 	@homepage-www-redir host www.korhonen.cc
@@ -51,11 +55,11 @@ korhonen.cc, *.korhonen.cc {
 	@index host index.korhonen.cc
 	handle @index {
 		umami {
-		  event_endpoint "https://umami.korhonen.cc/api/send"
-		  website_uuid "9fe4f5c0-8e63-4479-a58d-d399cdbc0a3a"
-		  client_ip_header X-Real-IP
-		  device_detection
-		  allowed_extensions "" .tar.zst .json .html
+			event_endpoint "https://umami.korhonen.cc/api/send"
+			website_uuid "9fe4f5c0-8e63-4479-a58d-d399cdbc0a3a"
+			client_ip_header X-Real-IP
+			device_detection
+			allowed_extensions "" .tar.zst .json .html
 		}
 		root * /var/www/index.korhonen.cc
 		file_server browse
@@ -187,16 +191,7 @@ korhonen.cc, *.korhonen.cc {
 }
 
 korhonen.social, *.korhonen.social {
-	tls {$CLOUDFLARE_EMAIL} {
-		dns cloudflare {$CLOUDFLARE_API_TOKEN}
-		resolvers 1.1.1.1
-	}
-
-	encode zstd gzip
-
-	header {
-		Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
-	}
+	import common_site_settings
 
 	@firefish-www-redir host www.korhonen.social
 	handle @firefish-www-redir {

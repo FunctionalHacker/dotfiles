@@ -171,6 +171,11 @@ korhonen.cc, *.korhonen.cc {
 		respond {remote_host}
 	}
 
+	@ott host ott.korhonen.cc
+	handle @ott {
+		reverse_proxy opentogethertube:8080
+	}
+
 	handle {
 		respond "404 Not Found" 404
 	}

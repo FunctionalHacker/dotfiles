@@ -214,6 +214,16 @@ dotfiles = [
 [profiles.Mirkwood.variables]
 wayland = true
 
+[profiles.Shire]
+include = ["pacman", "terminal", "media", "gpg"]
+dotfiles = [
+  "f_dconf.ini",
+  "f_fonts.conf",
+]
+
+[profiles.Shire.variables]
+wayland = true
+
 [profiles.Moria]
 include = ["pacman", "terminal", "media", "gpg"]
 dotfiles = [

@@ -206,6 +206,29 @@ dotfiles = [
 ]
 include = ["Locale", "Pacman"]
 
+[profiles.Shire]
+dotfiles = [
+  "d_bin",
+  "f_20-quiet-printk.conf",
+  "f_60-uinput-permissions.rules",
+  "f_99-lowbat.rules",
+  "f_adb.service",
+  "f_bluetooth.conf",
+  "f_cmdline",
+  "f_cpupower",
+  "f_doas.conf",
+  "f_fonts.conf",
+  "f_freetype2.sh",
+  "f_ignore",
+  "f_logind.conf",
+  "f_mkinitcpio.conf",
+  "f_mkinitcpio_linux.preset",
+  "f_plymouthd.conf",
+  "f_sshd_config",
+  "f_system.conf",
+]
+include = ["Locale"]
+
 [profiles.Moria]
 include = ["Locale", "Pacman"]
 dotfiles = [

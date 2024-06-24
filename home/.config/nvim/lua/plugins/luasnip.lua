@@ -15,4 +15,5 @@ return {
       paths = { "./snippets" },
     })
   end,
+  run = "make install_jsregexp",
 }

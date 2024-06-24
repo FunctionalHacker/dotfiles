@@ -214,9 +214,6 @@ update() {
 		nvim --headless -c "Lazy! update" -c 'TSUpdateSync' -c 'MasonUpdateAll' -c 'qa'
 		zinit self-update
 		zinit update -p
-		{%@@ if profile == "Moria" @@%}
-		$HOME/.tmux/plugins/tpm/bin/update_plugins all
-		{%@@ endif @@%}
 	}
 
   pip-update-installed() {

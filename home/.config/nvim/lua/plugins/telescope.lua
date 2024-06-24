@@ -18,15 +18,8 @@ return {
     -- cd plugin for telescope
     "zane-/cder.nvim",
 
-    -- Switch to a project
-    {
-      "LennyPhoenix/project.nvim",
-      branch = "fix-get_clients",
-      main = "project_nvim",
-      opts = {
-        patterns = { ".git" },
-      },
-    },
+    -- project plugin for telescope
+    "nvim-telescope/telescope-project.nvim",
   },
   opts = {
     -- Set layout to vertical
@@ -90,7 +83,9 @@ return {
     {
       desc = "Change to a project",
       "<leader>p",
-      "<cmd>Telescope projects<cr>",
+      function()
+        require("telescope").extensions.project.project()
+      end,
     },
   },
   config = function(_, opts)
@@ -101,6 +96,6 @@ return {
     telescope.load_extension("fzf")
     telescope.load_extension("ui-select")
     telescope.load_extension("cder")
-    telescope.load_extension("projects")
+    telescope.load_extension("project")
   end,
 }

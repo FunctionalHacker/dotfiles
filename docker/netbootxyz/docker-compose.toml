@@ -1,0 +1,20 @@
+[volumes]
+config = {}
+assets = {}
+
+[services.netbootxyz]
+image = "lscr.io/linuxserver/netbootxyz"
+container_name = "netbootxyz"
+restart = "unless-stopped"
+environment = [
+  "PUID=1000",
+  "PGID=1000",
+  "TZ=Etc/UTC",
+  "MENU_VERSION=1.9.9",
+  "PORT_RANGE=30000:30010",
+  "SUBFOLDER=/",
+  "NGINX_PORT=80",
+  "WEB_APP_PORT=3000",
+]
+ports = ["3000:3000", "69:69/udp", "8081:80"]
+volumes = ["config:/config", "assets:/assets"]

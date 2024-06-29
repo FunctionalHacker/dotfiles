@@ -143,10 +143,6 @@ dst = "/etc/pacserve/pacserve.service.conf"
 src = "etc/mkinitcpio.d/linux.preset"
 dst = "/etc/mkinitcpio.d/linux.preset"
 
-[dotfiles."f_mkinitcpio_linux-cachyos.preset"]
-src = "etc/mkinitcpio.d/linux-cachyos.preset"
-dst = "/etc/mkinitcpio.d/linux-cachyos.preset"
-
 [dotfiles.f_cmdline]
 src = "etc/kernel/cmdline"
 dst = "/etc/kernel/cmdline"
@@ -196,7 +192,6 @@ dotfiles = [
   "f_logind.conf",
   "f_mkinitcpio.conf",
   "f_mkinitcpio_linux.preset",
-  "f_mkinitcpio_linux-cachyos.preset",
   "f_plymouthd.conf",
   "f_sshd_config",
   "f_system.conf",
@@ -239,7 +234,6 @@ dotfiles = [
   "f_adb.service",
   "f_mkinitcpio.conf",
   "f_mkinitcpio_linux.preset",
-  "f_mkinitcpio_linux-cachyos.preset",
   "f_plymouthd.conf",
   "f_sshd_config",
   "f_flexo.toml",

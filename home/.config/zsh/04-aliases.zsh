@@ -66,7 +66,7 @@ mkcd() {
 
 pr() {
   {%@@ if distro_id == "arch" @@%}
-	SELECTED_PKGS="$(paru -Qsq | fzf --header='Remove packages' -m --preview 'paru -Si {1}' | tr '\n' ' ')"
+	SELECTED_PKGS="$(paru -Qsq | fzf --header='Remove packages' -m --preview 'paru -Qi {1}' | tr '\n' ' ')"
   {%@@ else @@%}
 	SELECTED_PKGS="$(apt list --installed 2>/dev/null | cut -d '/' -f 1 | tail +2 | fzf --header='Remove packages' -m --preview 'apt show 2>/dev/null {1}' | tr '\n' ' ')"
   {%@@ endif @@%}

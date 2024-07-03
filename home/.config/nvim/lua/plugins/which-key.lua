@@ -21,6 +21,7 @@ return {
     wk.register({
       h = { "<cmd>nohlsearch<cr>", "Turn off search highlight" },
       b = { toggle_theme, "Toggle background between dark and light" },
+      co = { '<cmd>silent! execute "%bd|e#|bd#"<cr>', "Close other buffers" },
     }, { prefix = "<leader>" })
 
     wk.register({

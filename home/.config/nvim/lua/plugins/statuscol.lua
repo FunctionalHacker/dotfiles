@@ -2,19 +2,7 @@
 --- @type LazyPluginSpec
 return {
   "luukvbaal/statuscol.nvim",
-  dependencies = {
-    {
-      "lewis6991/gitsigns.nvim",
-      config = true,
-    },
-  },
   config = function()
-    local gitsigns = require("gitsigns")
-    require("which-key").register({
-      ["["] = { h = { gitsigns.prev_hunk, "Previous hunk" } },
-      ["]"] = { h = { gitsigns.next_hunk, "Next hunk" } },
-    })
-
     local builtin = require("statuscol.builtin")
     require("statuscol").setup({
       relculright = true,

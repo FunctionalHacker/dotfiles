@@ -9,39 +9,30 @@ local diagnostic = vim.diagnostic
 -- This makes them only available when LSP is running
 function m.map_keys()
   local builtin = require("telescope.builtin")
-  require("which-key").register({
-    g = {
-      name = "Go to",
-      d = { builtin.lsp_definitions, "Definition" },
-      D = { lsp.buf.declaration, "Declaration" },
-      t = { lsp.buf.type_definition, "Type definition" },
-      i = { builtin.lsp_implementations, "Implementation" },
-      r = { builtin.lsp_references, "References" },
-      s = { builtin.lsp_document_symbols, "Symbols" },
-    },
-    ["<leader>"] = {
-      name = "Leader",
-      w = {
-        name = "Workspace",
-        a = { lsp.buf.add_workspace_folder, "Add folder" },
-        r = { lsp.buf.remove_workspace_folder, "Remove folder" },
-        l = {
-          function()
-            print(vim.inspect(lsp.buf.list_workspace_folders()))
-          end,
-          "List folders",
-        },
-      },
-      k = { lsp.buf.signature_help, "Signature help" },
-      rn = { lsp.buf.rename, "Rename symbol" },
-      ca = { lsp.buf.code_action, "Code action" },
-      e = { diagnostic.open_float, "Open diagnostics" },
-      F = { lsp.buf.format, "Format with LSP" },
-    },
-    K = { lsp.buf.hover, "Hover" },
-    ["["] = { d = { diagnostic.goto_prev, "Previous diagnostic" } },
-    ["]"] = { d = { diagnostic.goto_next, "Next diagnostic" } },
+
+  require("which-key").add({
+    { "<leader>w", group = "Workspace" },
   })
+
+  vim.keymap.set("n", "<leader>F", lsp.buf.format, { desc = "Format with LSP" })
+  vim.keymap.set("n", "<leader>ca", lsp.buf.code_action, { desc = "Code action" })
+  vim.keymap.set("n", "<leader>e", diagnostic.open_float, { desc = "Open diagnostics" })
+  vim.keymap.set("n", "<leader>k", lsp.buf.signature_help, { desc = "Signature help" })
+  vim.keymap.set("n", "<leader>rn", lsp.buf.rename, { desc = "Rename symbol" })
+  vim.keymap.set("n", "<leader>wa", lsp.buf.add_workspace_folder, { desc = "Add folder" })
+  vim.keymap.set("n", "<leader>wl", function()
+    print(vim.inspect(lsp.buf.list_workspace_folders()))
+  end, { desc = "List folders" })
+  vim.keymap.set("n", "<leader>wr", lsp.buf.remove_workspace_folder, { desc = "Remove folder" })
+  vim.keymap.set("n", "K", lsp.buf.hover, { desc = "Hover" })
+  vim.keymap.set("n", "[d", diagnostic.goto_prev, { desc = "Previous diagnostic" })
+  vim.keymap.set("n", "]d", diagnostic.goto_next, { desc = "Next diagnostic" })
+  vim.keymap.set("n", "gD", lsp.buf.declaration, { desc = "Declaration" })
+  vim.keymap.set("n", "gd", builtin.lsp_definitions, { desc = "Definition" })
+  vim.keymap.set("n", "gi", builtin.lsp_implementations, { desc = "Implementation" })
+  vim.keymap.set("n", "gr", builtin.lsp_references, { desc = "References" })
+  vim.keymap.set("n", "gs", builtin.lsp_document_symbols, { desc = "Symbols" })
+  vim.keymap.set("n", "gt", lsp.buf.type_definition, { desc = "Type definition" })
 end
 
 -- Combine built-in LSP and cmp cabaibilities

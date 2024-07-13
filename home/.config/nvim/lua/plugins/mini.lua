@@ -5,5 +5,8 @@ return {
   config = function()
     require("mini.surround").setup()
     require("mini.comment").setup()
+
+    -- Recommended for which-key
+    require("mini.icons").setup()
   end,
 }

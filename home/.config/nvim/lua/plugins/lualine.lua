@@ -1,3 +1,4 @@
+local noice_statusline = require("noice").api.statusline.mode
 -- Statusline
 --- @type LazyPluginSpec
 return {
@@ -5,6 +6,13 @@ return {
   dependencies = { "kyazdani42/nvim-web-devicons" },
   opts = {
     sections = {
+      lualine_x = {
+        {
+          noice_statusline.get,
+          cond = noice_statusline.has,
+          color = { fg = "#ff9e64" },
+        },
+      },
       lualine_z = {
         {
           "selectioncount",

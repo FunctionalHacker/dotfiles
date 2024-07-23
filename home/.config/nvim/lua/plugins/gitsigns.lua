@@ -21,7 +21,7 @@ return {
 
     -- Hunk navigation
     k("[h", gs.prev_hunk, { desc = "Previous hunk" })
-    k("[h", gs.next_hunk, { desc = "Next hunk" })
+    k("]h", gs.next_hunk, { desc = "Next hunk" })
 
     -- Hunk actions
     opts = { desc = "Hunk" }

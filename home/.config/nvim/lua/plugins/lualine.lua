@@ -1,4 +1,4 @@
-local noice_statusline = require("noice").api.statusline.mode
+local noice_mode = require("noice").api.statusline.mode
 -- Statusline
 --- @type LazyPluginSpec
 return {
@@ -7,9 +7,12 @@ return {
   opts = {
     sections = {
       lualine_x = {
+        "encoding",
+        "fileformat",
+        "filetype",
         {
-          noice_statusline.get,
-          cond = noice_statusline.has,
+          noice_mode.get,
+          cond = noice_mode.has,
           color = { fg = "#ff9e64" },
         },
       },

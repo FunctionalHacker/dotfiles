@@ -49,3 +49,5 @@ o.softtabstop = -1
 o.expandtab = true
 o.shiftwidth = 4
 o.smartindent = true
+
+o.showmode = false

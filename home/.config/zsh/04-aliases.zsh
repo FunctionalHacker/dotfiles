@@ -210,8 +210,9 @@ update() {
 	}
 
 	plugins() {
-		echo "Updating NeoVim plugins"
-		nvim --headless -c "Lazy! update" -c 'TSUpdateSync' -c 'MasonUpdateAll' -c 'qa'
+		echo "Updating NeoVim plugins to match lockfiles"
+		nvim --headless -c "Lazy! restore" -c 'TSUpdateSync' -c 'MasonLockRestore' -c 'qa'
+    echo "Updating zsh plugins"
 		zinit self-update
 		zinit update -p
 	}

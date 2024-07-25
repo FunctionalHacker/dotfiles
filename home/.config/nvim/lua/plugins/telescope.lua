@@ -59,35 +59,41 @@ return {
       },
     },
   },
-  keys = {
-    {
-      desc = "Open Telescope",
-      "t",
-      "<cmd>Telescope<cr>",
-    },
-    {
-      desc = "Change directories",
-      "cd",
-      "<cmd>Telescope cder<cr>",
-    },
-    {
-      desc = "Find files",
-      "<C-f>",
-      "<cmd>Telescope find_files<cr>",
-    },
-    {
-      desc = "Grep files",
-      "<C-g>",
-      "<cmd>Telescope live_grep<cr>",
-    },
-    {
-      desc = "Change to a project",
-      "<leader>p",
-      function()
-        require("telescope").extensions.project.project()
-      end,
-    },
-  },
+  keys = function()
+    local telescope = require("telescope")
+    local builtin = require("telescope.builtin")
+    local extensions = telescope.extensions
+
+    return {
+      {
+        desc = "Open Telescope",
+        "t",
+        function()
+          builtin.builtin({ include_extensions = true })
+        end,
+      },
+      {
+        desc = "Change directories",
+        "cd",
+        extensions.cder.cder,
+      },
+      {
+        desc = "Find files",
+        "<C-f>",
+        builtin.find_files,
+      },
+      {
+        desc = "Grep files",
+        "<C-g>",
+        builtin.live_grep,
+      },
+      {
+        desc = "Change to a project",
+        "<leader>p",
+        extensions.project.project,
+      },
+    }
+  end,
   config = function(_, opts)
     local telescope = require("telescope")
     telescope.setup(opts)
@@ -97,5 +103,6 @@ return {
     telescope.load_extension("ui-select")
     telescope.load_extension("cder")
     telescope.load_extension("project")
+    telescope.load_extension("notify")
   end,
 }

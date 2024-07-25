@@ -24,10 +24,10 @@ return {
   opts = {
     -- Set layout to vertical
     defaults = {
-      layout_strategy = "vertical",
-      layout_defaults = {
-        vertical = {
-          preview_height = 0.5,
+      layout_strategy = "flex",
+      layout_config = {
+        flex = {
+          flip_columns = 200,
         },
       },
     },

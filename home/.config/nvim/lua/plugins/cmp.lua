@@ -1,4 +1,4 @@
--- Autoompletion
+-- Auto completion
 --- @type LazyPluginSpec
 return {
   "hrsh7th/nvim-cmp",
@@ -16,6 +16,7 @@ return {
     "hrsh7th/cmp-cmdline", -- cmdline source
     "saadparwaiz1/cmp_luasnip", -- Snippets source
     "f3fora/cmp-spell", -- Spell check source
+    "petertriho/cmp-git", -- Git source
     -- Copilot source
     {
       "zbirenbaum/copilot-cmp",
@@ -35,17 +36,23 @@ return {
     -- Set completeopt to have a better completion experience
     vim.o.completeopt = "menuone,noselect"
 
+    local bordered = cmp.config.window.bordered()
+
     cmp.setup({
       snippet = {
         expand = function(args)
           luasnip.lsp_expand(args.body)
         end,
       },
+      window = {
+        completion = bordered,
+        documentation = bordered,
+      },
       mapping = {
         ["<C-p>"] = cmp.mapping.select_prev_item(),
         ["<C-n>"] = cmp.mapping.select_next_item(),
         ["<C-d>"] = cmp.mapping.scroll_docs(-4),
-        ["<C-f>"] = cmp.mapping.scroll_docs(4),
+        ["<C-u>"] = cmp.mapping.scroll_docs(4),
         ["<C-Space>"] = cmp.mapping.complete(),
         ["<C-e>"] = cmp.mapping.close(),
         ["<CR>"] = cmp.mapping.confirm({
@@ -111,13 +118,15 @@ return {
       },
     })
 
+    require("cmp_git").setup()
+
     -- Enable autopairs when enter is processed
     -- on completion
     local cmp_autopairs = require("nvim-autopairs.completion.cmp")
     cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
-    -- `/` cmdline setup.
-    cmp.setup.cmdline("/", {
+    -- search cmdline setup.
+    cmp.setup.cmdline({ "/", "?" }, {
       mapping = cmp.mapping.preset.cmdline(),
       sources = {
         { name = "buffer" },

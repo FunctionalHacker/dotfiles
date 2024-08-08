@@ -7,7 +7,7 @@ return {
     "neovim/nvim-lspconfig",
     "williamboman/mason-lspconfig.nvim",
     -- Add MasonUpdateAll
-    { "Zeioth/mason-extra-cmds", config = true },
+    { "Zeioth/mason-extra-cmds", opts = {} },
     -- Add lockfile support
     {
       "zapling/mason-lock.nvim",
@@ -18,7 +18,7 @@ return {
     -- Extended functionality for jdtls
     "mfussenegger/nvim-jdtls",
     -- Add support for LSP file operations
-    { "antosha417/nvim-lsp-file-operations", config = true },
+    { "antosha417/nvim-lsp-file-operations", opts = {} },
   },
   config = function()
     require("mason").setup()

@@ -1,6 +1,4 @@
-local k = function(lhs, rhs, opts)
-  vim.keymap.set("", lhs, rhs, opts)
-end
+local k = vim.keymap.set
 
 --- @type LazyPluginSpec
 return {
@@ -20,17 +18,17 @@ return {
     local opts
 
     -- Hunk navigation
-    k("[h", gs.prev_hunk, { desc = "Previous hunk" })
-    k("]h", gs.next_hunk, { desc = "Next hunk" })
+    k("n", "[h", gs.prev_hunk, { desc = "Previous hunk" })
+    k("n", "]h", gs.next_hunk, { desc = "Next hunk" })
 
     -- Hunk actions
     opts = { desc = "Hunk" }
-    k("<leader>grh", gs.reset_hunk, opts)
-    k("<leader>gah", gs.stage_hunk, opts)
+    k("n", "<leader>grh", gs.reset_hunk, opts)
+    k("n", "<leader>gah", gs.stage_hunk, opts)
 
     -- Buffer actions
     opts = { desc = "Buffer" }
-    k("<leader>gab", gs.stage_buffer, opts)
-    k("<leader>grb", gs.reset_buffer, opts)
+    k("n", "<leader>gab", gs.stage_buffer, opts)
+    k("n", "<leader>grb", gs.reset_buffer, opts)
   end,
 }

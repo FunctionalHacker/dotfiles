@@ -14,9 +14,14 @@ return {
       [[ \/_/\/_/\/____/\/___/  \/__/    \/_/\/_/\/_/\/_/]],
     }
     dashboard.section.buttons.val = {
+      dashboard.button(
+        "<leader>p",
+        "📽  Open a project",
+        ":lua require('telescope').extensions.project.project()<CR>"
+      ),
       dashboard.button("e", "  New file", ":ene <BAR> startinsert <CR>"),
-      dashboard.button("<C-f>", "🔍  Find file", "<cmd>Telescope find_files<cr>"),
-      dashboard.button("<C-g>", "𑪢  Grep files", "<cmd>Telescope live_grep<cr>"),
+      dashboard.button("<C-f>", "🔍  Find file", "<cmd>Telescope find_files<CR>"),
+      dashboard.button("<C-g>", "𑪢  Grep files", "<cmd>Telescope live_grep<CR>"),
       dashboard.button("l", "🛋  Lazy", ":Lazy<CR>"),
       dashboard.button("m", "📦  Mason", ":Mason<CR>"),
       dashboard.button("q", "ꭙ  Quit NeoVim", ":qa<CR>"),

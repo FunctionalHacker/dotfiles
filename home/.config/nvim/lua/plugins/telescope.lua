@@ -87,7 +87,7 @@ return {
         builtin.live_grep,
       },
       {
-        desc = "Change to a project",
+        desc = "Open a project",
         "<leader>p",
         extensions.project.project,
       },

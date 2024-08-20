@@ -11,7 +11,7 @@ ease deployment of my dotfiles.
 
 == Mirrors
 
-This repository lives at https://git.korhonen.cc/FunctionalHacker/dotfiles[My git server],
+This repository lives at https://git.korhonen.cc/FunctionalHacker/dotfiles[my git server],
 but it is also mirrored to:
 
 * https://gitlab.com/FunctionalHacker/dotfiles[GitLab]
@@ -20,5 +20,4 @@ but it is also mirrored to:
 * https://codeberg.org/FunctionalHacker/dotfiles[codeberg]
 
 If you have any ideas for improvements, questions or anything of this
-sort, you can open an issue or a pull request at my git server
-(registrations open for anyone), or any of the mirrors.
+sort, you can open an issue or a pull request at any of the mirrors.

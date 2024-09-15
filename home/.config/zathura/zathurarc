@@ -1,7 +1,0 @@
-set window-title-home-tilde true
-set statusbar-basename true
-set selection-clipboard clipboard
-set recolor false
-set vertical-center true
-
-include catppuccin

@@ -1,1 +1,0 @@
-env LANG=en_SE.UTF-8 /usr/lib/thunderbird/thunderbird "$@"

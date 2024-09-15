@@ -1,8 +1,0 @@
-[Match]
-Name=w*
-
-[Network]
-DHCP=yes
-
-[DHCP]
-UseDomains=true

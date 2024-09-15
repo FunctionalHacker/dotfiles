@@ -68,7 +68,10 @@
   };
 
   # Install firefox.
-  programs.firefox.enable = true;
+  programs.firefox = {
+     enable = true;
+     nativeMessagingHosts.packages = with pkgs; [ browserpass ];
+  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -81,5 +84,6 @@
      wl-clipboard
      git
      pass
+     gnumake
   ];
 }

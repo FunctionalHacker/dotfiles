@@ -9,8 +9,8 @@
       nixosConfigurations.Mirkwood = nixpkgs.lib.nixosSystem {
          system = "x86_64-linux";
          modules = [
+            ./common.nix
             ./hosts/Mirkwood/configuration.nix
-            ./gpg.nix
          ];
       };
    };

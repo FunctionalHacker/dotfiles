@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
    imports = [
@@ -51,6 +51,8 @@
          pulse.enable = true;
       };
    };
+
+  networking.networkmanager.enable = true;
 
    hardware.pulseaudio.enable = false;
 

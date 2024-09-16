@@ -2,8 +2,9 @@
 
 {
    imports = [
-      ./users.nix
       ./gpg.nix
+      ./users/functionalhacker/configuration.nix
+      ./users/som/configuration.nix
    ];
 
    system.stateVersion = "24.05";

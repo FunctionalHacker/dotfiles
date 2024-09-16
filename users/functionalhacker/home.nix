@@ -16,8 +16,10 @@
 
     packages = with pkgs; [
       cargo
+      fd
       fzf
       gcc
+      neovide
       nerdfonts
       nodejs
       pass

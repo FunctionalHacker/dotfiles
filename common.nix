@@ -59,9 +59,12 @@
 
   security.rtkit.enable = true;
 
-  programs.firefox = {
-    enable = true;
-    nativeMessagingHosts.packages = [ pkgs.browserpass ];
+  programs = {
+    firefox = {
+      enable = true;
+      nativeMessagingHosts.packages = [ pkgs.browserpass ];
+    };
+    zsh = { enable = true; };
   };
 
   environment.systemPackages = with pkgs; [

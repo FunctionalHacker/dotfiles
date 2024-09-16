@@ -1,0 +1,14 @@
+{
+  "name": "functionalhacker-snippets",
+  "engines": {
+    "vscode": "^1.11.0"
+  },
+  "contributes": {
+    "snippets": [
+      {
+        "language": "java",
+        "path": "./java.json"
+      }
+    ]
+  }
+}

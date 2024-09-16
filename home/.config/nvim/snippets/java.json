@@ -1,0 +1,14 @@
+{
+  "queryListFromModel": {
+    "scope": "java",
+    "description": "Create a method to get a List from the database (Rossum JpaBaseDAO)",
+    "prefix": "queryListFromModel",
+    "body": [
+      "public List<$1> $2($3) {",
+      "    return queryFromModelObject()",
+      "        .where((cb, root) -> $0)",
+      "        .results();",
+      "}"
+    ]
+  }
+}

@@ -2,8 +2,8 @@
 
 {
   imports = [
-     ./hardware-configuration.nix
-     ../../wifi.nix
+    ./hardware-configuration.nix
+    ../../wifi.nix
   ];
 
   networking.hostName = "Mirkwood";

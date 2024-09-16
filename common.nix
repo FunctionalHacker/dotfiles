@@ -64,14 +64,12 @@
    };
 
    environment.systemPackages = with pkgs; [
+      git
+      gnumake
+      home-manager
       neovim
       telegram-desktop
-      zsh
-      neofetch
       usbutils
       wl-clipboard
-      git
-      pass
-      gnumake
    ];
 }

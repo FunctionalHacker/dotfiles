@@ -11,24 +11,21 @@
   };
 
   outputs = { nixpkgs, home-manager, ... }:
-    let
-      system = "x86_64-linux";
-      pkgs = import nixpkgs { inherit system; };
-    in
     {
       nixosConfigurations.Mirkwood = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ./common.nix
           ./hosts/Mirkwood/configuration.nix
-        ];
-      };
+          ./nixos_common.nix
 
-      homeConfigurations = {
-        functionalhacker = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          modules = [ ./users/functionalhacker/home.nix ];
-        };
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.functionalhacker =
+              import ./users/functionalhacker/home.nix;
+          }
+        ];
       };
     };
 }

@@ -64,16 +64,17 @@
       enable = true;
       nativeMessagingHosts.packages = [ pkgs.browserpass ];
     };
-    zsh = { enable = true; };
+    zsh.enable = true;
   };
 
-  environment.systemPackages = with pkgs; [
-    git
-    gnumake
-    home-manager
-    neovim
-    telegram-desktop
-    usbutils
-    wl-clipboard
-  ];
+  environment = {
+    shells = [ pkgs.zsh ];
+    systemPackages = with pkgs;
+      [
+        neovim
+        telegram-desktop
+        usbutils
+        wl-clipboard
+      ];
+  };
 }

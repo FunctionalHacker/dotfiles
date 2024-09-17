@@ -20,39 +20,6 @@
       yarn
     ];
 
-    sessionVariables = {
-
-      # key timeout
-      KEYTIMEOUT = 1;
-
-      # prompt customization
-      PURE_PROMPT_SYMBOL = "λ";
-      PURE_PROMPT_VICMD_SYMBOL = "y";
-
-      # history settings
-      HISTFILE = "~/.zsh_history";
-      HISTSIZE = 10000;
-      SAVEHIST = 10000;
-
-      # fzf settings
-      FD_COMMAND = "fd -HLt";
-      FZF_DEFAULT_COMMAND = "fd -HLt f";
-      FZF_ALT_C_COMMAND = "fd -HLt d";
-      FZF_ALT_C_OPTS = "--preview 'eza -l {}'";
-      FZF_DEFAULT_OPTS = "-m --ansi --bind ctrl-a:toggle-all,ctrl-d:deselect-all,ctrl-t:toggle-all";
-      FZF_COMPLETION_TRIGGER = "**";
-      FZF_CTRL_T_COMMAND = "fd -HLt f --strip-cwd-prefix";
-      FZF_CTRL_T_OPTS = "--preview 'bat --color=always --style=numbers --line-range=:500 {}'";
-
-      # nvim ftw!
-      PAGER = "nvim -R +\"lua require 'pager'\"";
-      GIT_PAGER = "nvim -c 'set ft=git' -R +\"lua require 'pager'\"";
-      MANPAGER = "nvim +\"lua require 'pager'\" +Man!";
-      SYSTEMD_PAGER = "less";
-
-      MARKON_NIXOS = "cool";
-    };
-
     # Just symlink neovim configuration for now.
     # Declarative configuration coming soon™
     file.".config/nvim".source =
@@ -84,6 +51,49 @@
           { name = "RobSis/zsh-completion-generator"; }
         ];
       };
+      envExtra = ''
+        # key timeout
+        export KEYTIMEOUT=1
+
+        # prompt customization
+        export PURE_PROMPT_SYMBOL="λ"
+        export PURE_PROMPT_VICMD_SYMBOL="y"
+
+        # history settings
+        export HISTFILE=~/.zsh_history
+        export HISTSIZE=10000
+        export SAVEHIST=10000
+        # Additional settings (source https://jdhao.github.io/2021/03/24/zsh_history_setup)
+        setopt HIST_IGNORE_ALL_DUPS
+        setopt HIST_SAVE_NO_DUPS
+        setopt HIST_REDUCE_BLANKS
+        setopt INC_APPEND_HISTORY_TIME
+        setopt EXTENDED_HISTORY
+
+        # Enable completions for aliases
+        setopt no_complete_aliases
+
+        # fzf settings
+        export FD_COMMAND='fd -HLt'
+        export FZF_DEFAULT_COMMAND="$FD_COMMAND f"
+        export FZF_ALT_C_COMMAND="$FD_COMMAND d"
+        export FZF_ALT_C_OPTS="--preview 'eza -l {}'"
+        export FZF_DEFAULT_OPTS='-m --ansi --bind ctrl-a:toggle-all,ctrl-d:deselect-all,ctrl-t:toggle-all'
+        export FZF_COMPLETION_TRIGGER='**'
+        export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND --strip-cwd-prefix"
+        export FZF_CTRL_T_OPTS='--preview "bat --color=always --style=numbers --line-range=:500 {}"'
+
+        # dotfile repository location
+        export DOTREPO="$HOME/git/dotfiles"
+
+        # nvim ftw!
+        export EDITOR=nvim
+        export PAGER="$EDITOR -R +\"lua require 'pager'\""
+        export GIT_PAGER="$EDITOR -c 'set ft=git' -R +\"lua require 'pager'\""
+        export MANPAGER="$EDITOR +\"lua require 'pager'\" +Man!"
+        export SYSTEMD_EDITOR=$EDITOR
+        export SYSTEMD_PAGER=less
+      '';
     };
 
     fzf = {

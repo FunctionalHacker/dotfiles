@@ -51,7 +51,7 @@
           { name = "RobSis/zsh-completion-generator"; }
         ];
       };
-      envExtra = ''
+      initExtra = ''
         # key timeout
         export KEYTIMEOUT=1
 
@@ -83,9 +83,6 @@
         export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND --strip-cwd-prefix"
         export FZF_CTRL_T_OPTS='--preview "bat --color=always --style=numbers --line-range=:500 {}"'
 
-        # dotfile repository location
-        export DOTREPO="$HOME/git/dotfiles"
-
         # nvim ftw!
         export EDITOR=nvim
         export PAGER="$EDITOR -R +\"lua require 'pager'\""
@@ -93,6 +90,11 @@
         export MANPAGER="$EDITOR +\"lua require 'pager'\" +Man!"
         export SYSTEMD_EDITOR=$EDITOR
         export SYSTEMD_PAGER=less
+
+
+        if [ "''${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
+          export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+        fi
       '';
     };
 

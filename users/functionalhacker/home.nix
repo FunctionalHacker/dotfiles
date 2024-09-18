@@ -12,11 +12,14 @@
       fd
       gcc
       neovide
+      neovim
       nerdfonts
       nodejs
       pass
       ripgrep
       tree-sitter
+      usbutils
+      wl-clipboard
       yarn
     ];
 

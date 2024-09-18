@@ -75,10 +75,7 @@
     shells = [ pkgs.zsh ];
     systemPackages = with pkgs;
       [
-        neovim
         telegram-desktop
-        usbutils
-        wl-clipboard
       ];
   };
 }

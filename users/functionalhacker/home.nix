@@ -97,6 +97,17 @@
         if [ "''${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
           export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
         fi
+
+        # use <ESC> e to open command in editor
+        autoload edit-command-line; zle -N edit-command-line
+        bindkey -M vicmd e edit-command-line
+
+        # bind delete in normal mode
+        bindkey -M vicmd '^[[3~' delete-char
+
+        # Rebind fzf to ctrl+f
+        bindkey '^F' fzf-file-widget
+        bindkey '^T' transpose-chars
       '';
     };
 

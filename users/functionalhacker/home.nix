@@ -187,7 +187,6 @@
 
     zellij = {
       enable = true;
-      enableZshIntegration = true;
       settings = {
         theme = "kanagawa";
         session_serialization = false;

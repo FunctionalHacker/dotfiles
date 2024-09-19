@@ -40,8 +40,8 @@ return {
 
       -- Disable tsserver diagnostics diagnostics
       -- that come from ESLint
-      ["tsserver"] = function()
-        require("lspconfig").tsserver.setup(vim.tbl_extend("force", commonLspConfigArgs, {
+      ["ts_ls"] = function()
+        require("lspconfig").ts_ls.setup(vim.tbl_extend("force", commonLspConfigArgs, {
           settings = {
             diagnostics = {
               ignoredCodes = {

@@ -9,13 +9,16 @@
     packages = with pkgs; [
       bat
       cargo
+      eza
       fd
       gcc
+      grc
       neovide
       nerdfonts
       nodejs
       pass
       ripgrep
+      trash-cli
       tree-sitter
       usbutils
       wl-clipboard
@@ -47,7 +50,6 @@
             tags = [ "use:pure.zsh" "as:theme" ];
           }
           { name = "Aloxaf/fzf-tab"; }
-          { name = "zsh-users/zsh-history-substring-search"; }
           { name = "wfxr/forgit"; }
           { name = "zsh-users/zsh-completions"; }
           { name = "RobSis/zsh-completion-generator"; }
@@ -61,20 +63,6 @@
         export PURE_PROMPT_SYMBOL="λ"
         export PURE_PROMPT_VICMD_SYMBOL="y"
 
-        # history settings
-        export HISTFILE=~/.zsh_history
-        export HISTSIZE=10000
-        export SAVEHIST=10000
-        # Additional settings (source https://jdhao.github.io/2021/03/24/zsh_history_setup)
-        setopt HIST_IGNORE_ALL_DUPS
-        setopt HIST_SAVE_NO_DUPS
-        setopt HIST_REDUCE_BLANKS
-        setopt INC_APPEND_HISTORY_TIME
-        setopt EXTENDED_HISTORY
-
-        # Enable completions for aliases
-        setopt no_complete_aliases
-
         # fzf settings
         export FD_COMMAND='fd -HLt'
         export FZF_DEFAULT_COMMAND="$FD_COMMAND f"
@@ -84,9 +72,16 @@
         export FZF_COMPLETION_TRIGGER='**'
         export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND --strip-cwd-prefix"
         export FZF_CTRL_T_OPTS='--preview "bat --color=always --style=numbers --line-range=:500 {}"'
+        _fzf_compgen_path() {
+          resultcmd="$FZF_DEFAULT_COMMAND . $1"
+          eval "''${resultcmd}
+        }
+        _fzf_compgen_dir() {
+          resultcmd="$FZF_ALT_C_COMMAND . $1"
+          eval "''${resultcmd}
+        }
 
         # nvim ftw!
-        export EDITOR=nvim
         export PAGER="$EDITOR -R +\"lua require 'pager'\""
         export GIT_PAGER="$EDITOR -c 'set ft=git' -R +\"lua require 'pager'\""
         export MANPAGER="$EDITOR +\"lua require 'pager'\" +Man!"
@@ -108,7 +103,58 @@
         # Rebind fzf to ctrl+f
         bindkey '^F' fzf-file-widget
         bindkey '^T' transpose-chars
+
+        # Remove grc alias from forgit since it
+        # collides with the grc colorizer
+        unalias grc;
+
+        # Launch or attach zellij to existing session if logging in over ssh
+        if [[ -z "$ZELLIJ" && -n "$SSH_CONNECTION" ]]; then
+          exec zellij attach -c SSH
+        fi
       '';
+      shellAliases = {
+        # Navigation
+        ".." = "cd ..";
+        ls = "eza --icons --git";
+
+        # Editor
+        vi = "nvim";
+        vim = "nvim";
+        dv = "nvim +DiffviewOpen";
+
+        # systemd
+        sc = "systemctl";
+        scu = "systemctl --user";
+        jc = "journalctl";
+        jcu = "journalctl --user";
+
+        # Move to trash instead of remove
+        rm = "trash";
+
+        # git shorthands
+        gc = "git commit";
+        gac = "ga && gc";
+        gs = "git status";
+        gpull = "git pull";
+        gpush = "git push";
+
+        o = "xdg-open";
+      };
+
+      history = {
+        share = true;
+        extended = true;
+        ignoreAllDups = true;
+      };
+
+      historySubstringSearch.enable = true;
+
+      dirHashes = {
+        git = "$HOME/git";
+        dotfiles = "$HOME/git/dotfiles";
+        dl = "$HOME/Downloads";
+      };
     };
 
     fzf = {
@@ -135,6 +181,29 @@
           prompt = false;
           conflictstyle = "diff3";
           tool = "nvim";
+        };
+      };
+    };
+
+    zellij = {
+      enable = true;
+      enableZshIntegration = true;
+      settings = {
+        theme = "kanagawa";
+        session_serialization = false;
+        keybinds = {
+          unbind = "Ctrl g";
+          shared_except = {
+            _args = [ "locked" ];
+            "bind \"Ctrl l\"" = {
+              SwitchToMode = "Locked";
+            };
+          };
+          locked = {
+            "bind \"Ctrl l\"" = {
+              SwitchToMode = "Normal";
+            };
+          };
         };
       };
     };

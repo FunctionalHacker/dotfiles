@@ -2,7 +2,7 @@ local g = vim.g
 local o = vim.o
 
 -- Change scale factor with C+ and C-
-g.neovide_scale_factor = 1.0
+g.neovide_scale_factor = {{@@ scale_factor|default(1.0) @@}}
 local change_scale_factor = function(delta)
   g.neovide_scale_factor = g.neovide_scale_factor * delta
 end

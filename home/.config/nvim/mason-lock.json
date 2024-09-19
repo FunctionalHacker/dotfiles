@@ -1,4 +1,21 @@
 {
-  "nil": "2024-08-06",
-  "nixpkgs-fmt": "1.3.0"
+  "bash-language-server": "5.4.0",
+  "css-lsp": "4.10.0",
+  "docker-compose-language-service": "0.2.0",
+  "dockerfile-language-server": "0.13.0",
+  "eslint-lsp": "4.10.0",
+  "google-java-format": "v1.23.0",
+  "html-lsp": "4.10.0",
+  "java-debug-adapter": "0.58.0",
+  "jdtls": "v1.38.0",
+  "json-lsp": "4.10.0",
+  "lemminx": "0.27.1",
+  "lua-language-server": "3.10.6",
+  "prettier": "3.3.3",
+  "prettierd": "0.25.3",
+  "stylua": "v0.20.0",
+  "taplo": "0.9.3",
+  "tree-sitter-cli": "v0.23.0",
+  "typescript-language-server": "4.3.3",
+  "yaml-language-server": "1.15.0"
 }

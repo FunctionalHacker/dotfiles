@@ -83,10 +83,5 @@ with lib.hm.gvariant;
       enabled = true;
     };
 
-    "org/gnome/tweaks" = {
-      show-extensions-notice = false;
-    };
-
   };
-
 }

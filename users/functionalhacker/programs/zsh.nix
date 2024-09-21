@@ -95,6 +95,9 @@
         gpush = "git push";
 
         o = "xdg-open";
+
+        # Fix aliases with sudo
+        sudo = "sudo ";
       };
 
       history = {

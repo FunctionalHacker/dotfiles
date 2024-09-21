@@ -7,6 +7,7 @@
     ./firefox.nix
     ./fzf.nix
     ./git.nix
+    ./gnome.nix
     ./neovim.nix
     ./pass.nix
     ./ripgrep.nix

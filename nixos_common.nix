@@ -9,7 +9,6 @@
 
   system.stateVersion = "24.05";
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
   time.timeZone = "Europe/Helsinki";
 
   i18n = {
@@ -85,8 +84,39 @@
   programs = {
     firefox = {
       enable = true;
-      nativeMessagingHosts.packages = [ pkgs.browserpass ];
+      languagePacks = [
+        "en-US"
+        "fi"
+        "th"
+      ];
+      policies = {
+        DisablePocket = true;
+        OverrideFirstRunPage = "";
+        OverridePostUpdatePage = "";
+        DisplayBookmarksToolbar = "never";
+        EnableTrackingProtection = {
+          Value = true;
+          Locked = true;
+          Cryptomining = true;
+          Fingerprinting = true;
+        };
+        ExtensionSettings = with builtins;
+          let
+            extension = shortId: uuid: {
+              name = uuid;
+              value = {
+                install_url = "https://addons.mozilla.org/en-US/firefox/downloads/latest/${shortId}/latest.xpi";
+                installation_mode = "normal_installed";
+              };
+            };
+          in
+          listToAttrs [
+            (extension "ublock-origin" "uBlock0@raymondhill.net")
+            (extension "decentraleyes" "jid1-BoFifL9Vbdl2zQ@jetpack")
+          ];
+      };
     };
+
     zsh.enable = true;
   };
 

@@ -1,6 +1,7 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
+  imports = [ inputs.nur.hmModules.nur ];
   home = {
     username = "functionalhacker";
     homeDirectory = "/home/functionalhacker";
@@ -16,19 +17,24 @@
       neovide
       nerdfonts
       nodejs
-      pass
       ripgrep
       trash-cli
       tree-sitter
       usbutils
       wl-clipboard
       yarn
+      zip
     ];
 
-    # Just symlink neovim configuration for now.
-    # Declarative configuration coming soon™
-    file.".config/nvim".source =
-      config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/git/dotfiles/home/.config/nvim";
+    file = {
+      # Just symlink neovim configuration for now.
+      # Declarative configuration coming soon™
+      ".config/nvim".source =
+        config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/git/dotfiles/home/.config/nvim";
+
+      # Get firefox-gnome-theme files from flake inputs
+      ".mozilla/firefox/functionalhacker/chrome/firefox-gnome-theme".source = inputs.firefox-gnome-theme;
+    };
   };
 
   programs = {
@@ -56,62 +62,61 @@
         ];
       };
       initExtra = ''
-        # key timeout
-        export KEYTIMEOUT=1
+                # key timeout
+                export KEYTIMEOUT=1
 
-        # prompt customization
-        export PURE_PROMPT_SYMBOL="λ"
-        export PURE_PROMPT_VICMD_SYMBOL="y"
+                # prompt customization
+                export PURE_PROMPT_SYMBOL="λ"
+                export PURE_PROMPT_VICMD_SYMBOL="y"
 
-        # fzf settings
-        export FD_COMMAND='fd -HLt'
-        export FZF_DEFAULT_COMMAND="$FD_COMMAND f"
-        export FZF_ALT_C_COMMAND="$FD_COMMAND d"
-        export FZF_ALT_C_OPTS="--preview 'eza -l {}'"
-        export FZF_DEFAULT_OPTS='-m --ansi --bind ctrl-a:toggle-all,ctrl-d:deselect-all,ctrl-t:toggle-all'
-        export FZF_COMPLETION_TRIGGER='**'
-        export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND --strip-cwd-prefix"
-        export FZF_CTRL_T_OPTS='--preview "bat --color=always --style=numbers --line-range=:500 {}"'
-        _fzf_compgen_path() {
-          resultcmd="$FZF_DEFAULT_COMMAND . $1"
-          eval "''${resultcmd}
-        }
-        _fzf_compgen_dir() {
-          resultcmd="$FZF_ALT_C_COMMAND . $1"
-          eval "''${resultcmd}
-        }
-
+                # fzf settings
+                export FD_COMMAND='fd -HLt'
+                export FZF_DEFAULT_COMMAND="$FD_COMMAND f"
+                export FZF_ALT_C_COMMAND="$FD_COMMAND d"
+                export FZF_ALT_C_OPTS="--preview 'eza -l {}'"
+                export FZF_DEFAULT_OPTS='-m --ansi --bind ctrl-a:toggle-all,ctrl-d:deselect-all,ctrl-t:toggle-all'
+                export FZF_COMPLETION_TRIGGER='**'
+                export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND --strip-cwd-prefix"
+                export FZF_CTRL_T_OPTS='--preview "bat --color=always --style=numbers --line-range=:500 {}"'
+                _fzf_compgen_path() {
+                  resultcmd="$FZF_DEFAULT_COMMAND . $1"
+                  eval "''${resultcmd}
+                }
+                _fzf_compgen_dir() {
+                  resultcmd="$FZF_ALT_C_COMMAND . $1"
+                  eval "''${resultcmd}
+                }
         # nvim ftw!
-        export PAGER="$EDITOR -R +\"lua require 'pager'\""
-        export GIT_PAGER="$EDITOR -c 'set ft=git' -R +\"lua require 'pager'\""
-        export MANPAGER="$EDITOR +\"lua require 'pager'\" +Man!"
-        export SYSTEMD_EDITOR=$EDITOR
-        export SYSTEMD_PAGER=less
+                export PAGER="$EDITOR -R +\"lua require 'pager'\""
+                export GIT_PAGER="$EDITOR -c 'set ft=git' -R +\"lua require 'pager'\""
+                export MANPAGER="$EDITOR +\"lua require 'pager'\" +Man!"
+                export SYSTEMD_EDITOR=$EDITOR
+                export SYSTEMD_PAGER=less
 
 
-        if [ "''${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
-          export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
-        fi
+                if [ "''${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
+                  export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+                fi
 
-        # use <ESC> e to open command in editor
-        autoload edit-command-line; zle -N edit-command-line
-        bindkey -M vicmd e edit-command-line
+                # use <ESC> e to open command in editor
+                autoload edit-command-line; zle -N edit-command-line
+                bindkey -M vicmd e edit-command-line
 
-        # bind delete in normal mode
-        bindkey -M vicmd '^[[3~' delete-char
+                # bind delete in normal mode
+                bindkey -M vicmd '^[[3~' delete-char
 
-        # Rebind fzf to ctrl+f
-        bindkey '^F' fzf-file-widget
-        bindkey '^T' transpose-chars
+                # Rebind fzf to ctrl+f
+                bindkey '^F' fzf-file-widget
+                bindkey '^T' transpose-chars
 
-        # Remove grc alias from forgit since it
-        # collides with the grc colorizer
-        unalias grc;
+                # Remove grc alias from forgit since it
+                # collides with the grc colorizer
+                unalias grc;
 
-        # Launch or attach zellij to existing session if logging in over ssh
-        if [[ -z "$ZELLIJ" && -n "$SSH_CONNECTION" ]]; then
-          exec zellij attach -c SSH
-        fi
+                # Launch or attach zellij to existing session if logging in over ssh
+                if [[ -z "$ZELLIJ" && -n "$SSH_CONNECTION" ]]; then
+                  exec zellij attach -c SSH
+                fi
       '';
       shellAliases = {
         # Navigation
@@ -205,6 +210,73 @@
           };
         };
       };
+    };
+
+    firefox = {
+      enable = true;
+
+      profiles.functionalhacker = {
+        name = "FunctionalHacker";
+        userChrome = ''
+          @import "firefox-gnome-theme/userChrome.css";
+        '';
+        userContent = ''
+          @import "firefox-gnome-theme/userContent.css";
+        '';
+        settings = {
+          ## Firefox gnome theme ## - https://github.com/rafaelmardojai/firefox-gnome-theme/blob/1c32013cdbe17406de496cdf5f6899b84c4bbfed/configuration/user.js
+          # (copied into here because home-manager already writes to user.js)
+          "toolkit.legacyUserProfileCustomizations.stylesheets" = true; # Enable customChrome.cs
+          # Set UI density to normal
+          "browser.uidensity" = 0;
+
+          # Enable SVG context-propertes
+          "svg.context-properties.content.enabled" = true;
+
+          # Disable private window dark theme
+          "browser.theme.dark-private-windows" = false;
+
+          # Enable rounded bottom window corners
+          "widget.gtk.rounded-bottom-corners.enabled" = true;
+
+          # Firefox gnome theme optional settings
+          "gnomeTheme.hideSingleTab" = true;
+          "gnomeTheme.hideWebrtcIndicator" = true;
+
+          # Auto enable installed addons
+          "extensions.autoDisableScopes" = 0;
+        };
+        search = {
+          default = "Korhonen Search";
+          engines = {
+            "Korhonen Search" = {
+              urls = [
+                {
+                  template = "https://search.korhonen.cc/search?q={searchTerms}";
+                  iconUpdateURL = "https://search.korhonen.cc/favicon.ico";
+                  updateInterval = 24 * 60 * 60 * 1000; # Once a day
+                }
+              ];
+            };
+          };
+        };
+
+        extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+          browserpass
+          darkreader
+        ];
+
+      };
+    };
+
+    password-store = {
+      enable = true;
+      package = pkgs.pass.withExtensions (exts: [ exts.pass-otp ]);
+    };
+
+    browserpass = {
+      enable = true;
+      browsers = [ "firefox" ];
     };
   };
 }

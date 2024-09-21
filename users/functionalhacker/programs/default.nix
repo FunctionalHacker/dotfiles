@@ -2,15 +2,15 @@
 
 {
   imports = [
-    ./programs/bat.nix
-    ./programs/default.nix
-    ./programs/eza.nix
-    ./programs/firefox.nix
-    ./programs/git.nix
-    ./programs/neovim.nix
-    ./programs/pass.nix
-    ./programs/ripgrep.nix
-    ./programs/zellij.nix
-    ./programs/zsh.nix
+    ./bat.nix
+    ./eza.nix
+    ./firefox.nix
+    ./fzf.nix
+    ./git.nix
+    ./neovim.nix
+    ./pass.nix
+    ./ripgrep.nix
+    ./zellij.nix
+    ./zsh.nix
   ];
 }

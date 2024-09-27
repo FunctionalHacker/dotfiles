@@ -94,6 +94,5 @@ with lib.hm.gvariant;
     "org/gnome/system/location" = {
       enabled = true;
     };
-
   };
 }

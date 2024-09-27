@@ -16,6 +16,13 @@ with lib.hm.gvariant;
         "gsconnect@andyholmes.github.io"
         "nightthemeswitcher@romainvigier.fr"
       ];
+
+      favorite-apps = [
+        "firefox.desktop"
+        "org.gnome.Nautilus.desktop"
+        "org.gnome.Console.desktop"
+        "org.telegram.desktop.desktop"
+      ];
     };
 
     "org/gnome/shell/extensions/nightthemeswitcher/time" = {

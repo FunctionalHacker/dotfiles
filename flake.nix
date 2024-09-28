@@ -17,26 +17,27 @@
   };
 
   outputs = { nixpkgs, home-manager, nur, ... } @inputs:
-    {
-      nixosConfigurations.Mirkwood = nixpkgs.lib.nixosSystem {
+    let
+      configureNixSystem = hostname: nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ./hosts/Mirkwood/configuration.nix
-          ./nixos_common.nix
-          { nixpkgs.overlays = [ nur.overlay ]; }
+          # Host specific configuration
+          ./hosts/${hostname}/configuration.nix
 
+          # Common settings for all hosts
+          ({ pkgs, ... }: import ./nixos_common.nix
+            { inherit inputs; inherit pkgs; })
+
+          # home-manager
           home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              extraSpecialArgs = { inherit inputs; };
-              backupFileExtension = "bak";
-              users.functionalhacker =
-                import ./users/functionalhacker/home.nix;
-            };
-          }
+          ({ ... }: import ./home-manager.nix { inherit inputs; })
         ];
+      };
+    in
+    {
+      nixosConfigurations = {
+        Mirkwood = configureNixSystem "Mirkwood";
+        Shire = configureNixSystem "Shire";
       };
     };
 }

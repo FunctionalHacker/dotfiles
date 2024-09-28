@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   imports = [
@@ -6,6 +6,8 @@
     ./users/functionalhacker/configuration.nix
     ./users/som/configuration.nix
   ];
+
+  nixpkgs.overlays = [ inputs.nur.overlay ];
 
   system.stateVersion = "24.05";
   nix.settings.experimental-features = [ "nix-command" "flakes" ];

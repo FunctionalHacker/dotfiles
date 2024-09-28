@@ -31,11 +31,11 @@
                 # fzf settings
                 _fzf_compgen_path() {
                   resultcmd="$FZF_DEFAULT_COMMAND . $1"
-                  eval "''${resultcmd}
+                  eval "''${resultcmd}"
                 }
                 _fzf_compgen_dir() {
                   resultcmd="$FZF_ALT_C_COMMAND . $1"
-                  eval "''${resultcmd}
+                  eval "''${resultcmd}"
                 }
         # nvim ftw!
                 export PAGER="$EDITOR -R +\"lua require 'pager'\""

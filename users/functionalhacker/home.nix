@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 {
   imports = [
@@ -13,8 +13,10 @@
     packages = with pkgs; [
       cargo
       fd
+      file
       gcc
       grc
+      imagemagick
       neovide
       nerdfonts
       nodejs

@@ -21,18 +21,19 @@
       configureNixSystem = hostname: nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          # Host specific configuration
-          ./hosts/${hostname}/configuration.nix
-
           # Common settings for all hosts
           ({ pkgs, ... }: import ./nixos_common.nix
             { inherit inputs; inherit pkgs; })
+
+          # Host specific configuration
+          ./hosts/${hostname}/configuration.nix
 
           # home-manager
           home-manager.nixosModules.home-manager
           ({ ... }: import ./home-manager.nix { inherit inputs; })
         ];
       };
+
     in
     {
       nixosConfigurations = {

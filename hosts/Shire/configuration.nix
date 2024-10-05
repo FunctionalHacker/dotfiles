@@ -1,4 +1,4 @@
-{ config, ... }:
+{ ... }:
 
 {
   imports = [
@@ -9,13 +9,13 @@
   networking.hostName = "Shire";
 
   boot = {
-    kernelParams = config.boot.kernelParams ++ [
+    kernelParams = [
       "intel_idle.max_cstate=1"
     ];
-    initrd.unl0kr.enable = true;
-
-    # Does not work with unl0kr now
-    # https://github.com/NixOS/nixpkgs/issues/291935
-    plymouth.enable = false;
+    initrd = {
+      # Couldn't get unl0kr working yet
+      # unl0kr.enable = true;
+      # availableKernelModules = [ "hid-multitouch" "i2c-hid" "i2c-hid-acpi" "hid_generic" ];
+    };
   };
 }

@@ -1,9 +1,7 @@
 { ... }:
 
 {
-  imports = [
-    ./programs/gnome.nix
-  ];
+  imports = [ ./programs/configuration.nix ];
 
   home = {
     username = "som";

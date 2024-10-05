@@ -6,6 +6,7 @@ with lib.hm.gvariant;
   home.packages = with pkgs.gnomeExtensions; [
     gsconnect
     night-theme-switcher
+    appindicator
   ];
 
   dconf.settings = {
@@ -15,6 +16,7 @@ with lib.hm.gvariant;
       enabled-extensions = [
         "gsconnect@andyholmes.github.io"
         "nightthemeswitcher@romainvigier.fr"
+        "appindicatorsupport@rgcjonas.gmail.com"
       ];
 
       favorite-apps = [

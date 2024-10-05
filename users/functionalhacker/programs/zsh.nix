@@ -62,7 +62,7 @@
 
                 # Remove grc alias from forgit since it
                 # collides with the grc colorizer
-                unalias grc;
+                #unalias grc;
 
                 # Launch or attach zellij to existing session if logging in over ssh
                 if [[ -z "$ZELLIJ" && -n "$SSH_CONNECTION" ]]; then

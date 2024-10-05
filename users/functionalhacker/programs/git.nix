@@ -22,5 +22,10 @@
         tool = "nvim";
       };
     };
+
+    aliases = {
+      upstream = "!git push -u origin HEAD";
+      recommit = "!git commit -eF $(git rev-parse --git-dir)/COMMIT_EDITMSG";
+    };
   };
 }

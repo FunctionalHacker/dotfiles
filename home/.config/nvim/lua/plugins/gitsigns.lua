@@ -7,15 +7,15 @@ return {
     local gs = require("gitsigns")
     gs.setup()
 
+    -- Keybinds
+    local opts
+
     -- Add groups for which-key
     require("which-key").add({
       { "<leader>g", group = "Git" },
       { "<leader>gr", group = "Reset" },
       { "<leader>ga", group = "Add" },
     })
-
-    -- Keybinds
-    local opts
 
     -- Hunk navigation
     k("n", "[h", gs.prev_hunk, { desc = "Previous hunk" })

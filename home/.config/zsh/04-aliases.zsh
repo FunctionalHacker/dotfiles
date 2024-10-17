@@ -203,7 +203,7 @@ update() {
 		{%@@ elif distro_id == "termux" @@%}
 		pkg update && pkg upgrade --yes
 		{%@@ endif @@%}
-		{%@@ if distro_id == "termux" or distro_id == "ubuntu" or distro_id == "debian" @@%}
+		{%@@ if distro_id == "termux" @@%}
     pip-update-installed
     cargo-update-installed
 		{%@@ endif @@%}

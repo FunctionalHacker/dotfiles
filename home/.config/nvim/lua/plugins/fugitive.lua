@@ -32,6 +32,6 @@ return {
       vim.cmd("Git pull")
     end, { desc = "Pull" })
 
-    k({ "n", "x" }, "<leader>gb", "<cmd>'<,'>GBrowse<cr><esc>", { desc = "Browse" })
+    k({ "n", "x" }, "<leader>gb", "<cmd>'<,'>GBrowse<cr><esc>", { desc = "Open in browser" })
   end,
 }

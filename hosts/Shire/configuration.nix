@@ -1,4 +1,4 @@
-{ ... }:
+{  lib, ... }:
 
 {
   imports = [
@@ -12,10 +12,16 @@
     kernelParams = [
       "intel_idle.max_cstate=1"
     ];
+    plymouth.enable = lib.mkForce false;
     initrd = {
-      # Couldn't get unl0kr working yet
-      # unl0kr.enable = true;
-      # availableKernelModules = [ "hid-multitouch" "i2c-hid" "i2c-hid-acpi" "hid_generic" ];
+      unl0kr.enable = true;
+      availableKernelModules = [
+        "hid-multitouch"
+        "i2c-hid"
+        "i2c-hid-acpi"
+        "hid_generic"
+        "evdev"
+      ];
     };
   };
 }

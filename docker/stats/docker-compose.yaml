@@ -1,0 +1,30 @@
+services:
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    volumes:
+      - grafana:/var/lib/grafana
+    networks:
+      - stats
+      - proxy
+    user: 1000:984
+    env_file:
+      - .env
+    environment:
+      - GF_AUTH_GENERIC_OAUTH_CLIENT_ID
+      - GF_AUTH_GENERIC_OAUTH_CLIENT_SECRET
+      - GF_AUTH_GENERIC_OAUTH_ENABLED=true
+      - GF_AUTH_GENERIC_OAUTH_NAME=authentik
+      - GF_AUTH_GENERIC_OAUTH_SCOPES=openid profile email
+      - GF_AUTH_GENERIC_OAUTH_AUTH_URL=https://sso.korhonen.cc/application/o/authorize/
+      - GF_AUTH_GENERIC_OAUTH_TOKEN_URL=https://sso.korhonen.cc/application/o/token/
+      - GF_AUTH_GENERIC_OAUTH_API_URL=https://sso.korhonen.cc/application/o/userinfo/
+      - GF_AUTH_SIGNOUT_REDIRECT_URL=https://sso.korhonen.cc/application/o/grafana/end-session/
+      - GF_AUTH_OAUTH_AUTO_LOGIN=true
+      - GF_SERVER_ROOT_URL=https://grafana.korhonen.cc
+      - GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_PATH=contains(groups[*], 'Administrators') && 'Admin' || 'Viewer'
+networks:
+  stats:
+    external: false
+  proxy:
+    external: true

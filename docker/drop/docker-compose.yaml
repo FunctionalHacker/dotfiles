@@ -1,0 +1,13 @@
+services:
+  drop:
+    image: lscr.io/linuxserver/pairdrop
+    container_name: drop
+    restart: unless-stopped
+    networks:
+      - proxy
+    environment:
+      - TZ=Europe/Helsinki
+      - IPV6_LOCALIZE=4
+networks:
+  proxy:
+    external: true

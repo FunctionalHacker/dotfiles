@@ -1,0 +1,21 @@
+services:
+  umami:
+    image: ghcr.io/umami-software/umami:postgresql-latest
+    container_name: umami
+    restart: unless-stopped
+    networks:
+      - postgres
+      - proxy
+    env_file: .env
+    environment:
+      DATABASE_URL: postgresql://umami:${POSTGRES_PASS}@postgres:5432/umami
+      HASH_SALT: ${HASH_SALT}
+    logging:
+      options:
+        max-size: 10m
+        max-file: "10"
+networks:
+  postgres:
+    external: true
+  proxy:
+    external: true

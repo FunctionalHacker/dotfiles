@@ -1,0 +1,25 @@
+volumes:
+  config: {}
+services:
+  freshrss:
+    image: linuxserver/freshrss
+    container_name: freshrss
+    restart: unless-stopped
+    networks:
+      - freshrss
+      - postgres
+      - proxy
+    environment:
+      - PUID=1000
+      - PGID=985
+      - TZ=Europe/Helsinki
+    volumes:
+      - config:/config
+      - /etc/localtime:/etc/localtime:ro
+networks:
+  freshrss:
+    external: false
+  postgres:
+    external: true
+  proxy:
+    external: true

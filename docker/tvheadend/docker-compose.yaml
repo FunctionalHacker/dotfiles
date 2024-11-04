@@ -1,0 +1,27 @@
+volumes:
+  config: {}
+  picons: {}
+services:
+  tvheadend:
+    image: linuxserver/tvheadend
+    container_name: tvheadend
+    environment:
+      - TZ=Europe/Helsinki
+      - PUID=1000
+      - PGID=985
+    volumes:
+      - config:/config
+      - picons:/picons
+      - /mnt/Storage/Media/PVR:/recordings
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - 9981:9981
+      - 9982:9982
+    devices:
+      - /dev/dvb:/dev/dvb
+    restart: unless-stopped
+    networks:
+      - proxy
+networks:
+  proxy:
+    external: true

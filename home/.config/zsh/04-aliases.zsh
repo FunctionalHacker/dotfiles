@@ -232,13 +232,13 @@ update() {
 
 	local docker-update() {
 		prevpwddocker=$PWD
-		for dir in $HOME/git/dotfiles/docker/*; do
+		for dir in $HOME/git/dotfiles/docker/*/; do
 			cd $dir
-			if [[ -f "$dir/DISABLED" ]]; then
+			if [[ -f ./DISABLED ]]; then
 				echo "$(basename $dir) stack is disabled, skipping..."
 			else
-				dct -f $dir/docker-compose.toml pull
-				dct -f $dir/docker-compose.toml up -d
+        docker compose pull
+        docker compose up -d
 			fi
 			cd ..
 		done
@@ -351,23 +351,23 @@ btw, () {
 }
 
 # docker-compose with TOML
-dct() {
-	local file_path=('./docker-compose.toml')
-
-	zmodload zsh/zutil
-	zparseopts -D -K -- \
-		f:=file_path ||
-		return 1
-
-	file_path=${file_path[-1]}
-
-	if [[ ! -a "$file_path" ]]; then
-		echo "File $file_path does not exist!"
-		return 1
-	fi
-
-	yj -ty < $file_path | docker compose -f - $@
-}
+# dct() {
+# 	local file_path=('./docker-compose.toml')
+#
+# 	zmodload zsh/zutil
+# 	zparseopts -D -K -- \
+# 		f:=file_path ||
+# 		return 1
+#
+# 	file_path=${file_path[-1]}
+#
+# 	if [[ ! -a "$file_path" ]]; then
+# 		echo "File $file_path does not exist!"
+# 		return 1
+# 	fi
+#
+# 	yj -ty < $file_path | docker compose -f /dev/stdin --env-file ./.env $@
+# }
 
 alias dslr-webcam='pkill -f gphoto2; gphoto2 --stdout --capture-movie | ffmpeg -i - -vcodec rawvideo -pix_fmt yuv420p -threads 0 -f v4l2 /dev/video0'
 

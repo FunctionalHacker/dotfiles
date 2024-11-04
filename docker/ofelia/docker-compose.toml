@@ -1,9 +1,0 @@
-[services.ofelia]
-image = "mcuadros/ofelia"
-container_name = "ofelia"
-restart = "unless-stopped"
-volumes = [
-  "/etc/localtime:/etc/localtime:ro",
-  "/var/run/docker.sock:/var/run/docker.sock:ro",
-]
-command = "daemon --docker"

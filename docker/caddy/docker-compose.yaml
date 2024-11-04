@@ -1,0 +1,35 @@
+volumes:
+  data: {}
+  config: {}
+  wkd: {}
+  korhonen_cc: {}
+  nextcloud_config:
+    external: true
+services:
+  caddy:
+    image: git.korhonen.cc/functionalhacker/caddy
+    container_name: caddy
+    restart: unless-stopped
+    ports:
+      - 80:80
+      - 443:443/tcp
+      - 443:443/udp
+    networks:
+      - proxy
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - data:/data
+      - config:/config
+      - wkd:/var/www/wkd
+      - korhonen_cc:/var/www/korhonen.cc
+      - nextcloud_config:/var/www/nextcloud
+      - /var/www/index.korhonen.cc:/var/www/index.korhonen.cc
+    environment:
+      - CLOUDFLARE_EMAIL
+      - CLOUDFLARE_API_TOKEN
+      - ACME_AGREE=true
+    cap_add:
+      - NET_ADMIN
+networks:
+  proxy:
+    external: true

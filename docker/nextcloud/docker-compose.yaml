@@ -1,0 +1,84 @@
+volumes:
+  nextcloud_config:
+    external: true
+  nextcloud_data:
+    external: true
+services:
+  nextcloud:
+    image: nextcloud:fpm-alpine
+    container_name: nextcloud
+    restart: unless-stopped
+    networks:
+      - nextcloud
+      - postgres
+      - proxy
+    volumes:
+      - nextcloud_config:/var/www/html
+      - nextcloud_data:/var/www/html/data
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_HOST_PASSWORD=123
+      - TRUSTED_PROXIES=caddy
+      - NEXTCLOUD_TRUSTED_DOMAINS=cloud.korhonen.cc
+      - OVERWRITEHOST=cloud.korhonen.cc
+      - OVERWRITEPROTOCOL=https
+    depends_on:
+      - redis
+    labels:
+      ofelia.enabled: true
+      ofelia.job-exec.nextcloud.schedule: 0 */5 * * * *
+      ofelia.job-exec.nextcloud.command: php /var/www/html/cron.php
+      ofelia.job-exec.nextcloud.user: www-data
+      ofelia.smtp-host: ${SMTP_HOST}
+      ofelia.smtp-port: ${SMTP_PORT}
+      ofelia.smtp-user: ${SMTP_USER}
+      ofelia.smtp-password: ${SMTP_PASSWORD}
+      ofelia.email-to: ${EMAIL_TO}
+      ofelia.email-from: ${EMAIL_FROM}
+      ofelia.mail-only-on-error: true
+  redis:
+    image: redis:alpine
+    container_name: redis-nextcloud
+    networks:
+      - nextcloud
+    restart: unless-stopped
+    command: redis-server --requirepass 123
+  coturn:
+    image: instrumentisto/coturn
+    container_name: coturn
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - 3478:3478/tcp
+      - 3478:3478/udp
+      - 49160-49200:49160-49200/udp
+    networks:
+      - nextcloud
+    command:
+      - -n
+      - --log-file=stdout
+      - --min-port=49160
+      - --max-port=49200
+      - --realm=cloud.korhonen.cc
+      - --use-auth-secret
+      - --static-auth-secret=${STATIC_AUTH_SECRET}
+  collabora:
+    image: collabora/code
+    container_name: collabora
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      - username=${COLLABORA_USERNAME}
+      - password=${COLLABORA_PASSWORD}
+      - domain=cloud.korhonen.cc
+      - extra_params=--o:ssl.enable=false --o:ssl.termination=true
+    networks:
+      - proxy
+networks:
+  nextcloud:
+    external: false
+  postgres:
+    external: true
+  proxy:
+    external: true

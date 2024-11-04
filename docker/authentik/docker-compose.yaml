@@ -65,7 +65,7 @@ services:
       - .env
     environment:
       GEOIPUPDATE_EDITION_IDS: GeoLite2-City
-      GEOIPUPDATE_FREQUENCY: "8"
+      GEOIPUPDATE_FREQUENCY: '8'
   whoami-test:
     image: traefik/whoami
     container_name: whoami-test

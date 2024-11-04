@@ -14,7 +14,7 @@ services:
       - postgres
       - proxy
     ports:
-      - "2882:22"
+      - '2882:22'
     volumes:
       - data:/data
       - /etc/localtime:/etc/localtime:ro

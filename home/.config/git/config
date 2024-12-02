@@ -42,6 +42,7 @@ pull-merge = pull --no-rebase --no-ff --no-edit
 log-merge = log -i --grep=merge --pretty=oneline
 log-fp = log --first-parent --pretty=oneline
 ll = log --pretty=oneline
+dno = !git --no-pager diff --name-only
 
 [color]
 pager = no

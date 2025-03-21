@@ -19,12 +19,15 @@ return {
     "mfussenegger/nvim-jdtls",
     -- Add support for LSP file operations
     { "antosha417/nvim-lsp-file-operations", opts = {} },
+    -- Automatically fetch schemas from JSON schema store
+    "b0o/schemastore.nvim",
   },
   config = function()
     require("mason").setup()
 
     local mlspc = require("mason-lspconfig")
     local lsp_utils = require("lsp_utils")
+    local lspconfig = require("lspconfig")
 
     local commonLspConfigArgs = {
       on_attach = lsp_utils.map_keys,
@@ -35,13 +38,13 @@ return {
     mlspc.setup_handlers({
       -- Default handler
       function(server_name)
-        require("lspconfig")[server_name].setup(commonLspConfigArgs)
+        lspconfig[server_name].setup(commonLspConfigArgs)
       end,
 
       -- Disable tsserver diagnostics diagnostics
       -- that come from ESLint
       ["ts_ls"] = function()
-        require("lspconfig").ts_ls.setup(vim.tbl_extend("force", commonLspConfigArgs, {
+        lspconfig.ts_ls.setup(vim.tbl_extend("force", commonLspConfigArgs, {
           settings = {
             diagnostics = {
               ignoredCodes = {
@@ -55,6 +58,17 @@ return {
 
       -- Don't set up jdtls, it is set up by nvim-jdtls
       ["jdtls"] = function() end,
+
+      ["jsonls"] = function()
+        lspconfig.jsonls.setup(vim.tbl_extend("force", commonLspConfigArgs, {
+          settings = {
+            json = {
+              schemas = require("schemastore").json.schemas(),
+              validate = { enable = true },
+            },
+          },
+        }))
+      end,
     })
   end,
 }

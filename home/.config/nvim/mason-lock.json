@@ -1,12 +1,15 @@
 {
   "bash-language-server": "5.4.3",
+  "bibtex-tidy": "1.14.0",
   "css-lsp": "4.10.0",
   "docker-compose-language-service": "0.3.0",
   "dockerfile-language-server": "0.13.0",
   "eslint-lsp": "4.10.0",
   "html-lsp": "4.10.0",
   "json-lsp": "4.10.0",
-  "lemminx": "0.27.2",
-  "typescript-language-server": "4.3.3",
-  "yaml-language-server": "1.16.0"
+  "lemminx": "0.28.0",
+  "lua-language-server": "3.13.9",
+  "texlab": "v5.22.1",
+  "typescript-language-server": "4.3.4",
+  "yaml-language-server": "1.17.0"
 }

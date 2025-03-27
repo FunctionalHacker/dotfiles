@@ -217,7 +217,8 @@ wayland = true
 [profiles.VentoyArch]
 include = ["pacman", "terminal", "media", "gpg"]
 dotfiles = [
-  "f_dconf.ini"
+  "f_dconf.ini",
+  "f_fonts.conf",
 ]
 
 [profiles.VentoyArch.variables]

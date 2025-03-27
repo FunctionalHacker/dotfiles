@@ -1,3 +1,6 @@
+[actions]
+mkinitcpio = "mkinitcpio -P"
+
 [config]
 backup = true
 banner = true
@@ -118,6 +121,7 @@ dst = "/.ignore"
 [dotfiles."f_mkinitcpio.conf"]
 src = "etc/mkinitcpio.conf"
 dst = "/etc/mkinitcpio.conf"
+actions = ["mkinitcpio"]
 
 [dotfiles."f_vconsole.conf"]
 src = "etc/vconsole.conf"
@@ -146,6 +150,7 @@ dst = "/etc/mkinitcpio.d/linux.preset"
 [dotfiles.f_cmdline]
 src = "etc/kernel/cmdline"
 dst = "/etc/kernel/cmdline"
+actions = ["mkinitcpio"]
 
 [dotfiles."f_timesyncd.conf"]
 src = "etc/systemd/timesyncd.conf"
@@ -222,7 +227,7 @@ dotfiles = [
   "f_sshd_config",
   "f_system.conf",
 ]
-include = ["Locale"]
+include = ["Locale", "Pacman"]
 
 [profiles.Moria]
 include = ["Locale", "Pacman"]

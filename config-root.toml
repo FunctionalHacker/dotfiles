@@ -206,6 +206,23 @@ dotfiles = [
 ]
 include = ["Locale", "Pacman"]
 
+[profiles.VentoyArch]
+dotfiles = [
+  "d_bin",
+  "f_cmdline",
+  "f_doas.conf",
+  "f_fonts.conf",
+  "f_freetype2.sh",
+  "f_ignore",
+  "f_logind.conf",
+  "f_mkinitcpio.conf",
+  "f_mkinitcpio_linux.preset",
+  "f_plymouthd.conf",
+  "f_system.conf",
+  "f_timesyncd.conf",
+]
+include = ["Locale", "Pacman"]
+
 [profiles.Shire]
 dotfiles = [
   "d_bin",

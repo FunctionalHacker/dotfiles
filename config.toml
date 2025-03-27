@@ -214,6 +214,15 @@ dotfiles = [
 [profiles.Mirkwood.variables]
 wayland = true
 
+[profiles.VentoyArch]
+include = ["pacman", "terminal", "media", "gpg"]
+dotfiles = [
+  "f_dconf.ini"
+]
+
+[profiles.VentoyArch.variables]
+wayland = true
+
 [profiles.Shire]
 include = ["pacman", "terminal", "media", "gpg"]
 dotfiles = [

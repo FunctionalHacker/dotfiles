@@ -194,25 +194,3 @@ korhonen.cc, *.korhonen.cc {
 		respond "{err.status_code} {err.status_text}"
 	}
 }
-
-korhonen.social, *.korhonen.social {
-	import common_site_settings
-
-	@firefish-www-redir host www.korhonen.social
-	handle @firefish-www-redir {
-		redir https://korhonen.social
-	}
-
-	@firefish host korhonen.social
-	handle @firefish {
-		reverse_proxy firefish:3000
-	}
-
-	handle {
-		respond "404 Not Found" 404
-	}
-
-	handle_errors {
-		respond "{err.status_code} {err.status_text}"
-	}
-}

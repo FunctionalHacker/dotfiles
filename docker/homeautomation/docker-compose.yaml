@@ -11,8 +11,6 @@ services:
     restart: unless-stopped
     environment:
       - TZ=Europe/Helsinki
-    devices:
-      - /dev/ttyACM0
     volumes:
       - hass:/config
       - /etc/localtime:/etc/localtime:ro

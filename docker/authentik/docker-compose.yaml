@@ -66,16 +66,6 @@ services:
     environment:
       GEOIPUPDATE_EDITION_IDS: GeoLite2-City
       GEOIPUPDATE_FREQUENCY: '8'
-  whoami-test:
-    image: traefik/whoami
-    container_name: whoami-test
-    restart: unless-stopped
-    security_opt:
-      - no-new-privileges:true
-    networks:
-      - proxy
-    environment:
-      - TZ
 networks:
   authentik:
     external: true

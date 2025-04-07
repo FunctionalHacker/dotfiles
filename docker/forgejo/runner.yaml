@@ -10,7 +10,7 @@ runner:
   fetch_timeout: 5s
   fetch_interval: 2s
   labels:
-    - 'docker:docker://git.korhonen.cc/functionalhacker/ubuntu-act:22.04'
+    - 'docker:docker://git.korhonen.lan/functionalhacker/ubuntu-act:22.04'
 
 cache:
   enabled: true

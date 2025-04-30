@@ -254,12 +254,11 @@ include = ["terminal", "gpg"]
 include = ["pacman", "terminal"]
 
 [profiles.mko-laptop]
-include = ["terminal", "media", "gpg"]
+include = ["terminal", "gpg"]
 dotfiles = ["f_librewolf_overrides", "f_dconf.ini", "d_systemd"]
 
 [profiles.mko-laptop.variables]
 wayland = true
-scale_factor = 1.25
 
 [profiles.Isengard]
 include = ["terminal"]

@@ -1,6 +1,6 @@
 [user]
 {%@@ if profile == "mko-laptop" @@%}
-email = marko.korhonen@rossum.fi
+email = marko.korhonen@netforecast.com
 {%@@ else @@%}
 email = marko@korhonen.cc
 {%@@ endif @@%}

@@ -2,10 +2,11 @@
 -- It also handles starting all of my LSP servers
 --- @type LazyPluginSpec
 return {
-  "williamboman/mason.nvim",
+  "mason-org/mason.nvim",
+  version = "^1.0.0",
   dependencies = {
     "neovim/nvim-lspconfig",
-    "williamboman/mason-lspconfig.nvim",
+    { "mason-org/mason-lspconfig.nvim", version = "^1.0.0" },
     -- Add MasonUpdateAll
     { "Zeioth/mason-extra-cmds", opts = {} },
     -- Add lockfile support

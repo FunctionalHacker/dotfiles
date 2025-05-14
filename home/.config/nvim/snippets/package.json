@@ -6,8 +6,8 @@
   "contributes": {
     "snippets": [
       {
-        "language": "java",
-        "path": "./java.json"
+        "language": "javascript",
+        "path": "./javascript.json"
       }
     ]
   }

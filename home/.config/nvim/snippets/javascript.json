@@ -1,0 +1,8 @@
+{
+  "logVariable": {
+    "scope": "javascript",
+    "prefix": "logvar",
+    "description": "Log the variable under the cursor",
+    "body": ["console.log('$1', $1);"]
+  }
+}

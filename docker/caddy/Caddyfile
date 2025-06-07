@@ -73,7 +73,7 @@ korhonen.cc, *.korhonen.cc {
 
 	@forgejo host git.korhonen.cc
 	handle @forgejo {
-		rewrite /user/login /user/oauth2/authentik
+		rewrite /user/login /user/oauth2/Korhonen%20SSO
 		reverse_proxy forgejo:3000
 	}
 

@@ -27,7 +27,7 @@ container:
   workdir_parent:
   valid_volumes:
     - 'caddy_korhonen_cc'
-  docker_host: ''
+  docker_host: 'automount'
   force_pull: false
 
 host:

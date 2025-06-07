@@ -1,7 +1,3 @@
-# My old public configuration.
-# Currently don't have a public IP so running everything in LAN
-# in the current configuration
-
 {
 	order umami first
 }

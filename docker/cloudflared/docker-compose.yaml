@@ -1,0 +1,19 @@
+services:
+  cloudflared:
+    image: cloudflare/cloudflared
+    container_name: cloudflared
+    restart: unless-stopped
+    networks:
+      - proxy
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    entrypoint:
+    command: tunnel --no-autoupdate run
+    env_file:
+      - .env
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+
+networks:
+  proxy:
+    external: true

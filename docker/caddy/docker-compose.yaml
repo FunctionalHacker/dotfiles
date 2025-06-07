@@ -14,6 +14,7 @@ services:
       - 80:80
       - 443:443/tcp
       - 443:443/udp
+      - 127.0.0.1:2019:2019
     networks:
       - proxy
     volumes:
@@ -24,10 +25,8 @@ services:
       - korhonen_cc:/var/www/korhonen.cc
       - nextcloud_config:/var/www/nextcloud
       - /var/www/index.korhonen.cc:/var/www/index.korhonen.cc
-    environment:
-      - CLOUDFLARE_EMAIL
-      - CLOUDFLARE_API_TOKEN
-      - ACME_AGREE=true
+    env_file:
+      - .env
     cap_add:
       - NET_ADMIN
 networks:

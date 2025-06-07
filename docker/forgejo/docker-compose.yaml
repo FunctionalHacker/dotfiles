@@ -6,7 +6,6 @@ services:
     image: git.korhonen.cc/functionalhacker/forgejo-asciidoc
     container_name: forgejo
     environment:
-      - TZ=Europe/Helsinki
       - USER_UID=1000
       - USER_GID=1000
     restart: unless-stopped

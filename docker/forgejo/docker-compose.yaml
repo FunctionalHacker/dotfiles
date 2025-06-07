@@ -18,7 +18,7 @@ services:
       - data:/data
       - /etc/localtime:/etc/localtime:ro
   runner:
-    image: code.forgejo.org/forgejo/runner:3.5.1
+    image: code.forgejo.org/forgejo/runner:6
     container_name: forgejo-runner
     user: root:root
     volumes:

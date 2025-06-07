@@ -1,0 +1,12 @@
+services:
+  whatsupdocker:
+    image: getwud/wud
+    container_name: wud
+    env_file: .env
+    environment:
+      - WUD_TRIGGER_SMTP_EMAIL_SIMPLETITLE=Container $${container.name} can be updated
+      - WUD_TRIGGER_SMTP_EMAIL_SIMPLEBODY=Container $${name} can be updated from $${local.substring(0, 15)} to $${remote.substring(0, 15)}
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - 3000:3000

@@ -9,8 +9,6 @@ services:
   jellyfin:
     image: jellyfin/jellyfin
     container_name: jellyfin
-    environment:
-      - TZ=Europe/Helsinki
     ports:
       - 8096:8096
     networks:
@@ -18,11 +16,11 @@ services:
       - authentik
     restart: unless-stopped
     volumes:
+      - /etc/localtime:/etc/localtime:ro
       - config:/config
       - cache:/cache
       - media:/media
       - nextcloud_data:/nextcloud_data
-      - /etc/localtime:/etc/localtime:ro
     devices:
       - /dev/dri/renderD128:/dev/dri/renderD128
       - /dev/dri/card1:/dev/dri/card0

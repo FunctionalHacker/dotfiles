@@ -4,10 +4,8 @@ services:
   mumble:
     container_name: mumble
     image: phlak/mumble
-    environment:
-      - TZ=Europe/Helsinki
     network_mode: host
     volumes:
-      - config:/etc/mumble
       - /etc/localtime:/etc/localtime:ro
+      - config:/etc/mumble
     restart: unless-stopped

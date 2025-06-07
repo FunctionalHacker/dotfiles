@@ -12,10 +12,9 @@ services:
     environment:
       - PUID=1000
       - PGID=985
-      - TZ=Europe/Helsinki
     volumes:
-      - config:/config
       - /etc/localtime:/etc/localtime:ro
+      - config:/config
 networks:
   freshrss:
     external: false

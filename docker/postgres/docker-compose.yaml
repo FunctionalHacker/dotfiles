@@ -4,15 +4,13 @@ services:
   postgres:
     container_name: postgres
     image: postgres:16
-    environment:
-      - TZ=Europe/Helsinki
     ports:
       - 127.0.0.1:5432:5432
     networks:
       - postgres
     volumes:
-      - data:/var/lib/postgresql/data
       - /etc/localtime:/etc/localtime:ro
+      - data:/var/lib/postgresql/data
     restart: unless-stopped
 networks:
   postgres:

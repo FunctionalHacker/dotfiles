@@ -9,11 +9,9 @@ services:
     container_name: home-assistant
     image: homeassistant/home-assistant
     restart: unless-stopped
-    environment:
-      - TZ=Europe/Helsinki
     volumes:
-      - hass:/config
       - /etc/localtime:/etc/localtime:ro
+      - hass:/config
     networks:
       - homeautomation
       - postgres

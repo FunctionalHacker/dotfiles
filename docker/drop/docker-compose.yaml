@@ -5,9 +5,9 @@ services:
     restart: unless-stopped
     networks:
       - proxy
-    environment:
-      - TZ=Europe/Helsinki
       - IPV6_LOCALIZE=4
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
 networks:
   proxy:
     external: true

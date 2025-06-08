@@ -168,10 +168,10 @@ dst = "/etc/doas.conf"
 src = "etc/flexo/flexo.toml"
 dst = "/etc/flexo/flexo.toml"
 
-[profiles.Locale]
+[profiles.locale]
 dotfiles = ["f_locale.conf", "f_locale.gen"]
 
-[profiles.Pacman]
+[profiles.pacman]
 dotfiles = [
   "f_pacman.conf",
   "f_pacman_zsh_hook",
@@ -204,7 +204,7 @@ dotfiles = [
   "f_welcomemessage.conf",
   "f_flexo.toml",
 ]
-include = ["Locale", "Pacman"]
+include = ["locale", "pacman"]
 
 [profiles.VentoyArch]
 dotfiles = [
@@ -221,7 +221,7 @@ dotfiles = [
   "f_system.conf",
   "f_timesyncd.conf",
 ]
-include = ["Locale", "Pacman"]
+include = ["locale", "pacman"]
 
 [profiles.Shire]
 dotfiles = [
@@ -244,10 +244,10 @@ dotfiles = [
   "f_sshd_config",
   "f_system.conf",
 ]
-include = ["Locale", "Pacman"]
+include = ["locale", "pacman"]
 
 [profiles.Moria]
-include = ["Locale", "Pacman"]
+include = ["locale", "pacman"]
 dotfiles = [
   "f_99-sysctl.conf",
   "f_cmdline",
@@ -265,18 +265,18 @@ dotfiles = [
 dotfiles = ["f_doas.conf", "f_ignore", "f_sshd_config"]
 
 [profiles.Gondor]
-include = ["Locale", "Pacman"]
+include = ["locale", "pacman"]
 dotfiles = ["f_doas.conf", "f_sshd_config"]
 
 [profiles.localhost]
-include = ["Locale"]
+include = ["locale"]
 
 [profiles.Edoras]
-include = ["Pacman"]
+include = ["pacman"]
 
 [profiles.mko-laptop]
 dotfiles = ["f_cpupower", "f_doas.conf", "f_timesyncd.conf"]
 
 [profiles.Evendim]
-include = ["Locale", "Pacman"]
+include = ["locale", "pacman"]
 dotfiles = ["f_doas.conf", "f_sshd_config"]

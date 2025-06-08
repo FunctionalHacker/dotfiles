@@ -18,6 +18,7 @@ services:
     networks:
       - proxy
     volumes:
+      - /etc/localtime:/etc/localtime:ro
       - ./Caddyfile:/etc/caddy/Caddyfile
       - data:/data
       - config:/config

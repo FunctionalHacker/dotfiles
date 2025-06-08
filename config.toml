@@ -280,3 +280,6 @@ include = ["terminal"]
 
 [profiles.ViiruJaTeippi]
 include = ["terminal"]
+
+[profiles.Evendim]
+include = ["terminal", "pacman"]

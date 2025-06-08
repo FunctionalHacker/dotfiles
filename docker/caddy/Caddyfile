@@ -82,7 +82,7 @@ korhonen.cc, *.korhonen.cc {
 		reverse_proxy woodpecker:8000
 	}
 
-	@searx host search.korhonen.cc
+	@searx host dsearch.korhonen.cc
 	handle @searx {
 		reverse_proxy searx:8080
 	}

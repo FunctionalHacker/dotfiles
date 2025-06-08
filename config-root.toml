@@ -276,3 +276,7 @@ include = ["Pacman"]
 
 [profiles.mko-laptop]
 dotfiles = ["f_cpupower", "f_doas.conf", "f_timesyncd.conf"]
+
+[profiles.Evendim]
+include = ["Locale", "Pacman"]
+dotfiles = ["f_doas.conf", "f_sshd_config"]

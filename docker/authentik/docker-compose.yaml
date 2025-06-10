@@ -9,7 +9,7 @@ services:
     image: redis:alpine
     container_name: authentik-redis
     networks:
-      - authentik
+      - default
     restart: unless-stopped
     volumes:
       - redis:/data
@@ -33,7 +33,7 @@ services:
     env_file:
       - .env
     networks:
-      - authentik
+      - default
       - postgres
       - proxy
   worker:
@@ -51,14 +51,14 @@ services:
     env_file:
       - .env
     networks:
-      - authentik
+      - default
       - postgres
   geoipupdate:
     image: maxmindinc/geoipupdate
     container_name: authentik-geoipupdate
     restart: unless-stopped
     networks:
-      - authentik
+      - default
     volumes:
       - geoip:/usr/share/GeoIP
     env_file:
@@ -67,8 +67,6 @@ services:
       GEOIPUPDATE_EDITION_IDS: GeoLite2-City
       GEOIPUPDATE_FREQUENCY: '8'
 networks:
-  authentik:
-    external: true
   postgres:
     external: true
   proxy:

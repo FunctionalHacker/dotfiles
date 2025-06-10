@@ -9,7 +9,7 @@ services:
     container_name: nextcloud
     restart: unless-stopped
     networks:
-      - nextcloud
+      - default
       - postgres
       - proxy
     volumes:
@@ -41,7 +41,7 @@ services:
     image: redis:alpine
     container_name: redis-nextcloud
     networks:
-      - nextcloud
+      - default
     restart: unless-stopped
     command: redis-server --requirepass 123
   coturn:
@@ -54,7 +54,7 @@ services:
       - 3478:3478/udp
       - 49160-49200:49160-49200/udp
     networks:
-      - nextcloud
+      - default
     command:
       - -n
       - --log-file=stdout
@@ -76,8 +76,6 @@ services:
     networks:
       - proxy
 networks:
-  nextcloud:
-    external: false
   postgres:
     external: true
   proxy:

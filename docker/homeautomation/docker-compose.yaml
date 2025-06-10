@@ -13,7 +13,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - hass:/config
     networks:
-      - homeautomation
+      - default
       - postgres
       - proxy
     ports:
@@ -28,7 +28,7 @@ services:
   #   environment:
   #     - TZ=Europe/Helsinki
   #   networks:
-  #     - homeautomation
+  #     - default
   #   ports:
   #     - 1883:1883
   #     - 8866:8866
@@ -44,7 +44,7 @@ services:
     ports:
       - 10200:10200
     networks:
-      - homeautomation
+      - default
     command:
       - --voice
       - en_US-hfc_male-medium
@@ -60,7 +60,7 @@ services:
     ports:
       - 10300:10300
     networks:
-      - homeautomation
+      - default
     depends_on:
       - home-assistant
     command:
@@ -72,8 +72,6 @@ services:
       - whisper_english:/data
       - /etc/localtime:/etc/localtime:ro
 networks:
-  homeautomation:
-    external: false
   postgres:
     external: true
   proxy:

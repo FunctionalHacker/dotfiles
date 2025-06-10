@@ -6,7 +6,7 @@ services:
     image: searxng/searxng
     restart: unless-stopped
     networks:
-      - searx
+      - default
       - proxy
     volumes:
       - config:/etc/searxng
@@ -29,7 +29,7 @@ services:
     image: redis:alpine
     command: redis-server --save "" --appendonly "no"
     networks:
-      - searx
+      - default
     tmpfs:
       - /var/lib/redis
     cap_drop:
@@ -39,8 +39,5 @@ services:
       - SETUID
       - DAC_OVERRIDE
 networks:
-  searx:
-    ipam:
-      driver: default
   proxy:
     external: true

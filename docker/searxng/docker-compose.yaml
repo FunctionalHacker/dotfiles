@@ -2,7 +2,7 @@ volumes:
   config: {}
 services:
   searx:
-    container_name: searx
+    container_name: searxng
     image: searxng/searxng
     restart: unless-stopped
     networks:
@@ -25,7 +25,7 @@ services:
         max-size: 1m
         max-file: '1'
   redis:
-    container_name: redis-searx
+    container_name: redis-searxng
     image: redis:alpine
     command: redis-server --save "" --appendonly "no"
     networks:

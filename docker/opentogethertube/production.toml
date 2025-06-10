@@ -1,5 +1,0 @@
-log = { level = "info" }
-
-[room]
-enable_create_temporary = false
-enable_create_permanent = false

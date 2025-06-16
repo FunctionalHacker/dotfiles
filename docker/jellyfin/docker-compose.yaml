@@ -13,7 +13,6 @@ services:
       - 8096:8096
     networks:
       - proxy
-      - authentik
     restart: unless-stopped
     volumes:
       - /etc/localtime:/etc/localtime:ro
@@ -21,11 +20,9 @@ services:
       - cache:/cache
       - media:/media
       - nextcloud_data:/nextcloud_data
-    devices:
-      - /dev/dri/renderD128:/dev/dri/renderD128
-      - /dev/dri/card1:/dev/dri/card0
+    # devices:
+    #   - /dev/dri/renderD128:/dev/dri/renderD128
+    #   - /dev/dri/card1:/dev/dri/card0
 networks:
   proxy:
-    external: true
-  authentik:
     external: true

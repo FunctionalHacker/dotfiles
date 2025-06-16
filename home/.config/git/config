@@ -43,6 +43,7 @@ log-merge = log -i --grep=merge --pretty=oneline
 log-fp = log --first-parent --pretty=oneline
 ll = log --pretty=oneline
 dno = !git --no-pager diff --name-only
+  diffh = diff HEAD~1 HEAD
 
 [color]
 pager = no

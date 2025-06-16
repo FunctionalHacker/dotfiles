@@ -5,6 +5,7 @@ services:
     restart: unless-stopped
     networks:
       - proxy
+    environment:
       - IPV6_LOCALIZE=4
     volumes:
       - /etc/localtime:/etc/localtime:ro

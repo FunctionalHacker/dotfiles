@@ -1,0 +1,23 @@
+volumes:
+  data: {}
+  keys: {}
+
+services:
+  lubelogger:
+    image: ghcr.io/hargata/lubelogger:latest
+    container_name: lubelogger
+    restart: unless-stopped
+    volumes:
+      - data:/App/data
+      - keys:/root/.aspnet/DataProtection-Keys
+    env_file:
+      - .env
+    networks:
+      - proxy
+      - postgres
+
+networks:
+  postgres:
+    external: true
+  proxy:
+    external: true

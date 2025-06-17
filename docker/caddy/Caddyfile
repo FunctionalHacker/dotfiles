@@ -157,6 +157,11 @@ korhonen.cc, *.korhonen.cc {
 		respond {remote_host}
 	}
 
+  @lubelogger host lubelogger.korhonen.cc
+  handle @lubelogger {
+    reverse_proxy lubelogger:8080
+  }
+
 	handle {
 		respond "404 Not Found" 404
 	}

@@ -86,6 +86,14 @@ src = "etc/pacman.conf"
 dst = "/etc/pacman.d/hooks/zsh.hook"
 src = "etc/pacman.d/hooks/zsh.hook"
 
+[dotfiles."f_pacman-download.service"]
+dst = "/etc/systemd/system/pacman-download.service"
+src = "etc/systemd/system/pacman-download.service"
+
+[dotfiles."f_pacman-download.timer"]
+dst = "/etc/systemd/system/pacman-download.timer"
+src = "etc/systemd/system/pacman-download.timer"
+
 [dotfiles."f_plymouthd.conf"]
 src = "etc/plymouth/plymouthd.conf"
 dst = "/etc/plymouth/plymouthd.conf"
@@ -177,6 +185,8 @@ dotfiles = [
   "f_pacman_zsh_hook",
   "f_pacserve.service.conf",
   "f_sudoers_pacman",
+  "f_pacman-download.service",
+  "f_pacman-download.timer",
 ]
 
 [profiles.Mirkwood]

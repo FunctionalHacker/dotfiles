@@ -1,0 +1,10 @@
+[Unit]
+Description=Hourly pacman update download with random minute
+
+[Timer]
+OnCalendar=hourly
+RandomizedDelaySec=3600
+Persistent=true
+
+[Install]
+WantedBy=timers.target

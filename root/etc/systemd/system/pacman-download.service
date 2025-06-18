@@ -1,0 +1,8 @@
+[Unit]
+Description=Download updates with pacman
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=pacman -Syuw --noconfirm

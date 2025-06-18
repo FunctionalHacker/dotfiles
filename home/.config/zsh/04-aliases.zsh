@@ -197,7 +197,7 @@ update() {
 
 	packages() {
 		{%@@ if distro_id == "arch" @@%}
-		paru -Syu --noconfirm
+		paru -S{%@@ if profile != "Moria" @@%}y{%@@ endif @@%}u --noconfirm
 		{%@@ elif distro_id == "ubuntu" or distro_id == "debian" @@%}
 		doas apt update && doas apt full-upgrade -y && doas apt autoremove -y && doas apt autoclean -y
 		{%@@ elif distro_id == "termux" @@%}

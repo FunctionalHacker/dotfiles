@@ -1,4 +1,24 @@
-local prettier = { "prettierd", "prettier", stop_after_first = true }
+-- Build the formatters_by_ft table
+local formatters_by_ft = {
+  lua = { "stylua" },
+  python = { "black" },
+  toml = { "taplo" },
+}
+--
+-- Format with prettierd if available, fall back to prettier
+local prettierd = { "prettierd", "prettier", stop_after_first = true }
+local prettier_fts = {
+  "css",
+  "html",
+  "javascript",
+  "json",
+  "yaml",
+}
+
+-- Add Prettier filetypes
+for _, ft in ipairs(prettier_fts) do
+  formatters_by_ft[ft] = prettierd
+end
 
 -- Formatter plugin
 --- @type LazyPluginSpec
@@ -6,12 +26,7 @@ return {
   "stevearc/conform.nvim",
   event = "VeryLazy",
   opts = {
-    formatters_by_ft = {
-      lua = { "stylua" },
-      javascript = prettier,
-      json = prettier,
-      python = { "black" },
-    },
+    formatters_by_ft = formatters_by_ft,
   },
   keys = {
     {

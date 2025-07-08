@@ -3,6 +3,7 @@ local formatters_by_ft = {
   lua = { "stylua" },
   python = { "black" },
   toml = { "taplo" },
+  sh = { "shfmt" }
 }
 --
 -- Format with prettierd if available, fall back to prettier

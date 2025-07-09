@@ -8,6 +8,7 @@ services:
     container_name: lubelogger
     restart: unless-stopped
     volumes:
+      - /etc/localtime:/etc/localtime:ro
       - data:/App/data
       - keys:/root/.aspnet/DataProtection-Keys
     env_file:

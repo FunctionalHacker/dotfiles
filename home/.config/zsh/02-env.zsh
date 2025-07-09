@@ -1,6 +1,9 @@
 # key timeout
 export KEYTIMEOUT=1
 
+# dotfile repository location
+export DOTREPO="$HOME/git/dotfiles"
+
 # prompt customization
 export PURE_PROMPT_SYMBOL="λ"
 export PURE_PROMPT_VICMD_SYMBOL="y"
@@ -40,6 +43,9 @@ export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
 # go path
 export GOPATH=~/.go
 
+# Add dotfile scripts dir to path
+export PATH="$PATH:$DOTREPO/scripts"
+
 # fzf settings
 export FD_COMMAND='fd -HLt'
 export FZF_DEFAULT_COMMAND="$FD_COMMAND f"
@@ -57,9 +63,6 @@ _fzf_compgen_dir() {
   resultcmd="$FZF_ALT_C_COMMAND . $1"
   eval ${resultcmd}
 }
-
-# dotfile repository location
-export DOTREPO="$HOME/git/dotfiles"
 
 # nvim ftw!
 export EDITOR=nvim

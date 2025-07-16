@@ -1,4 +1,4 @@
-= FunctionalHacker's dotfiles
+= FunctionalHacker's Dotfiles
 
 image:https://i.imgur.com/lz1Q4Zz.png?raw=true%22[screenshot of my
 setup]
@@ -6,7 +6,7 @@ setup]
 My personal dotfiles for my workstations, mostly for easy access for
 myself but feel free to steal them for yourself!
 
-I'm using https://github.com/deadc0de6/dotdrop[dotdrop] to manage and
+I'm using https://github.com/deadc0de6/dotdrop[Dotdrop] to manage and
 ease deployment of my dotfiles.
 
 == Mirrors
@@ -14,10 +14,10 @@ ease deployment of my dotfiles.
 This repository lives at https://git.korhonen.cc/FunctionalHacker/dotfiles[my git server],
 but it is also mirrored to:
 
-* https://gitlab.com/FunctionalHacker/dotfiles[GitLab]
 * https://github.com/FunctionalHacker/dotfiles[GitHub]
+* https://gitlab.com/FunctionalHacker/dotfiles[GitLab]
 * https://bitbucket.org/FunctionalHacker/dotfiles[Bitbucket]
-* https://codeberg.org/FunctionalHacker/dotfiles[codeberg]
+* https://codeberg.org/FunctionalHacker/dotfiles[Codeberg]
 
 If you have any ideas for improvements, questions or anything of this
 sort, you can open an issue or a pull request at any of the mirrors.

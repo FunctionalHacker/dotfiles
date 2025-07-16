@@ -6,7 +6,7 @@ setup]
 My personal dotfiles for my workstations, mostly for easy access for
 myself but feel free to steal them for yourself!
 
-I’m using https://github.com/deadc0de6/dotdrop[dotdrop] to manage and
+I'm using https://github.com/deadc0de6/dotdrop[dotdrop] to manage and
 ease deployment of my dotfiles.
 
 == Mirrors

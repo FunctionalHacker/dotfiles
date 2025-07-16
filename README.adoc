@@ -9,15 +9,17 @@ myself but feel free to steal them for yourself!
 I'm using https://github.com/deadc0de6/dotdrop[Dotdrop] to manage and
 ease deployment of my dotfiles.
 
-== Mirrors
-
-This repository lives at https://git.korhonen.cc/FunctionalHacker/dotfiles[my git server],
-but it is also mirrored to:
-
-* https://github.com/FunctionalHacker/dotfiles[GitHub]
-* https://gitlab.com/FunctionalHacker/dotfiles[GitLab]
-* https://bitbucket.org/FunctionalHacker/dotfiles[Bitbucket]
-* https://codeberg.org/FunctionalHacker/dotfiles[Codeberg]
+== Contributing
 
 If you have any ideas for improvements, questions or anything of this
-sort, you can open an issue or a pull request at any of the mirrors.
+sort, you can open an issue or a pull request at any of the <<Mirrors>>.
+
+== Mirrors
+
+This repository lives at https://git.korhonen.cc/FunctionalHacker/dotfiles#_mirrors[my git server].
+It is also mirrored to these services
+
+* https://codeberg.org/FunctionalHacker/dotfiles#_mirrors[Codeberg]
+* https://github.com/FunctionalHacker/dotfiles?tab=readme-ov-file#mirrors[GitHub]
+* https://gitlab.com/FunctionalHacker/dotfiles#user-content-mirrors[GitLab]
+* https://bitbucket.org/FunctionalHacker/dotfiles[Bitbucket]

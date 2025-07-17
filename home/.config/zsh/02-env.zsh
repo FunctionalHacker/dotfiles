@@ -63,6 +63,14 @@ _fzf_compgen_dir() {
   resultcmd="$FZF_ALT_C_COMMAND . $1"
   eval ${resultcmd}
 }
+_fzf_complete_pass() {
+  _fzf_complete +m -- "$@" < <(
+    local prefix
+    prefix="${PASSWORD_STORE_DIR:-$HOME/.password-store}"
+    command fd -t f ".*\.gpg$" "$prefix" \
+      | sed -e "s#${prefix}/\{0,1\}##" -e 's#\.gpg##' -e 's#\\#\\\\#' | sort
+  )
+}
 
 # nvim ftw!
 export EDITOR=nvim

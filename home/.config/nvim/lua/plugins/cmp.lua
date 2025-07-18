@@ -17,11 +17,6 @@ return {
     "saadparwaiz1/cmp_luasnip", -- Snippets source
     "f3fora/cmp-spell", -- Spell check source
     "petertriho/cmp-git", -- Git source
-    -- Copilot source
-    {
-      "zbirenbaum/copilot-cmp",
-      opts = { fix_pairs = true },
-    },
   },
   config = function()
     local cmp = require("cmp")
@@ -107,7 +102,6 @@ return {
         { name = "nvim_lsp" },
         { name = "nvim_lua" },
         { name = "git" },
-        { name = "copilot" },
         { name = "buffer" },
         { name = "spell" },
         { name = "path" },

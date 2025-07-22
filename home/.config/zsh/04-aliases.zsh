@@ -191,7 +191,7 @@ update() {
 		repo
 		docker-update
 		{%@@ endif @@%}
-		plugins
+    plugins
 	}
 
 	packages() {
@@ -208,13 +208,21 @@ update() {
 		{%@@ endif @@%}
 	}
 
-	plugins() {
-		echo "Updating NeoVim plugins to match lockfiles"
-		nvim --headless -c "Lazy! restore" -c 'TSUpdateSync' -c 'MasonLockRestore' -c 'qa'
+  plugins() {
+    zsh_plugins
+    nvim_plugins
+  }
+
+	zsh_plugins() {
     echo "Updating zsh plugins"
 		zinit self-update
 		zinit update -p
 	}
+
+  nvim_plugins() {
+		echo "Updating NeoVim plugins to match lockfiles"
+		nvim --headless -c "Lazy! restore" -c 'TSUpdateSync' -c 'qa'
+  }
 
   pip-update-installed() {
     pip install --upgrade $(pip list --outdated | tail -n +3 | awk '{print $1}')
@@ -268,14 +276,20 @@ update() {
       plugins)
         plugins
         ;;
-        {%@@ if profile == "Moria" @@%}
-        docker)
+      nvim_plugins)
+        nvim_plugins
+        ;;
+      zsh_plugins)
+        zsh_plugins
+        ;;
+      {%@@ if profile == "Moria" @@%}
+      docker)
         docker-update
         ;;
       repo)
         repo
         ;;
-        {%@@ endif @@%}
+      {%@@ endif @@%}
         *)
         echo "Unknown option: $1"
         return 1
@@ -289,6 +303,8 @@ _update() {
     "all:Update everything"
     "dotfiles:Update dotfiles"
     "plugins:Update plugins for NeoVim and ZSH"
+    "nvim_plugins:Update plugins for NeoVim"
+    "zsh_plugins:Update plugins for ZSH"
 		{%@@ if profile == "Moria" @@%}
     "repo:Update packages in Korhonen AUR repository"
     "docker:Update all Docker containers"

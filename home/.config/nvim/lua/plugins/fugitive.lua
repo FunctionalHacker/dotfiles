@@ -8,7 +8,6 @@ return {
   config = function()
     vim.g.fugitive_gitea_domains = {
       "https://git.korhonen.cc",
-      "https://git.rossum.fi",
     }
 
     -- Keybinds

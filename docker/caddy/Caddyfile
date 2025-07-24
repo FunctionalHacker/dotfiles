@@ -180,3 +180,7 @@ korhonen.cc, *.korhonen.cc {
 		respond "{err.status_code} {err.status_text}"
 	}
 }
+
+http://scanner.korhonen.lan {
+  reverse_proxy scanservjs:8080
+}

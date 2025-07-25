@@ -1,8 +1,7 @@
-#:schema ../../dotdrop-config-schema.json
-
 [actions]
-dconf-load = "dconf load / < ~/.config/dconf.ini"
-kanagawa-compile = "vim +KanagawaCompile +qa"
+dconf_load = "dconf load / < ~/.config/dconf.ini"
+kanagawa_compile = "vim +KanagawaCompile +qa"
+scripts_chmod = "chmod +x ~/.scripts/*"
 
 [config]
 backup = true
@@ -17,6 +16,11 @@ longkey = false
 showdiff = false
 workdir = "~/.config/dotdrop"
 
+[dotfiles.d_scripts]
+dst = "~/.scripts"
+src = ".scripts"
+actions = ["scripts_chmod"]
+
 [dotfiles.d_systemd]
 dst = "~/.config/systemd/user"
 src = ".config/systemd/user"
@@ -28,7 +32,7 @@ src = ".config/mpv"
 [dotfiles.d_nvim]
 dst = "~/.config/nvim"
 src = ".config/nvim"
-actions = ["kanagawa-compile"]
+actions = ["kanagawa_compile"]
 instignore = ["*-lock.json"]
 
 [dotfiles."f_abcde.conf"]
@@ -147,7 +151,7 @@ dst = "~/.pam_environment"
 [dotfiles."f_dconf.ini"]
 src = ".config/dconf.ini"
 dst = "~/.config/dconf.ini"
-actions = ["dconf-load"]
+actions = ["dconf_load"]
 
 [dotfiles."f_docker-config.json"]
 src = ".docker/config.json"
@@ -167,11 +171,22 @@ dst = "~/.config/zellij/config.kdl"
 src = ".config/tmux/tmux.conf"
 dst = "~/.config/tmux/tmux.conf"
 
+[dotfiles.f_neovide_config]
+src = ".config/neovide/config.toml"
+dst = "~/.config/neovide/config.toml"
+
+[dotfiles."f_lazygit_config"]
+src = ".config/jesseduffield/lazygit/config.yml"
+dst = "~/.config/jesseduffield/lazygit/config.yml"
+
 [profiles.pacman]
 dotfiles = ["f_makepkg.conf", "f_paru.conf"]
 
 [profiles.terminal]
 dotfiles = [
+  "d_scripts",
+  "f_lazygit_config",
+  "f_neovide_config",
   "d_nvim",
   "d_ssh",
   "d_zsh",
@@ -216,22 +231,13 @@ dotfiles = [
   "f_foot.ini",
 ]
 
-[profiles.Mirkwood.variables]
-wayland = true
-
 [profiles.VentoyArch]
 include = ["pacman", "terminal", "media", "gpg"]
 dotfiles = ["f_dconf.ini", "f_fonts.conf"]
 
-[profiles.VentoyArch.variables]
-wayland = true
-
 [profiles.Shire]
 include = ["pacman", "terminal", "media", "gpg"]
 dotfiles = ["f_dconf.ini", "f_fonts.conf"]
-
-[profiles.Shire.variables]
-wayland = true
 
 [profiles.Moria]
 include = ["pacman", "terminal", "media", "gpg"]
@@ -243,9 +249,6 @@ dotfiles = [
   "d_systemd",
 ]
 
-[profiles.Moria.variables]
-wayland = true
-
 [profiles.Tirion]
 include = ["terminal", "gpg"]
 
@@ -256,23 +259,11 @@ include = ["pacman", "terminal"]
 include = ["terminal", "gpg"]
 dotfiles = ["f_librewolf_overrides", "f_dconf.ini", "d_systemd"]
 
-[profiles.mko-laptop.variables]
-wayland = true
-
 [profiles.Isengard]
 include = ["terminal"]
 
-[profiles.Isengard.variables]
-distro_id = "termux"
-
 [profiles.Edoras]
 include = ["terminal"]
-
-[profiles.TakamakiPC]
-include = ["terminal"]
-
-[profiles.TakamakiPC.variables]
-wayland = false
 
 [profiles.localhost]
 include = ["terminal"]
@@ -282,3 +273,21 @@ include = ["terminal"]
 
 [profiles.Evendim]
 include = ["terminal", "pacman"]
+
+[profiles.Mirkwood.variables]
+wayland = true
+
+[profiles.VentoyArch.variables]
+wayland = true
+
+[profiles.Shire.variables]
+wayland = true
+
+[profiles.Moria.variables]
+wayland = true
+
+[profiles.mko-laptop.variables]
+wayland = true
+
+[profiles.Isengard.variables]
+distro_id = "termux"

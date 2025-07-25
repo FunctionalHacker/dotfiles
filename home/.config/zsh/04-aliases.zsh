@@ -18,6 +18,10 @@ alias o='xdg-open'
 # and handling merges
 alias dv='nvim +DiffviewOpen'
 
+alias nvim="fhackeditor"
+alias vim='nvim'
+alias vi='nvim'
+
 # Rename grc alias from forgit since it
 # collides with the grc colorizer
 forgit_revert_commit=fgrc

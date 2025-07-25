@@ -1,9 +1,0 @@
-#!/bin/sh
-# Script to launch a graphical editor if in graphical mode,
-# terminal editor otherwise
-
-if [ -n "$DISPLAY" ] || [ -n "$WAYLAND_DISPLAY" ]; then
-  echo "Running in graphical mode"
-else
-  echo "Running in TTY mode"
-fi

@@ -43,8 +43,8 @@ export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
 # go path
 export GOPATH=~/.go
 
-# Add dotfile scripts dir to path
-export PATH="$PATH:$DOTREPO/scripts"
+# Add scripts dir to path
+export PATH="$PATH:$HOME/.scripts"
 
 # fzf settings
 export FD_COMMAND='fd -HLt'
@@ -73,7 +73,7 @@ _fzf_complete_pass() {
 }
 
 # nvim ftw!
-export EDITOR=nvim
+export EDITOR='nvim'
 export PAGER="$EDITOR -R +\"lua require 'pager'\""
 export GIT_PAGER="$EDITOR -c 'set ft=git' -R +\"lua require 'pager'\""
 export PARU_PAGER="$PAGER -c 'set ft=PKGBUILD'"

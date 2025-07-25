@@ -1,0 +1,27 @@
+#!/bin/sh
+# Script to launch a new NeoVim instance or reuse an existing one
+
+# Exit on error
+set -e
+
+# Settings
+SOCKET="/tmp/nvim.{{@@ env['USER'] @@}}/server.pipe"
+
+# Convert each argument to absolute path
+abs_args=""
+for arg in "$@"; do
+  case "$arg" in
+    /*) abs="$arg" ;;  # already absolute
+    *) abs="$(pwd)/$arg" ;;
+  esac
+  abs_args="$abs_args \"$abs\""
+done
+
+if [ -S "$SOCKET" ]; then
+  # Pipe exists and is a socket — reuse it
+  echo "Sending file to existing NeoVim instance"
+  eval exec nvim --server "$SOCKET" --remote $abs_args
+else
+  # Socket doesn't exist — start new instance
+  exec nvim --listen "$SOCKET" "$@"
+fi

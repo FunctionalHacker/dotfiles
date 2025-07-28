@@ -9,7 +9,8 @@ return {
     vim.g.firenvim_config = {
       localSettings = {
         [".*"] = {
-          takeOver = "never",
+          takeover = "once",
+          cmdline = "neovim",
         },
       },
     }

@@ -1,6 +1,6 @@
 [actions]
 dconf_load = "dconf load / < ~/.config/dconf.ini"
-kanagawa_compile = "vim +KanagawaCompile +qa"
+kanagawa_compile = "nvim +KanagawaCompile +qa"
 scripts_chmod = "chmod +x ~/.scripts/*"
 
 [config]

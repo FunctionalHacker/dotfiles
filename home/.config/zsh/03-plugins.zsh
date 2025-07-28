@@ -22,6 +22,10 @@ zinit light zsh-users/zsh-history-substring-search
 zinit ice wait'1' lucid atload'source $HOME/.config/zsh/04-aliases.zsh'
 zinit light wfxr/forgit
 
+# better vi mode
+zinit ice lucid depth=1
+zinit light jeffreytse/zsh-vi-mode
+
 # lots of completions
 zinit ice wait'1' lucid as'completion'
 zinit light zsh-users/zsh-completions

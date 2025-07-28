@@ -26,4 +26,4 @@ g.neovide_theme = "auto"
 g.neovide_confirm_quit = true
 
 -- Set font
---o.guifont = "Hack Nerd Font Mono:h15"
+o.guifont = "FiraCode Nerd Font Mono:14"

@@ -4,6 +4,8 @@ volumes:
   piper_english: {}
   whisper_english: {}
   openwakeword_english: {}
+  matter-server: {}
+  otbr: {}
 services:
   home-assistant:
     container_name: home-assistant
@@ -11,6 +13,7 @@ services:
     restart: unless-stopped
     volumes:
       - /etc/localtime:/etc/localtime:ro
+      - /run/dbus:/run/dbus:ro
       - hass:/config
     networks:
       - default
@@ -21,56 +24,92 @@ services:
       - 8300:8300
     extra_hosts:
       - host.docker.internal:host-gateway
-  # mosquitto:
-  #   container_name: mosquitto
-  #   image: eclipse-mosquitto
+  matter-server:
+    image: ghcr.io/home-assistant-libs/python-matter-server:stable
+    container_name: matter-server
+    restart: unless-stopped
+    network_mode: host
+    security_opt:
+      - apparmor:unconfined
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - matter-server:/data/
+      - /run/dbus:/run/dbus:ro
+    command: '--storage-path /data --paa-root-cert-dir /data/credentials --bluetooth-adapter 1'
+  otbr:
+    image: ghcr.io/ownbee/hass-otbr-docker
+    container_name: otbr
+    restart: unless-stopped
+    network_mode: host
+    cap_add:
+      - SYS_ADMIN
+      - NET_ADMIN
+    devices:
+      - /etc/localtime:/etc/localtime:ro
+      - /dev/serial/by-id/usb-Nabu_Casa_Home_Assistant_Connect_ZBT-1_e2bfe3de3c12f01181950514773d9da9-if00-port0:/dev/ttyUSB1
+      - /dev/net/tun:/dev/net/tun
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - otbr:/var/lib/thread
+    environment:
+      DEVICE: '/dev/ttyUSB1'
+      BACKBONE_IF: enp2s0
+      FLOW_CONTROL: 1
+      FIREWALL: 1
+      NAT64: 1
+      BAUDRATE: 460800
+      OTBR_REST_PORT: 8081
+      OTBR_WEB_PORT: 7586
+      AUTOFLASH_FIRMWARE: 0
+    privileged: true
+  mosquitto:
+    container_name: mosquitto
+    image: eclipse-mosquitto
+    restart: unless-stopped
+    networks:
+      - default
+    ports:
+      - 1883:1883
+      - 8866:8866
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - mosquitto:/mosquitto
+  # piper_english:
+  #   container_name: piper_english
+  #   image: rhasspy/wyoming-piper
   #   restart: unless-stopped
   #   environment:
   #     - TZ=Europe/Helsinki
+  #   ports:
+  #     - 10200:10200
   #   networks:
   #     - default
-  #   ports:
-  #     - 1883:1883
-  #     - 8866:8866
+  #   command:
+  #     - --voice
+  #     - en_US-hfc_male-medium
   #   volumes:
-  #     - mosquitto:/mosquitto
+  #     - piper_english:/data
   #     - /etc/localtime:/etc/localtime:ro
-  piper_english:
-    container_name: piper_english
-    image: rhasspy/wyoming-piper
-    restart: unless-stopped
-    environment:
-      - TZ=Europe/Helsinki
-    ports:
-      - 10200:10200
-    networks:
-      - default
-    command:
-      - --voice
-      - en_US-hfc_male-medium
-    volumes:
-      - piper_english:/data
-      - /etc/localtime:/etc/localtime:ro
-  whisper_english:
-    container_name: whisper_english
-    image: rhasspy/wyoming-whisper
-    restart: unless-stopped
-    environment:
-      - TZ=Europe/Helsinki
-    ports:
-      - 10300:10300
-    networks:
-      - default
-    depends_on:
-      - home-assistant
-    command:
-      - --model
-      - tiny-int8
-      - --language
-      - en
-    volumes:
-      - whisper_english:/data
-      - /etc/localtime:/etc/localtime:ro
+  # whisper_english:
+  #   container_name: whisper_english
+  #   image: rhasspy/wyoming-whisper
+  #   restart: unless-stopped
+  #   environment:
+  #     - TZ=Europe/Helsinki
+  #   ports:
+  #     - 10300:10300
+  #   networks:
+  #     - default
+  #   depends_on:
+  #     - home-assistant
+  #   command:
+  #     - --model
+  #     - tiny-int8
+  #     - --language
+  #     - en
+  #   volumes:
+  #     - whisper_english:/data
+  #     - /etc/localtime:/etc/localtime:ro
 networks:
   postgres:
     external: true

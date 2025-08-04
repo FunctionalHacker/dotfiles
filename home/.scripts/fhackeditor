@@ -4,6 +4,8 @@
 # Exit on error
 set -e
 
+mkdir -p /tmp/nvim.functionalhacker
+
 # Settings
 SOCKET="/tmp/nvim.{{@@ env['USER'] @@}}/server.pipe"
 

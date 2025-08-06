@@ -162,6 +162,15 @@ korhonen.cc, *.korhonen.cc {
     reverse_proxy lubelogger:8080
   }
 
+  @mosquitto host mqtt.korhonen.cc
+  handle @mosquitto {
+    @websockets {
+        header Connection *Upgrade*
+        header Upgrade websocket
+    }
+    reverse_proxy @websockets mosquitto:9001
+  }
+
 	handle {
 		respond "404 Not Found" 404
 	}

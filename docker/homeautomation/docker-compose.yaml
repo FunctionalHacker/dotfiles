@@ -21,7 +21,6 @@ services:
       - proxy
     ports:
       - 8123:8123
-      - 8300:8300
     extra_hosts:
       - host.docker.internal:host-gateway
   matter-server:
@@ -68,9 +67,9 @@ services:
     restart: unless-stopped
     networks:
       - default
+      - proxy
     ports:
       - 1883:1883
-      - 8866:8866
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - mosquitto:/mosquitto

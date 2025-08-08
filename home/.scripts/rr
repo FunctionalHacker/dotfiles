@@ -1,0 +1,66 @@
+#!/bin/sh
+
+# Reboot remote host
+
+set -e
+
+if [ -z "$1" ]; then
+  echo "Usage: $0 <ssh_target>"
+  exit 1
+fi
+
+ssh_target="$1"
+ssh_target_unlock="$2"
+
+ssh_config=$(ssh -G "$ssh_target")
+remote_host=$(echo "$ssh_config" | awk '/^hostname / { print $2 }')
+remote_ssh_port=$(echo "$ssh_config" | awk '/^port / { print $2 }')
+
+printf "Are you sure you want to reboot host at %s? [y/N]: " "$remote_host"
+read -r confirm
+case "$confirm" in
+[yY]) ;;
+*)
+  echo "Aborted."
+  exit 1
+  ;;
+esac
+
+wait_for_down() {
+  while ping -c 1 -W 1 "$1" >/dev/null 2>&1; do
+    sleep 1
+  done
+}
+
+wait_for_up() {
+  while ! nc -w 1 -z "$1" "$2" >/dev/null 2>&1; do
+    sleep 1
+  done
+}
+
+echo "Rebooting $remote_host now"
+ssh "$ssh_target" reboot
+
+echo "Waiting for $remote_host to go down..."
+wait_for_down "$remote_host"
+
+if [ "${ssh_target_unlock+set}" ]; then
+  ssh_config_unlock=$(ssh -G "$ssh_target_unlock")
+  remote_host_unlock=$(echo "$ssh_config_unlock" | awk '/^hostname / { print $2 }')
+  remote_ssh_port_unlock=$(echo "$ssh_config_unlock" | awk '/^port / { print $2 }')
+
+  echo "Waiting for $remote_host_unlock to come back up..."
+  wait_for_up "$remote_host_unlock" "$remote_ssh_port_unlock"
+
+  echo "$remote_host_unlock is ready for unlock"
+  ssh "$ssh_target_unlock" || true
+
+  echo "$remote_host_unlock unlocked successfully"
+  sleep 3
+fi
+
+echo "Waiting for $remote_host to come back up..."
+wait_for_up "$remote_host" "$remote_ssh_port"
+
+echo "$remote_host is back online, starting SSH session"
+ssh "$ssh_target"

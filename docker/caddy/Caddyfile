@@ -142,10 +142,10 @@ korhonen.cc, *.korhonen.cc {
 		file_server
 	}
 
-	@collabora host collabora.korhonen.cc
-	handle @collabora {
-		reverse_proxy collabora:9980
-	}
+	# @collabora host collabora.korhonen.cc
+	# handle @collabora {
+	# 	reverse_proxy collabora:9980
+	# }
 
 	@drop host drop.korhonen.cc
 	handle @drop {

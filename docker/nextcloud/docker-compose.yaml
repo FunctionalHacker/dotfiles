@@ -44,37 +44,37 @@ services:
       - default
     restart: unless-stopped
     command: redis-server --requirepass 123
-  coturn:
-    image: instrumentisto/coturn
-    container_name: coturn
-    restart: unless-stopped
-    env_file: .env
-    ports:
-      - 3478:3478/tcp
-      - 3478:3478/udp
-      - 49160-49200:49160-49200/udp
-    networks:
-      - default
-    command:
-      - -n
-      - --log-file=stdout
-      - --min-port=49160
-      - --max-port=49200
-      - --realm=cloud.korhonen.cc
-      - --use-auth-secret
-      - --static-auth-secret=${STATIC_AUTH_SECRET}
-  collabora:
-    image: collabora/code
-    container_name: collabora
-    restart: unless-stopped
-    env_file: .env
-    environment:
-      - username=${COLLABORA_USERNAME}
-      - password=${COLLABORA_PASSWORD}
-      - domain=cloud.korhonen.cc
-      - extra_params=--o:ssl.enable=false --o:ssl.termination=true
-    networks:
-      - proxy
+  # coturn:
+  #   image: instrumentisto/coturn
+  #   container_name: coturn
+  #   restart: unless-stopped
+  #   env_file: .env
+  #   ports:
+  #     - 3478:3478/tcp
+  #     - 3478:3478/udp
+  #     - 49160-49200:49160-49200/udp
+  #   networks:
+  #     - default
+  #   command:
+  #     - -n
+  #     - --log-file=stdout
+  #     - --min-port=49160
+  #     - --max-port=49200
+  #     - --realm=cloud.korhonen.cc
+  #     - --use-auth-secret
+  #     - --static-auth-secret=${STATIC_AUTH_SECRET}
+  # collabora:
+  #   image: collabora/code
+  #   container_name: collabora
+  #   restart: unless-stopped
+  #   env_file: .env
+  #   environment:
+  #     - username=${COLLABORA_USERNAME}
+  #     - password=${COLLABORA_PASSWORD}
+  #     - domain=cloud.korhonen.cc
+  #     - extra_params=--o:ssl.enable=false --o:ssl.termination=true
+  #   networks:
+  #     - proxy
 networks:
   postgres:
     external: true

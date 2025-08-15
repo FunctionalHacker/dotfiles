@@ -1,34 +1,59 @@
-local k = vim.keymap.set
-
 --- @type LazyPluginSpec
 return {
   "lewis6991/gitsigns.nvim",
-  config = function()
+  opts = {},
+  keys = function()
     local gs = require("gitsigns")
-    gs.setup()
 
-    -- Keybinds
-    local opts
+    return {
+      -- Hunk navigation
+      {
+        "[h",
+        function()
+          gs.nav_hunk("prev")
+        end,
+        desc = "Previous hunk",
+      },
 
-    -- Add groups for which-key
-    require("which-key").add({
-      { "<leader>g", group = "Git" },
-      { "<leader>gr", group = "Reset" },
-      { "<leader>ga", group = "Add" },
-    })
+      {
+        "]h",
+        function()
+          gs.nav_hunk("next")
+        end,
+        desc = "Next hunk",
+      },
 
-    -- Hunk navigation
-    k("n", "[h", gs.prev_hunk, { desc = "Previous hunk" })
-    k("n", "]h", gs.next_hunk, { desc = "Next hunk" })
+      -- Hunk actions
+      {
+        "<leader>gah",
+        function()
+          gs.stage_hunk()
+        end,
+        desc = "Buffer",
+      },
+      {
+        "<leader>grh",
+        function()
+          gs.reset_hunk()
+        end,
+        desc = "Buffer",
+      },
 
-    -- Hunk actions
-    opts = { desc = "Hunk" }
-    k("n", "<leader>grh", gs.reset_hunk, opts)
-    k("n", "<leader>gah", gs.stage_hunk, opts)
-
-    -- Buffer actions
-    opts = { desc = "Buffer" }
-    k("n", "<leader>gab", gs.stage_buffer, opts)
-    k("n", "<leader>grb", gs.reset_buffer, opts)
+      -- Buffer actions
+      {
+        "<leader>gab",
+        function()
+          gs.stage_buffer()
+        end,
+        desc = "Buffer",
+      },
+      {
+        "<leader>grb",
+        function()
+          gs.reset_buffer()
+        end,
+        desc = "Buffer",
+      },
+    }
   end,
 }

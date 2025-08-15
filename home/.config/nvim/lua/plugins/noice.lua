@@ -24,7 +24,9 @@ return {
     {
       desc = "Dismiss notifications",
       "<leader>d",
-      "<cmd>NoiceDismiss<cr>",
+      function()
+        vim.cmd("NoiceDismiss")
+      end,
     },
   },
 }

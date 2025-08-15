@@ -19,7 +19,9 @@ return {
     {
       desc = "Open/close nvim-tree",
       "<leader>o",
-      "<cmd>NvimTreeToggle<cr>",
+      function()
+        vim.cmd("NvimTreeToggle")
+      end,
     },
   },
 }

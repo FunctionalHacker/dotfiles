@@ -3,8 +3,9 @@
 --- @type LazyPluginSpec
 return {
   "mason-org/mason.nvim",
+  opts = {},
   dependencies = {
-    "mason-org/mason-lspconfig.nvim",
+    { "mason-org/mason-lspconfig.nvim", opts = {} },
     "neovim/nvim-lspconfig",
     -- Add MasonUpdateAll
     { "Zeioth/mason-extra-cmds", opts = {} },
@@ -23,9 +24,6 @@ return {
     "b0o/schemastore.nvim",
   },
   config = function()
-    require("mason").setup()
-    require("mason-lspconfig").setup()
-
     local lsp_utils = require("lsp_utils")
 
     -- Default settings for all LSP servers

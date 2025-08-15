@@ -1,5 +1,4 @@
 {
-  "$schema": "https://json.schemastore.org/package.json",
   "name": "dotfiles",
   "version": "1.0.0",
   "private": false,

@@ -10,6 +10,9 @@ services:
       - proxy
     volumes:
       - config:/etc/searxng
+      - ./branding/logo.png:/usr/local/searxng/searx/static/themes/simple/img/searxng.png:ro
+      - ./branding/favicon.png:/usr/local/searxng/searx/static/themes/simple/img/favicon.png:ro
+      - ./branding/favicon.svg:/usr/local/searxng/searx/static/themes/simple/img/favicon.svg:ro
     environment:
       - SEARXNG_BASE_URL=https://search.korhonen.cc/
     cap_drop:

@@ -52,3 +52,20 @@ end, { desc = "Previous diagnostic" })
 vim.keymap.set("n", "]d", function()
   vim.diagnostic.jump({ count = 1, float = true })
 end, { desc = "Next diagnostic" })
+
+-- vim.keymap.set("v", "O", function()
+--   local bufnr = 0
+--   local start_pos = vim.api.nvim_buf_get_mark(bufnr, "<")
+--   local end_pos = vim.api.nvim_buf_get_mark(bufnr, ">")
+--
+--   local selection = table
+--     .concat(vim.api.nvim_buf_get_text(bufnr, start_pos[1] - 1, start_pos[2], end_pos[1] - 1, end_pos[2] + 1, {}), "\n")
+--     -- :gsub("^%s+", "")
+--     -- :gsub("%s+$", "")
+--
+--   if selection ~= "" then
+--     vim.fn.jobstart({ "xdg-open", selection }, { detach = true })
+--   else
+--     vim.notify("No text selected to open", vim.log.levels.WARN)
+--   end
+-- end, { desc = "Open selection with xdg-open" })

@@ -2,7 +2,12 @@
 --- @type LazyPluginSpec
 return {
   "rebelot/kanagawa.nvim",
-  dependencies = { { "f-person/auto-dark-mode.nvim", config = true } },
+  dependencies = {
+    {
+      "f-person/auto-dark-mode.nvim",
+      opts = {},
+    },
+  },
   --- @type KanagawaConfig
   opts = {
     compile = true,

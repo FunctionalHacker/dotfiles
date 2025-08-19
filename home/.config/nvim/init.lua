@@ -26,3 +26,4 @@ require("lazy").setup({
     -- version = "*", -- Disabled for now
   },
 })
+require("lsp")

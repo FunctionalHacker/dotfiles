@@ -1,7 +1,7 @@
 --- @type LazyPluginSpec
 return {
   "lewis6991/gitsigns.nvim",
-  opts = {},
+  config = true,
   keys = function()
     local gs = require("gitsigns")
 

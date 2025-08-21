@@ -3,10 +3,7 @@
 return {
   "rebelot/kanagawa.nvim",
   dependencies = {
-    {
-      "f-person/auto-dark-mode.nvim",
-      opts = {},
-    },
+    { "f-person/auto-dark-mode.nvim", config = true },
   },
   --- @type KanagawaConfig
   opts = {

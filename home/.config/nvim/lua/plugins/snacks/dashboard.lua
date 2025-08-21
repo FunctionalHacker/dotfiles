@@ -30,4 +30,13 @@ return {
       },
     },
   },
+  keys = {
+    {
+      "<leader>d",
+      function()
+        Snacks.dashboard()
+      end,
+      desc = "Open Snacks Dashboard",
+    },
+  },
 }

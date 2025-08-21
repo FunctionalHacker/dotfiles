@@ -23,7 +23,7 @@ return {
   keys = {
     {
       desc = "Dismiss notifications",
-      "<leader>d",
+      "<leader>n",
       function()
         vim.cmd("NoiceDismiss")
       end,

@@ -16,9 +16,6 @@ return {
 
     -- cd plugin for telescope
     "zane-/cder.nvim",
-
-    -- project plugin for telescope
-    "nvim-telescope/telescope-project.nvim",
   },
   opts = {
     -- Set layout to vertical
@@ -77,21 +74,6 @@ return {
         extensions.cder.cder,
       },
       {
-        desc = "Find files",
-        "<C-f>",
-        builtin.find_files,
-      },
-      {
-        desc = "Grep files",
-        "<C-g>",
-        builtin.live_grep,
-      },
-      {
-        desc = "Open a project",
-        "<leader>p",
-        extensions.project.project,
-      },
-      {
         desc = "Definition",
         "gd",
         builtin.lsp_definitions,
@@ -121,7 +103,6 @@ return {
     telescope.load_extension("fzf")
     telescope.load_extension("ui-select")
     telescope.load_extension("cder")
-    telescope.load_extension("project")
     telescope.load_extension("notify")
   end,
 }

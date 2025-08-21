@@ -34,5 +34,34 @@ return {
       end,
       desc = "Open a project",
     },
+    -- LSP keybinds
+    {
+      "gd",
+      function()
+        Snacks.picker.lsp_definitions()
+      end,
+      desc = "Definition",
+    },
+    {
+      "gi",
+      function()
+        Snacks.picker.lsp_implementations()
+      end,
+      desc = "Implementation",
+    },
+    {
+      "gr",
+      function()
+        Snacks.picker.lsp_references()
+      end,
+      desc = "References",
+    },
+    {
+      "gs",
+      function()
+        Snacks.picker.lsp_symbols()
+      end,
+      desc = "Symbols",
+    },
   },
 }

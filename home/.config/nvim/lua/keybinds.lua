@@ -29,7 +29,7 @@ vim.keymap.set("n", "<leader>co", function()
   vim.cmd('silent! execute "%bd|e#|bd#"')
 end, { desc = "Close other buffers" })
 
--- LSP keybinds (more in telescope configuration)
+-- LSP keybinds (more in snacks picker configuration)
 
 vim.keymap.set("n", "<leader>F", vim.lsp.buf.format, { desc = "Format with LSP" })
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action" })

@@ -68,31 +68,6 @@ return {
           builtin.builtin({ include_extensions = true })
         end,
       },
-      {
-        desc = "Change directories",
-        "cd",
-        extensions.cder.cder,
-      },
-      {
-        desc = "Definition",
-        "gd",
-        builtin.lsp_definitions,
-      },
-      {
-        desc = "Implementation",
-        "gi",
-        builtin.lsp_implementations,
-      },
-      {
-        desc = "References",
-        "gr",
-        builtin.lsp_references,
-      },
-      {
-        desc = "Symbols",
-        "gs",
-        builtin.lsp_document_symbols,
-      },
     }
   end,
   config = function(_, opts)

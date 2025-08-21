@@ -14,6 +14,13 @@ return {
   },
   keys = {
     {
+      "<leader>s",
+      function()
+        Snacks.picker()
+      end,
+      desc = "Open Snacks",
+    },
+    {
       "<C-f>",
       function()
         Snacks.picker.files()

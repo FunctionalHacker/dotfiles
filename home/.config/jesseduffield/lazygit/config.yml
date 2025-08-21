@@ -2,4 +2,4 @@ os:
   edit: 'fhackeditor'
   paging:
     colorArg: always
-    pager: delta --paging=never
+    pager: delta --detect-dark-light --paging=never

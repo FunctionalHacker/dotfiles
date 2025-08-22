@@ -1,3 +1,5 @@
+local noice = require("noice").api.status
+
 -- Statusline
 --- @type LazyPluginSpec
 return {
@@ -6,23 +8,26 @@ return {
   opts = {
     sections = {
       lualine_x = {
-        "encoding",
-        "fileformat",
-        "filetype",
         {
-          require("noice").api.status.mode.get,
-          cond = require("noice").api.status.mode.has,
+          noice.command.get,
+          cond = noice.command.has,
           color = { fg = "#ff9e64" },
         },
+        {
+          noice.mode.get,
+          cond = noice.mode.has,
+          color = { fg = "#ff9e64" },
+        },
+        {
+          noice.search.get,
+          cond = noice.search.has,
+          color = { fg = "#ff9e64" },
+        },
+        "filetype",
+        "encoding",
+        "fileformat",
       },
       lualine_z = {
-        {
-          "selectioncount",
-          cond = function()
-            local mode = vim.fn.mode()
-            return mode == "v" or mode == "V" or mode == "\22"
-          end,
-        },
         {
           "location",
           cond = function()

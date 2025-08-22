@@ -15,7 +15,6 @@
   "dropbar.nvim": { "branch": "master", "commit": "418897fe7828b2749ca78056ec8d8ad43136b695" },
   "firenvim": { "branch": "master", "commit": "c927486daff6d1eb8a0d61fd9e264bc1bf5f2c36" },
   "friendly-snippets": { "branch": "main", "commit": "572f5660cf05f8cd8834e096d7b4c921ba18e175" },
-  "fugitive-gitea": { "branch": "master", "commit": "d93176028d13820f941c165c14039a6019744a5a" },
   "gitsigns.nvim": { "branch": "main", "commit": "6e3c66548035e50db7bd8e360a29aec6620c3641" },
   "kanagawa.nvim": { "branch": "master", "commit": "debe91547d7fb1eef34ce26a5106f277fbfdd109" },
   "lazy.nvim": { "branch": "main", "commit": "6c3bda4aca61a13a9c63f1c1d1b16b9d3be90d7a" },

@@ -14,3 +14,7 @@ include
 ** Code highlighting
 ** Text objects
 * Lazy plugin manager for fast startup times
+
+This configuration is not ment to be a NeoVim distro, so it can be a bit opinionated.
+Feel free to steal the configuration and use as the https://git.korhonen.cc/FunctionalHacker/dotfiles/src/branch/main/LICENSE.adoc[license]
+allows.

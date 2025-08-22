@@ -9,7 +9,7 @@ alias gac='ga && gc'
 alias gs='git status'
 alias gpull='git pull'
 alias gpush='git push'
-alias lg='lazygit'
+alias gl='lazygit'
 
 alias o='xdg-open'
 

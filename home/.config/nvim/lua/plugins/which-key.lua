@@ -9,8 +9,11 @@ return {
     spec = {
       { "g", group = "Go to" },
       { "<leader>", group = "Leader" },
+      { "<leader>b", group = "Buffer" },
+      { "<leader>c", group = "Misc" },
       { "<leader>w", group = "Workspace" },
       { "<leader>d", group = "Dismiss" },
+      { "<leader>r", group = "Rename" },
       { "<leader>f", group = "Find" },
       { "<leader>s", group = "Search" },
       { "<leader>g", group = "Git", mode = { "n", "v" } },

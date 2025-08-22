@@ -21,13 +21,4 @@ return {
       lsp_doc_border = true,
     },
   },
-  keys = {
-    {
-      desc = "Notifications",
-      "<leader>dn",
-      function()
-        vim.cmd("NoiceDismiss")
-      end,
-    },
-  },
 }

@@ -235,7 +235,7 @@ return {
       desc = "Undo History",
     },
     {
-      "<leader>uC",
+      "<leader>cc",
       function()
         Snacks.picker.colorschemes()
       end,
@@ -248,6 +248,13 @@ return {
         Snacks.picker.lsp_definitions()
       end,
       desc = "Definition",
+    },
+    {
+      "gt",
+      function()
+        Snacks.picker.lsp_type_definitions()
+      end,
+      desc = "Type definition",
     },
     {
       "gi",
@@ -269,6 +276,13 @@ return {
         Snacks.picker.lsp_symbols()
       end,
       desc = "Symbols",
+    },
+    {
+      "gS",
+      function()
+        Snacks.picker.lsp_workspace_symbols()
+      end,
+      desc = "Workspace symbols",
     },
   },
 }

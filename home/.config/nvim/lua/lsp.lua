@@ -1,4 +1,4 @@
--- Add capabilities
+-- Add LSP capabilities
 vim.lsp.config("*", {
   capabilities = vim.tbl_deep_extend(
     "force",

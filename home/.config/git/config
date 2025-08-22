@@ -19,9 +19,7 @@ signoff = true
 signoff = true
 
 [merge]
-prompt = false
-conflictstyle = diff3
-tool = nvim
+conflictstyle = zdiff3
 
 [mergetool]
 keepBackup = false
@@ -34,7 +32,6 @@ cmd = nvim +DiffviewOpen
 rebase = merges
 
 [alias]
-mergetest = !git switch test && git pull && git merge --no-ff -m \"Merge $1 features to test\" $1
 upstream = !git push -u origin HEAD
 sync = !git pull && git push
 recommit = !git commit -eF $(git rev-parse --git-dir)/COMMIT_EDITMSG
@@ -43,10 +40,7 @@ log-merge = log -i --grep=merge --pretty=oneline
 log-fp = log --first-parent --pretty=oneline
 ll = log --pretty=oneline
 dno = !git --no-pager diff --name-only
-  diffh = diff HEAD~1 HEAD
-
-[color]
-pager = no
+diffh = diff HEAD~1 HEAD
 
 [init]
 defaultBranch = main
@@ -63,3 +57,12 @@ recurse = true
 
 [push]
 recurseSubmodules = check
+
+[core]
+pager = delta
+
+[interactive]
+diffFilter = delta --color-only
+
+[delta]
+navigate = true  # use n and N to move between diff sections

@@ -9,9 +9,9 @@ vim.keymap.set("n", "<leader>b", function()
   end
 end, { desc = "Toggle background between dark and light" })
 
-vim.keymap.set("n", "<leader>h", function()
+vim.keymap.set("n", "<leader>dh", function()
   vim.cmd("nohlsearch")
-end, { desc = "Turn off search highlight" })
+end, { desc = "Search highlight" })
 
 vim.keymap.set("n", "<leader>a", function()
   vim.cmd("edit #")

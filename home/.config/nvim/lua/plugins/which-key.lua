@@ -7,9 +7,12 @@ return {
   --- @type wk.Opts
   opts = {
     spec = {
+      { "g", group = "Go to" },
       { "<leader>", group = "Leader" },
       { "<leader>w", group = "Workspace" },
-      { "g", group = "Go to" },
+      { "<leader>d", group = "Dismiss" },
+      { "<leader>f", group = "Find" },
+      { "<leader>s", group = "Search" },
       { "<leader>g", group = "Git", mode = { "n", "v" } },
       { "<leader>gr", group = "Reset" },
       { "<leader>ga", group = "Add" },

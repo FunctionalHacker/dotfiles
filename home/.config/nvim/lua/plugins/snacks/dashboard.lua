@@ -1,7 +1,7 @@
 --- @type LazyPluginSpec
 return {
   "snacks.nvim",
-  ---@type snacks.Config
+  --- @type snacks.Config
   opts = {
     dashboard = {
       preset = {
@@ -33,15 +33,6 @@ return {
           { icon = " ", key = "q", desc = "Quit", action = ":qa" },
         },
       },
-    },
-  },
-  keys = {
-    {
-      "<leader>d",
-      function()
-        Snacks.dashboard()
-      end,
-      desc = "Open Snacks Dashboard",
     },
   },
 }

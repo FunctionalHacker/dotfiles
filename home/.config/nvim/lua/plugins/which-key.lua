@@ -47,8 +47,6 @@ return {
             vim.api.nvim_buf_get_text(bufnr, start_pos[1] - 1, start_pos[2], end_pos[1] - 1, end_pos[2] + 1, {}),
             "\n"
           )
-          -- :gsub("^%s+", "")
-          -- :gsub("%s+$", "")
 
           if selection ~= "" then
             vim.fn.jobstart({ "xdg-open", selection }, { detach = true })

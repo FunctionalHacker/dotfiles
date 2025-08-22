@@ -1,4 +1,4 @@
-= FunctionalHacker's NeoVim configuration
+= FunctionalVim
 
 This is my personal NeoVim configuration I use for all text editing in my free
 time and at my day job. I mostly code in Java, TypeScript and ReactJS, with

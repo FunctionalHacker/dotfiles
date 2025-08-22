@@ -21,10 +21,6 @@ dst = "~/.scripts"
 src = ".scripts"
 actions = ["scripts_chmod"]
 
-[dotfiles.d_systemd]
-dst = "~/.config/systemd/user"
-src = ".config/systemd/user"
-
 [dotfiles.d_mpv]
 dst = "~/.config/mpv"
 src = ".config/mpv"
@@ -54,10 +50,6 @@ src = ".config/beets/whitelist"
 [dotfiles.f_gitconfig]
 dst = "~/.config/git/config"
 src = ".config/git/config"
-
-[dotfiles.f_librewolf_overrides]
-dst = "~/.librewolf/librewolf.overrides.cfg"
-src = ".librewolf/librewolf.overrides.cfg"
 
 [dotfiles."f_makepkg.conf"]
 dst = "~/.config/pacman/makepkg.conf"
@@ -223,13 +215,7 @@ dotfiles = [
 
 [profiles.Mirkwood]
 include = ["pacman", "terminal", "media", "gpg"]
-dotfiles = [
-  "f_librewolf_overrides",
-  "f_dconf.ini",
-  "f_docker-config.json",
-  "f_fonts.conf",
-  "f_foot.ini",
-]
+dotfiles = ["f_dconf.ini", "f_docker-config.json", "f_fonts.conf", "f_foot.ini"]
 
 [profiles.VentoyArch]
 include = ["pacman", "terminal", "media", "gpg"]
@@ -241,13 +227,7 @@ dotfiles = ["f_dconf.ini", "f_fonts.conf"]
 
 [profiles.Moria]
 include = ["pacman", "terminal", "media", "gpg"]
-dotfiles = [
-  "f_librewolf_overrides",
-  "f_dconf.ini",
-  "f_zprofile",
-  "f_fonts.conf",
-  "d_systemd",
-]
+dotfiles = ["f_dconf.ini", "f_zprofile", "f_fonts.conf"]
 
 [profiles.Tirion]
 include = ["terminal", "gpg"]
@@ -257,7 +237,7 @@ include = ["pacman", "terminal"]
 
 [profiles.mko-laptop]
 include = ["terminal", "gpg"]
-dotfiles = ["f_librewolf_overrides", "f_dconf.ini", "d_systemd"]
+dotfiles = ["f_dconf.ini"]
 
 [profiles.Isengard]
 include = ["terminal"]

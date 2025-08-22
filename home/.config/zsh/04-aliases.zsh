@@ -170,22 +170,14 @@ alias i='iwctl station wlan0'
 cpufreq() { watch -n 1 eval "cat /proc/cpuinfo | grep MHz" }
 
 # dotdrop
-alias dotdrop="source $DOTREPO/secrets/secrets && {%@@ if distro_id != "termux" @@%} UID=$(id -u) {%@@ endif @@%} dotdrop --cfg=$DOTREPO/config.toml {%@@ if profile == "Isengard" @@%} -p Isengard{%@@ endif @@%}"
+alias dotdrop="{%@@ if distro_id != "termux" @@%} UID=$(id -u) {%@@ endif @@%} dotdrop --cfg=$DOTREPO/config.toml {%@@ if profile == "Isengard" @@%} -p Isengard{%@@ endif @@%}"
 
 
-alias sdotdrop="source $DOTREPO/secrets/secrets && sudo -E dotdrop --cfg=$DOTREPO/config-root.toml"
+alias sdotdrop="sudo -E dotdrop --cfg=$DOTREPO/config-root.toml"
 compdef _dotdrop-completion.zsh sdotdrop
-
-updatesecrets() {
-  bash $DOTREPO/secrets/secrets.sh
-  chmod 600 $DOTREPO/secrets/secrets
-}
 
 alias dotgit='git -C $DOTREPO'
 dotsync() { cd $DOTREPO && gac && gpull && gpush && cd $OLDPWD }
-
-# sync password manager
-passync() { pass git pull && pass git push && updatesecrets }
 
 update() {
 	all() {

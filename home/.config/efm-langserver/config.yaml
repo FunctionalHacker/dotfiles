@@ -1,6 +1,0 @@
-languages:
-  markdown:
-    lint-command: 'yarn --cwd ~/.bin/node run markdownlint -s'
-    lint-stdin: true
-    lint-formats:
-      - '%f: %l: %m'

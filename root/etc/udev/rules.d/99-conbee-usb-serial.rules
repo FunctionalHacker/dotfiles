@@ -1,1 +1,0 @@
-SUBSYSTEM=="tty", ATTRS{idVendor}=="1cf1", ATTRS{idProduct}=="0030", SYMLINK+="ttyUSB.CONBEE"

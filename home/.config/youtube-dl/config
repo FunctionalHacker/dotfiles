@@ -1,7 +1,0 @@
---format 'bestvideo[height<=1080]+bestaudio/best[height<=1080]'
---write-sub
---sub-lang en
---embed-subs
---add-metadata
---prefer-ffmpeg 
---yes-playlist

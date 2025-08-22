@@ -67,14 +67,6 @@ src = ".config/mpDris2/mpDris2.conf"
 dst = "~/.config/ncmpcpp/bindings"
 src = ".config/ncmpcpp/bindings"
 
-[dotfiles."f_ranger.conf"]
-dst = "~/.config/ranger/rc.conf"
-src = ".config/ranger/rc.conf"
-
-[dotfiles."f_ranger_commands.py"]
-dst = "~/.config/ranger/commands.py"
-src = ".config/ranger/commands.py"
-
 [dotfiles."f_ssh.conf"]
 dst = "~/.ssh/config"
 src = ".ssh/config"
@@ -185,8 +177,6 @@ dotfiles = [
   "f_gitconfig",
   "f_hushlogin",
   "f_ignore",
-  "f_ranger.conf",
-  "f_ranger_commands.py",
   "f_zellij",
   "f_tmux",
   "f_zshrc",

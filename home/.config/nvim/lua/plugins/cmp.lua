@@ -8,7 +8,9 @@ return {
     {
       "petertriho/cmp-git",
       dependencies = { "nvim-lua/plenary.nvim" },
-      config = true,
+      init = function()
+        table.insert(require("cmp").get_config().sources, { name = "git" })
+      end,
     },
     "hrsh7th/cmp-nvim-lsp", -- LSP source
     "hrsh7th/cmp-nvim-lua", -- Neovim Lua API documentation source
@@ -16,7 +18,6 @@ return {
     "hrsh7th/cmp-cmdline", -- cmdline source
     "saadparwaiz1/cmp_luasnip", -- Snippets source
     "f3fora/cmp-spell", -- Spell check source
-    "petertriho/cmp-git", -- Git source
   },
   config = function()
     local cmp = require("cmp")
@@ -101,7 +102,6 @@ return {
         { name = "luasnip" },
         { name = "nvim_lsp" },
         { name = "nvim_lua" },
-        { name = "git" },
         { name = "buffer" },
         { name = "spell" },
         { name = "path" },
@@ -111,8 +111,6 @@ return {
         },
       },
     })
-
-    require("cmp_git").setup()
 
     -- Enable autopairs when enter is processed
     -- on completion

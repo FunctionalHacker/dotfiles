@@ -9,6 +9,10 @@ return {
         files = {
           hidden = true,
         },
+        projects = {
+          dev = { "~/git" },
+          patterns = { ".git" },
+        },
       },
     },
   },

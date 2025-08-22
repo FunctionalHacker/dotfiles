@@ -24,7 +24,6 @@ return {
       { "<leader>ga", group = "Add" },
 
       -- General keybinds
-
       {
         "<leader>t",
         function()
@@ -74,7 +73,6 @@ return {
       },
 
       -- LSP keybinds (more in snacks picker configuration)
-
       { "<leader>F", vim.lsp.buf.format, desc = "Format with LSP" },
       { "<leader>ca", vim.lsp.buf.code_action, desc = "Code action" },
       { "<leader>k", vim.lsp.buf.signature_help, desc = "Signature help" },

@@ -19,7 +19,6 @@ require("settings")
 require("keybinds")
 require("neovide")
 require("highlight_yank")
-require("lsp")
 require("lazy").setup({
   spec = { import = "plugins" },
   lockfile = "~/git/dotfiles/home/.config/nvim/lazy-lock.json",
@@ -30,3 +29,4 @@ require("lazy").setup({
     -- version = "*", -- Disabled for now
   },
 })
+require("lsp")

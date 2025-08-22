@@ -11,6 +11,7 @@ return {
   ---@type snacks.Config
   opts = {
     gitbrowse = {
+      what = "permalink",
       url_patterns = {
         ["git.korhonen.cc"] = forgejo_patterns,
         ["git.tolkku.net"] = forgejo_patterns,
@@ -35,17 +36,8 @@ return {
     {
       "<leader>go",
       function()
-        Snacks.gitbrowse({ what = "file" })
+        Snacks.gitbrowse()
       end,
-      mode = { "v" },
-      desc = "Open in browser",
-    },
-    {
-      "<leader>go",
-      function()
-        Snacks.gitbrowse({ what = "permalink" })
-      end,
-      mode = { "n" },
       desc = "Open in browser",
     },
   },

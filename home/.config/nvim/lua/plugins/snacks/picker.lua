@@ -21,11 +21,11 @@ return {
       desc = "Open Snacks",
     },
     {
-      "<C-f>",
+      "<leader><space>",
       function()
         Snacks.picker.smart()
       end,
-      desc = "Find files",
+      desc = "Smart Find Files",
     },
     {
       "<C-g>",

@@ -12,7 +12,7 @@ return {
             desc = "Open a project",
             action = ":lua Snacks.dashboard.pick('projects')",
           },
-          { icon = " ", key = "<C-f>", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
+          { icon = " ", key = "<C-f>", desc = "Find File", action = ":lua Snacks.dashboard.pick('smart')" },
           { icon = " ", key = "<C-g>", desc = "Find Text", action = ":lua Snacks.dashboard.pick('live_grep')" },
           { icon = " ", key = "e", desc = "New File", action = ":ene | startinsert" },
           { icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },

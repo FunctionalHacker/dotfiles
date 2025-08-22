@@ -2,7 +2,6 @@
 --- @type LazyPluginSpec
 return {
   "tpope/vim-fugitive",
-  dependencies = { "borissov/fugitive-gitea" },
   keys = {
     {
       "<leader>gs",
@@ -38,13 +37,6 @@ return {
         vim.cmd("Git pull")
       end,
       desc = "Pull",
-    },
-    {
-      "<leader>gb",
-      function()
-        vim.cmd("'<,'>GBrowse")
-      end,
-      desc = "Open in browser",
     },
   },
   config = function()

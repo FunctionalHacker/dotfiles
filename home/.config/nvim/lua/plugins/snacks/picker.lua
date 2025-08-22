@@ -1,5 +1,3 @@
-local u = require("utils")
-
 --- @type LazyPluginSpec
 return {
   "snacks.nvim",

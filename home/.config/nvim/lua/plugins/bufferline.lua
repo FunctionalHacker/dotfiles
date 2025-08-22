@@ -3,7 +3,8 @@
 return {
   "akinsho/bufferline.nvim",
   dependencies = { "kyazdani42/nvim-web-devicons" },
-  --- @type BufferlineConfig
+  --- @module "bufferline"
+  --- @type bufferline.UserConfig
   opts = {
     options = {
       diagnostics = "nvim_lsp",

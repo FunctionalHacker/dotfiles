@@ -5,6 +5,7 @@ return {
   dependencies = {
     { "f-person/auto-dark-mode.nvim", config = true },
   },
+  --- @module "kanagawa"
   --- @type KanagawaConfig
   opts = {
     compile = true,

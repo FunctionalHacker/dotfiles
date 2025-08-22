@@ -103,7 +103,7 @@ function RunJava()
 end
 
 -- Define a VimScript command to execute the Lua function
-vim.api.nvim_exec(
+vim.api.nvim_exec2(
   [[
   command! RunJava lua RunJava()
 ]],

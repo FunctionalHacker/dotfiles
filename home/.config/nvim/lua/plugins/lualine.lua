@@ -1,4 +1,3 @@
-local noice_mode = require("noice").api.statusline.mode
 -- Statusline
 --- @type LazyPluginSpec
 return {
@@ -11,8 +10,8 @@ return {
         "fileformat",
         "filetype",
         {
-          noice_mode.get,
-          cond = noice_mode.has,
+          require("noice").api.status.mode.get,
+          cond = require("noice").api.status.mode.has,
           color = { fg = "#ff9e64" },
         },
       },

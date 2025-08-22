@@ -3,6 +3,7 @@
 return {
   "kevinhwang91/nvim-ufo",
   dependencies = { "kevinhwang91/promise-async" },
+  --- @module "ufo"
   --- @type UfoConfig
   opts = {
     close_fold_kinds_for_ft = {

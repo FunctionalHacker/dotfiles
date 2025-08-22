@@ -19,7 +19,7 @@ return {
 
     -- Applies all given configurations to the given filetypes
     --- @param filetypes string[]
-    --- @param configs Configuration[]
+    --- @param configs dap.Configuration[]
     local function dapConfigure(filetypes, configs)
       for _, ft in ipairs(filetypes) do
         configurations[ft] = configs
@@ -70,7 +70,7 @@ return {
       },
     }
 
-    --- @type Configuration[]
+    --- @type dap.Configuration[]
     local browserConfigs = {
       {
         name = "LibreWolf attach",
@@ -87,7 +87,7 @@ return {
       },
     }
 
-    --- @type Configuration[]
+    --- @type dap.Configuration[]
     local nodeConfigs = {
       {
         name = "Node attach",

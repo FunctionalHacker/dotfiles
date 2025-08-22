@@ -10,7 +10,7 @@ return {
       { "<leader>", group = "Leader" },
       { "<leader>w", group = "Workspace" },
       { "g", group = "Go to" },
-      { "<leader>g", group = "Git" },
+      { "<leader>g", group = "Git", mode = { "n", "v" } },
       { "<leader>gr", group = "Reset" },
       { "<leader>ga", group = "Add" },
     },

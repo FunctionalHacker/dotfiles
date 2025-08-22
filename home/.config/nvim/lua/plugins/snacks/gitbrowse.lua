@@ -38,6 +38,7 @@ return {
       function()
         Snacks.gitbrowse()
       end,
+      mode = { "n", "v" },
       desc = "Open in browser",
     },
   },

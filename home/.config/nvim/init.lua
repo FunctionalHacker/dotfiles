@@ -16,7 +16,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("settings")
-require("keybinds")
 require("neovide")
 require("highlight_yank")
 require("lazy").setup({

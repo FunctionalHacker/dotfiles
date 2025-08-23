@@ -2,11 +2,6 @@
 --- @type LazyPluginSpec
 return {
   "tpope/vim-fugitive",
-  init = function()
-    vim.g.fugitive_gitea_domains = {
-      "https://git.korhonen.cc",
-    }
-  end,
   keys = {
     {
       "<leader>gs",

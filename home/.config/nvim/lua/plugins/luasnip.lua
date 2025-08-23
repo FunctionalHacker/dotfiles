@@ -4,7 +4,7 @@ return {
   "L3MON4D3/LuaSnip",
   -- Snippets collection
   dependencies = { "rafamadriz/friendly-snippets" },
-  config = function()
+  init = function()
     local vsCodeLoader = require("luasnip/loaders/from_vscode")
 
     -- Load friendly-snippets

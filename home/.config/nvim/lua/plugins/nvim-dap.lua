@@ -11,7 +11,7 @@ return {
       config = true,
     },
   },
-  config = function()
+  init = function()
     local dap = require("dap")
     local configurations = dap.configurations
     local adapters = dap.adapters

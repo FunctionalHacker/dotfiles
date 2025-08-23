@@ -4,6 +4,12 @@ return {
   "nvim-treesitter/nvim-treesitter",
   lazy = false,
   build = ":TSUpdate",
+  dependencies = {
+    { "nvim-treesitter/nvim-treesitter-textobjects" },
+    -- Automatically add closing tags for HTML and JSX
+    { "windwp/nvim-ts-autotag", config = true },
+  },
+  main = "nvim-treesitter.configs",
   --- @module "nvim-treesitter"
   --- @type TSConfig
   opts = {
@@ -97,39 +103,5 @@ return {
     auto_install = true,
     ignore_install = {},
     modules = {},
-  },
-  dependencies = {
-    {
-      "nvim-treesitter/nvim-treesitter-textobjects",
-      config = function()
-        -- When in diff mode, we want to use the default
-        -- vim text objects c & C instead of the treesitter ones.
-        --- @type table<string,fun(...)>
-        local move = require("nvim-treesitter.textobjects.move")
-        local configs = require("nvim-treesitter.configs")
-        for name, fn in pairs(move) do
-          if name:find("goto") == 1 then
-            move[name] = function(q, ...)
-              if vim.wo.diff then
-                --- @type table<string,string>
-                local config = configs.get_module("textobjects.move")[name]
-                for key, query in pairs(config or {}) do
-                  if q == query and key:find("[%]%[][cC]") then
-                    vim.cmd("normal! " .. key)
-                    return
-                  end
-                end
-              end
-              return fn(q, ...)
-            end
-          end
-        end
-      end,
-    },
-    -- Automatically add closing tags for HTML and JSX
-    {
-      "windwp/nvim-ts-autotag",
-      config = true,
-    },
   },
 }

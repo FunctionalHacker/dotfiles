@@ -10,20 +10,16 @@ return {
       default = { "imports" },
     },
   },
-  --- @param opts UfoConfig
-  config = function(_, opts)
+  init = function()
+    -- Remap fold keys to ufo
     local ufo = require("ufo")
-    ufo.setup(opts)
-
-    -- Using ufo, we need to remap `zR` and `zM`
     vim.keymap.set("n", "zR", ufo.openAllFolds)
     vim.keymap.set("n", "zM", ufo.closeAllFolds)
 
     -- Fold settings
-    local o = vim.o
-    o.foldcolumn = "1"
-    o.foldlevel = 99
-    o.foldlevelstart = 99
-    o.foldenable = true
+    vim.o.foldcolumn = "1"
+    vim.o.foldlevel = 99
+    vim.o.foldlevelstart = 99
+    vim.o.foldenable = true
   end,
 }

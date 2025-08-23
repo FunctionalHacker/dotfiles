@@ -55,18 +55,6 @@ src = ".config/git/config"
 dst = "~/.config/pacman/makepkg.conf"
 src = ".config/pacman/makepkg.conf"
 
-[dotfiles."f_mpd.conf"]
-dst = "~/.config/mpd/mpd.conf"
-src = ".config/mpd/mpd.conf"
-
-[dotfiles."f_mpdris2.conf"]
-dst = "~/.config/mpDris2/mpDris2.conf"
-src = ".config/mpDris2/mpDris2.conf"
-
-[dotfiles.f_ncmpcpp_bindings]
-dst = "~/.config/ncmpcpp/bindings"
-src = ".config/ncmpcpp/bindings"
-
 [dotfiles."f_ssh.conf"]
 dst = "~/.ssh/config"
 src = ".ssh/config"
@@ -90,10 +78,6 @@ dst = "~/.config/fontconfig/fonts.conf"
 [dotfiles.f_ignore]
 src = ".ignore"
 dst = "~/.ignore"
-
-[dotfiles."f_ncmpcpp.conf"]
-src = ".config/ncmpcpp/config"
-dst = "~/.config/ncmpcpp/config"
 
 [dotfiles.f_hushlogin]
 src = ".hushlogin"
@@ -184,16 +168,7 @@ dotfiles = [
 ]
 
 [profiles.media]
-dotfiles = [
-  "d_mpv",
-  "f_abcde.conf",
-  "f_beets_config",
-  "f_beets_whitelist",
-  "f_mpd.conf",
-  "f_mpdris2.conf",
-  "f_ncmpcpp.conf",
-  "f_ncmpcpp_bindings",
-]
+dotfiles = ["d_mpv", "f_abcde.conf", "f_beets_config", "f_beets_whitelist"]
 
 [profiles.gpg]
 dotfiles = [

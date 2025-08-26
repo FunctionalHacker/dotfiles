@@ -1,4 +1,4 @@
--- Git commands
+-- A Git wrapper so awesome, it should be illegal
 --- @type LazyPluginSpec
 return {
   "tpope/vim-fugitive",

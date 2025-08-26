@@ -1,4 +1,4 @@
--- Snippets plugin
+-- Snippet Engine for Neovim
 --- @type LazyPluginSpec
 return {
   "L3MON4D3/LuaSnip",

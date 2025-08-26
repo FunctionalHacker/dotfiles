@@ -1,4 +1,4 @@
--- Replace much of neovim's default UI
+-- Replace much of neovim's default UI with modern reimplentations
 -- with a modern replacement
 --- @type LazyPluginSpec
 return {

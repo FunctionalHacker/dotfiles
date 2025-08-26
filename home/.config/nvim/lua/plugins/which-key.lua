@@ -1,4 +1,5 @@
--- Display possible keybinds
+-- 💥 Create key bindings that stick.
+-- WhichKey helps you remember your Neovim keymaps, by showing available keybindings in a popup as you type.
 --- @type LazyPluginSpec
 return {
   "folke/which-key.nvim",
@@ -99,37 +100,6 @@ return {
         end,
         desc = "Close [o]ther buffers",
       },
-
-      -- LSP keybinds (more in snacks picker configuration)
-      { "<leader>F", vim.lsp.buf.format, desc = "Format with LSP" },
-      { "<leader>ca", vim.lsp.buf.code_action, desc = "Code action" },
-      { "<leader>k", vim.lsp.buf.signature_help, desc = "Signature help" },
-      { "<leader>rs", vim.lsp.buf.rename, desc = "Symbol" },
-      { "<leader>wa", vim.lsp.buf.add_workspace_folder, desc = "Add folder" },
-      { "<leader>wr", vim.lsp.buf.remove_workspace_folder, desc = "Remove folder" },
-      { "K", vim.lsp.buf.hover, desc = "Hover" },
-      { "gD", vim.lsp.buf.declaration, desc = "Declaration" },
-      {
-        "<leader>wl",
-        function()
-          print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-        end,
-        desc = "List folders",
-      },
-      {
-        "[d",
-        function()
-          vim.diagnostic.jump({ count = -1, float = true })
-        end,
-        desc = "Previous diagnostic",
-      },
-      {
-        "]d",
-        function()
-          vim.diagnostic.jump({ count = 1, float = true })
-        end,
-        desc = "Next diagnostic",
-      },
     },
   },
   keys = {
@@ -141,4 +111,43 @@ return {
       desc = "Buffer Local Keymaps (which-key)",
     },
   },
+  init = function()
+    -- Add LSP keybinds to buffer when a server attaches
+    -- (more in snacks picker configuration)
+    vim.api.nvim_create_autocmd("LspAttach", {
+      callback = function(args)
+        require("which-key").add({
+          { "<leader>F", vim.lsp.buf.format, desc = "Format with LSP" },
+          { "<leader>ca", vim.lsp.buf.code_action, desc = "Code action" },
+          { "<leader>k", vim.lsp.buf.signature_help, desc = "Signature help" },
+          { "<leader>rs", vim.lsp.buf.rename, desc = "Symbol" },
+          { "<leader>wa", vim.lsp.buf.add_workspace_folder, desc = "Add folder" },
+          { "<leader>wr", vim.lsp.buf.remove_workspace_folder, desc = "Remove folder" },
+          { "K", vim.lsp.buf.hover, desc = "Hover" },
+          { "gD", vim.lsp.buf.declaration, desc = "Declaration" },
+          {
+            "<leader>wl",
+            function()
+              print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+            end,
+            desc = "List folders",
+          },
+          {
+            "[d",
+            function()
+              vim.diagnostic.jump({ count = -1, float = true })
+            end,
+            desc = "Previous diagnostic",
+          },
+          {
+            "]d",
+            function()
+              vim.diagnostic.jump({ count = 1, float = true })
+            end,
+            desc = "Next diagnostic",
+          },
+        }, { buffer = args.buf })
+      end,
+    })
+  end,
 }

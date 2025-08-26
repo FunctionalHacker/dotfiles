@@ -1,4 +1,4 @@
--- Neovim inside Firefox
+-- Embed Neovim in Chrome, Firefox & others
 --- @type LazyPluginSpec
 return {
   "glacambre/firenvim",

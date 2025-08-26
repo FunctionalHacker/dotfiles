@@ -1,5 +1,5 @@
--- Package manager for LSP servers, DAP adapters etc.
--- It also handles starting all of my LSP servers
+-- Portable package manager for Neovim that runs everywhere Neovim runs.
+-- Easily install and manage LSP servers, DAP servers, linters, and formatters
 --- @type LazyPluginSpec
 return {
   "mason-org/mason-lspconfig.nvim",

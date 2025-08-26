@@ -1,3 +1,4 @@
+-- 🍿 A collection of QoL plugins for Neovim
 --- @type LazyPluginSpec
 return {
   "folke/snacks.nvim",

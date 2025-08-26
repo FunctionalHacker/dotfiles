@@ -1,6 +1,6 @@
--- Debug adapter for NeoVim
-
 local masonPkg = vim.fn.stdpath("data") .. "/mason/packages"
+
+-- Debug adapter for NeoVim
 --- @type LazyPluginSpec
 return {
   "mfussenegger/nvim-dap",

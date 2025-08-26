@@ -1,4 +1,4 @@
--- Better folds
+-- Not UFO in the sky, but an ultra fold in Neovim
 --- @type LazyPluginSpec
 return {
   "kevinhwang91/nvim-ufo",

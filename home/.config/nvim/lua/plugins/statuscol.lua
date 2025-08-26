@@ -1,4 +1,4 @@
--- Customize statuscolumn
+-- Status column plugin that provides a configurable 'statuscolumn' and click handlers
 --- @type LazyPluginSpec
 return {
   "luukvbaal/statuscol.nvim",

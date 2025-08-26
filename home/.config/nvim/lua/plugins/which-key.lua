@@ -58,6 +58,13 @@ return {
         desc = "Open selection with xdg-open",
       },
       {
+        "<leader>wd",
+        function()
+          print(vim.fn.getcwd())
+        end,
+        desc = "Print current working directory",
+      },
+      {
         "<leader>ds",
         function()
           vim.cmd("nohlsearch")

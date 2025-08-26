@@ -24,8 +24,5 @@ require("lazy").setup({
   performance = {
     disabled_plugins = { "netrwPlugin" },
   },
-  defaults = {
-    -- version = "*", -- Disabled for now
-  },
 })
 require("lsp")

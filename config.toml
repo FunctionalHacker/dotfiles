@@ -19,6 +19,7 @@ workdir = "~/.config/dotdrop"
 [dotfiles.d_scripts]
 dst = "~/.scripts"
 src = ".scripts"
+link = "absolute"
 actions = ["scripts_chmod"]
 
 [dotfiles.d_mpv]
@@ -28,6 +29,7 @@ src = ".config/mpv"
 [dotfiles.d_nvim]
 dst = "~/.config/nvim"
 src = ".config/nvim"
+link = "absolute"
 actions = ["kanagawa_compile"]
 instignore = ["*-lock.json"]
 

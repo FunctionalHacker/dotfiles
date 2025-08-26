@@ -58,7 +58,7 @@ return {
         desc = "Open selection with xdg-open",
       },
       {
-        "<leader>dh",
+        "<leader>ds",
         function()
           vim.cmd("nohlsearch")
         end,

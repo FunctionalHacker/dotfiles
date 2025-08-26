@@ -249,48 +249,56 @@ return {
       end,
       desc = "Colorschemes",
     },
-    -- LSP
-    {
-      "gd",
-      function()
-        Snacks.picker.lsp_definitions()
-      end,
-      desc = "Definition",
-    },
-    {
-      "gt",
-      function()
-        Snacks.picker.lsp_type_definitions()
-      end,
-      desc = "Type definition",
-    },
-    {
-      "gi",
-      function()
-        Snacks.picker.lsp_implementations()
-      end,
-      desc = "Implementation",
-    },
-    {
-      "gr",
-      function()
-        Snacks.picker.lsp_references()
-      end,
-      desc = "References",
-    },
-    {
-      "gs",
-      function()
-        Snacks.picker.lsp_symbols()
-      end,
-      desc = "Symbols",
-    },
-    {
-      "gS",
-      function()
-        Snacks.picker.lsp_workspace_symbols()
-      end,
-      desc = "Workspace symbols",
-    },
   },
+  init = function()
+    -- Add LSP keybinds to buffer when a server attaches
+    vim.api.nvim_create_autocmd("LspAttach", {
+      callback = function(args)
+        require("which-key").add({
+          {
+            "gd",
+            function()
+              Snacks.picker.lsp_definitions()
+            end,
+            desc = "Definition",
+          },
+          {
+            "gt",
+            function()
+              Snacks.picker.lsp_type_definitions()
+            end,
+            desc = "Type definition",
+          },
+          {
+            "gi",
+            function()
+              Snacks.picker.lsp_implementations()
+            end,
+            desc = "Implementation",
+          },
+          {
+            "gr",
+            function()
+              Snacks.picker.lsp_references()
+            end,
+            desc = "References",
+          },
+          {
+            "gs",
+            function()
+              Snacks.picker.lsp_symbols()
+            end,
+            desc = "Symbols",
+          },
+          {
+            "gS",
+            function()
+              Snacks.picker.lsp_workspace_symbols()
+            end,
+            desc = "Workspace symbols",
+          },
+        }, { buffer = args.buf })
+      end,
+    })
+  end,
 }

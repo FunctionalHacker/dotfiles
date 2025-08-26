@@ -12,6 +12,10 @@ return {
         projects = {
           dev = { "~/git" },
           patterns = { ".git" },
+          confirm = function(_, item)
+            vim.fn.chdir(item.file)
+            Snacks.picker.smart()
+          end,
         },
       },
     },

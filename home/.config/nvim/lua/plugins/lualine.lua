@@ -4,7 +4,6 @@ local noice = require("noice").api.status
 --- @type LazyPluginSpec
 return {
   "nvim-lualine/lualine.nvim",
-  dependencies = { "kyazdani42/nvim-web-devicons" },
   opts = {
     sections = {
       lualine_x = {

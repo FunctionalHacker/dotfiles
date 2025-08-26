@@ -2,7 +2,6 @@
 --- @type LazyPluginSpec
 return {
   "akinsho/bufferline.nvim",
-  dependencies = { "kyazdani42/nvim-web-devicons" },
   --- @module "bufferline"
   --- @type bufferline.UserConfig
   opts = {

@@ -2,6 +2,7 @@
 --- @type LazyPluginSpec
 return {
   "L3MON4D3/LuaSnip",
+  event = "VeryLazy",
   -- Snippets collection
   dependencies = { "rafamadriz/friendly-snippets" },
   init = function()

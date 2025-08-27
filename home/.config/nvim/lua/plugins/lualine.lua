@@ -4,6 +4,7 @@ local noice = require("noice").api.status
 --- @type LazyPluginSpec
 return {
   "nvim-lualine/lualine.nvim",
+  event = "VeryLazy",
   opts = {
     sections = {
       lualine_x = {

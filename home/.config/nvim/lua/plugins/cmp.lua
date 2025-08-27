@@ -2,6 +2,7 @@
 --- @type LazyPluginSpec
 return {
   "hrsh7th/nvim-cmp",
+  event = "VeryLazy",
   dependencies = {
     "hrsh7th/cmp-buffer", -- Buffer source
     -- Git source

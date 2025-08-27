@@ -3,6 +3,7 @@
 --- @type LazyPluginSpec
 return {
   "mason-org/mason-lspconfig.nvim",
+  event = "VeryLazy",
   opts = {},
   dependencies = {
     { "mason-org/mason.nvim", config = true },

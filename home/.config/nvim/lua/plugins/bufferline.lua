@@ -2,6 +2,7 @@
 --- @type LazyPluginSpec
 return {
   "akinsho/bufferline.nvim",
+  event = "VeryLazy",
   --- @module "bufferline"
   --- @type bufferline.UserConfig
   opts = {

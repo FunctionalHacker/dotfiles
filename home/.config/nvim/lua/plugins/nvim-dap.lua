@@ -4,6 +4,7 @@ local masonPkg = vim.fn.stdpath("data") .. "/mason/packages"
 --- @type LazyPluginSpec
 return {
   "mfussenegger/nvim-dap",
+  event = "VeryLazy",
   dependencies = {
     {
       "rcarriga/nvim-dap-ui",

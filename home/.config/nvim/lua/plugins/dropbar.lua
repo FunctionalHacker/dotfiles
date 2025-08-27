@@ -1,3 +1,6 @@
 -- IDE-like breadcrumbs, out of the box
 --- @type LazyPluginSpec
-return { "Bekaboo/dropbar.nvim" }
+return {
+  "Bekaboo/dropbar.nvim",
+  event = "VeryLazy",
+}

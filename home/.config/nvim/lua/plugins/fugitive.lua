@@ -2,6 +2,7 @@
 --- @type LazyPluginSpec
 return {
   "tpope/vim-fugitive",
+  event = "VeryLazy",
   keys = {
     {
       "<leader>gs",

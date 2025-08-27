@@ -4,4 +4,5 @@ return {
   "echasnovski/mini.nvim",
   version = "*",
   event = "VeryLazy",
+  import = "plugins.mini",
 }

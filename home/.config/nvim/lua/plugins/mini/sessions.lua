@@ -1,6 +1,7 @@
 --- @type LazyPluginSpec
 return {
-  "mini.sessions",
+  "mini.nvim",
+  main = "mini.sessions",
   config = true,
   event = "VeryLazy",
 }

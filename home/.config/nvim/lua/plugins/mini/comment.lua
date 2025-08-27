@@ -1,6 +1,7 @@
 --- @type LazyPluginSpec
 return {
-  "mini.comment",
+  "mini.nvim",
+  main = "mini.comment",
   config = true,
   event = "VeryLazy",
 }

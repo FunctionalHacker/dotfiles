@@ -1,6 +1,7 @@
 --- @type LazyPluginSpec
 return {
-  "mini.surround",
+  "mini.nvim",
+  main = "mini.surround",
   config = true,
   event = "VeryLazy",
 }

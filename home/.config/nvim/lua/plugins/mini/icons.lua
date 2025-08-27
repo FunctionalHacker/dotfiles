@@ -1,6 +1,7 @@
 --- @type LazyPluginSpec
 return {
-  "mini.icons",
+  "mini.nvim",
+  main = "mini.icons",
   config = true,
   event = "VeryLazy",
   init = function()

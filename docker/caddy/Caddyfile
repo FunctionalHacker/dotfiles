@@ -157,19 +157,19 @@ korhonen.cc, *.korhonen.cc {
 		respond {remote_host}
 	}
 
-  @lubelogger host lubelogger.korhonen.cc
-  handle @lubelogger {
-    reverse_proxy lubelogger:8080
-  }
+	@lubelogger host lubelogger.korhonen.cc
+	handle @lubelogger {
+		reverse_proxy lubelogger:8080
+	}
 
-  @mosquitto host mqtt.korhonen.cc
-  handle @mosquitto {
-    @websockets {
-        header Connection *Upgrade*
-        header Upgrade websocket
-    }
-    reverse_proxy @websockets mosquitto:9001
-  }
+	@mosquitto host mqtt.korhonen.cc
+	handle @mosquitto {
+		@websockets {
+			header Connection *Upgrade*
+			header Upgrade websocket
+		}
+		reverse_proxy @websockets mosquitto:9001
+	}
 
 	handle {
 		respond "404 Not Found" 404
@@ -188,8 +188,4 @@ korhonen.cc, *.korhonen.cc {
 
 		respond "{err.status_code} {err.status_text}"
 	}
-}
-
-http://scanner.korhonen.lan {
-  reverse_proxy scanservjs:8080
 }

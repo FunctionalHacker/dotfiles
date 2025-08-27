@@ -146,6 +146,28 @@ return {
             end,
             desc = "Next diagnostic",
           },
+          {
+            "[e",
+            function()
+              vim.diagnostic.jump({
+                count = -1,
+                float = true,
+                severity = vim.diagnostic.severity.ERROR,
+              })
+            end,
+            desc = "Previous error",
+          },
+          {
+            "]e",
+            function()
+              vim.diagnostic.jump({
+                count = 1,
+                float = true,
+                severity = vim.diagnostic.severity.ERROR,
+              })
+            end,
+            desc = "Next error",
+          },
         }, { buffer = args.buf })
       end,
     })

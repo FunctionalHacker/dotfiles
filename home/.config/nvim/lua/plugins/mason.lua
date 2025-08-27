@@ -18,8 +18,6 @@ return {
         lockfile_path = vim.fn.expand("~/git/dotfiles/home/.config/nvim/mason-lock.json"),
       },
     },
-    -- Extended functionality for jdtls
-    "mfussenegger/nvim-jdtls",
     -- Automatically fetch schemas from JSON schema store
     "b0o/schemastore.nvim",
   },

@@ -30,6 +30,7 @@ services:
   redis:
     container_name: redis-searxng
     image: redis:alpine
+    restart: unless-stopped
     command: redis-server --save "" --appendonly "no"
     networks:
       - default

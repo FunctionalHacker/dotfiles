@@ -196,7 +196,7 @@ include = ["terminal", "gpg"]
 [profiles.Gondor]
 include = ["pacman", "terminal"]
 
-[profiles.mko-laptop]
+[profiles.Orthanc]
 include = ["terminal", "gpg"]
 dotfiles = ["f_dconf.ini"]
 
@@ -227,8 +227,8 @@ wayland = true
 [profiles.Moria.variables]
 wayland = true
 
-[profiles.mko-laptop.variables]
-wayland = true
+[profiles.Orthanc.variables]
+wayland = false
 
 [profiles.Isengard.variables]
 distro_id = "termux"

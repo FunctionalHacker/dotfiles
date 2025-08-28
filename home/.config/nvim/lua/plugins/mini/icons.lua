@@ -2,8 +2,8 @@
 return {
   "mini.nvim",
   main = "mini.icons",
-  config = true,
   event = "VeryLazy",
+  opts = {},
   init = function()
     require("mini.icons").mock_nvim_web_devicons()
   end,

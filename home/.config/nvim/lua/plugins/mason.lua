@@ -6,12 +6,12 @@ return {
   event = "VeryLazy",
   opts = {},
   dependencies = {
-    { "mason-org/mason.nvim", config = true },
+    { "mason-org/mason.nvim", opts = {} },
     "neovim/nvim-lspconfig",
     -- Add support for LSP file operations
-    { "antosha417/nvim-lsp-file-operations", config = true },
+    { "antosha417/nvim-lsp-file-operations", opts = {} },
     -- Add MasonUpdateAll
-    { "Zeioth/mason-extra-cmds", config = true },
+    { "Zeioth/mason-extra-cmds", opts = {} },
     -- Add lockfile support
     {
       "zapling/mason-lock.nvim",

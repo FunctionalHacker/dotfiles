@@ -9,7 +9,7 @@ return {
     {
       "rcarriga/nvim-dap-ui",
       dependencies = { "nvim-neotest/nvim-nio" },
-      config = true,
+      opts = {},
     },
   },
   init = function()

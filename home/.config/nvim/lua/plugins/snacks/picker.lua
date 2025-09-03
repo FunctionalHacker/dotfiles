@@ -17,6 +17,28 @@ return {
             Snacks.picker.smart()
           end,
         },
+        ---@type snacks.picker.lsp.symbols.Config
+        lsp_symbols = {
+          filter = {
+            default = {
+              "Constant",
+              "Variable",
+              "Property",
+              "Class",
+              "Constructor",
+              "Enum",
+              "Field",
+              "Function",
+              "Interface",
+              "Method",
+              "Module",
+              "Namespace",
+              "Package",
+              "Struct",
+              "Trait",
+            },
+          },
+        },
       },
     },
   },
@@ -248,6 +270,14 @@ return {
         Snacks.picker.colorschemes()
       end,
       desc = "Colorschemes",
+    },
+    {
+      "<leader>cd",
+      function()
+        Snacks.picker({
+          title = "Change to a directory",
+        })
+      end,
     },
   },
   init = function()

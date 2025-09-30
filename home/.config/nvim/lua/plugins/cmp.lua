@@ -17,6 +17,7 @@ return {
     "hrsh7th/cmp-nvim-lua", -- Neovim Lua API documentation source
     "hrsh7th/cmp-path", -- Path source
     "hrsh7th/cmp-cmdline", -- cmdline source
+    "hrsh7th/cmp-emoji", -- Emoji source
     "saadparwaiz1/cmp_luasnip", -- Snippets source
     "f3fora/cmp-spell", -- Spell check source
   },
@@ -110,6 +111,7 @@ return {
           name = "lazydev",
           group_index = 0, -- set group index to 0 to skip loading LuaLS completions
         },
+        { name = "emoji" },
       },
     })
 

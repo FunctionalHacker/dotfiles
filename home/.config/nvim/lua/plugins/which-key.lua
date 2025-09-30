@@ -18,7 +18,6 @@ return {
       { "<leader>w", group = "Workspace" },
       { "<leader>d", group = "Dismiss" },
       { "<leader>r", group = "Rename" },
-      { "<leader>f", group = "Find" },
       { "<leader>s", group = "Search", mode = { "n", "x" } },
       { "<leader>g", group = "Git", mode = { "n", "v" } },
       { "<leader>gr", group = "Reset" },

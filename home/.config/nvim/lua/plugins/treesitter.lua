@@ -8,6 +8,7 @@ return {
     { "nvim-treesitter/nvim-treesitter-textobjects" },
     -- Automatically add closing tags for HTML and JSX
     { "windwp/nvim-ts-autotag", opts = {} },
+    { "JoosepAlviste/nvim-ts-context-commentstring" },
   },
   main = "nvim-treesitter.configs",
   --- @module "nvim-treesitter"

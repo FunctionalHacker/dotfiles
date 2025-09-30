@@ -139,9 +139,13 @@ dst = "~/.config/tmux/tmux.conf"
 src = ".config/neovide/config.toml"
 dst = "~/.config/neovide/config.toml"
 
-[dotfiles."f_lazygit_config"]
+[dotfiles.f_lazygit.yml]
 src = ".config/jesseduffield/lazygit/config.yml"
 dst = "~/.config/jesseduffield/lazygit/config.yml"
+
+[dotfiles.f_lazydocker.yml]
+src = ".config/jesseduffield/lazydocker/config.yml"
+dst = "~/.config/jesseduffield/lazydocker/config.yml"
 
 [profiles.pacman]
 dotfiles = ["f_makepkg.conf", "f_paru.conf"]
@@ -149,7 +153,8 @@ dotfiles = ["f_makepkg.conf", "f_paru.conf"]
 [profiles.terminal]
 dotfiles = [
   "d_scripts",
-  "f_lazygit_config",
+  "f_lazygit.yml",
+  "f_lazydocker.yml",
   "f_neovide_config",
   "d_nvim",
   "d_ssh",
@@ -178,17 +183,29 @@ dotfiles = [
 include = ["pacman", "terminal", "media", "gpg"]
 dotfiles = ["f_dconf.ini", "f_docker-config.json", "f_fonts.conf"]
 
+[profiles.Mirkwood.variables]
+wayland = true
+
 [profiles.VentoyArch]
 include = ["pacman", "terminal", "media", "gpg"]
 dotfiles = ["f_dconf.ini", "f_fonts.conf"]
+
+[profiles.VentoyArch.variables]
+wayland = true
 
 [profiles.Shire]
 include = ["pacman", "terminal", "media", "gpg"]
 dotfiles = ["f_dconf.ini", "f_fonts.conf"]
 
+[profiles.Shire.variables]
+wayland = true
+
 [profiles.Moria]
 include = ["pacman", "terminal", "media", "gpg"]
 dotfiles = ["f_dconf.ini", "f_zprofile", "f_fonts.conf"]
+
+[profiles.Moria.variables]
+wayland = true
 
 [profiles.Tirion]
 include = ["terminal", "gpg"]
@@ -200,8 +217,14 @@ include = ["pacman", "terminal"]
 include = ["terminal", "gpg"]
 dotfiles = ["f_dconf.ini"]
 
+[profiles.Orthanc.variables]
+wayland = false
+
 [profiles.Isengard]
 include = ["terminal"]
+
+[profiles.Isengard.variables]
+distro_id = "termux"
 
 [profiles.Edoras]
 include = ["terminal"]
@@ -214,21 +237,3 @@ include = ["terminal"]
 
 [profiles.Evendim]
 include = ["terminal", "pacman"]
-
-[profiles.Mirkwood.variables]
-wayland = true
-
-[profiles.VentoyArch.variables]
-wayland = true
-
-[profiles.Shire.variables]
-wayland = true
-
-[profiles.Moria.variables]
-wayland = true
-
-[profiles.Orthanc.variables]
-wayland = false
-
-[profiles.Isengard.variables]
-distro_id = "termux"

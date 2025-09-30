@@ -10,6 +10,7 @@ alias gs='git status'
 alias gpull='git pull'
 alias gpush='git push'
 alias gl='lazygit'
+alias dl='lazydocker'
 
 alias o='xdg-open'
 

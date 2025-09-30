@@ -35,6 +35,33 @@ return {
     vim.o.completeopt = "menuone,noselect"
 
     local bordered = cmp.config.window.bordered()
+    local kind_icons = {
+      Text = "",
+      Method = "m",
+      Function = "",
+      Constructor = "",
+      Field = "",
+      Variable = "",
+      Class = "",
+      Interface = "",
+      Module = "",
+      Property = "",
+      Unit = "",
+      Value = "",
+      Enum = "",
+      Keyword = "",
+      Snippet = "",
+      Color = "",
+      File = "",
+      Reference = "",
+      Folder = "",
+      EnumMember = "",
+      Constant = "",
+      Struct = "",
+      Event = "",
+      Operator = "",
+      TypeParameter = "",
+    }
 
     cmp.setup({
       snippet = {
@@ -45,6 +72,21 @@ return {
       window = {
         completion = bordered,
         documentation = bordered,
+      },
+      formatting = {
+        fields = { "kind", "abbr", "menu" },
+        format = function(entry, vim_item)
+          vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
+          vim_item.menu = ({
+            nvim_lsp = "[LSP]",
+            luasnip = "[Snippet]",
+            buffer = "[Buffer]",
+            path = "[Path]",
+            emoji = "[Emoji]",
+            cmdline = "[CMD]",
+          })[entry.source.name]
+          return vim_item
+        end,
       },
       mapping = {
         ["<C-p>"] = cmp.mapping.select_prev_item(),
@@ -111,7 +153,7 @@ return {
           name = "lazydev",
           group_index = 0, -- set group index to 0 to skip loading LuaLS completions
         },
-        { name = "emoji" },
+        { name = "emoji", insert = true },
       },
     })
 

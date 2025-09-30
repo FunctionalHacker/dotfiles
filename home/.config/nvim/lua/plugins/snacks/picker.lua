@@ -14,7 +14,7 @@ return {
           patterns = { ".git" },
           confirm = function(_, item)
             vim.fn.chdir(item.file)
-            Snacks.picker.smart()
+            Snacks.picker.files()
           end,
         },
         ---@type snacks.picker.lsp.symbols.Config
@@ -52,11 +52,18 @@ return {
       desc = "Snacks",
     },
     {
-      "<leader><space>",
+      "<leader><leader>",
       function()
         Snacks.picker.smart()
       end,
       desc = "Smart Find Files",
+    },
+    {
+      "<leader>sf",
+      function()
+        Snacks.picker.files()
+      end,
+      desc = "Find Files",
     },
     {
       "<leader>,",

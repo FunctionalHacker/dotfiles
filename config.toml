@@ -139,11 +139,11 @@ dst = "~/.config/tmux/tmux.conf"
 src = ".config/neovide/config.toml"
 dst = "~/.config/neovide/config.toml"
 
-[dotfiles.f_lazygit.yml]
+[dotfiles.f_lazygit]
 src = ".config/jesseduffield/lazygit/config.yml"
 dst = "~/.config/jesseduffield/lazygit/config.yml"
 
-[dotfiles.f_lazydocker.yml]
+[dotfiles.f_lazydocker]
 src = ".config/jesseduffield/lazydocker/config.yml"
 dst = "~/.config/jesseduffield/lazydocker/config.yml"
 
@@ -153,8 +153,8 @@ dotfiles = ["f_makepkg.conf", "f_paru.conf"]
 [profiles.terminal]
 dotfiles = [
   "d_scripts",
-  "f_lazygit.yml",
-  "f_lazydocker.yml",
+  "f_lazygit",
+  "f_lazydocker",
   "f_neovide_config",
   "d_nvim",
   "d_ssh",

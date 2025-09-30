@@ -3,6 +3,9 @@
 return {
   "folke/lazydev.nvim",
   ft = "lua", -- only load on lua files
+  dependencies = {
+    { "DrKJeff16/wezterm-types", lazy = true },
+  },
   --- @module "lazydev"
   --- @type lazydev.Config
   opts = {
@@ -11,6 +14,7 @@ return {
       { path = "luvit-meta/library", words = { "vim%.uv" } },
       { path = "snacks.nvim", words = { "Snacks" } },
       { path = "lazy.nvim", words = { "LazyPluginSpec" } },
+      { path = "wezterm-types", mods = { "wezterm" } },
     },
   },
 }

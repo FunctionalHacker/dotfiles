@@ -47,7 +47,9 @@ korhonen.cc, *.korhonen.cc {
 	@index host index.korhonen.cc
 	handle @index {
 		root * /var/www/index.korhonen.cc
-		file_server browse
+		file_server {
+      browse /templates/file_server.html
+    }
 	}
 
 	@home-assistant host home.korhonen.cc

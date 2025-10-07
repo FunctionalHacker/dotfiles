@@ -6,6 +6,8 @@ volumes:
   openwakeword_english: {}
   matter-server: {}
   otbr: {}
+  media:
+    external: true
 services:
   home-assistant:
     container_name: home-assistant
@@ -73,6 +75,24 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - mosquitto:/mosquitto
+  music-assistant:
+    image: ghcr.io/music-assistant/server:latest
+    container_name: music-assistant
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - ${USERDIR:-$HOME}/docker/music-assistant-server/data:/data/
+      - media:/media
+    cap_add:
+      - SYS_ADMIN
+      - DAC_READ_SEARCH
+    security_opt:
+      - apparmor:unconfined
+  ytdlp-pot-provider:
+    image: brainicism/bgutil-ytdlp-pot-provider:1.2.1
+    container_name: ytdlp-pot-provider
+    restart: unless-stopped
+    network_mode: host
   # piper_english:
   #   container_name: piper_english
   #   image: rhasspy/wyoming-piper

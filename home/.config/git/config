@@ -1,5 +1,5 @@
 [user]
-{%@@ if profile == "mko-laptop" @@%}
+{%@@ if profile == "Orthanc" @@%}
 email = marko.korhonen@netforecast.com
 {%@@ else @@%}
 email = marko@korhonen.cc

@@ -284,7 +284,7 @@ include = ["locale"]
 [profiles.Edoras]
 include = ["pacman"]
 
-[profiles.mko-laptop]
+[profiles.Orthanc]
 dotfiles = ["f_cpupower", "f_doas.conf", "f_timesyncd.conf"]
 
 [profiles.Evendim]

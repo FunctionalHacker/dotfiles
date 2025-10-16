@@ -25,6 +25,9 @@ services:
       - 8123:8123
     extra_hosts:
       - host.docker.internal:host-gateway
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
   matter-server:
     image: ghcr.io/home-assistant-libs/python-matter-server:stable
     container_name: matter-server

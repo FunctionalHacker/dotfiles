@@ -12,12 +12,12 @@ return {
           win = {
             list = {
               keys = {
-                ["D"] = "duplicate_file",
+                ["D"] = "explorer_duplicate_file",
               },
             },
           },
           actions = {
-            duplicate_file = {
+            explorer_duplicate_file = {
               action = function(_, item)
                 if not item then
                   return

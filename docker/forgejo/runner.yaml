@@ -13,7 +13,7 @@ runner:
   fetch_interval: 2s
   report_interval: 1s
   labels:
-    - 'docker:docker://git.korhonen.cc/functionalhacker/ubuntu-act:22.04'
+    - 'docker:docker://git.korhonen.cc/functionalhacker/ubuntu-act:latest'
 
 cache:
   enabled: true

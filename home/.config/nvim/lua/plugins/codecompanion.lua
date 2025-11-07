@@ -1,4 +1,5 @@
 -- ✨ AI Coding, Vim Style
+--- @type LazyPluginSpec
 return {
   "olimorris/codecompanion.nvim",
   opts = {
@@ -34,4 +35,19 @@ return {
       },
     },
   },
+  keys = function()
+    local cc = require("codecompanion")
+    return {
+      {
+        "<leader>cmt",
+        cc.toggle,
+        desc = "Code Companion toggle",
+      },
+      {
+        "<leader>cmc",
+        cc.chat,
+        desc = "Code Companion new chat",
+      },
+    }
+  end,
 }

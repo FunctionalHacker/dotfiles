@@ -231,7 +231,7 @@ update() {
 
 	{%@@ if profile == "Moria" @@%}
 	repo() {
-		aur sync -Su --margs --noconfirm
+		aur sync -Su --margs --noconfirm --chroot --makepkg-conf=$HOME/.config/pacman/makepkg.conf
 	}
 
 	local docker-update() {

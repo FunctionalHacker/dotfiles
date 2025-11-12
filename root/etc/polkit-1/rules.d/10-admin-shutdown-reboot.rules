@@ -1,0 +1,15 @@
+polkit.addRule(function(action, subject) {
+    if (action.id == "org.freedesktop.login1.power-off" ||
+        action.id == "org.freedesktop.login1.power-off-ignore-inhibit" ||
+        action.id == "org.freedesktop.login1.power-off-multiple-sessions" ||
+        action.id == "org.freedesktop.login1.reboot" ||
+        action.id == "org.freedesktop.login1.reboot-ignore-inhibit" ||
+        action.id == "org.freedesktop.login1.reboot-multiple-sessions"
+    ) {
+        if (subject.isInGroup("wheel") || subject.isInGroup("sudo")) {
+            return polkit.Result.YES;
+        }
+    
+        return polkit.Result.NO;
+    }
+});

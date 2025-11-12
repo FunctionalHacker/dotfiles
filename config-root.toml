@@ -176,6 +176,10 @@ dst = "/etc/doas.conf"
 src = "etc/flexo/flexo.toml"
 dst = "/etc/flexo/flexo.toml"
 
+[dotfiles."d_polkit-rules"]
+src = "etc/polkit-1/rules.d"
+dst = "/etc/polkit-1/rules.d"
+
 [profiles.locale]
 dotfiles = ["f_locale.conf", "f_locale.gen"]
 
@@ -269,6 +273,7 @@ dotfiles = [
   "f_plymouthd.conf",
   "f_sshd_config",
   "f_flexo.toml",
+  "d_polkit-rules",
 ]
 
 [profiles.Tirion]
@@ -289,4 +294,4 @@ dotfiles = ["f_cpupower", "f_doas.conf", "f_timesyncd.conf"]
 
 [profiles.Evendim]
 include = ["locale", "pacman"]
-dotfiles = ["f_doas.conf", "f_sshd_config"]
+dotfiles = ["f_doas.conf", "f_sshd_config", "d_polkit-rules"]

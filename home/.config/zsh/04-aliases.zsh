@@ -95,7 +95,7 @@ pr() {
 
 {%@@ if profile == "Moria" @@%}
 # Add packages to repo with fzf
-ra() {
+korhonen_aur_add() {
 	SELECTED_PKGS="$(paru -Slqa | fzf --header='Add packages to repo' -m --preview 'paru -Si {1}' | tr '\n' ' ')"
 	if [ -n "$SELECTED_PKGS" ]; then
     cmd="aur sync -S $SELECTED_PKGS"
@@ -106,6 +106,12 @@ ra() {
     # Finally, excecute the command
     eval "$cmd"
 	fi
+}
+
+korhonen_aur_remove() {
+  repo-remove -s \
+    /var/www/index.korhonen.cc/repo/arch_linux/korhonen_aur/x86_64/korhonen_aur.db.tar.zst \
+    $(paru -Slq korhonen_aur | fzf)
 }
 {%@@ endif @@%}
 

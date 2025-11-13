@@ -1,5 +1,6 @@
 volumes:
   hass: {}
+  music-assistant: {}
   mosquitto: {}
   piper_english: {}
   whisper_english: {}
@@ -79,12 +80,12 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - mosquitto:/mosquitto
   music-assistant:
-    image: ghcr.io/music-assistant/server:latest
+    image: ghcr.io/music-assistant/server
     container_name: music-assistant
     restart: unless-stopped
     network_mode: host
     volumes:
-      - ${USERDIR:-$HOME}/docker/music-assistant-server/data:/data/
+      - music-assistant:/data/
       - media:/media
     cap_add:
       - SYS_ADMIN
@@ -92,7 +93,7 @@ services:
     security_opt:
       - apparmor:unconfined
   ytdlp-pot-provider:
-    image: brainicism/bgutil-ytdlp-pot-provider:1.2.1
+    image: brainicism/bgutil-ytdlp-pot-provider
     container_name: ytdlp-pot-provider
     restart: unless-stopped
     network_mode: host

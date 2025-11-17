@@ -2,7 +2,6 @@ volumes:
   redis: {}
   media: {}
   custom_templates: {}
-  geoip: {}
   backups: {}
 services:
   redis:
@@ -22,14 +21,13 @@ services:
       retries: 5
       timeout: 3s
   server:
-    image: ghcr.io/goauthentik/server
+    image: ghcr.io/goauthentik/server:2025.10.1
     container_name: authentik
     restart: unless-stopped
     command: server
     volumes:
       - media:/media
       - custom_templates:/templates
-      - geoip:/geoip
     env_file:
       - .env
     networks:
@@ -37,7 +35,7 @@ services:
       - postgres
       - proxy
   worker:
-    image: ghcr.io/goauthentik/server
+    image: ghcr.io/goauthentik/server:2025.10.1
     container_name: authentik-worker
     restart: unless-stopped
     command: worker
@@ -45,7 +43,6 @@ services:
     volumes:
       - backups:/backups
       - custom_templates:/templates
-      - geoip:/geoip
       - media:/media
       - /var/run/docker.sock:/var/run/docker.sock
     env_file:
@@ -53,19 +50,6 @@ services:
     networks:
       - default
       - postgres
-  geoipupdate:
-    image: maxmindinc/geoipupdate
-    container_name: authentik-geoipupdate
-    restart: unless-stopped
-    networks:
-      - default
-    volumes:
-      - geoip:/usr/share/GeoIP
-    env_file:
-      - .env
-    environment:
-      GEOIPUPDATE_EDITION_IDS: GeoLite2-City
-      GEOIPUPDATE_FREQUENCY: '8'
 networks:
   postgres:
     external: true

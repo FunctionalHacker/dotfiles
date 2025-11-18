@@ -71,6 +71,12 @@ src = ".zshrc"
 src = ".config/zsh"
 dst = "~/.config/zsh"
 
+[dotfiles.f_zlogin]
+src = ".zlogin"
+dst = "~/.zlogin"
+chmod = "644"
+
+
 [dotfiles."f_fonts.conf"]
 src = ".config/fontconfig/fonts.conf"
 dst = "~/.config/fontconfig/fonts.conf"
@@ -163,12 +169,13 @@ dotfiles = [
   "d_nvim",
   "d_ssh",
   "d_zsh",
+  "f_zshrc",
+  "f_zlogin",
   "f_gitconfig",
   "f_hushlogin",
   "f_ignore",
   "f_zellij",
   "f_tmux",
-  "f_zshrc",
   "f_npmrc",
   "d_wezterm",
 ]

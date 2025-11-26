@@ -20,10 +20,21 @@ return {
     "hrsh7th/cmp-emoji", -- Emoji source
     "saadparwaiz1/cmp_luasnip", -- Snippets source
     "f3fora/cmp-spell", -- Spell check source
+    "zbirenbaum/copilot-cmp", -- Copilot source
+    -- VS Code style pictograms for completion items
+    {
+      "onsails/lspkind.nvim",
+      opts = {
+        symbol_map = {
+          Copilot = "",
+        },
+      },
+    },
   },
   config = function()
     local cmp = require("cmp")
     local luasnip = require("luasnip")
+    local lspkind = require("lspkind")
 
     local has_words_before = function()
       unpack = unpack or table.unpack
@@ -75,18 +86,19 @@ return {
       },
       formatting = {
         fields = { "kind", "abbr", "menu" },
-        format = function(entry, vim_item)
-          vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
-          vim_item.menu = ({
-            nvim_lsp = "[LSP]",
-            luasnip = "[Snippet]",
-            buffer = "[Buffer]",
-            path = "[Path]",
-            emoji = "[Emoji]",
-            cmdline = "[CMD]",
-          })[entry.source.name]
-          return vim_item
-        end,
+        format = lspkind.cmp_format({
+          mode = "symbol_text",
+          maxwidth = {
+            menu = 50,
+            abbr = 50,
+          },
+          ellispis_chart = "...",
+          show_labelDetails = true,
+
+          before = function(entry, vim_item)
+            return vim_item
+          end,
+        }),
       },
       mapping = {
         ["<C-p>"] = cmp.mapping.select_prev_item(),
@@ -145,6 +157,7 @@ return {
       sources = {
         { name = "luasnip" },
         { name = "nvim_lsp" },
+        { name = "copilot" },
         { name = "nvim_lua" },
         { name = "buffer" },
         { name = "spell" },

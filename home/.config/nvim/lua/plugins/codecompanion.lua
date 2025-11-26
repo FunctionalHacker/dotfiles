@@ -24,16 +24,6 @@ return {
   },
   dependencies = {
     "nvim-lua/plenary.nvim",
-    -- Only for authenticating
-    {
-      "zbirenbaum/copilot.lua",
-      cmd = "Copilot",
-      build = ":Copilot auth",
-      opts = {
-        suggestion = { enabled = false },
-        panel = { enabled = false },
-      },
-    },
   },
   keys = function()
     local cc = require("codecompanion")

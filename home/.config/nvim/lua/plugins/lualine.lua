@@ -7,6 +7,15 @@ return {
   event = "VeryLazy",
   opts = {
     sections = {
+      lualine_b = {
+        {
+          function()
+            local project = vim.g.current_snacks_project or vim.fn.getcwd()
+            return vim.fn.fnamemodify(project, ":t")
+          end,
+        },
+        "branch",
+      },
       lualine_x = {
         {
           noice.command.get,

@@ -14,6 +14,7 @@ return {
           patterns = { ".git" },
           confirm = function(_, item)
             vim.fn.chdir(item.file)
+            vim.g.current_project = item.file
             Snacks.picker.files()
           end,
         },

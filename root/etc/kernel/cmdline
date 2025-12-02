@@ -2,7 +2,7 @@
 cryptdevice=UUID=ddc8cabe-f726-4287-8407-3a0323ec6037:cryptroot:allow-discards root=/dev/mapper/cryptroot rootflags=subvol=root resume=/dev/mapper/cryptroot resume_offset=18529853 rw quiet splash vt.global_cursor_default=0 fbcon=nodefer log_level=3 udev.log_level=3
 {%@@ elif profile == "Moria" @@%}
 cryptdevice=UUID=51115cf2-6a44-4f8c-8aa2-ff9d834953d8:cryptroot:allow-discards root=/dev/mapper/cryptroot rootflags=subvol=root ip=:::::eth0:dhcp netconf_timeout=60 rw quiet splash vt.global_cursor_default=0 fbcon=nodefer log_level=3 udev.log_level=3
-{%@@ if profile == "Orthanc" @@%}
+{%@@ elif profile == "Orthanc" @@%}
 cryptdevice=PARTUUID=a5ecc787-aa61-45e6-9ec5-5ce8d3a696b9:root root=/dev/mapper/root zswap.enabled=0 rootflags=subvol=@ rw rootfstype=btrfs quiet splash vt.global_cursor_default=0 fbcon=nodefer log_level=3 udev.log_level=3
 {%@@ elif profile == "Shire" @@%}
 cryptdevice=UUID=8898d32c-d150-4258-ad0f-96b5afca4718:cryptroot root=/dev/mapper/cryptroot rootflags=subvol=root resume_offset=2106624 intel_idle.max_cstate=1 rw quiet splash vt.global_cursor_default=0 fbcon=nodefer log_level=3 udev.log_level=3

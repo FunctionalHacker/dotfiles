@@ -214,7 +214,7 @@ include = ["terminal", "gpg"]
 include = ["pacman", "terminal"]
 
 [profiles.Orthanc]
-include = ["terminal", "gpg"]
+include = ["pacman", "terminal", "gpg"]
 dotfiles = ["f_dconf.ini"]
 
 [profiles.Isengard]
@@ -245,7 +245,7 @@ wayland = true
 wayland = true
 
 [profiles.Orthanc.variables]
-wayland = false
+wayland = true
 
 [profiles.Isengard.variables]
 distro_id = "termux"

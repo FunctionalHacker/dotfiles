@@ -194,7 +194,7 @@ dotfiles = [
 ]
 
 [profiles.arch_boot]
-dotfiles = ["f_cmdline", "f_mkinitcpio.conf"]
+dotfiles = ["f_cmdline", "f_mkinitcpio.conf", "f_plymouthd.conf"]
 
 [profiles.Mirkwood]
 dotfiles = [
@@ -212,7 +212,6 @@ dotfiles = [
   "f_ignore",
   "f_logind.conf",
   "f_mkinitcpio_linux.preset",
-  "f_plymouthd.conf",
   "f_sshd_config",
   "f_system.conf",
   "f_timesyncd.conf",
@@ -230,7 +229,6 @@ dotfiles = [
   "f_ignore",
   "f_logind.conf",
   "f_mkinitcpio_linux.preset",
-  "f_plymouthd.conf",
   "f_system.conf",
   "f_timesyncd.conf",
 ]
@@ -251,7 +249,6 @@ dotfiles = [
   "f_ignore",
   "f_logind.conf",
   "f_mkinitcpio_linux.preset",
-  "f_plymouthd.conf",
   "f_sshd_config",
   "f_system.conf",
 ]
@@ -264,7 +261,6 @@ dotfiles = [
   "f_doas.conf",
   "f_adb.service",
   "f_mkinitcpio_linux.preset",
-  "f_plymouthd.conf",
   "f_sshd_config",
   "f_flexo.toml",
   "d_polkit-rules",
@@ -285,15 +281,8 @@ include = ["locale"]
 include = ["pacman"]
 
 [profiles.Orthanc]
-dotfiles = [
-  "f_mkinitcpio.conf",
-  "f_mkinitcpio_linux.preset",
-  "f_plymouthd.conf",
-  "f_cpupower",
-  "f_doas.conf",
-  "f_timesyncd.conf",
-]
-include = ["pacman"]
+dotfiles = ["f_cpupower", "f_doas.conf", "f_timesyncd.conf"]
+include = ["locale", "pacman", "arch_boot"]
 
 [profiles.Evendim]
 include = ["locale", "pacman"]

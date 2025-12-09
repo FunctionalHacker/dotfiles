@@ -98,6 +98,6 @@ eval $(okc-ssh-agent) >/dev/null
 export DOTDROP_AUTOUPDATE=no
 
 # Set TZ variable to system TZ (enables sending it over SSH)
-if [[ -L /etc/localtime ]]; then
+if [[ -z "$TZ" ]] && [[ -L /etc/localtime ]]; then
   export TZ="$(readlink /etc/localtime | sed 's|.*/zoneinfo/||')"
 fi

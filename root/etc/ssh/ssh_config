@@ -1,0 +1,6 @@
+Include /etc/ssh/ssh_config.d/*.conf
+
+Host *
+    SendEnv LANG LC_* TZ
+    HashKnownHosts yes
+    GSSAPIAuthentication yes

@@ -102,6 +102,10 @@ dst = "/etc/plymouth/plymouthd.conf"
 dst = "/etc/ssh/sshd_config"
 src = "etc/ssh/sshd_config"
 
+[dotfiles.f_ssh_config]
+src = "etc/ssh/ssh_config"
+dst = "/etc/ssh/ssh_config"
+
 [dotfiles."f_welcomemessage.conf"]
 dst = "/etc/welcomemessage.conf"
 src = "etc/welcomemessage.conf"
@@ -213,6 +217,7 @@ dotfiles = [
   "f_logind.conf",
   "f_mkinitcpio_linux.preset",
   "f_sshd_config",
+  "f_ssh_config",
   "f_system.conf",
   "f_timesyncd.conf",
   "f_welcomemessage.conf",
@@ -262,6 +267,7 @@ dotfiles = [
   "f_adb.service",
   "f_mkinitcpio_linux.preset",
   "f_sshd_config",
+  "f_ssh_config",
   "f_flexo.toml",
   "d_polkit-rules",
 ]
@@ -281,7 +287,7 @@ include = ["locale"]
 include = ["pacman"]
 
 [profiles.Orthanc]
-dotfiles = ["f_cpupower", "f_doas.conf", "f_timesyncd.conf"]
+dotfiles = ["f_cpupower", "f_doas.conf", "f_timesyncd.conf", "f_ssh_config"]
 include = ["locale", "pacman", "arch_boot"]
 
 [profiles.Evendim]

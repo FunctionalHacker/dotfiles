@@ -1,6 +1,8 @@
 # Remove socket for gpg agent forwarding
 StreamLocalBindUnlink yes
 
+AcceptEnv LANG LC_* TZ
+
 {%@@ if profile == "Moria" @@%}
 Port 221
 {%@@ endif @@%}

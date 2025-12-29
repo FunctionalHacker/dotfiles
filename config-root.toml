@@ -176,13 +176,13 @@ dst = "/etc/sudoers.d/pacman"
 src = "etc/doas.conf"
 dst = "/etc/doas.conf"
 
-[dotfiles."f_flexo.toml"]
-src = "etc/flexo/flexo.toml"
-dst = "/etc/flexo/flexo.toml"
-
-[dotfiles."d_polkit-rules"]
+[dotfiles.d_polkit-rules]
 src = "etc/polkit-1/rules.d"
 dst = "/etc/polkit-1/rules.d"
+
+[dotfiles."f_beacondb.conf"]
+src = "etc/geoclue/conf.d/99-beacondb.conf"
+dst = "/etc/geoclue/conf.d/99-beacondb.conf"
 
 [profiles.locale]
 dotfiles = ["f_locale.conf", "f_locale.gen"]
@@ -221,7 +221,6 @@ dotfiles = [
   "f_system.conf",
   "f_timesyncd.conf",
   "f_welcomemessage.conf",
-  "f_flexo.toml",
 ]
 include = ["locale", "pacman", "arch_boot"]
 
@@ -263,13 +262,14 @@ include = ["locale", "pacman", "arch_boot"]
 dotfiles = [
   "f_99-sysctl.conf",
   "f_cpupower",
+  "f_bluetooth.conf",
   "f_doas.conf",
   "f_adb.service",
   "f_mkinitcpio_linux.preset",
   "f_sshd_config",
   "f_ssh_config",
-  "f_flexo.toml",
   "d_polkit-rules",
+  "f_beacondb.conf",
 ]
 include = ["locale", "pacman", "arch_boot"]
 
@@ -287,7 +287,13 @@ include = ["locale"]
 include = ["pacman"]
 
 [profiles.Orthanc]
-dotfiles = ["f_cpupower", "f_doas.conf", "f_timesyncd.conf", "f_ssh_config"]
+dotfiles = [
+  "f_cpupower",
+  "f_doas.conf",
+  "f_timesyncd.conf",
+  "f_ssh_config",
+  "f_beacondb.conf",
+]
 include = ["locale", "pacman", "arch_boot"]
 
 [profiles.Evendim]

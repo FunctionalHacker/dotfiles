@@ -4,7 +4,7 @@ volumes:
   backups: {}
 services:
   server:
-    image: ghcr.io/goauthentik/server:2025.10.3
+    image: ghcr.io/goauthentik/server:${AUTHENTIK_TAG}
     container_name: authentik
     restart: unless-stopped
     command: server
@@ -18,7 +18,7 @@ services:
       - postgres
       - proxy
   worker:
-    image: ghcr.io/goauthentik/server:2025.10.3
+    image: ghcr.io/goauthentik/server:${AUTHENTIK_TAG}
     container_name: authentik-worker
     restart: unless-stopped
     command: worker

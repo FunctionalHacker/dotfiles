@@ -7,8 +7,10 @@ volumes:
   openwakeword_english: {}
   matter-server: {}
   otbr: {}
+  esphome: {}
   media:
     external: true
+
 services:
   home-assistant:
     container_name: home-assistant
@@ -29,18 +31,19 @@ services:
     cap_add:
       - NET_ADMIN
       - NET_RAW
+
   matter-server:
-    image: ghcr.io/matter-js/python-matter-server:stable
+    image: ghcr.io/matter-js/matterjs-server
     container_name: matter-server
     restart: unless-stopped
     network_mode: host
-    security_opt:
-      - apparmor:unconfined
+    environment:
+      - BLUETOOTH_ADAPTER=0
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - matter-server:/data/
       - /run/dbus:/run/dbus:ro
-    command: '--storage-path /data --paa-root-cert-dir /data/credentials --bluetooth-adapter 1'
+
   otbr:
     image: ghcr.io/ownbee/hass-otbr-docker
     container_name: otbr
@@ -67,6 +70,7 @@ services:
       OTBR_WEB_PORT: 7586
       AUTOFLASH_FIRMWARE: 0
     privileged: true
+
   mosquitto:
     container_name: mosquitto
     image: eclipse-mosquitto
@@ -79,6 +83,17 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - mosquitto:/mosquitto
+
+  esphome:
+    container_name: esphome
+    image: ghcr.io/esphome/esphome
+    network_mode: host
+    profiles:
+      - esphome
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - esphome:/config
+
   music-assistant:
     image: ghcr.io/music-assistant/server
     container_name: music-assistant
@@ -92,11 +107,13 @@ services:
       - DAC_READ_SEARCH
     security_opt:
       - apparmor:unconfined
+
   ytdlp-pot-provider:
     image: brainicism/bgutil-ytdlp-pot-provider
     container_name: ytdlp-pot-provider
     restart: unless-stopped
     network_mode: host
+
   # piper_english:
   #   container_name: piper_english
   #   image: rhasspy/wyoming-piper
@@ -113,6 +130,7 @@ services:
   #   volumes:
   #     - piper_english:/data
   #     - /etc/localtime:/etc/localtime:ro
+  #
   # whisper_english:
   #   container_name: whisper_english
   #   image: rhasspy/wyoming-whisper
@@ -133,6 +151,7 @@ services:
   #   volumes:
   #     - whisper_english:/data
   #     - /etc/localtime:/etc/localtime:ro
+
 networks:
   postgres:
     external: true

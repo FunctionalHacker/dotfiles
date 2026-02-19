@@ -221,6 +221,7 @@ dotfiles = [
   "f_system.conf",
   "f_timesyncd.conf",
   "f_welcomemessage.conf",
+  "f_beacondb.conf",
 ]
 include = ["locale", "pacman", "arch_boot"]
 

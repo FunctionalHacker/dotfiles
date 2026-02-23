@@ -1,1 +1,1 @@
-neovim-bin = "{{@@ env['HOME'] @@}}/.scripts/fhackeditor"
+# neovim-bin = "{{@@ env['HOME'] @@}}/.scripts/fhackeditor"

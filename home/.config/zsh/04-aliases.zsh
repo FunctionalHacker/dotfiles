@@ -19,7 +19,7 @@ alias o='xdg-open'
 # and handling merges
 alias dv='nvim +DiffviewOpen'
 
-alias nvim="fhackeditor"
+# alias nvim="fhackeditor"
 alias vim='nvim'
 alias vi='nvim'
 

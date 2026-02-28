@@ -14,10 +14,6 @@ longkey = false
 showdiff = false
 workdir = "~/.config/sdotdrop"
 
-[dotfiles."f_60-uinput-permissions.rules"]
-dst = "/etc/udev/rules.d/60-uinput-permissions.rules"
-src = "etc/udev/rules.d/60-uinput-permissions.rules"
-
 [dotfiles."f_yubikey_udev.rules"]
 dst = "/etc/udev/rules.d/20-yubikey.rules"
 src = "etc/udev/rules.d/20-yubikey.rules"
@@ -114,10 +110,6 @@ src = "etc/welcomemessage.conf"
 src = "etc/udev/rules.d/99-conbee-usb-serial.rules"
 dst = "/etc/udev/rules.d/99-conbee-usb-serial.rules"
 
-[dotfiles."f_99-lowbat.rules"]
-src = "etc/udev/rules.d/99-lowbat.rules"
-dst = "/etc/udev/rules.d/99-lowbat.rules"
-
 [dotfiles."f_sleep.conf"]
 src = "etc/systemd/sleep.conf"
 dst = "/etc/systemd/sleep.conf"
@@ -204,12 +196,9 @@ dotfiles = ["f_cmdline", "f_mkinitcpio.conf", "f_plymouthd.conf"]
 dotfiles = [
   "d_bin",
   "f_20-quiet-printk.conf",
-  "f_60-uinput-permissions.rules",
-  "f_99-lowbat.rules",
   "f_adb.service",
   "f_bluetooth.conf",
   "f_cpupower",
-  "f_cryptissue",
   "f_doas.conf",
   "f_fonts.conf",
   "f_freetype2.sh",
@@ -243,8 +232,6 @@ include = ["locale", "pacman", "arch_boot"]
 dotfiles = [
   "d_bin",
   "f_20-quiet-printk.conf",
-  "f_60-uinput-permissions.rules",
-  "f_99-lowbat.rules",
   "f_adb.service",
   "f_bluetooth.conf",
   "f_cpupower",

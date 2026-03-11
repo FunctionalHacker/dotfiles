@@ -1,3 +1,4 @@
+# profile: {{@@ profile @@}}
 [user]
 {%@@ if profile == "Orthanc" @@%}
 email = marko.korhonen@netforecast.com

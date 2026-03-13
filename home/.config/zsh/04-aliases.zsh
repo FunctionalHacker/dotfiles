@@ -390,9 +390,33 @@ btw, () {
 alias dslr-webcam='pkill -f gphoto2; gphoto2 --stdout --capture-movie | ffmpeg -i - -vcodec rawvideo -pix_fmt yuv420p -threads 0 -f v4l2 /dev/video0'
 
 clock() {
+  local ms=0
+  [[ "$1" == "-m" ]] && ms=1
+
+  printf '\e[?1049h'   # enter alternate screen
+  tput civis           # hide cursor
+  trap 'tput cnorm; printf "\e[?1049l"' EXIT
+
   while true; do
-    printf '%s\r' "$(date)"
-    sleep 0.1
+    cols=$(tput cols)
+
+    if (( ms )); then
+      now=$(date +'%Y-%m-%d %H:%M:%S.%3N %Z %N')
+      out=${now% *}
+      ns=${now##* }
+      sleep_time=$(awk -v ns="$ns" 'BEGIN {t=0.001-(ns%1000000)/1000000000; if(t<0)t=0; print t}')
+    else
+      out=$(date +'%Y-%m-%d %H:%M:%S %Z')
+      ns=$(date +%N)
+      sleep_time=$(awk -v ns="$ns" 'BEGIN {t=1-(ns/1000000000); if(t<0)t=0; print t}')
+    fi
+
+    pad=$(( (cols - ${#out}) / 2 ))
+    (( pad < 0 )) && pad=0
+
+    printf "\r%*s%s" "$pad" "" "$out"
+
+    sleep "$sleep_time"
   done
 }
 

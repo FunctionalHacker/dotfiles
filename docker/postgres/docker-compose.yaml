@@ -6,6 +6,8 @@ services:
     image: postgres:18
     networks:
       - postgres
+    ports:
+      - 5432:5432
     env_file: .env
     volumes:
       - /etc/localtime:/etc/localtime:ro

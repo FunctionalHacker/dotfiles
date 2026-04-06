@@ -14,10 +14,6 @@ zinit light sindresorhus/pure
 zinit ice lucid
 zinit light Aloxaf/fzf-tab
 
-# substring search
-zinit ice lucid
-zinit light zsh-users/zsh-history-substring-search
-
 # fzf git awesomeness
 zinit ice wait'1' lucid atload'source $HOME/.config/zsh/04-aliases.zsh'
 zinit light wfxr/forgit
@@ -44,3 +40,4 @@ source <(fzf --zsh)
 # Generate completions at runtime
 zinit ice wait'2' lucid
 zinit light RobSis/zsh-completion-generator
+

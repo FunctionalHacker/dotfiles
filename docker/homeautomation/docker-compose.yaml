@@ -35,6 +35,7 @@ services:
   matter-server:
     image: ghcr.io/matter-js/matterjs-server
     container_name: matter-server
+    user: 0:0
     restart: unless-stopped
     network_mode: host
     environment:

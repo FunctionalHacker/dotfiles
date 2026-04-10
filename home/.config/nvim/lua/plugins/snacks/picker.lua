@@ -77,16 +77,16 @@ return {
     {
       "<leader><leader>",
       function()
-        Snacks.picker.smart()
+        Snacks.picker.files()
       end,
-      desc = "Smart Find Files",
+      desc = "Find Files",
     },
     {
       "<leader>sf",
       function()
-        Snacks.picker.files()
+        Snacks.picker.smart()
       end,
-      desc = "Find Files",
+      desc = "Smart Find Files",
     },
     {
       "<leader>,",

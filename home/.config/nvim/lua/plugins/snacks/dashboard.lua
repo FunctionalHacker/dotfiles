@@ -16,7 +16,7 @@ return {
             icon = "",
             key = "<leader><leader>",
             desc = "Find File",
-            action = ":lua Snacks.dashboard.pick('smart')",
+            action = ":lua Snacks.dashboard.pick('files')",
           },
           { icon = "", key = "<leader>/", desc = "Find Text", action = ":lua Snacks.dashboard.pick('live_grep')" },
           { icon = "", key = "e", desc = "New File", action = ":ene | startinsert" },

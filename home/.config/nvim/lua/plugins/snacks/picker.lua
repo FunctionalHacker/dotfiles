@@ -12,10 +12,34 @@ return {
         projects = {
           dev = { "~/git" },
           patterns = { ".git" },
-          confirm = function(_, item)
+          confirm = function(picker, item)
             vim.fn.chdir(item.file)
-            vim.g.current_project = item.file
-            Snacks.picker.files()
+            Snacks.picker.actions.close(picker)
+
+            local actions = {
+              { text = "Files", action = Snacks.picker.files },
+              { text = "Lazygit", action = Snacks.lazygit },
+              {
+                text = "Terminal",
+                action = function()
+                  vim.cmd("tabnew | term")
+                  vim.cmd("lcd " .. vim.fn.fnameescape(item.file))
+                end,
+              },
+            }
+
+            Snacks.picker.select(actions, {
+              prompt = "Action",
+              format_item = function(entry)
+                return entry.text
+              end,
+            }, function(choice)
+              if choice and choice.action then
+                choice.action()
+              end
+            end)
+
+            return "close"
           end,
         },
         ---@type snacks.picker.lsp.symbols.Config

@@ -38,8 +38,6 @@ return {
                 choice.action()
               end
             end)
-
-            return "close"
           end,
         },
         ---@type snacks.picker.lsp.symbols.Config

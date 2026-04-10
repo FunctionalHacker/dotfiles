@@ -2,21 +2,18 @@
 --- @type LazyPluginSpec
 return {
   "nvim-treesitter/nvim-treesitter",
-  lazy = false,
+  branch = "main",
   build = ":TSUpdate",
+  event = { "BufReadPre", "BufNewFile" },
   dependencies = {
-    { "nvim-treesitter/nvim-treesitter-textobjects" },
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    "MeanderingProgrammer/treesitter-modules.nvim",
     -- Automatically add closing tags for HTML and JSX
-    { "windwp/nvim-ts-autotag", opts = {} },
-    { "JoosepAlviste/nvim-ts-context-commentstring" },
+    "windwp/nvim-ts-autotag",
+    "JoosepAlviste/nvim-ts-context-commentstring",
   },
-  main = "nvim-treesitter.configs",
-  --- @module "nvim-treesitter"
-  --- @type TSConfig
-  opts = {
-    highlight = { enable = true },
-    indent = { enable = true },
-    ensure_installed = {
+  config = function()
+    local languages = {
       "bash",
       "css",
       "diff",
@@ -54,17 +51,55 @@ return {
       "vim",
       "vimdoc",
       "yaml",
-    },
-    incremental_selection = {
-      enable = true,
-      keymaps = {
-        init_selection = "<C-space>",
-        node_incremental = "<C-space>",
-        scope_incremental = false,
-        node_decremental = "<bs>",
+    }
+
+    -- Covers ensure_installed + highlight + indent + fold + incremental selection
+    local ts = require("treesitter-modules")
+    ts.setup({
+      ensure_installed = languages,
+      ignore_install = {},
+      sync_install = false,
+      auto_install = false,
+
+      highlight = {
+        enable = true,
       },
-    },
-    textobjects = {
+      indent = {
+        enable = true,
+      },
+      fold = {
+        enable = true,
+      },
+      incremental_selection = {
+        enable = true,
+        keymaps = {
+          init_selection = "gnn",
+          node_incremental = "grn",
+          scope_incremental = "grc",
+          node_decremental = "grm",
+        },
+      },
+    })
+
+    -- Fold settings
+    vim.opt.foldmethod = "expr"
+    vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+
+    -- autotag
+    require("nvim-ts-autotag").setup()
+
+    -- textobjects plugin now uses its own setup + keymaps
+    require("nvim-treesitter-textobjects").setup({
+      move = {
+        set_jumps = false,
+      },
+      select = {
+        lookahead = true,
+      },
+    })
+
+    -- TODO
+    local textobjects = {
       move = {
         enable = true,
         goto_next_start = { ["]f"] = "@function.outer", ["]c"] = "@class.outer" },
@@ -99,10 +134,6 @@ return {
           },
         },
       },
-    },
-    sync_install = false,
-    auto_install = true,
-    ignore_install = {},
-    modules = {},
-  },
+    }
+  end,
 }

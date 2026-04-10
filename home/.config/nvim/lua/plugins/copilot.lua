@@ -7,7 +7,7 @@ return {
   dependencies = { "copilotlsp-nvim/copilot-lsp" },
   event = "VeryLazy",
   --- @module "copilot"
-  -- @type CopilotConfig
+  --- @type CopilotConfig
   opts = {
     -- Suggestion and panel are handled by cmp-copilot
     suggestion = { enabled = false },

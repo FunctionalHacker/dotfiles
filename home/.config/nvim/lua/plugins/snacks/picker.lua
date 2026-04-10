@@ -19,6 +19,7 @@ return {
             local actions = {
               { text = "Files", action = Snacks.picker.files },
               { text = "Lazygit", action = Snacks.lazygit },
+              { text = "Grep", action = Snacks.picker.grep },
               {
                 text = "Terminal",
                 action = function()

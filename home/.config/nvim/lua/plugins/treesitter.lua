@@ -88,7 +88,7 @@ return {
     -- autotag
     require("nvim-ts-autotag").setup()
 
-    -- textobjects plugin now uses its own setup + keymaps
+    -- Text objects
     require("nvim-treesitter-textobjects").setup({
       move = {
         set_jumps = false,
@@ -98,42 +98,47 @@ return {
       },
     })
 
-    -- TODO
-    local textobjects = {
-      move = {
-        enable = true,
-        goto_next_start = { ["]f"] = "@function.outer", ["]c"] = "@class.outer" },
-        goto_next_end = { ["]F"] = "@function.outer", ["]C"] = "@class.outer" },
-        goto_previous_start = { ["[f"] = "@function.outer", ["[c"] = "@class.outer" },
-        goto_previous_end = { ["[F"] = "@function.outer", ["[C"] = "@class.outer" },
-      },
-      select = {
-        enable = true,
-        lookahead = true,
-        keymaps = {
-          ["af"] = {
-            query = "@function.outer",
-            desc = "Select outer part of a function",
-          },
-          ["if"] = {
-            query = "@function.inner",
-            desc = "Select inner part of a function",
-          },
-          ["ac"] = {
-            query = "@class.outer",
-            desc = "Select outer part of a class",
-          },
-          ["ic"] = {
-            query = "@class.inner",
-            desc = "Select inner part of a class",
-          },
-          ["as"] = {
-            query = "@scope",
-            query_group = "locals",
-            desc = "Select language scope",
-          },
-        },
-      },
-    }
+    local move = require("nvim-treesitter-textobjects.move")
+    vim.keymap.set({ "n", "x", "o" }, "]f", function()
+      move.goto_next_start("@function.outer")
+    end, { desc = "Next function start" })
+    vim.keymap.set({ "n", "x", "o" }, "]F", function()
+      move.goto_next_end("@function.outer")
+    end, { desc = "Next function end" })
+    vim.keymap.set({ "n", "x", "o" }, "[f", function()
+      move.goto_previous_start("@function.outer")
+    end, { desc = "Prev function start" })
+    vim.keymap.set({ "n", "x", "o" }, "[F", function()
+      move.goto_previous_end("@function.outer")
+    end, { desc = "Prev function end" })
+    vim.keymap.set({ "n", "x", "o" }, "]c", function()
+      move.goto_next_start("@class.outer")
+    end, { desc = "Next class start" })
+    vim.keymap.set({ "n", "x", "o" }, "]C", function()
+      move.goto_next_end("@class.outer")
+    end, { desc = "Next class end" })
+    vim.keymap.set({ "n", "x", "o" }, "[c", function()
+      move.goto_previous_start("@class.outer")
+    end, { desc = "Prev class start" })
+    vim.keymap.set({ "n", "x", "o" }, "[C", function()
+      move.goto_previous_end("@class.outer")
+    end, { desc = "Prev class end" })
+
+    local select = require("nvim-treesitter-textobjects.select")
+    vim.keymap.set({ "x", "o" }, "af", function()
+      select.select_textobject("@function.outer")
+    end, { desc = "Select outer part of a function" })
+    vim.keymap.set({ "x", "o" }, "if", function()
+      select.select_textobject("@function.inner")
+    end, { desc = "Select inner part of a function" })
+    vim.keymap.set({ "x", "o" }, "ac", function()
+      select.select_textobject("@class.outer")
+    end, { desc = "Select outer part of a class" })
+    vim.keymap.set({ "x", "o" }, "ic", function()
+      select.select_textobject("@class.inner")
+    end, { desc = "Select inner part of a class" })
+    vim.keymap.set({ "x", "o" }, "as", function()
+      select.select_textobject("@scope", "locals")
+    end, { desc = "Select language scope" })
   end,
 }

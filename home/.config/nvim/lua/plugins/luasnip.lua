@@ -17,4 +17,20 @@ return {
     })
   end,
   run = "make install_jsregexp",
+  keys = {
+    {
+      "<C-f>",
+      function()
+        require("luasnip").jump(1)
+      end,
+      mode = "i",
+    },
+    {
+      "<C-b>",
+      function()
+        require("luasnip").jump(-1)
+      end,
+      mode = "i",
+    },
+  },
 }

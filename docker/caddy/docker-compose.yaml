@@ -31,6 +31,24 @@ services:
       - .env
     cap_add:
       - NET_ADMIN
+
+  # anubis:
+  #   image: ghcr.io/techarohq/anubis
+  #   container_name: anubis
+  #   restart: unless-stopped
+  #   pull_policy: always
+  #   environment:
+  #     BIND: ':3000'
+  #     TARGET: http://httpdebug:3000
+  #   networks:
+  #     - proxy
+  #
+  # httpdebug:
+  #   image: ghcr.io/xe/x/httpdebug
+  #   container_name: httpdebug
+  #   restart: unless-stopped
+  #   pull_policy: always
+
 networks:
   proxy:
     external: true

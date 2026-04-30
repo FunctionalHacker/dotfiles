@@ -39,6 +39,8 @@ return {
                 choice.action()
               end
             end)
+
+            vim.cmd("startinsert!")
           end,
         },
         ---@type snacks.picker.lsp.symbols.Config

@@ -1,3 +1,4 @@
+--- @type LazyPluginSpec
 return {
   "saghen/blink.cmp",
   version = "1.*",
@@ -13,7 +14,7 @@ return {
         auto_show = false,
       },
       documentation = {
-        auto_show = false,
+        auto_show = true,
       },
     },
     snippets = { preset = "luasnip" },

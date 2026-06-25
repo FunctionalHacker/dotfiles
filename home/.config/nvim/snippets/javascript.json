@@ -1,8 +1,18 @@
 {
   "logVariable": {
-    "scope": "javascript",
+    "scope": "javascript,javascriptreact",
     "prefix": "logvar",
-    "description": "Log the variable under the cursor",
+    "description": "Log variable a variable",
     "body": ["console.log('$1', $1);"]
+  },
+  "reactFunctionComponent": {
+    "prefix": "rcomp",
+    "scope": "javascriptreact",
+    "body": [
+      "const ${TM_FILENAME_BASE} = () => <>$0</>;",
+      "",
+      "export default ${TM_FILENAME_BASE};"
+    ],
+    "description": "Creates a React functional component"
   }
 }

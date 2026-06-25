@@ -6,8 +6,18 @@
   "contributes": {
     "snippets": [
       {
-        "language": "javascript",
+        "language": [
+          "javascript",
+          "javascriptreact"
+        ],
         "path": "./javascript.json"
+      },
+      {
+        "language": [
+          "typescript",
+          "typescriptreact"
+        ],
+        "path": "./typescript.json"
       }
     ]
   }

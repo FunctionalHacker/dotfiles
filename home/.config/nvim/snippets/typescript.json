@@ -1,0 +1,22 @@
+{
+  "logVariable": {
+    "scope": "typescript,typescriptreact",
+    "prefix": "logvar",
+    "description": "Log variable a variable",
+    "body": ["console.log('$1', $1);"]
+  },
+  "reactFunctionComponent": {
+    "prefix": "rcomp",
+    "scope": "typescriptreact",
+    "body": [
+      "import type { FC } from 'react';",
+      "",
+      "interface Props {};",
+      "",
+      "const ${TM_FILENAME_BASE}: FC<Props> = () => <>$0</>;",
+      "",
+      "export default ${TM_FILENAME_BASE};"
+    ],
+    "description": "Creates a React functional component with props interface"
+  }
+}

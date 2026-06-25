@@ -5,7 +5,10 @@ return {
   opts = {
     strategies = {
       chat = {
-        adapter = "copilot",
+        adapter = {
+          name = "copilot",
+          model = "gpt-4.1",
+        },
         slash_commands = {
           ["file"] = {
             opts = {

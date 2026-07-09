@@ -1,0 +1,68 @@
+#!/bin/sh
+
+set -e
+
+gui() {
+  kmscon-launch-gui $@
+  clear
+}
+
+cage() {
+  gui /usr/bin/cage $1
+}
+
+headless_discord() {
+  systemctl --user $1 headless-discord
+}
+
+while :; do
+  CHOICE=$(dialog \
+    --clear \
+    --stdout \
+    --no-ok \
+    --no-cancel \
+    --title "FunctionalHacker CRT Menu" \
+    --menu "Select an action" \
+    80 80 10 \
+    1 "Kodi" \
+    2 "RetroArch" \
+    3 "Terminal" \
+    4 "NeoVim" \
+    5 "Firefox" \
+    6 "Reboot" \
+    7 "Power off")
+
+  RET=$?
+
+  [ "$RET" -ne 0 ] && exit 0
+
+  case "$CHOICE" in
+  1)
+    headless_discord start
+    gui kodi
+    headless_discord stop
+    ;;
+  2)
+    headless_discord start
+    gui retroarch
+    headless_discord stop
+    ;;
+  3)
+    clear
+    $SHELL
+    ;;
+  4)
+    nvim
+    ;;
+  5)
+    cage firefox
+    ;;
+  6)
+    reboot
+    ;;
+  7)
+    systemctl poweroff
+    ;;
+  esac
+  setterm --reset
+done

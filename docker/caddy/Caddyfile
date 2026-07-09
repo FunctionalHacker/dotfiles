@@ -48,8 +48,8 @@ korhonen.cc, *.korhonen.cc {
 	handle @index {
 		root * /var/www/index.korhonen.cc
 		file_server {
-      browse /templates/file_server.html
-    }
+			browse /templates/file_server.html
+		}
 	}
 
 	@home-assistant host home.korhonen.cc
@@ -78,9 +78,9 @@ korhonen.cc, *.korhonen.cc {
 		reverse_proxy searxng:8080
 	}
 
-	@freshrss host rss.korhonen.cc
-	handle @freshrss {
-		reverse_proxy freshrss
+	@miniflux host rss.korhonen.cc
+	handle @miniflux {
+    reverse_proxy miniflux:8080
 	}
 
 	@jellyfin host jellyfin.korhonen.cc

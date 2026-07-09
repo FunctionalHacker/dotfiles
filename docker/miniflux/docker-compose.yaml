@@ -1,0 +1,17 @@
+services:
+  miniflux:
+    image: miniflux/miniflux
+    container_name: miniflux
+    env_file: .env
+    restart: unless-stopped
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    networks:
+      - proxy
+      - postgres
+
+networks:
+  postgres:
+    external: true
+  proxy:
+    external: true

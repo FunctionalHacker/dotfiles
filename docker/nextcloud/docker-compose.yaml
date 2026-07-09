@@ -63,18 +63,6 @@ services:
   #     - --realm=cloud.korhonen.cc
   #     - --use-auth-secret
   #     - --static-auth-secret=${STATIC_AUTH_SECRET}
-  # collabora:
-  #   image: collabora/code
-  #   container_name: collabora
-  #   restart: unless-stopped
-  #   env_file: .env
-  #   environment:
-  #     - username=${COLLABORA_USERNAME}
-  #     - password=${COLLABORA_PASSWORD}
-  #     - domain=cloud.korhonen.cc
-  #     - extra_params=--o:ssl.enable=false --o:ssl.termination=true
-  #   networks:
-  #     - proxy
 networks:
   postgres:
     external: true

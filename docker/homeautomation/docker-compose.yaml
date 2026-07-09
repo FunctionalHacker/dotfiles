@@ -109,50 +109,6 @@ services:
     security_opt:
       - apparmor:unconfined
 
-  ytdlp-pot-provider:
-    image: brainicism/bgutil-ytdlp-pot-provider
-    container_name: ytdlp-pot-provider
-    restart: unless-stopped
-    network_mode: host
-
-  # piper_english:
-  #   container_name: piper_english
-  #   image: rhasspy/wyoming-piper
-  #   restart: unless-stopped
-  #   environment:
-  #     - TZ=Europe/Helsinki
-  #   ports:
-  #     - 10200:10200
-  #   networks:
-  #     - default
-  #   command:
-  #     - --voice
-  #     - en_US-hfc_male-medium
-  #   volumes:
-  #     - piper_english:/data
-  #     - /etc/localtime:/etc/localtime:ro
-  #
-  # whisper_english:
-  #   container_name: whisper_english
-  #   image: rhasspy/wyoming-whisper
-  #   restart: unless-stopped
-  #   environment:
-  #     - TZ=Europe/Helsinki
-  #   ports:
-  #     - 10300:10300
-  #   networks:
-  #     - default
-  #   depends_on:
-  #     - home-assistant
-  #   command:
-  #     - --model
-  #     - tiny-int8
-  #     - --language
-  #     - en
-  #   volumes:
-  #     - whisper_english:/data
-  #     - /etc/localtime:/etc/localtime:ro
-
 networks:
   postgres:
     external: true

@@ -8,6 +8,7 @@ services:
     container_name: authentik
     restart: unless-stopped
     command: server
+    shm_size: 512mb
     volumes:
       - media:/media
       - custom_templates:/templates
@@ -22,6 +23,7 @@ services:
     container_name: authentik-worker
     restart: unless-stopped
     command: worker
+    shm_size: 512mb
     user: root
     volumes:
       - backups:/backups

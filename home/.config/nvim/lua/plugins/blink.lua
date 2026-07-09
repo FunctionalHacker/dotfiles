@@ -2,10 +2,36 @@
 return {
   "saghen/blink.cmp",
   version = "1.*",
+  dependencies = {
+    "rafamadriz/friendly-snippets",
+  },
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
   opts = {
-    keymap = { preset = "enter" },
+    keymap = {
+      preset = "enter",
+      ["<Tab>"] = {
+        function()
+          if vim.snippet.active({ direction = 1 }) then
+            vim.snippet.jump(1)
+            return true
+          end
+        end,
+        "select_next",
+        "fallback",
+      },
+
+      ["<S-Tab>"] = {
+        function()
+          if vim.snippet.active({ direction = -1 }) then
+            vim.snippet.jump(-1)
+            return true
+          end
+        end,
+        "select_prev",
+        "fallback",
+      },
+    },
     completion = {
       ghost_text = {
         enabled = true,
@@ -17,11 +43,10 @@ return {
         auto_show = true,
       },
     },
-    snippets = { preset = "luasnip" },
     sources = {
       default = {
-        "lsp",
         "snippets",
+        "lsp",
         "path",
         "buffer",
       },

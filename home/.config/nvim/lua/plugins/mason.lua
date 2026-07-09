@@ -23,17 +23,4 @@ return {
     event = "VeryLazy",
     opts = {},
   },
-  -- Add MasonUpdateAll
-  {
-    "Zeioth/mason-extra-cmds",
-    event = "VeryLazy",
-    opts = {},
-  },
-  -- Add lockfile support
-  {
-    "zapling/mason-lock.nvim",
-    opts = {
-      lockfile_path = vim.fn.expand("~/git/dotfiles/home/.config/nvim/mason-lock.json"),
-    },
-  },
 }

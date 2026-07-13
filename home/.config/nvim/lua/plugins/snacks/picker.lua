@@ -307,10 +307,37 @@ return {
     {
       "<leader>cd",
       function()
-        Snacks.picker({
-          title = "Change to a directory",
+        Snacks.picker.pick({
+          source = "home_dirs",
+          cwd = vim.fn.expand("~"),
+          finder = "proc",
+          cmd = "fd",
+          args = { "--type", "d", "--hidden", "--follow", "--exclude", ".git" },
+          -- This maps the raw text output to the 'file' property
+          transform = function(item)
+            -- fnamemodify ensures we have the absolute path relative to the home dir
+            item.file = vim.fn.fnamemodify("~" .. "/" .. item.text, ":p")
+            item.dir = true
+            return item
+          end,
+          format = "file",
+          preview = "file",
+          win = {
+            input = { title = "Change Directory" },
+          },
+          actions = {
+            confirm = function(picker, item)
+              picker:close()
+              if item and item.file then
+                local target = item.file
+                vim.api.nvim_set_current_dir(target)
+                Snacks.notify.info("CWD changed to: " .. vim.fn.fnamemodify(target, ":~"))
+              end
+            end,
+          },
         })
       end,
+      desc = "Change to directory",
     },
   },
   init = function()

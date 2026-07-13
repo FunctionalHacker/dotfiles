@@ -1,6 +1,7 @@
 -- High performance color highlighter
 --- @type LazyPluginSpec
 return {
-  "norcalli/nvim-colorizer.lua",
+  "catgoose/nvim-colorizer.lua",
+  event = "BufReadPre",
   opts = {},
 }

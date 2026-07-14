@@ -50,6 +50,9 @@ return {
         "path",
         "buffer",
       },
+      per_filetype = {
+        codecompanion = { "codecompanion" },
+      },
     },
     fuzzy = { implementation = "prefer_rust_with_warning" },
     appearance = {

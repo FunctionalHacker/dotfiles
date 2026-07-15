@@ -20,9 +20,23 @@ return {
               provider = "snacks",
             },
           },
+          ["symbols"] = {
+            opts = {
+              provider = "snacks",
+            },
+          },
+          ["help"] = {
+            opts = {
+            },
+          },
         },
       },
       inline = { adapter = "copilot" },
+    },
+    display = {
+      action_palette = {
+        provider = "snacks",
+      },
     },
   },
   dependencies = {
@@ -34,12 +48,17 @@ return {
       {
         "<leader>cmt",
         cc.toggle,
-        desc = "Code Companion toggle",
+        desc = "Toggle chat",
       },
       {
         "<leader>cmc",
         cc.chat,
-        desc = "Code Companion new chat",
+        desc = "New chat",
+      },
+      {
+        "<leader>cma",
+        cc.actions,
+        desc = "Actions",
       },
     }
   end,

@@ -22,6 +22,7 @@ return {
       { "<leader>g", group = "Git", mode = { "n", "v" } },
       { "<leader>gr", group = "Reset" },
       { "<leader>ga", group = "Add" },
+      { "<leader>cm", group = "CodeCompanion" },
 
       -- General keybinds
       {

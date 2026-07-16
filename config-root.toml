@@ -272,7 +272,8 @@ dotfiles = ["f_doas.conf", "f_sshd_config"]
 include = ["locale"]
 
 [profiles.Edoras]
-include = ["pacman", "d_polkit-rules"]
+dotfiles = ["d_polkit-rules"]
+include = ["pacman"]
 
 [profiles.Orthanc]
 dotfiles = [

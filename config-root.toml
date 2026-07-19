@@ -82,6 +82,10 @@ src = "etc/pacman.conf"
 dst = "/etc/pacman.d/hooks/zsh.hook"
 src = "etc/pacman.d/hooks/zsh.hook"
 
+[dotfiles.f_pacman_cache]
+dst = "/etc/pacman.d/cache.conf"
+src = "etc/pacman.d/cache.conf"
+
 [dotfiles."f_pacman-download.service"]
 dst = "/etc/systemd/system/pacman-download.service"
 src = "etc/systemd/system/pacman-download.service"
@@ -179,6 +183,7 @@ dotfiles = ["f_locale.conf", "f_locale.gen"]
 dotfiles = [
   "f_pacman.conf",
   "f_pacman_zsh_hook",
+  "f_pacman_cache",
   "f_sudoers_pacman",
   "f_pacman-download.service",
   "f_pacman-download.timer",

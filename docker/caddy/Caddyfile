@@ -40,8 +40,10 @@ korhonen.cc, *.korhonen.cc {
 	@wkd host openpgpkey.korhonen.cc
 	handle @wkd {
 		root * /var/www/wkd
-		file_server browse
 		header Access-Control-Allow-Origin "*"
+		file_server {
+			browse /templates/file_server.html
+		}
 	}
 
 	@index host index.korhonen.cc
@@ -80,7 +82,7 @@ korhonen.cc, *.korhonen.cc {
 
 	@miniflux host rss.korhonen.cc
 	handle @miniflux {
-    reverse_proxy miniflux:8080
+		reverse_proxy miniflux:8080
 	}
 
 	@jellyfin host jellyfin.korhonen.cc
@@ -178,5 +180,14 @@ korhonen.cc, *.korhonen.cc {
 		}
 
 		respond "{err.status_code} {err.status_text}"
+	}
+}
+
+http://moria.korhonen.lan {
+	handle_path /pacman_cache/* {
+		root * /var/cache/pacman/pkg
+		file_server {
+			browse /templates/file_server.html
+		}
 	}
 }

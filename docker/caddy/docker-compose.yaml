@@ -27,6 +27,7 @@ services:
       - nextcloud_config:/var/www/nextcloud
       - /var/www/index.korhonen.cc:/var/www/index.korhonen.cc
       - ./templates/:/templates
+      - /var/cache/pacman/pkg:/var/cache/pacman/pkg
     env_file:
       - .env
     cap_add:

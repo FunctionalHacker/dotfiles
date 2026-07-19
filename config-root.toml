@@ -143,10 +143,6 @@ dst = "/etc/systemd/system.conf"
 src = "etc/default/cpupower"
 dst = "/etc/default/cpupower"
 
-[dotfiles."f_pacserve.service.conf"]
-src = "etc/pacserve/pacserve.service.conf"
-dst = "/etc/pacserve/pacserve.service.conf"
-
 [dotfiles."f_mkinitcpio_linux.preset"]
 src = "etc/mkinitcpio.d/linux.preset"
 dst = "/etc/mkinitcpio.d/linux.preset"
@@ -183,7 +179,6 @@ dotfiles = ["f_locale.conf", "f_locale.gen"]
 dotfiles = [
   "f_pacman.conf",
   "f_pacman_zsh_hook",
-  "f_pacserve.service.conf",
   "f_sudoers_pacman",
   "f_pacman-download.service",
   "f_pacman-download.timer",

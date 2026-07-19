@@ -4,6 +4,14 @@
 
 set -e
 
+# Check for required dependencies
+for cmd in ssh awk ping nc; do
+  if ! command -v "$cmd" >/dev/null 2>&1; then
+    echo "Error: Required command '$cmd' is not installed or not in PATH." >&2
+    exit 1
+  fi
+done
+
 if [ -z "$1" ]; then
   echo "Usage: $0 <ssh_target>"
   exit 1

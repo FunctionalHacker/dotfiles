@@ -135,14 +135,20 @@ return {
           {
             "[d",
             function()
-              vim.diagnostic.jump({ count = -1, float = true })
+              vim.diagnostic.jump({
+                count = -1,
+                on_jump = vim.diagnostic.open_float,
+              })
             end,
             desc = "Previous diagnostic",
           },
           {
             "]d",
             function()
-              vim.diagnostic.jump({ count = 1, float = true })
+              vim.diagnostic.jump({
+                count = 1,
+                on_jump = vim.diagnostic.open_float,
+              })
             end,
             desc = "Next diagnostic",
           },
@@ -151,7 +157,7 @@ return {
             function()
               vim.diagnostic.jump({
                 count = -1,
-                float = true,
+                on_jump = vim.diagnostic.open_float,
                 severity = vim.diagnostic.severity.ERROR,
               })
             end,
@@ -162,7 +168,7 @@ return {
             function()
               vim.diagnostic.jump({
                 count = 1,
-                float = true,
+                on_jump = vim.diagnostic.open_float,
                 severity = vim.diagnostic.severity.ERROR,
               })
             end,

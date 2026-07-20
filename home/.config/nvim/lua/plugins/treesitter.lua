@@ -7,80 +7,27 @@ return {
   event = { "BufReadPre", "BufNewFile" },
   dependencies = {
     "nvim-treesitter/nvim-treesitter-textobjects",
-    "MeanderingProgrammer/treesitter-modules.nvim",
+    {
+      "MeanderingProgrammer/treesitter-modules.nvim",
+      dependencies = { "nvim-treesitter/nvim-treesitter" },
+      opts = {
+        auto_install = true,
+        highlight = {
+          enable = true,
+        },
+        indent = {
+          enable = true,
+        },
+        fold = {
+          enable = true,
+        },
+      },
+    },
     -- Automatically add closing tags for HTML and JSX
     "windwp/nvim-ts-autotag",
     "JoosepAlviste/nvim-ts-context-commentstring",
   },
   config = function()
-    local languages = {
-      "bash",
-      "css",
-      "diff",
-      "dockerfile",
-      "git_config",
-      "git_rebase",
-      "gitattributes",
-      "gitcommit",
-      "gitignore",
-      "html",
-      "http",
-      "java",
-      "javascript",
-      "jsdoc",
-      "json",
-      "json5",
-      "jsonc",
-      "latex",
-      "lua",
-      "luadoc",
-      "luap",
-      "make",
-      "markdown",
-      "markdown_inline",
-      "php",
-      "python",
-      "query",
-      "rasi",
-      "regex",
-      "rst",
-      "scss",
-      "toml",
-      "tsx",
-      "typescript",
-      "vim",
-      "vimdoc",
-      "yaml",
-    }
-
-    -- Covers ensure_installed + highlight + indent + fold + incremental selection
-    local ts = require("treesitter-modules")
-    ts.setup({
-      ensure_installed = languages,
-      ignore_install = {},
-      sync_install = false,
-      auto_install = false,
-
-      highlight = {
-        enable = true,
-      },
-      indent = {
-        enable = true,
-      },
-      fold = {
-        enable = true,
-      },
-      incremental_selection = {
-        enable = true,
-        keymaps = {
-          init_selection = "gnn",
-          node_incremental = "grn",
-          scope_incremental = "grc",
-          node_decremental = "grm",
-        },
-      },
-    })
-
     -- Fold settings
     vim.opt.foldmethod = "expr"
     vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"

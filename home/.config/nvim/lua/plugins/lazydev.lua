@@ -15,6 +15,7 @@ return {
       { path = "snacks.nvim", words = { "Snacks" } },
       { path = "lazy.nvim", words = { "LazyPluginSpec" } },
       { path = "wezterm-types", mods = { "wezterm" } },
+      { "nvim-dap-ui" },
     },
   },
 }

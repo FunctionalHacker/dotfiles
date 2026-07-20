@@ -62,7 +62,7 @@ services:
       - otbr:/data/thread
     environment:
       DEVICE: '/dev/ttyUSB1'
-      BACKBONE_IF: enp3s0
+      BACKBONE_IF: enp2s0
       FLOW_CONTROL: 1
       FIREWALL: 1
       NAT64: 1

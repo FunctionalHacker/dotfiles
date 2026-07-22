@@ -25,6 +25,7 @@ return {
     },
     overrides = function(colors)
       local theme = colors.theme
+
       return {
         -- Transparent floating windows
         NormalFloat = { bg = "none" },
@@ -36,9 +37,15 @@ return {
 
         -- More uniform look for the popup menu
         Pmenu = { fg = theme.ui.shade0, bg = theme.ui.bg_p1, blend = vim.o.pumblend },
-        PmenuSel = { fg = "NONE", bg = theme.ui.bg_p2 },
+        PmenuSel = { fg = "none", bg = theme.ui.bg_p2 },
         PmenuSbar = { bg = theme.ui.bg_m1 },
         PmenuThumb = { bg = theme.ui.bg_p2 },
+
+        -- Better looks for git-blame.nvim virtual text
+        GitBlameVirtualText = {
+          fg = theme.syn.comment,
+          bg = theme.ui.bg_p2,
+        },
       }
     end,
   },

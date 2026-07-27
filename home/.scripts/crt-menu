@@ -26,11 +26,12 @@ while :; do
     80 80 10 \
     1 "Kodi" \
     2 "RetroArch" \
-    3 "Terminal" \
-    4 "NeoVim" \
-    5 "Firefox" \
-    6 "Reboot" \
-    7 "Power off")
+    3 "Steam" \
+    4 "Terminal" \
+    5 "NeoVim" \
+    6 "Firefox" \
+    7 "Reboot" \
+    8 "Power off")
 
   RET=$?
 
@@ -48,19 +49,24 @@ while :; do
     headless_discord stop
     ;;
   3)
+    headless_discord start
+    gui gamescope -W 640 -H 480 -- steam -gamepadui -steamos3
+    headless_discord stop
+    ;;
+  4)
     clear
     $SHELL
     ;;
-  4)
+  5)
     nvim
     ;;
-  5)
+  6)
     cage firefox
     ;;
-  6)
+  7)
     reboot
     ;;
-  7)
+  8)
     systemctl poweroff
     ;;
   esac

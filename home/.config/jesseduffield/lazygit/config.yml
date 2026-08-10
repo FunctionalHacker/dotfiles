@@ -1,8 +1,9 @@
-os:
-  edit: 'fhackeditor'
 git:
-  pagers:
+  diffRenderers:
     - colorArg: always
-      pager: delta --paging=never --line-numbers --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
-    - externalDiffCommand: difft --color=always --display inline
-promptToReturnFromSubprocess: false
+      command: delta --paging=never --line-numbers --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
+    - command: difft --color=always --display inline
+      type: extDiff
+os:
+  edit: fhackeditor
+promptToReturnFromSubprocess: no

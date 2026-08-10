@@ -146,12 +146,12 @@ src = ".config/neovide/config.toml"
 dst = "~/.config/neovide/config.toml"
 
 [dotfiles.f_lazygit]
-src = ".config/jesseduffield/lazygit/config.yml"
-dst = "~/.config/jesseduffield/lazygit/config.yml"
+src = ".config/lazygit/config.yml"
+dst = "~/.config/lazygit/config.yml"
 
 [dotfiles.f_lazydocker]
-src = ".config/jesseduffield/lazydocker/config.yml"
-dst = "~/.config/jesseduffield/lazydocker/config.yml"
+src = ".config/lazydocker/config.yml"
+dst = "~/.config/lazydocker/config.yml"
 
 [dotfiles.d_wezterm]
 src = ".config/wezterm"

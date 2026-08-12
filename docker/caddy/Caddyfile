@@ -184,10 +184,10 @@ korhonen.cc, *.korhonen.cc {
 }
 
 http://moria.korhonen.lan {
+	redir /pacman_cache /pacman_cache/ 308
+
 	handle_path /pacman_cache/* {
 		root * /var/cache/pacman/pkg
-		file_server {
-			browse /templates/file_server.html
-		}
+		file_server browse
 	}
 }

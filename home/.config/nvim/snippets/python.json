@@ -1,0 +1,8 @@
+{
+  "logVariable": {
+    "scope": "python",
+    "prefix": "logvar",
+    "description": "Print variable with its name",
+    "body": ["print(f\"$1 = {$1!s}\")"]
+  }
+}

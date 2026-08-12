@@ -18,6 +18,12 @@
           "typescriptreact"
         ],
         "path": "./typescript.json"
+      },
+      {
+        "language": [
+          "python"
+        ],
+        "path": "./python.json"
       }
     ]
   }

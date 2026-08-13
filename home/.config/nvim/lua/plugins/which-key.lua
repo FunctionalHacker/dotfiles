@@ -23,6 +23,7 @@ return {
       { "<leader>gr", group = "Reset" },
       { "<leader>ga", group = "Add" },
       { "<leader>cm", group = "CodeCompanion" },
+      { "<leader>o", group = "Overseer" },
 
       -- General keybinds
       {

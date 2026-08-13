@@ -17,6 +17,7 @@ return {
         "branch",
       },
       lualine_x = {
+        "overseer",
         {
           noice.command.get,
           cond = noice.command.has,

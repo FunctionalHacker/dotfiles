@@ -176,6 +176,18 @@ korhonen.cc, *.korhonen.cc {
 
 	@lubelogger host lubelogger.korhonen.cc
 	handle @lubelogger {
+		route /* {
+			sablier http://sablier:10000 {
+				group lubelogger
+				session_duration 5m
+				dynamic {
+					display_name Lubelogger
+					theme ghost
+					show_details true
+				}
+			}
+		}
+
 		reverse_proxy lubelogger:8080
 	}
 

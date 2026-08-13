@@ -16,6 +16,9 @@ services:
     networks:
       - proxy
       - postgres
+    labels:
+      - sablier.enable=true
+      - sablier.group=lubelogger
 
 networks:
   postgres:

@@ -1,0 +1,85 @@
+### marko@korhonen.cc ###
+# IMAP
+IMAPAccount marko
+Host imap.migadu.com
+Port 993
+User marko@korhonen.cc
+PassCmd "head -1 ~/.mail_cred/marko"
+TLSType IMAPS
+
+# Remote
+IMAPStore marko-remote
+Account marko
+
+# Local
+MaildirStore marko-local
+SubFolders Verbatim
+Path ~/.local/share/mail/marko/
+Inbox ~/.local/share/mail/marko/Inbox
+
+# Channel
+Channel marko
+Far :marko-remote:
+Near :marko-local:
+Patterns *
+SyncState *
+Create Both
+Expunge Both
+
+
+### functionalhacker@korhonen.cc ###
+# IMAP
+IMAPAccount functionalhacker
+Host imap.migadu.com
+Port 993
+User functionalhacker@korhonen.cc
+PassCmd "head -1 ~/.mail_cred/functionalhacker"
+TLSType IMAPS
+
+# Remote
+IMAPStore functionalhacker-remote
+Account functionalhacker
+
+# Local
+MaildirStore functionalhacker-local
+SubFolders Verbatim
+Path ~/.local/share/mail/functionalhacker/
+Inbox ~/.local/share/mail/functionalhacker/Inbox
+
+# Channel
+Channel functionalhacker
+Far :functionalhacker-remote:
+Near :functionalhacker-local:
+Patterns *
+SyncState *
+Create Both
+Expunge Both
+
+
+### admin@korhonen.cc ###
+# IMAP
+IMAPAccount admin
+Host imap.migadu.com
+Port 993
+User admin@korhonen.cc
+PassCmd "head -1 ~/.mail_cred/admin"
+TLSType IMAPS
+
+# Remote
+IMAPStore admin-remote
+Account admin
+
+# Local
+MaildirStore admin-local
+SubFolders Verbatim
+Path ~/.local/share/mail/admin/
+Inbox ~/.local/share/mail/admin/Inbox
+
+# Channel
+Channel admin
+Far :admin-remote:
+Near :admin-local:
+Patterns *
+SyncState *
+Create Both
+Expunge Both

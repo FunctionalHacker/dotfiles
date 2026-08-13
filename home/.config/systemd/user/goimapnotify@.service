@@ -1,0 +1,10 @@
+[Unit]
+Description=IMAP IDLE watcher for %i@korhonen.cc
+
+[Service]
+ExecStart=/usr/bin/goimapnotify -conf %h/.config/goimapnotify/%i.json
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=default.target

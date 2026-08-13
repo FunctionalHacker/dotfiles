@@ -1,0 +1,13 @@
+[Unit]
+Description=Sync all mail accounts and update notmuch index
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=%h/.scripts/mail-sync marko
+ExecStart=%h/.scripts/mail-sync functionalhacker
+ExecStart=%h/.scripts/mail-sync admin
+
+[Install]
+WantedBy=default.target

@@ -176,6 +176,17 @@ dst = "/etc/polkit-1/rules.d"
 src = "etc/geoclue/conf.d/99-beacondb.conf"
 dst = "/etc/geoclue/conf.d/99-beacondb.conf"
 
+[dotfiles.f_msmtprc]
+src = "etc/msmtprc"
+dst = "/etc/msmtprc"
+
+[dotfiles.f_aliases]
+src = "etc/aliases"
+dst = "/etc/aliases"
+
+[profiles.email]
+dotfiles = ["f_msmtprc", "f_aliases"]
+
 [profiles.locale]
 dotfiles = ["f_locale.conf", "f_locale.gen"]
 
@@ -212,7 +223,7 @@ dotfiles = [
   "f_welcomemessage.conf",
   "f_beacondb.conf",
 ]
-include = ["locale", "pacman", "arch_boot"]
+include = ["locale", "pacman", "arch_boot", "email"]
 
 [profiles.VentoyArch]
 dotfiles = [

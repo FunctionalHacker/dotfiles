@@ -1,0 +1,43 @@
+#!/bin/sh
+
+set -e
+
+account="$1"
+
+send_notification() {
+  notify-send -a "notmuch" -i mail-unread "New mail ($account.korhonen.cc)" "$1"
+}
+
+if [ -z "$account" ]; then
+  echo "Usage: $(basename "$0") <account>"
+  exit 1
+fi
+
+case "$account" in
+marko | functionalhacker | admin)
+  ;;
+*)
+  echo "Unknown account: $account"
+  echo "Valid accounts: marko functionalhacker admin"
+  exit 1
+  ;;
+esac
+
+count_before=$(notmuch count "path:$account/** and tag:unread")
+
+mbsync "$account"
+notmuch new
+count_after=$(notmuch count "path:$account/** and tag:unread")
+new_messages=$((count_after - count_before))
+
+# Show summary of the message if only one message found
+if [ "$new_messages" -eq 1 ]; then
+  sender=$(notmuch address --format=json --limit=1 --sort=newest-first "path:$1/** and tag:unread" | jq -r '.[0]."name-addr"')
+  subject=$(notmuch search --format=json --limit=1 --sort=newest-first "path:$account/** and tag:unread" | jq -r '.[0].subject')
+
+  send_notification "$sender - $subject"
+
+# Fall back to a summary count if there are multiple new messages
+elif [ "$new_messages" -gt 1 ]; then
+  send_notification "$new_messages new messages in $account@korhonen.cc"
+fi

@@ -16,10 +16,16 @@ longkey = false
 showdiff = false
 workdir = "~/.config/dotdrop"
 
+[dotfiles.d_systemd]
+dst = "~/.config/systemd/user"
+src = ".config/systemd/user"
+
 [dotfiles.d_scripts]
 dst = "~/.scripts"
 src = ".scripts"
-actions = ["scripts_chmod"]
+actions = [
+    "scripts_chmod",
+]
 
 [dotfiles.d_mpv]
 dst = "~/.config/mpv"
@@ -28,8 +34,12 @@ src = ".config/mpv"
 [dotfiles.d_nvim]
 dst = "~/.config/nvim"
 src = ".config/nvim"
-actions = ["kanagawa_compile"]
-instignore = ["*-lock.json"]
+actions = [
+    "kanagawa_compile",
+]
+instignore = [
+    "*-lock.json",
+]
 
 [dotfiles."f_abcde.conf"]
 dst = "~/.abcde.conf"
@@ -76,7 +86,6 @@ src = ".zlogin"
 dst = "~/.zlogin"
 chmod = "644"
 
-
 [dotfiles."f_fonts.conf"]
 src = ".config/fontconfig/fonts.conf"
 dst = "~/.config/fontconfig/fonts.conf"
@@ -121,7 +130,9 @@ dst = "~/.pam_environment"
 [dotfiles."f_dconf.ini"]
 src = ".config/dconf.ini"
 dst = "~/.config/dconf.ini"
-actions = ["dconf_load"]
+actions = [
+    "dconf_load",
+]
 
 [dotfiles."f_docker-config.json"]
 src = ".docker/config.json"
@@ -157,95 +168,186 @@ dst = "~/.config/lazydocker/config.yml"
 src = ".config/wezterm"
 dst = "~/.config/wezterm"
 
+[dotfiles.d_goimapnotify]
+src = ".config/goimapnotify"
+dst = "~/.config/goimapnotify"
+
+[dotfiles.f_isyncrc]
+src = ".config/isyncrc"
+dst = "~/.config/isyncrc"
+
+[dotfiles.f_notmuch]
+src = ".config/notmuch/default/config"
+dst = "~/.config/notmuch/default/config"
+
+[dotfiles.d_aerc]
+src = ".config/aerc"
+dst = "~/.config/aerc"
+
+[profiles.email]
+dotfiles = [
+    "d_goimapnotify",
+    "f_isyncrc",
+    "f_notmuch",
+]
+
 [profiles.pacman]
-dotfiles = ["f_makepkg.conf", "f_paru.conf"]
+dotfiles = [
+    "f_makepkg.conf",
+    "f_paru.conf",
+]
 
 [profiles.terminal]
 dotfiles = [
-  "d_scripts",
-  "f_lazygit",
-  "f_lazydocker",
-  "f_neovide_config",
-  "d_nvim",
-  "d_ssh",
-  "d_zsh",
-  "f_zshrc",
-  "f_zlogin",
-  "f_gitconfig",
-  "f_hushlogin",
-  "f_ignore",
-  "f_zellij",
-  "f_tmux",
-  "f_npmrc",
-  "d_wezterm",
+    "d_systemd",
+    "d_scripts",
+    "f_lazygit",
+    "f_lazydocker",
+    "f_neovide_config",
+    "d_nvim",
+    "d_ssh",
+    "d_zsh",
+    "f_zshrc",
+    "f_zlogin",
+    "f_gitconfig",
+    "f_hushlogin",
+    "f_ignore",
+    "f_zellij",
+    "f_tmux",
+    "f_npmrc",
+    "d_wezterm",
 ]
 
 [profiles.media]
-dotfiles = ["d_mpv", "f_abcde.conf", "f_beets_config", "f_beets_whitelist"]
+dotfiles = [
+    "d_mpv",
+    "f_abcde.conf",
+    "f_beets_config",
+    "f_beets_whitelist",
+]
 
 [profiles.gpg]
 dotfiles = [
-  "f_gpg-agent.conf",
-  "f_gpg.conf",
-  "f_gpg_scdaemon.conf",
-  "f_pam_environment",
+    "f_gpg-agent.conf",
+    "f_gpg.conf",
+    "f_gpg_scdaemon.conf",
+    "f_pam_environment",
 ]
 
 [profiles.Mirkwood]
-include = ["pacman", "terminal", "media", "gpg"]
-dotfiles = ["f_dconf.ini", "f_docker-config.json", "f_fonts.conf"]
-
-[profiles.VentoyArch]
-include = ["pacman", "terminal", "media", "gpg"]
-dotfiles = ["f_dconf.ini", "f_fonts.conf"]
-
-[profiles.Shire]
-include = ["pacman", "terminal", "media", "gpg"]
-dotfiles = ["f_dconf.ini", "f_fonts.conf"]
-
-[profiles.Moria]
-include = ["pacman", "terminal", "media", "gpg"]
-dotfiles = ["f_dconf.ini", "f_zprofile", "f_fonts.conf"]
-
-[profiles.Tirion]
-include = ["terminal", "gpg"]
-
-[profiles.Gondor]
-include = ["pacman", "terminal"]
-
-[profiles.Orthanc]
-include = ["pacman", "terminal", "gpg"]
-dotfiles = ["f_dconf.ini"]
-
-[profiles.Isengard]
-include = ["terminal"]
-
-[profiles.Edoras]
-include = ["terminal"]
-
-[profiles.localhost]
-include = ["terminal"]
-
-[profiles.ViiruJaTeippi]
-include = ["terminal"]
-
-[profiles.Evendim]
-include = ["terminal", "pacman"]
+include = [
+    "pacman",
+    "terminal",
+    "media",
+    "gpg",
+    "email",
+]
+dotfiles = [
+    "f_dconf.ini",
+    "f_docker-config.json",
+    "f_fonts.conf",
+    "d_aerc",
+]
 
 [profiles.Mirkwood.variables]
 wayland = true
 
+[profiles.VentoyArch]
+include = [
+    "pacman",
+    "terminal",
+    "media",
+    "gpg",
+]
+dotfiles = [
+    "f_dconf.ini",
+    "f_fonts.conf",
+]
+
 [profiles.VentoyArch.variables]
 wayland = true
+
+[profiles.Shire]
+include = [
+    "pacman",
+    "terminal",
+    "media",
+    "gpg",
+]
+dotfiles = [
+    "f_dconf.ini",
+    "f_fonts.conf",
+]
 
 [profiles.Shire.variables]
 wayland = true
 
+[profiles.Moria]
+include = [
+    "pacman",
+    "terminal",
+    "media",
+    "gpg",
+]
+dotfiles = [
+    "f_dconf.ini",
+    "f_zprofile",
+    "f_fonts.conf",
+]
+
 [profiles.Moria.variables]
 wayland = true
+
+[profiles.Tirion]
+include = [
+    "terminal",
+    "gpg",
+]
+
+[profiles.Gondor]
+include = [
+    "pacman",
+    "terminal",
+]
+
+[profiles.Orthanc]
+include = [
+    "pacman",
+    "terminal",
+    "gpg",
+]
+dotfiles = [
+    "f_dconf.ini",
+]
 
 [profiles.Orthanc.variables]
 wayland = true
 
+[profiles.Isengard]
+include = [
+    "terminal",
+]
+
 [profiles.Isengard.variables]
 distro_id = "termux"
+
+[profiles.Edoras]
+include = [
+    "terminal",
+]
+
+[profiles.localhost]
+include = [
+    "terminal",
+]
+
+[profiles.ViiruJaTeippi]
+include = [
+    "terminal",
+]
+
+[profiles.Evendim]
+include = [
+    "terminal",
+    "pacman",
+]

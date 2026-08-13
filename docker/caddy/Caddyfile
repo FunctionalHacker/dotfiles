@@ -87,6 +87,18 @@ korhonen.cc, *.korhonen.cc {
 
 	@jellyfin host jellyfin.korhonen.cc
 	handle @jellyfin {
+		route /* {
+			sablier http://sablier:10000 {
+				group jellyfin
+				session_duration 30m
+				dynamic {
+					display_name Jellyfin
+					theme ghost
+					show_details true
+				}
+			}
+		}
+
 		reverse_proxy jellyfin:8096
 	}
 

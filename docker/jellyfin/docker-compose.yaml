@@ -5,6 +5,7 @@ volumes:
     external: true
   nextcloud_data:
     external: true
+
 services:
   jellyfin:
     image: jellyfin/jellyfin
@@ -20,9 +21,10 @@ services:
       - cache:/cache
       - media:/media
       - nextcloud_data:/nextcloud_data
-    # devices:
-    #   - /dev/dri/renderD128:/dev/dri/renderD128
-    #   - /dev/dri/card1:/dev/dri/card0
+    labels:
+      - sablier.enable=true
+      - sablier.group=jellyfin
+
 networks:
   proxy:
     external: true

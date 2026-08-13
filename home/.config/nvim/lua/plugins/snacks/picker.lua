@@ -14,11 +14,10 @@ return {
           patterns = { ".git" },
           confirm = function(picker, item)
             vim.fn.chdir(item.file)
-            Snacks.picker.actions.close(picker)
 
             local actions = {
               { text = "Files", action = Snacks.picker.files },
-              { text = "Lazygit", action = Snacks.lazygit },
+              { text = "Git", action = Snacks.lazygit },
               { text = "Grep", action = Snacks.picker.grep },
               {
                 text = "Terminal",
@@ -40,7 +39,7 @@ return {
               end
             end)
 
-            vim.cmd("startinsert!")
+            picker:close()
           end,
         },
         ---@type snacks.picker.lsp.symbols.Config

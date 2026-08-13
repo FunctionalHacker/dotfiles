@@ -18,6 +18,9 @@ services:
       - default
       - postgres
       - proxy
+    labels:
+      - sablier.enable=true
+      - sablier.group=authentik
   worker:
     image: ghcr.io/goauthentik/server:${AUTHENTIK_TAG}
     container_name: authentik-worker
@@ -35,6 +38,9 @@ services:
     networks:
       - default
       - postgres
+    labels:
+      - sablier.enable=true
+      - sablier.group=authentik
 networks:
   postgres:
     external: true

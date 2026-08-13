@@ -61,6 +61,18 @@ korhonen.cc, *.korhonen.cc {
 
 	@authentik host sso.korhonen.cc
 	handle @authentik {
+		route /* {
+			sablier http://sablier:10000 {
+				group authentik
+				session_duration 5m
+				dynamic {
+					display_name Korhonen SSO
+					theme ghost
+					show_details true
+				}
+			}
+		}
+
 		reverse_proxy authentik:9000
 	}
 

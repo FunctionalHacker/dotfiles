@@ -204,6 +204,12 @@ korhonen.cc, *.korhonen.cc {
 		respond "404 Not Found" 404
 	}
 
+	@tvheadend host tv.korhonen.cc
+	handle @tvheadend {
+		import authentik
+		reverse_proxy tvheadend:9981
+	}
+
 	handle_errors {
 		@homepage_404 {
 			expression {http.error.status_code} == 404

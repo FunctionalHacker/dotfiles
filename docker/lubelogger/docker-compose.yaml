@@ -4,9 +4,9 @@ volumes:
 
 services:
   lubelogger:
-    image: ghcr.io/hargata/lubelogger:latest
+    image: ghcr.io/hargata/lubelogger
     container_name: lubelogger
-    restart: unless-stopped
+    restart: no
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - data:/App/data

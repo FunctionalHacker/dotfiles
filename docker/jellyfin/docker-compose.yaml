@@ -14,7 +14,7 @@ services:
       - 8096:8096
     networks:
       - proxy
-    restart: unless-stopped
+    restart: no
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - config:/config

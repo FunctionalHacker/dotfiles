@@ -9,7 +9,7 @@ services:
   caddy:
     image: git.korhonen.cc/functionalhacker/caddy
     container_name: caddy
-    restart: unless-stopped
+    restart: always
     ports:
       - 80:80
       - 443:443/tcp

@@ -64,10 +64,7 @@ korhonen.cc, *.korhonen.cc {
 
 	@index host index.korhonen.cc
 	handle @index {
-		root * /var/www/index.korhonen.cc
-		file_server {
-			browse /templates/file_server.html
-		}
+		import anubis
 	}
 
 	@home-assistant host home.korhonen.cc
@@ -191,19 +188,7 @@ korhonen.cc, *.korhonen.cc {
 
 	@lubelogger host lubelogger.korhonen.cc
 	handle @lubelogger {
-		route /* {
-			sablier http://sablier:10000 {
-				group lubelogger
-				session_duration 5m
-				dynamic {
-					display_name Lubelogger
-					theme ghost
-					show_details true
-				}
-			}
-		}
-
-		reverse_proxy lubelogger:8080
+		import anubis
 	}
 
 	@mosquitto host mqtt.korhonen.cc
@@ -234,11 +219,37 @@ korhonen.cc, *.korhonen.cc {
 	}
 }
 
+# Internal handler for traffic that has passed the Anubis challenge
 :3001 {
 	@forgejo host git.korhonen.cc
 	handle @forgejo {
 		rewrite /user/login /user/oauth2/Korhonen%20SSO
 		reverse_proxy forgejo:3000
+	}
+
+	@lubelogger host lubelogger.korhonen.cc
+	handle @lubelogger {
+		route /* {
+			sablier http://sablier:10000 {
+				group lubelogger
+				session_duration 5m
+				dynamic {
+					display_name Lubelogger
+					theme ghost
+					show_details true
+				}
+			}
+		}
+
+		reverse_proxy lubelogger:8080
+	}
+
+	@index host index.korhonen.cc
+	handle @index {
+		root * /var/www/index.korhonen.cc
+		file_server {
+			browse /templates/file_server.html
+		}
 	}
 }
 

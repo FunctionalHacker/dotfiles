@@ -38,29 +38,28 @@ services:
     container_name: sablier
     restart: always
     command:
-        - start
-        - --provider.name=docker
+      - start
+      - --provider.name=docker
     networks:
       - proxy
     volumes:
       - '/var/run/docker.sock:/var/run/docker.sock'
 
-  # anubis:
-  #   image: ghcr.io/techarohq/anubis
-  #   container_name: anubis
-  #   restart: unless-stopped
-  #   pull_policy: always
-  #   environment:
-  #     BIND: ':3000'
-  #     TARGET: http://httpdebug:3000
-  #   networks:
-  #     - proxy
-  #
-  # httpdebug:
-  #   image: ghcr.io/xe/x/httpdebug
-  #   container_name: httpdebug
-  #   restart: unless-stopped
-  #   pull_policy: always
+  anubis:
+    image: ghcr.io/techarohq/anubis
+    container_name: anubis
+    restart: unless-stopped
+    environment:
+      BIND: ":8080"
+      TARGET: http://caddy:3001
+    networks:
+      - proxy
+    healthcheck:
+      test: ['CMD', 'anubis', '--healthcheck']
+      interval: 5s
+      timeout: 30s
+      retries: 5
+      start_period: 500ms
 
 networks:
   proxy:

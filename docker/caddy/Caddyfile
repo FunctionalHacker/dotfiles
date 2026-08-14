@@ -1,3 +1,19 @@
+(authentik) {
+	reverse_proxy /outpost.goauthentik.io/* http://authentik:9000
+	forward_auth {args.0} http://authentik:9000 {
+		uri /outpost.goauthentik.io/auth/caddy
+		copy_headers X-Authentik-Username X-Authentik-Groups X-Authentik-Email X-Authentik-Name X-Authentik-Uid X-Authentik-Jwt X-Authentik-Meta-Jwks X-Authentik-Meta-Outpost X-Authentik-Meta-Provider X-Authentik-Meta-App X-Authentik-Meta-Version
+		trusted_proxies private_ranges
+	}
+}
+
+(anubis) {
+	reverse_proxy http://anubis:8080 {
+		header_up X-Real-Ip {remote_host}
+		header_up X-Http-Version {http.request.proto}
+	}
+}
+
 korhonen.cc, *.korhonen.cc {
 	encode zstd gzip
 
@@ -78,8 +94,7 @@ korhonen.cc, *.korhonen.cc {
 
 	@forgejo host git.korhonen.cc
 	handle @forgejo {
-		rewrite /user/login /user/oauth2/Korhonen%20SSO
-		reverse_proxy forgejo:3000
+		import anubis
 	}
 
 	@woodpecker host ci.korhonen.cc
@@ -216,6 +231,14 @@ korhonen.cc, *.korhonen.cc {
 		}
 
 		respond "{err.status_code} {err.status_text}"
+	}
+}
+
+:3001 {
+	@forgejo host git.korhonen.cc
+	handle @forgejo {
+		rewrite /user/login /user/oauth2/Korhonen%20SSO
+		reverse_proxy forgejo:3000
 	}
 }
 

@@ -1,5 +1,14 @@
 {
-	admin 0.0.0.0:2019
+  debug
+	servers {
+		trusted_proxies static private_ranges
+		trusted_proxies_strict
+		client_ip_headers CF-Connecting-IP X-Forwarded-For
+	}
+
+	admin 0.0.0.0:2019 {
+    origins http://localhost:2019
+  }
 
 	metrics {
 		per_host

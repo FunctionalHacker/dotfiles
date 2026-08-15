@@ -1,6 +1,8 @@
 volumes:
   grafana: {}
   victoriametrics: {}
+  victorialogs: {}
+  vector: {}
 
 services:
   grafana:
@@ -16,6 +18,7 @@ services:
       GF_DATABASE_USER: grafana
       GF_DATABASE_PASSWORD: ${DB_PASSWORD}
       GF_DATABASE_SSL_MODE: disable
+      GF_PLUGINS_PREINSTALL: victoriametrics-metrics-datasource,victoriametrics-logs-datasource
       GF_AUTH_GENERIC_OAUTH_ENABLED: 'true'
       GF_AUTH_GENERIC_OAUTH_NAME: Korhonen SSO
       GF_AUTH_GENERIC_OAUTH_CLIENT_ID: ${OAUTH_CLIENT_ID}
@@ -30,6 +33,7 @@ services:
       GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_PATH: "contains(entitlements[*], 'Grafana Admins') && 'Admin' || contains(entitlements[*], 'Grafana Editors') && 'Editor' || 'Viewer'"
     volumes:
       - grafana:/var/lib/grafana
+      - ./grafana_victoria_ds.yaml:/etc/grafana/provisioning/datasources/victoria.yaml
     networks:
       - monitoring
       - proxy
@@ -40,13 +44,42 @@ services:
     container_name: victoriametrics
     restart: unless-stopped
     command:
-      - -promscrape.config=/etc/victoriametrics/promscrape.yaml
       - -storageDataPath=/storage
+      - -retentionPeriod=30d
+      - -promscrape.config=/etc/victoriametrics/promscrape.yaml
     volumes:
       - victoriametrics:/storage
       - ./promscrape.yaml:/etc/victoriametrics/promscrape.yaml:ro
     networks:
       - monitoring
+
+  victorialogs:
+    image: victoriametrics/victoria-logs:latest
+    container_name: victorialogs
+    restart: unless-stopped
+    command:
+      - -storageDataPath=/storage
+      - -retentionPeriod=30d
+    volumes:
+      - victorialogs:/storage
+    networks:
+      - monitoring
+
+  vector:
+    image: timberio/vector:latest-alpine
+    container_name: vector
+    restart: unless-stopped
+    command:
+      - --config
+      - /etc/vector/vector.yaml
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - vector:/var/lib/vector
+      - ./vector.yaml:/etc/vector/vector.yaml:ro
+    networks:
+      - monitoring
+    depends_on:
+      - victorialogs
 
 networks:
   monitoring:

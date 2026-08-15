@@ -1,5 +1,4 @@
 {
-  debug
 	servers {
 		trusted_proxies static private_ranges
 		trusted_proxies_strict
@@ -7,8 +6,8 @@
 	}
 
 	admin 0.0.0.0:2019 {
-    origins http://localhost:2019
-  }
+		origins http://localhost:2019
+	}
 
 	metrics {
 		per_host
@@ -56,195 +55,199 @@ korhonen.cc, *.korhonen.cc {
 		path *.ico *.css *.js *.gif *.webp *.avif *.jpg *.jpeg *.png *.svg *.woff *.woff2 *.pdf *.webmanifest
 	}
 
-	@homepage-www-redir host www.korhonen.cc
-	handle @homepage-www-redir {
-		redir https://korhonen.cc
-	}
+	route {
+    crowdsec
 
-	@homepage host korhonen.cc
-	handle @homepage {
-		# Redirect finnish WIP
-		# @redirFinnish {
-		#     header Accept-Language *fi-FI*
-		#     not path *.js *.css *.png *.jpg *.jpeg *.svg
-		#     not path /en* /fi*
-		#   }
-		#   redir @redirFinnish /fi{uri}
-		#
-		#   uri strip_prefix /en
-
-		header @static Cache-Control max-age=5184000
-		root * /var/www/korhonen.cc
-		file_server
-	}
-
-	@wkd host openpgpkey.korhonen.cc
-	handle @wkd {
-		root * /var/www/wkd
-		header Access-Control-Allow-Origin "*"
-		file_server {
-			browse /templates/file_server.html
+		@homepage-www-redir host www.korhonen.cc
+		handle @homepage-www-redir {
+			redir https://korhonen.cc
 		}
-	}
 
-	@index host index.korhonen.cc
-	handle @index {
-		import anubis
-	}
+		@homepage host korhonen.cc
+		handle @homepage {
+			# Redirect finnish WIP
+			# @redirFinnish {
+			#     header Accept-Language *fi-FI*
+			#     not path *.js *.css *.png *.jpg *.jpeg *.svg
+			#     not path /en* /fi*
+			#   }
+			#   redir @redirFinnish /fi{uri}
+			#
+			#   uri strip_prefix /en
 
-	@home-assistant host home.korhonen.cc
-	handle @home-assistant {
-		reverse_proxy home-assistant:8123
-	}
+			header @static Cache-Control max-age=5184000
+			root * /var/www/korhonen.cc
+			file_server
+		}
 
-	@authentik host sso.korhonen.cc
-	handle @authentik {
-		route /* {
-			sablier http://sablier:10000 {
-				group authentik
-				session_duration 5m
-				dynamic {
-					display_name Korhonen SSO
-					theme ghost
-					show_details true
-				}
+		@wkd host openpgpkey.korhonen.cc
+		handle @wkd {
+			root * /var/www/wkd
+			header Access-Control-Allow-Origin "*"
+			file_server {
+				browse /templates/file_server.html
 			}
 		}
 
-		reverse_proxy authentik:9000
-	}
+		@index host index.korhonen.cc
+		handle @index {
+			import anubis
+		}
 
-	@forgejo host git.korhonen.cc
-	handle @forgejo {
-		import anubis
-	}
+		@home-assistant host home.korhonen.cc
+		handle @home-assistant {
+			reverse_proxy home-assistant:8123
+		}
 
-	@woodpecker host ci.korhonen.cc
-	handle @woodpecker {
-		reverse_proxy woodpecker:8000
-	}
-
-	@searxng host dsearch.korhonen.cc
-	handle @searxng {
-		reverse_proxy searxng:8080
-	}
-
-	@miniflux host rss.korhonen.cc
-	handle @miniflux {
-		reverse_proxy miniflux:8080
-	}
-
-	@jellyfin host jellyfin.korhonen.cc
-	handle @jellyfin {
-		route /* {
-			sablier http://sablier:10000 {
-				group jellyfin
-				session_duration 30m
-				dynamic {
-					display_name Jellyfin
-					theme ghost
-					show_details true
+		@authentik host sso.korhonen.cc
+		handle @authentik {
+			route /* {
+				sablier http://sablier:10000 {
+					group authentik
+					session_duration 5m
+					dynamic {
+						display_name Korhonen SSO
+						theme ghost
+						show_details true
+					}
 				}
 			}
+
+			reverse_proxy authentik:9000
 		}
 
-		reverse_proxy jellyfin:8096
-	}
-
-	@pihole host pihole.korhonen.cc
-	handle @pihole {
-		reverse_proxy pihole
-	}
-
-	@umami host umami.korhonen.cc
-	handle @umami {
-		reverse_proxy umami:3000
-	}
-
-	@nextcloud host cloud.korhonen.cc
-	handle @nextcloud {
-		# Redirect login page to Authentik
-		redir /login /apps/sociallogin/custom_oidc/korhonen-sso 301
-
-		# .htaccess / data / config / ... shouldn't be accessible from outside
-		@forbidden {
-			path /.htaccess
-			path /data/*
-			path /config/*
-			path /db_structure
-			path /.xml
-			path /README
-			path /3rdparty/*
-			path /lib/*
-			path /templates/*
-			path /occ
-			path /console.php
-		}
-		handle @forbidden {
-			respond 404
+		@forgejo host git.korhonen.cc
+		handle @forgejo {
+			import anubis
 		}
 
-		redir /.well-known/carddav /remote.php/dav 301
-		redir /.well-known/caldav /remote.php/dav 301
-
-		root * /var/www/nextcloud
-		php_fastcgi nextcloud:9000 {
-			root /var/www/html
-			# Tells nextcloud to remove /index.php from URLs in links
-			env front_controller_active true
+		@woodpecker host ci.korhonen.cc
+		handle @woodpecker {
+			reverse_proxy woodpecker:8000
 		}
-		file_server
-	}
 
-	# @collabora host collabora.korhonen.cc
-	# handle @collabora {
-	# 	reverse_proxy collabora:9980
-	# }
-
-	@drop host drop.korhonen.cc
-	handle @drop {
-		reverse_proxy drop:3000
-	}
-
-	@ipvX host ipv6.korhonen.cc ipv4.korhonen.cc
-	handle @ipvX {
-		respond {remote_host}
-	}
-
-	@lubelogger host lubelogger.korhonen.cc
-	handle @lubelogger {
-		import anubis
-	}
-
-	@mosquitto host mqtt.korhonen.cc
-	handle @mosquitto {
-		@websockets {
-			header Connection *Upgrade*
-			header Upgrade websocket
+		@searxng host dsearch.korhonen.cc
+		handle @searxng {
+			reverse_proxy searxng:8080
 		}
-		reverse_proxy @websockets mosquitto:9001
-	}
 
-	@tvheadend host tv.korhonen.cc
-	handle @tvheadend {
-		import authentik
-		reverse_proxy tvheadend:9981
-	}
+		@miniflux host rss.korhonen.cc
+		handle @miniflux {
+			reverse_proxy miniflux:8080
+		}
 
-	@grafana host graph.korhonen.cc
-	handle @grafana {
-		reverse_proxy grafana:3000
-	}
+		@jellyfin host jellyfin.korhonen.cc
+		handle @jellyfin {
+			route /* {
+				sablier http://sablier:10000 {
+					group jellyfin
+					session_duration 30m
+					dynamic {
+						display_name Jellyfin
+						theme ghost
+						show_details true
+					}
+				}
+			}
 
-	@errors-demo host error.korhonen.cc
-	handle @errors-demo {
-		root * /usr/share/errorpages
-		file_server browse
-	}
+			reverse_proxy jellyfin:8096
+		}
 
-	# Fallback for any path that doesn't match any handlers above
-	handle {
-		error 404
+		@pihole host pihole.korhonen.cc
+		handle @pihole {
+			reverse_proxy pihole
+		}
+
+		@umami host umami.korhonen.cc
+		handle @umami {
+			reverse_proxy umami:3000
+		}
+
+		@nextcloud host cloud.korhonen.cc
+		handle @nextcloud {
+			# Redirect login page to Authentik
+			redir /login /apps/sociallogin/custom_oidc/korhonen-sso 301
+
+			# .htaccess / data / config / ... shouldn't be accessible from outside
+			@forbidden {
+				path /.htaccess
+				path /data/*
+				path /config/*
+				path /db_structure
+				path /.xml
+				path /README
+				path /3rdparty/*
+				path /lib/*
+				path /templates/*
+				path /occ
+				path /console.php
+			}
+			handle @forbidden {
+				respond 404
+			}
+
+			redir /.well-known/carddav /remote.php/dav 301
+			redir /.well-known/caldav /remote.php/dav 301
+
+			root * /var/www/nextcloud
+			php_fastcgi nextcloud:9000 {
+				root /var/www/html
+				# Tells nextcloud to remove /index.php from URLs in links
+				env front_controller_active true
+			}
+			file_server
+		}
+
+		# @collabora host collabora.korhonen.cc
+		# handle @collabora {
+		# 	reverse_proxy collabora:9980
+		# }
+
+		@drop host drop.korhonen.cc
+		handle @drop {
+			reverse_proxy drop:3000
+		}
+
+		@ipvX host ipv6.korhonen.cc ipv4.korhonen.cc
+		handle @ipvX {
+			respond {remote_host}
+		}
+
+		@lubelogger host lubelogger.korhonen.cc
+		handle @lubelogger {
+			import anubis
+		}
+
+		@mosquitto host mqtt.korhonen.cc
+		handle @mosquitto {
+			@websockets {
+				header Connection *Upgrade*
+				header Upgrade websocket
+			}
+			reverse_proxy @websockets mosquitto:9001
+		}
+
+		@tvheadend host tv.korhonen.cc
+		handle @tvheadend {
+			import authentik
+			reverse_proxy tvheadend:9981
+		}
+
+		@grafana host graph.korhonen.cc
+		handle @grafana {
+			reverse_proxy grafana:3000
+		}
+
+		@errors-demo host error.korhonen.cc
+		handle @errors-demo {
+			root * /usr/share/errorpages
+			file_server browse
+		}
+
+		# Fallback for any path that doesn't match any handlers above
+		handle {
+			error 404
+		}
 	}
 
 	handle_errors {

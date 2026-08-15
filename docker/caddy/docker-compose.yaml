@@ -5,6 +5,7 @@ volumes:
   korhonen_cc: {}
   nextcloud_config:
     external: true
+
 services:
   caddy:
     image: git.korhonen.cc/functionalhacker/caddy
@@ -14,7 +15,6 @@ services:
       - 80:80
       - 443:443/tcp
       - 443:443/udp
-      - 127.0.0.1:2019:2019
     networks:
       - proxy
     volumes:
@@ -40,6 +40,7 @@ services:
     command:
       - start
       - --provider.name=docker
+      - --server.metrics.enabled=true
     networks:
       - proxy
     volumes:

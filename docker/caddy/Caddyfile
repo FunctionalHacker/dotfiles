@@ -1,3 +1,10 @@
+{
+	admin 0.0.0.0:2019
+	metrics {
+		per_host
+	}
+}
+
 (authentik) {
 	reverse_proxy /outpost.goauthentik.io/* http://authentik:9000
 	forward_auth {args.0} http://authentik:9000 {

@@ -1,0 +1,13 @@
+db_config:
+  type: postgresql
+  host: postgres
+  port: 5432
+  sslmode: disable
+  db_name: crowdsec
+  user: crowdsec
+  password: ${CROWDSEC_DB_PASS}
+prometheus:
+  enabled: true
+  level: full
+  listen_addr: 0.0.0.0
+  listen_port: 6060

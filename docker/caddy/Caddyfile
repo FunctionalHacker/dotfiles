@@ -1,7 +1,13 @@
 {
 	admin 0.0.0.0:2019
+
 	metrics {
 		per_host
+	}
+
+	crowdsec {
+		api_url http://crowdsec:8080
+		api_key {$CADDY_CS_KEY}
 	}
 }
 

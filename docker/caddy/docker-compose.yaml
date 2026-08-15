@@ -3,6 +3,7 @@ volumes:
   config: {}
   wkd: {}
   korhonen_cc: {}
+  crowdsec: {}
   nextcloud_config:
     external: true
 
@@ -35,6 +36,41 @@ services:
     cap_add:
       - NET_ADMIN
 
+  crowdsec:
+    image: crowdsecurity/crowdsec
+    container_name: crowdsec
+    restart: always
+    environment:
+      DB_PASS: ${CROWDSEC_DB_PASS}
+    env_file:
+      - .env
+    networks:
+      - default
+      - postgres
+      - monitoring
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - crowdsec:/etc/crowdsec/
+      - ./crowdsec.yaml:/etc/crowdsec/config.yaml.local:ro
+
+  anubis:
+    image: ghcr.io/techarohq/anubis
+    container_name: anubis
+    restart: always
+    environment:
+      TARGET: http://caddy:3001
+    networks:
+      - default
+      - monitoring
+    healthcheck:
+      test: ['CMD', 'anubis', '--healthcheck']
+      interval: 5s
+      timeout: 30s
+      retries: 5
+      start_period: 500ms
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+
   sablier:
     image: sablierapp/sablier
     container_name: sablier
@@ -47,26 +83,13 @@ services:
       - default
       - monitoring
     volumes:
+      - /etc/localtime:/etc/localtime:ro
       - '/var/run/docker.sock:/var/run/docker.sock'
-
-  anubis:
-    image: ghcr.io/techarohq/anubis
-    container_name: anubis
-    restart: unless-stopped
-    environment:
-      TARGET: http://caddy:3001
-    networks:
-      - default
-      - monitoring
-    healthcheck:
-      test: ['CMD', 'anubis', '--healthcheck']
-      interval: 5s
-      timeout: 30s
-      retries: 5
-      start_period: 500ms
 
 networks:
   proxy:
     external: true
   monitoring:
+    external: true
+  postgres:
     external: true

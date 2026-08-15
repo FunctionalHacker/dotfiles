@@ -1,6 +1,6 @@
 volumes:
-  storage: {}
-  victoriametrics_data: {}
+  grafana: {}
+  victoriametrics: {}
 
 services:
   grafana:
@@ -29,7 +29,7 @@ services:
       GF_AUTH_GENERIC_OAUTH_ALLOW_SIGN_UP: 'true'
       GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_PATH: "contains(entitlements[*], 'Grafana Admins') && 'Admin' || contains(entitlements[*], 'Grafana Editors') && 'Editor' || 'Viewer'"
     volumes:
-      - storage:/var/lib/grafana
+      - grafana:/var/lib/grafana
     networks:
       - proxy
       - postgres
@@ -40,9 +40,9 @@ services:
     restart: unless-stopped
     command:
       - -promscrape.config=/etc/victoriametrics/promscrape.yaml
-      - -storageDataPath=/victoria-metrics-data
+      - -storageDataPath=/storage
     volumes:
-      - victoriametrics_data:/victoria-metrics-data
+      - victoriametrics:/storage
       - ./promscrape.yaml:/etc/victoriametrics/promscrape.yaml:ro
     networks:
       - proxy

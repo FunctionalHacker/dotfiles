@@ -31,6 +31,7 @@ services:
     volumes:
       - grafana:/var/lib/grafana
     networks:
+      - monitoring
       - proxy
       - postgres
 
@@ -45,9 +46,11 @@ services:
       - victoriametrics:/storage
       - ./promscrape.yaml:/etc/victoriametrics/promscrape.yaml:ro
     networks:
-      - proxy
+      - monitoring
 
 networks:
+  monitoring:
+    external: true
   proxy:
     external: true
   postgres:

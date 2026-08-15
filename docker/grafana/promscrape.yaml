@@ -1,0 +1,14 @@
+scrape_configs:
+  - job_name: victoriametrics
+    static_configs:
+      - targets: [victoriametrics:8428]
+  - job_name: caddy
+    scrape_interval: 15s
+    static_configs:
+      - targets: [caddy:2019]
+  - job_name: anubis
+    static_configs:
+      - targets: [anubis:9090]
+  - job_name: sablier
+    static_configs:
+      - targets: [sablier:10000]

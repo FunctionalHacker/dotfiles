@@ -30,6 +30,7 @@
 }
 
 korhonen.cc, *.korhonen.cc {
+	log
 	encode zstd gzip
 
 	tls {

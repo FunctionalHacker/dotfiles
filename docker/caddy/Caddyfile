@@ -214,10 +214,6 @@ korhonen.cc, *.korhonen.cc {
 		reverse_proxy @websockets mosquitto:9001
 	}
 
-	handle {
-		respond "404 Not Found" 404
-	}
-
 	@tvheadend host tv.korhonen.cc
 	handle @tvheadend {
 		import authentik
@@ -229,9 +225,21 @@ korhonen.cc, *.korhonen.cc {
 		reverse_proxy grafana:3000
 	}
 
+	@errors-demo host error.korhonen.cc
+	handle @errors-demo {
+		root * /usr/share/errorpages
+		file_server browse
+	}
+
+	# Fallback for any path that doesn't match any handlers above
+	handle {
+		error 404
+	}
+
 	handle_errors {
+		# Show home page's own 404 page if on the home page
 		@homepage_404 {
-			expression {http.error.status_code} == 404
+			expression {err.status_code} == 404
 			host korhonen.cc
 		}
 		handle @homepage_404 {
@@ -240,7 +248,9 @@ korhonen.cc, *.korhonen.cc {
 			file_server
 		}
 
-		respond "{err.status_code} {err.status_text}"
+		root * /usr/share/errorpages
+		rewrite * /{err.status_code}.html
+		file_server
 	}
 }
 
@@ -283,6 +293,8 @@ http://moria.korhonen.lan {
 
 	handle_path /pacman_cache/* {
 		root * /var/cache/pacman/pkg
-		file_server browse
+		file_server {
+			browse /templates/file_server.html
+		}
 	}
 }

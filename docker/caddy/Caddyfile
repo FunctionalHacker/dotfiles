@@ -210,6 +210,11 @@ korhonen.cc, *.korhonen.cc {
 		reverse_proxy tvheadend:9981
 	}
 
+	@grafana host graph.korhonen.cc
+	handle @grafana {
+		reverse_proxy grafana:3000
+	}
+
 	handle_errors {
 		@homepage_404 {
 			expression {http.error.status_code} == 404

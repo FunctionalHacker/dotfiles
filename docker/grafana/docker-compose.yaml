@@ -1,0 +1,40 @@
+volumes:
+  storage: {}
+
+services:
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    restart: unless-stopped
+    environment:
+      GF_LOG_LEVEL: info
+      GF_SERVER_ROOT_URL: https://graph.korhonen.cc
+      GF_DATABASE_TYPE: postgres
+      GF_DATABASE_HOST: postgres:5432
+      GF_DATABASE_NAME: grafana
+      GF_DATABASE_USER: grafana
+      GF_DATABASE_PASSWORD: ${DB_PASSWORD}
+      GF_DATABASE_SSL_MODE: disable
+      GF_AUTH_GENERIC_OAUTH_ENABLED: 'true'
+      GF_AUTH_GENERIC_OAUTH_NAME: Korhonen SSO
+      GF_AUTH_GENERIC_OAUTH_CLIENT_ID: ${OAUTH_CLIENT_ID}
+      GF_AUTH_GENERIC_OAUTH_CLIENT_SECRET: ${OAUTH_CLIENT_SECRET}
+      GF_AUTH_GENERIC_OAUTH_SCOPES: openid profile email entitlements
+      GF_AUTH_GENERIC_OAUTH_AUTH_URL: https://sso.korhonen.cc/application/o/authorize/
+      GF_AUTH_GENERIC_OAUTH_TOKEN_URL: https://sso.korhonen.cc/application/o/token/
+      GF_AUTH_GENERIC_OAUTH_API_URL: https://sso.korhonen.cc/application/o/userinfo/
+      GF_AUTH_SIGNOUT_REDIRECT_URL: https://sso.korhonen.cc/application/o/grafana/end-session/
+      GF_AUTH_DISABLE_LOGIN_FORM: 'true'
+      GF_AUTH_GENERIC_OAUTH_ALLOW_SIGN_UP: 'true'
+      GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_PATH: "contains(entitlements[*], 'Grafana Admins') && 'Admin' || contains(entitlements[*], 'Grafana Editors') && 'Editor' || 'Viewer'"
+    volumes:
+      - storage:/var/lib/grafana
+    networks:
+      - proxy
+      - postgres
+
+networks:
+  proxy:
+    external: true
+  postgres:
+    external: true

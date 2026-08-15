@@ -8,7 +8,7 @@
 }
 
 (anubis) {
-	reverse_proxy http://anubis:8080 {
+	reverse_proxy http://anubis:8923 {
 		header_up X-Real-Ip {remote_host}
 		header_up X-Http-Version {http.request.proto}
 	}

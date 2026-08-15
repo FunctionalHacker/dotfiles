@@ -50,7 +50,6 @@ services:
     container_name: anubis
     restart: unless-stopped
     environment:
-      BIND: ":8080"
       TARGET: http://caddy:3001
     networks:
       - proxy

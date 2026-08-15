@@ -9,6 +9,7 @@
 		api_url http://crowdsec:8080
 		api_key {$CADDY_CS_KEY}
 		enable_caddy_metrics
+		enable_caddy_error
 	}
 }
 

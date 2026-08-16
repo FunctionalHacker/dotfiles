@@ -1,5 +1,5 @@
 source: docker
 container_name:
-  - caddy
+  - authentik
 labels:
-  type: caddy
+  type: authentik

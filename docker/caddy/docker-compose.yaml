@@ -58,6 +58,7 @@ services:
       - ./crowdsec/config.yaml:/etc/crowdsec/config.yaml.local:ro
       - ./crowdsec/acquis.d:/etc/crowdsec/acquis.d:ro
       - nextcloud_data:/var/log/nextcloud:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
 
   anubis:
     image: ghcr.io/techarohq/anubis

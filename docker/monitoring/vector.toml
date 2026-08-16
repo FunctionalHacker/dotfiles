@@ -46,31 +46,6 @@ else if .container_name == "crowdsec" {
 }
 """
 
-# Transform raw Caddy JSON for CrowdSec
-[transforms.caddy_raw]
-type = "remap"
-inputs = ["docker"]
-source = """
-if .container_name != "caddy" {
-  abort
-}
-
-. = .message
-"""
-
-# Send raw Caddu JSON to CrowdSec
-[sinks.caddy_crowdsec]
-type = "http"
-inputs = ["caddy_raw"]
-uri = "http://crowdsec:8081/caddy"
-
-[sinks.caddy_crowdsec.encoding]
-codec = "text"
-
-[sinks.caddy_crowdsec.auth]
-strategy = "basic"
-user = "vector"
-password = "Pi7RSclxPC8suQtBbhRJQ0NHsEzah3VL"
 
 [sinks.vlogs]
 type = "elasticsearch"

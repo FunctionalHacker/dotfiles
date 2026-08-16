@@ -8,4 +8,4 @@ limit: 1000
 max_failure_duration: 900s
 query: |
   container_name:caddy
-  | rename caddy_raw as _msg
+  | rename raw as _msg

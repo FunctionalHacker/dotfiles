@@ -1,3 +1,7 @@
+common:
+  log_media: stdout
+  log_level: info
+  log_format: json
 db_config:
   type: postgresql
   host: postgres

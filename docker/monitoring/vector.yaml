@@ -7,36 +7,40 @@ sources:
     type: internal_metrics
 
 transforms:
-  parse_caddy:
-    type: 'remap'
-    inputs: ['docker']
+  docker_parsed:
+    type: remap
+    inputs: [docker]
     source: |
-      # Process only Caddy container
-      if .container_name != "caddy" {
+      if .container_name != "caddy" && .container_name != "crowdsec" {
         abort
       }
 
-      # Parse Caddy's inner structured JSON log
       parsed, err = parse_json(.message)
+
       if err == null {
-        .caddy = parsed
-        .caddy_raw = .message
-
-        method = string(parsed.request.method) ?? "UNKNOWN"
-        uri = string(parsed.request.uri) ?? "/"
-        status = to_string(parsed.status) ?? "000"
-
-        .message = join!([method, uri, "-", status], " ")
+        .parsed = parsed
+        .raw = .message
         .level = string(parsed.level) ?? "info"
-      } else {
-        # Fallback to raw string if log line isn't JSON (e.g. container startup logs)
-        .message = .message
+
+        if .container_name == "caddy" {
+          if err == null {
+            method = string(parsed.request.method) ?? "UNKNOWN"
+            uri = string(parsed.request.uri) ?? "/"
+            status = to_string(parsed.status) ?? "000"
+
+            .message = join!([method, uri, "-", status], " ")
+          }
+        }
+
+        if .container_name == "crowdsec" {
+          .message = string(parsed.msg) ?? .message
+        }
       }
 
 sinks:
   vlogs:
     type: elasticsearch
-    inputs: [parse_caddy]
+    inputs: [docker_parsed]
     endpoints: [http://victorialogs:9428/insert/elasticsearch/]
     mode: bulk
     api_version: v8

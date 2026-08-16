@@ -18,6 +18,7 @@
 		api_key {$CADDY_CS_KEY}
 		enable_caddy_metrics
 		enable_caddy_error
+		enable_hard_fails
 	}
 }
 
@@ -56,7 +57,7 @@ korhonen.cc, *.korhonen.cc {
 	}
 
 	route {
-    crowdsec
+		crowdsec
 
 		@homepage-www-redir host www.korhonen.cc
 		handle @homepage-www-redir {

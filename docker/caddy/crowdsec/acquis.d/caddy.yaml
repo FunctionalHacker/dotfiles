@@ -1,0 +1,11 @@
+labels:
+  type: caddy
+source: victorialogs
+mode: tail
+log_level: info
+url: http://victorialogs:9428/
+limit: 1000
+max_failure_duration: 900s
+query: |
+  container_name:caddy
+  | rename caddy_raw as _msg

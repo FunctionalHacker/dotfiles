@@ -3,8 +3,11 @@ volumes:
   config: {}
   wkd: {}
   korhonen_cc: {}
-  crowdsec: {}
+  crowdsec_config: {}
+  crowdsec_data: {}
   nextcloud_config:
+    external: true
+  nextcloud_data:
     external: true
 
 services:
@@ -50,9 +53,11 @@ services:
       - monitoring
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - crowdsec:/etc/crowdsec/
+      - crowdsec_config:/etc/crowdsec/
+      - crowdsec_data:/var/lib/crowdsec/data
       - ./crowdsec/config.yaml:/etc/crowdsec/config.yaml.local:ro
-      - ./crowdsec/acquis.yaml:/etc/crowdsec/acquis.yaml
+      - ./crowdsec/acquis.d:/etc/crowdsec/acquis.d:ro
+      - nextcloud_data:/var/log/nextcloud:ro
 
   anubis:
     image: ghcr.io/techarohq/anubis

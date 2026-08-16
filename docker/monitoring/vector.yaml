@@ -20,6 +20,7 @@ transforms:
       parsed, err = parse_json(.message)
       if err == null {
         .caddy = parsed
+        .caddy_raw = .message
 
         method = string(parsed.request.method) ?? "UNKNOWN"
         uri = string(parsed.request.uri) ?? "/"

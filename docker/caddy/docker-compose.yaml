@@ -51,7 +51,8 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - crowdsec:/etc/crowdsec/
-      - ./crowdsec.yaml:/etc/crowdsec/config.yaml.local:ro
+      - ./crowdsec/config.yaml:/etc/crowdsec/config.yaml.local:ro
+      - ./crowdsec/acquis.yaml:/etc/crowdsec/acquis.yaml
 
   anubis:
     image: ghcr.io/techarohq/anubis

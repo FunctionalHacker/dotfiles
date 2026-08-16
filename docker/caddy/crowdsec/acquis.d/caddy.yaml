@@ -1,11 +1,9 @@
 labels:
   type: caddy
-source: victorialogs
-mode: tail
-log_level: info
-url: http://victorialogs:9428/
-limit: 1000
-max_failure_duration: 900s
-query: |
-  container_name:caddy
-  | rename raw as _msg
+source: http
+listen_addr: 0.0.0.0:8081
+path: /caddy
+auth_type: basic_auth
+basic_auth:
+  username: "vector"
+  password: "Pi7RSclxPC8suQtBbhRJQ0NHsEzah3VL"

@@ -1,40 +1,76 @@
 data_dir = "/var/lib/vector"
 
-[sources.docker]
-type = "docker_logs"
 [sources.vector_metrics]
 type = "internal_metrics"
+
+[sources.docker]
+type = "docker_logs"
+include_containers = ["caddy", "crowdsec"]
 
 [transforms.docker_parsed]
 type = "remap"
 inputs = ["docker"]
 source = """
-if .container_name != "caddy" && .container_name != "crowdsec" {
+parsed, parse_err = parse_json(.message)
+
+# Get only needed fields from Docker metadata
+base_fields = {
+  "timestamp": .timestamp,
+  "container_name": .container_name,
+  "compose_project": .label."com.docker.compose.project",
+}
+
+# Merge the parsed JSON first, then overwrite/combine with base fields.
+# This ensures explicitly selected fields take precedence.
+if parse_err == null && is_object(parsed) {
+  . = merge!(parsed, base_fields)
+}
+
+# Fallback if JSON parsing fails
+else {
+  . = base_fields
+}
+
+
+# Add summary message for caddy
+if .container_name == "caddy" {
+  method = string(.request.method) ?? "UNKNOWN"
+  uri = string(.request.uri) ?? "/"
+  status = to_string(.status) ?? "UNKNOWN"
+  .message = join!([method, uri, "-", status], " ")
+}
+
+# Remap crowdsec msg to message
+else if .container_name == "crowdsec" {
+  .message = .msg
+}
+"""
+
+# Transform raw Caddy JSON for CrowdSec
+[transforms.caddy_raw]
+type = "remap"
+inputs = ["docker"]
+source = """
+if .container_name != "caddy" {
   abort
 }
 
-parsed, err = parse_json(.message)
-
-if err == null {
-  .parsed = parsed
-  .raw = .message
-  .level = string(parsed.level) ?? "info"
-
-  if .container_name == "caddy" {
-    if err == null {
-      method = string(parsed.request.method) ?? "UNKNOWN"
-      uri = string(parsed.request.uri) ?? "/"
-      status = to_string(parsed.status) ?? "000"
-
-      .message = join!([method, uri, "-", status], " ")
-    }
-  }
-
-  if .container_name == "crowdsec" {
-    .message = string(parsed.msg) ?? .message
-  }
-}
+. = .message
 """
+
+# Send raw Caddu JSON to CrowdSec
+[sinks.caddy_crowdsec]
+type = "http"
+inputs = ["caddy_raw"]
+uri = "http://crowdsec:8081/caddy"
+
+[sinks.caddy_crowdsec.encoding]
+codec = "text"
+
+[sinks.caddy_crowdsec.auth]
+strategy = "basic"
+user = "vector"
+password = "Pi7RSclxPC8suQtBbhRJQ0NHsEzah3VL"
 
 [sinks.vlogs]
 type = "elasticsearch"
@@ -50,7 +86,7 @@ enabled = false
 [sinks.vlogs.request.headers]
 VL-Stream-Fields = "source_type,label.com.docker.compose.service"
 VL-Time-Field = "timestamp"
-VL-Msg-Field = "message,log"
+VL-Msg-Field = "message"
 AccountID = "0"
 ProjectID = "0"
 

@@ -71,11 +71,11 @@ services:
     restart: unless-stopped
     command:
       - --config
-      - /etc/vector/vector.yaml
+      - /etc/vector/vector.toml
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - vector:/var/lib/vector
-      - ./vector.yaml:/etc/vector/vector.yaml:ro
+      - ./vector.toml:/etc/vector/vector.toml:ro
     networks:
       - monitoring
     depends_on:

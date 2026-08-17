@@ -5,12 +5,12 @@ type = "internal_metrics"
 
 [sources.docker]
 type = "docker_logs"
-include_containers = ["caddy", "crowdsec"]
 
 [transforms.docker_parsed]
 type = "remap"
 inputs = ["docker"]
 source = """
+original_message = .message
 parsed, parse_err = parse_json(.message)
 
 # Get only needed fields from Docker metadata
@@ -29,8 +29,8 @@ if parse_err == null && is_object(parsed) {
 # Fallback if JSON parsing fails
 else {
   . = base_fields
+  .message = original_message
 }
-
 
 # Add summary message for caddy
 if .container_name == "caddy" {

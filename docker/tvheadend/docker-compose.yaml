@@ -1,25 +1,24 @@
 volumes:
   config: {}
-
 services:
   tvheadend:
-    image: ghcr.io/tvheadend/tvheadend
+    image: linuxserver/tvheadend
     container_name: tvheadend
-    restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=985
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - config:/var/lib/tvheadend
-      - /mnt/Storage/Media/PVR:/var/lib/tvheadend/recordings
+      - config:/config
+      - /mnt/Storage/Media/PVR:/recordings
     ports:
       - 9981:9981
       - 9982:9982
+    devices:
+      - /dev/dvb:/dev/dvb
+    restart: unless-stopped
     networks:
       - proxy
-    healthcheck:
-      test: wget -O - -q 'http://localhost:9981/ping' | grep -q 'PONG'
-    # devices:
-    #   - /dev/dvb:/dev/dvb
-
 networks:
   proxy:
     external: true

@@ -21,6 +21,8 @@ services:
       - cache:/cache
       - media:/media
       - nextcloud_data:/nextcloud_data
+    devices:
+      - /dev/dri/renderD128:/dev/dri/renderD128
     labels:
       - sablier.enable=true
       - sablier.group=jellyfin

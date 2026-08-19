@@ -1,5 +1,10 @@
 volumes:
   config: {}
+  pvr:
+    external: true
+  picons:
+    external: true
+
 services:
   tvheadend:
     image: linuxserver/tvheadend
@@ -10,7 +15,8 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - config:/config
-      - /mnt/Storage/Media/PVR:/recordings
+      - pvr:/recordings
+      - picons:/picons
     ports:
       - 9981:9981
       - 9982:9982
@@ -19,6 +25,7 @@ services:
     restart: unless-stopped
     networks:
       - proxy
+
 networks:
   proxy:
     external: true

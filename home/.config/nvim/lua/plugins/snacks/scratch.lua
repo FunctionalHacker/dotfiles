@@ -4,6 +4,7 @@ local filetypes = {
   { text = "python" },
   { text = "asciidoctor" },
   { text = "markdown" },
+  { text = "json" },
 }
 
 local function pick_scratch_filetype()

@@ -22,15 +22,6 @@
 	}
 }
 
-(authentik) {
-	reverse_proxy /outpost.goauthentik.io/* http://authentik:9000
-	forward_auth {args.0} http://authentik:9000 {
-		uri /outpost.goauthentik.io/auth/caddy
-		copy_headers X-Authentik-Username X-Authentik-Groups X-Authentik-Email X-Authentik-Name X-Authentik-Uid X-Authentik-Jwt X-Authentik-Meta-Jwks X-Authentik-Meta-Outpost X-Authentik-Meta-Provider X-Authentik-Meta-App X-Authentik-Meta-Version
-		trusted_proxies private_ranges
-	}
-}
-
 (anubis) {
 	reverse_proxy http://anubis:8923 {
 		header_up X-Real-Ip {remote_host}
@@ -100,21 +91,9 @@ korhonen.cc, *.korhonen.cc {
 			reverse_proxy home-assistant:8123
 		}
 
-		@authentik host sso.korhonen.cc
-		handle @authentik {
-			route /* {
-				sablier http://sablier:10000 {
-					group authentik
-					session_duration 5m
-					dynamic {
-						display_name Korhonen SSO
-						theme ghost
-						show_details true
-					}
-				}
-			}
-
-			reverse_proxy authentik:9000
+		@pocketid host id.korhonen.cc
+		handle @pocketid {
+			reverse_proxy pocketid:1411
 		}
 
 		@forgejo host git.korhonen.cc
@@ -166,8 +145,8 @@ korhonen.cc, *.korhonen.cc {
 
 		@nextcloud host cloud.korhonen.cc
 		handle @nextcloud {
-			# Redirect login page to Authentik
-			redir /login /apps/sociallogin/custom_oidc/korhonen-sso 301
+			# Redirect login page to PocketID
+			redir /login /apps/sociallogin/custom_oidc/korhonen-id 301
 
 			# .htaccess / data / config / ... shouldn't be accessible from outside
 			@forbidden {
@@ -230,7 +209,6 @@ korhonen.cc, *.korhonen.cc {
 
 		@tvheadend host tv.korhonen.cc
 		handle @tvheadend {
-			import authentik
 			reverse_proxy tvheadend:9981
 		}
 
@@ -273,7 +251,8 @@ korhonen.cc, *.korhonen.cc {
 :3001 {
 	@forgejo host git.korhonen.cc
 	handle @forgejo {
-		rewrite /user/login /user/oauth2/Korhonen%20SSO
+		# Redirect login page to PocketID
+		rewrite /user/login /user/oauth2/Korhonen%20ID
 		reverse_proxy forgejo:3000
 	}
 
@@ -282,7 +261,7 @@ korhonen.cc, *.korhonen.cc {
 		route /* {
 			sablier http://sablier:10000 {
 				group lubelogger
-				session_duration 5m
+				session_duration 15m
 				dynamic {
 					display_name Lubelogger
 					theme ghost

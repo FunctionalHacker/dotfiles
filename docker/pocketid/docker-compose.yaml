@@ -1,0 +1,23 @@
+volumes:
+  data: {}
+
+services:
+  pocket-id:
+    image: pocketid/pocket-id:v2
+    container_name: pocketid
+    restart: unless-stopped
+    env_file: .env
+    volumes:
+      - 'data:/app/data'
+    networks:
+      - proxy
+    healthcheck:
+      test: ['CMD', '/app/pocket-id', 'healthcheck']
+      interval: 1m30s
+      timeout: 5s
+      retries: 2
+      start_period: 10s
+
+networks:
+  proxy:
+    external: true

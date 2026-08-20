@@ -116,14 +116,14 @@ korhonen.cc, *.korhonen.cc {
 			reverse_proxy miniflux:8080
 		}
 
-		@jellyfin host jellyfin.korhonen.cc
-		handle @jellyfin {
+		@tv host tv.korhonen.cc
+		handle @tv {
 			route /* {
 				sablier http://sablier:10000 {
 					group jellyfin
 					session_duration 30m
 					dynamic {
-						display_name Jellyfin
+						display_name Korhonen TV
 						theme ghost
 						show_details true
 					}
@@ -143,8 +143,8 @@ korhonen.cc, *.korhonen.cc {
 			reverse_proxy umami:3000
 		}
 
-		@nextcloud host cloud.korhonen.cc
-		handle @nextcloud {
+		@cloud host cloud.korhonen.cc
+		handle @cloud {
 			# Redirect login page to PocketID
 			redir /login /apps/sociallogin/custom_oidc/korhonen-id 301
 
@@ -193,8 +193,8 @@ korhonen.cc, *.korhonen.cc {
 			respond {remote_host}
 		}
 
-		@lubelogger host lubelogger.korhonen.cc
-		handle @lubelogger {
+		@garage host garage.korhonen.cc
+		handle @garage {
 			import anubis
 		}
 
@@ -207,13 +207,8 @@ korhonen.cc, *.korhonen.cc {
 			reverse_proxy @websockets mosquitto:9001
 		}
 
-		@tvheadend host tv.korhonen.cc
-		handle @tvheadend {
-			reverse_proxy tvheadend:9981
-		}
-
-		@grafana host graph.korhonen.cc
-		handle @grafana {
+		@monitor host monitor.korhonen.cc
+		handle @monitor {
 			# Redirect login page to PocketID
 			redir /login /login/generic_oauth
 			reverse_proxy grafana:3000
@@ -258,14 +253,14 @@ korhonen.cc, *.korhonen.cc {
 		reverse_proxy forgejo:3000
 	}
 
-	@lubelogger host lubelogger.korhonen.cc
-	handle @lubelogger {
+	@garage host garage.korhonen.cc
+	handle @garage {
 		route /* {
 			sablier http://sablier:10000 {
 				group lubelogger
 				session_duration 15m
 				dynamic {
-					display_name Lubelogger
+					display_name "Korhonen Garage"
 					theme ghost
 					show_details true
 				}

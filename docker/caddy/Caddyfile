@@ -91,8 +91,8 @@ korhonen.cc, *.korhonen.cc {
 			reverse_proxy home-assistant:8123
 		}
 
-		@pocketid host id.korhonen.cc
-		handle @pocketid {
+		@id host id.korhonen.cc
+		handle @id {
 			reverse_proxy pocketid:1411
 		}
 
@@ -101,18 +101,13 @@ korhonen.cc, *.korhonen.cc {
 			import anubis
 		}
 
-		@woodpecker host ci.korhonen.cc
-		handle @woodpecker {
-			reverse_proxy woodpecker:8000
-		}
-
 		@searxng host dsearch.korhonen.cc
 		handle @searxng {
 			reverse_proxy searxng:8080
 		}
 
-		@miniflux host rss.korhonen.cc
-		handle @miniflux {
+		@rss host rss.korhonen.cc
+		handle @rss {
 			reverse_proxy miniflux:8080
 		}
 
@@ -131,11 +126,6 @@ korhonen.cc, *.korhonen.cc {
 			}
 
 			reverse_proxy jellyfin:8096
-		}
-
-		@pihole host pihole.korhonen.cc
-		handle @pihole {
-			reverse_proxy pihole
 		}
 
 		@umami host umami.korhonen.cc
@@ -249,7 +239,7 @@ korhonen.cc, *.korhonen.cc {
 	@forgejo host git.korhonen.cc
 	handle @forgejo {
 		# Redirect login page to PocketID
-		rewrite /user/login /user/oauth2/Korhonen%20ID
+		redir /user/login /user/oauth2/Korhonen%20ID
 		reverse_proxy forgejo:3000
 	}
 

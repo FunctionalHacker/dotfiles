@@ -214,6 +214,8 @@ korhonen.cc, *.korhonen.cc {
 
 		@grafana host graph.korhonen.cc
 		handle @grafana {
+			# Redirect login page to PocketID
+			redir /login /login/generic_oauth
 			reverse_proxy grafana:3000
 		}
 

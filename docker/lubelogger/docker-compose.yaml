@@ -11,8 +11,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - data:/App/data
       - keys:/root/.aspnet/DataProtection-Keys
-    env_file:
-      - .env
+    env_file: .env
     networks:
       - proxy
       - postgres

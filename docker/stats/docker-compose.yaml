@@ -8,8 +8,7 @@ services:
       - stats
       - proxy
     user: 1000:984
-    env_file:
-      - .env
+    env_file: .env
     environment:
       - GF_AUTH_GENERIC_OAUTH_CLIENT_ID
       - GF_AUTH_GENERIC_OAUTH_CLIENT_SECRET

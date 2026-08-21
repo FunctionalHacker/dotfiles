@@ -34,8 +34,7 @@ services:
       - /var/www/index.korhonen.cc:/var/www/index.korhonen.cc
       - /var/cache/pacman/pkg:/var/cache/pacman/pkg
       - ./templates/:/templates
-    env_file:
-      - .env
+    env_file: .env
     cap_add:
       - NET_ADMIN
 
@@ -45,8 +44,7 @@ services:
     restart: always
     environment:
       DB_PASS: ${CROWDSEC_DB_PASS}
-    env_file:
-      - .env
+    env_file: .env
     networks:
       - default
       - postgres

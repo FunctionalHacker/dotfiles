@@ -9,8 +9,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
     entrypoint:
     command: tunnel --no-autoupdate run
-    env_file:
-      - .env
+    env_file: .env
     extra_hosts:
       - 'host.docker.internal:host-gateway'
 

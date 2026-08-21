@@ -3,6 +3,18 @@ services:
     image: miniflux/miniflux
     container_name: miniflux
     env_file: .env
+    environment:
+      - BASE_URL=https://feed.korhonen.cc/
+      - OAUTH2_PROVIDER=oidc
+      - OAUTH2_OIDC_PROVIDER_NAME="Korhonen ID"
+      - OAUTH2_OIDC_DISCOVERY_ENDPOINT=https://id.korhonen.cc
+      - OAUTH2_REDIRECT_URL=https://feed.korhonen.cc/oauth2/oidc/callback
+      - OAUTH2_CLIENT_ID
+      - OAUTH2_CLIENT_SECRET
+      - OAUTH2_USER_CREATION=1
+      - DISABLE_LOCAL_AUTH=1
+      - RUN_MIGRATIONS=1
+      - FETCHER_ALLOW_PRIVATE_NETWORKS=1
     restart: unless-stopped
     volumes:
       - /etc/localtime:/etc/localtime:ro

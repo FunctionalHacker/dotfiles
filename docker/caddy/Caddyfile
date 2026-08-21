@@ -106,8 +106,8 @@ korhonen.cc, *.korhonen.cc {
 			reverse_proxy searxng:8080
 		}
 
-		@rss host rss.korhonen.cc
-		handle @rss {
+		@feed host feed.korhonen.cc
+		handle @feed {
 			reverse_proxy miniflux:8080
 		}
 

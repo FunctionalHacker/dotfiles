@@ -5,7 +5,7 @@ volumes:
   korhonen_cc: {}
   crowdsec_config: {}
   crowdsec_data: {}
-  nextcloud_config:
+  nextcloud_app:
     external: true
   nextcloud_data:
     external: true
@@ -25,14 +25,14 @@ services:
       - monitoring
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - ./Caddyfile:/etc/caddy/Caddyfile
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
       - data:/data
       - config:/config
-      - wkd:/var/www/wkd
-      - korhonen_cc:/var/www/korhonen.cc
-      - nextcloud_config:/var/www/nextcloud
-      - /var/www/index.korhonen.cc:/var/www/index.korhonen.cc
-      - /var/cache/pacman/pkg:/var/cache/pacman/pkg
+      - wkd:/var/www/openpgpkey.korhonen.cc
+      - korhonen_cc:/var/www/korhonen.cc:ro
+      - nextcloud_app:/var/www/cloud.korhonen.cc:ro
+      - /var/www/index.korhonen.cc:/var/www/index.korhonen.cc:ro
+      - /var/cache/pacman/pkg:/var/cache/pacman/pkg:ro
       - ./templates/:/templates
     env_file: .env
     cap_add:

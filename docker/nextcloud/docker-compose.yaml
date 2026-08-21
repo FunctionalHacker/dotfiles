@@ -3,6 +3,9 @@ volumes:
     external: true
   nextcloud_data:
     external: true
+  nextcloud_app:
+    external: true
+
 services:
   nextcloud:
     image: nextcloud:fpm-alpine
@@ -13,16 +16,18 @@ services:
       - postgres
       - proxy
     volumes:
-      - nextcloud_config:/var/www/html
-      - nextcloud_data:/var/www/html/data
       - /etc/localtime:/etc/localtime:ro
+      - nextcloud_app:/var/www/html
+      - nextcloud_config:/config
+      - nextcloud_data:/data
     environment:
-      - REDIS_HOST=redis
-      - REDIS_HOST_PASSWORD=123
-      - TRUSTED_PROXIES=caddy
+      - NEXTCLOUD_CONFIG_DIR=/config
       - NEXTCLOUD_TRUSTED_DOMAINS=cloud.korhonen.cc
       - OVERWRITEHOST=cloud.korhonen.cc
       - OVERWRITEPROTOCOL=https
+      - REDIS_HOST=redis
+      - REDIS_HOST_PASSWORD=123
+      - TRUSTED_PROXIES=caddy
     depends_on:
       - redis
     labels:
@@ -37,6 +42,7 @@ services:
       ofelia.job-exec.nextcloud.email-to: ${EMAIL_TO}
       ofelia.job-exec.nextcloud.email-from: ${EMAIL_FROM}
       ofelia.job-exec.nextcloud.mail-only-on-error: true
+
   redis:
     image: redis:alpine
     container_name: redis-nextcloud
@@ -44,25 +50,7 @@ services:
       - default
     restart: unless-stopped
     command: redis-server --requirepass 123
-  # coturn:
-  #   image: instrumentisto/coturn
-  #   container_name: coturn
-  #   restart: unless-stopped
-  #   env_file: .env
-  #   ports:
-  #     - 3478:3478/tcp
-  #     - 3478:3478/udp
-  #     - 49160-49200:49160-49200/udp
-  #   networks:
-  #     - default
-  #   command:
-  #     - -n
-  #     - --log-file=stdout
-  #     - --min-port=49160
-  #     - --max-port=49200
-  #     - --realm=cloud.korhonen.cc
-  #     - --use-auth-secret
-  #     - --static-auth-secret=${STATIC_AUTH_SECRET}
+
 networks:
   postgres:
     external: true

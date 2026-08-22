@@ -12,6 +12,7 @@ services:
     environment:
       - PUID=1000
       - PGID=985
+      - RUN_OPTS=--ipv6
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - config:/config

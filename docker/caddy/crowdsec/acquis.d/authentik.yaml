@@ -1,5 +1,0 @@
-source: docker
-container_name:
-  - authentik
-labels:
-  type: authentik

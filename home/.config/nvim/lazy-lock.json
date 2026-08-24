@@ -3,6 +3,7 @@
   "better-ts-errors.nvim": { "branch": "main", "commit": "d57a7794b271e1a0010d0328e5d3f18e20f1face" },
   "blink.cmp": { "branch": "main", "commit": "78336bc89ee5365633bcf754d93df01678b5c08f" },
   "bufferline.nvim": { "branch": "main", "commit": "655133c3b4c3e5e05ec549b9f8cc2894ac6f51b3" },
+  "codecompanion-spinners.nvim": { "branch": "main", "commit": "f613a543ca8c7ba1686830c6bb1a10d15a2e1942" },
   "codecompanion.nvim": { "branch": "main", "commit": "7116eecc646c3f33d755beeb922126995bbd41e1" },
   "confirm-quit.nvim": { "branch": "main", "commit": "a1dbd9b553e8d6770cd6a879a3ee8ffad292c70c" },
   "copilot-lsp": { "branch": "main", "commit": "1b6d8273594643f51bb4c0c1d819bdb21b42159d" },

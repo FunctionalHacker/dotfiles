@@ -26,8 +26,7 @@ return {
             },
           },
           ["help"] = {
-            opts = {
-            },
+            opts = {},
           },
         },
       },
@@ -38,9 +37,17 @@ return {
         provider = "snacks",
       },
     },
+    extensions = {
+      spinner = {
+        opts = {
+          style = "cursor-relative",
+        },
+      },
+    },
   },
   dependencies = {
     "nvim-lua/plenary.nvim",
+    "lalitmee/codecompanion-spinners.nvim",
   },
   keys = function()
     local cc = require("codecompanion")

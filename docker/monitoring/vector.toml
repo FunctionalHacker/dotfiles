@@ -39,11 +39,6 @@ if .container_name == "caddy" {
   status = to_string(.status) ?? "UNKNOWN"
   .message = join!([method, uri, "-", status], " ")
 }
-
-# Remap crowdsec msg to message
-else if .container_name == "crowdsec" {
-  .message = .msg
-}
 """
 
 
@@ -61,7 +56,7 @@ enabled = false
 [sinks.vlogs.request.headers]
 VL-Stream-Fields = "source_type,label.com.docker.compose.service"
 VL-Time-Field = "timestamp"
-VL-Msg-Field = "message"
+VL-Msg-Field = "message,msg"
 AccountID = "0"
 ProjectID = "0"
 

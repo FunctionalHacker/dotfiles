@@ -1,0 +1,54 @@
+volumes:
+  synapse: {}
+  mas: {}
+
+services:
+  synapse:
+    container_name: synapse
+    restart: unless-stopped
+    image: matrixdotorg/synapse
+    environment:
+      SYNAPSE_SERVER_NAME: chat.korhonen.cc
+      SYNAPSE_REPORT_STATS: yes
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - synapse:/data
+    networks:
+      - proxy
+      - postgres
+
+  mas:
+    image: ghcr.io/element-hq/matrix-authentication-service
+    container_name: mas
+    restart: unless-stopped
+    environment:
+      MAS_CONFIG: /config/config.yaml
+    volumes:
+      - mas:/config:ro
+    networks:
+      - proxy
+      - postgres
+
+  element:
+    image: vectorim/element-web
+    container_name: element
+    restart: unless-stopped
+    healthcheck:
+      test:
+        [
+          'CMD-SHELL',
+          'wget -q -O /dev/null http://localhost:80/version || exit 1',
+        ]
+      start_period: '5s'
+      interval: '15s'
+      timeout: '5s'
+    volumes:
+      - ./element.json:/app/config.json
+    networks:
+      - proxy
+
+networks:
+  postgres:
+    external: true
+  proxy:
+    external: true

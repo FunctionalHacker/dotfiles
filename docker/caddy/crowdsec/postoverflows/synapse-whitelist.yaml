@@ -1,0 +1,7 @@
+name: synapse-client-whitelists
+description: Whitelist synapse client application for crawl non static
+whitelist:
+  reason: synapse-client can trigger FP
+  expression:
+    - evt.Overflow.Alert.Scenario == "crowdsecurity/http-crawl-non_statics" and all(evt.Overflow.Alert.Events, {.GetMeta("http_path") startsWith "/_matrix/client/"})
+    - evt.Overflow.Alert.Scenario == "crowdsecurity/http-probing" and all(evt.Overflow.Alert.Events, {.GetMeta("http_path") startsWith "/_matrix/client/"})

@@ -67,6 +67,12 @@ korhonen.cc, *.korhonen.cc {
 			#
 			#   uri strip_prefix /en
 
+			# Matrix delegation
+			header /.well-known/matrix/* Content-Type application/json
+			header /.well-known/matrix/* Access-Control-Allow-Origin *
+			respond /.well-known/matrix/server `{"m.server": "chat.korhonen.cc:443"}`
+			respond /.well-known/matrix/client `{"m.homeserver": {"base_url": "https://chat.korhonen.cc"}}`
+
 			header @static Cache-Control max-age=5184000
 			root * /var/www/korhonen.cc
 			file_server
@@ -195,6 +201,25 @@ korhonen.cc, *.korhonen.cc {
 			# Redirect login page to PocketID
 			redir /login /login/generic_oauth
 			reverse_proxy grafana:3000
+		}
+
+		@matrix host chat.korhonen.cc
+		handle @matrix {
+			# Forward auth to MAS
+			@mas_auth path_regexp mas_auth ^/_matrix/client/[^/]+/(login|logout|refresh)(/.*)?$
+			reverse_proxy @mas_auth mas:8080
+
+			# Forward synapse endpoints
+			reverse_proxy /_matrix/* synapse:8008
+			reverse_proxy /_synapse/client/* synapse:8008
+
+			# Rest goes to Element Web
+			reverse_proxy element:80
+		}
+
+		@mas host mas.korhonen.cc
+		handle @mas {
+			reverse_proxy mas:8080
 		}
 
 		@errors-demo host error.korhonen.cc

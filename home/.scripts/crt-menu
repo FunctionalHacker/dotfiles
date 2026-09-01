@@ -2,17 +2,60 @@
 
 set -e
 
+CONTROLLER_HANDLER_PID=""
+DEVICE="/dev/input/js0"
+
+# Start controller input handler
+start_handler() {
+  jstest --event /dev/input/js0 2>/dev/null | while IFS= read -r line; do
+    # D-pad up
+    if echo "$line" | grep -qE "type 2.*number 7.*value -32767"; then
+      ydotool key 103:1 103:0
+
+    # D-pad down
+    elif echo "$line" | grep -qE "type 2.*number 7.*value 32767"; then
+      ydotool key 108:1 108:0
+
+    # A button
+    elif echo "$line" | grep -qE "type 1.*number 0.*value 1"; then
+      ydotool key 28:1 28:0
+
+    # B button (usually BTN_SOUTH)
+    elif echo "$line" | grep -q "BTN_SOUTH"; then
+      ydotool key 1:1 1:0
+    fi
+  done &
+} 2>/dev/null
+
+# Monitor for controller connection and start handler if needed
+monitor_controller() {
+  while true; do
+    if [ -e "$DEVICE" ] && [ -z "$CONTROLLER_HANDLER_PID" ]; then
+      CONTROLLER_HANDLER_PID=$(start_handler)
+    elif [ ! -e "$DEVICE" ] && [ -n "$CONTROLLER_HANDLER_PID" ]; then
+      kill "$CONTROLLER_HANDLER_PID" 2>/dev/null
+      wait "$CONTROLLER_HANDLER_PID" 2>/dev/null
+      CONTROLLER_HANDLER_PID=""
+    fi
+    sleep 0.5
+  done
+}
+
+# Start controller monitor in background
+monitor_controller &
+CONTROLLER_MONITOR_PID=$!
+
 gui() {
-  kmscon-launch-gui $@
+  kmscon-launch-gui "$@"
   clear
 }
 
 cage() {
-  gui /usr/bin/cage $1
+  gui /usr/bin/cage "$1"
 }
 
 headless_discord() {
-  systemctl --user $1 headless-discord
+  systemctl --user "$1" headless-discord
 }
 
 while :; do
@@ -72,3 +115,10 @@ while :; do
   esac
   setterm --reset
 done
+
+# Kill monitor and handler
+kill "$CONTROLLER_MONITOR_PID" 2>/dev/null
+if [ -n "$CONTROLLER_HANDLER_PID" ]; then
+  kill "$CONTROLLER_HANDLER_PID" 2>/dev/null
+fi
+wait 2>/dev/null

@@ -71,7 +71,17 @@ korhonen.cc, *.korhonen.cc {
 			header /.well-known/matrix/* Content-Type application/json
 			header /.well-known/matrix/* Access-Control-Allow-Origin *
 			respond /.well-known/matrix/server `{"m.server": "chat.korhonen.cc:443"}`
-			respond /.well-known/matrix/client `{"m.homeserver": {"base_url": "https://chat.korhonen.cc"}}`
+			respond /.well-known/matrix/client `{
+        "m.homeserver": {
+          "base_url": "https://chat.korhonen.cc"
+        },
+        "org.matrix.msc4143.rtc_foci": [
+          {
+            "type": "livekit",
+            "livekit_service_url": "https://lkt.korhonen.cc"
+          }
+        ]
+      }`
 
 			header @static Cache-Control max-age=5184000
 			root * /var/www/korhonen.cc

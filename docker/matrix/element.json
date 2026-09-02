@@ -37,7 +37,6 @@
   },
   "setting_defaults": {
     "breadcrumbs": true,
-    "UIFeature.voip": false,
     "UIFeature.registration": false
   },
   "jitsi": {
@@ -45,8 +44,8 @@
   },
   "element_call": {
     "brand": "Korhonen Call",
-    "disable": true,
-    "use_exclusively": false
+    "disable": false,
+    "use_exclusively": true
   },
   "map_style_url": "https://api.maptiler.com/maps/streets/style.json?key=fU3vlMsMn4Jb6dnEIFsx"
 }

@@ -44,8 +44,10 @@
   },
   "element_call": {
     "brand": "Korhonen Call",
-    "disable": false,
     "use_exclusively": true
   },
-  "map_style_url": "https://api.maptiler.com/maps/streets/style.json?key=fU3vlMsMn4Jb6dnEIFsx"
+  "map_style_url": "https://api.maptiler.com/maps/streets/style.json?key=fU3vlMsMn4Jb6dnEIFsx",
+  "sso_redirect_options": {
+    "immediate": true
+  }
 }

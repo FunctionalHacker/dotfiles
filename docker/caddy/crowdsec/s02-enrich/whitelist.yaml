@@ -1,0 +1,7 @@
+name: my/whitelist
+description: Whitelist trusted IPs
+whitelist:
+  ip:
+    # Eriador
+    - 2a01:4f8:c0c:89f9::2
+    - 91.107.237.150

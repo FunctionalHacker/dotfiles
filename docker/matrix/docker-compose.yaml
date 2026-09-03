@@ -47,6 +47,14 @@ services:
     networks:
       - proxy
 
+  ketesa:
+    image: ghcr.io/etkecc/ketesa
+    container_name: ketesa
+    volumes:
+      - './ketesa.json:/var/public/config.json:ro'
+    networks:
+      - proxy
+
 networks:
   postgres:
     external: true

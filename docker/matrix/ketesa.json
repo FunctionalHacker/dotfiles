@@ -1,0 +1,6 @@
+{
+  "externalAuthProvider": true,
+  "restrictBaseUrl": [
+    "https://chat.korhonen.cc"
+  ]
+}

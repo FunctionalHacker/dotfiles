@@ -80,7 +80,10 @@ korhonen.cc, *.korhonen.cc {
             "type": "livekit",
             "livekit_service_url": "https://lkt.korhonen.cc"
           }
-        ]
+        ],
+        "cc.etke.ketesa": {
+          "externalAuthProvider": true
+        }
       }`
 
 			header @static Cache-Control max-age=5184000
@@ -218,6 +221,15 @@ korhonen.cc, *.korhonen.cc {
 			reverse_proxy /_matrix/* synapse:8008
 			reverse_proxy /_synapse/client/* synapse:8008
 
+			# Allow Synapse admin API only from local network
+			@synapse_admin {
+				path /_synapse/admin/*
+				remote_ip 10.0.2.0/24
+			}
+			handle @synapse_admin {
+				reverse_proxy synapse:8008
+			}
+
 			# Rest goes to Element Web
 			reverse_proxy element:80
 		}
@@ -225,6 +237,11 @@ korhonen.cc, *.korhonen.cc {
 		@mas host mas.korhonen.cc
 		handle @mas {
 			reverse_proxy mas:8080
+		}
+
+		@ketesa host ketesa.korhonen.cc
+		handle @ketesa {
+			reverse_proxy ketesa:8080
 		}
 
 		@errors-demo host error.korhonen.cc

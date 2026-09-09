@@ -32,6 +32,7 @@ alias ls='eza --icons --git'
 
 # Enable command not found handler
 {%@@ if distro_id == "arch" @@%}
+export PKGFILE_PROMPT_INSTALL_MISSING=true
 source /usr/share/doc/pkgfile/command-not-found.zsh
 {%@@ elif distro_id == "ubuntu" @@%}
 source /etc/zsh_command_not_found

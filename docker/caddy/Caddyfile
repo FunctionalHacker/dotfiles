@@ -132,18 +132,6 @@ korhonen.cc, *.korhonen.cc {
 
 		@tv host tv.korhonen.cc
 		handle @tv {
-			route /* {
-				sablier http://sablier:10000 {
-					group jellyfin
-					session_duration 30m
-					dynamic {
-						display_name Korhonen TV
-						theme ghost
-						show_details true
-					}
-				}
-			}
-
 			reverse_proxy jellyfin:8096
 		}
 
@@ -190,9 +178,26 @@ korhonen.cc, *.korhonen.cc {
 			respond {remote_host}
 		}
 
+		# @garage host garage.korhonen.cc
+		# handle @garage {
+		# 	import anubis
+		# }
+
 		@garage host garage.korhonen.cc
 		handle @garage {
-			import anubis
+			route /* {
+				sablier http://sablier:10000 {
+					group lubelogger
+					session_duration 15m
+					dynamic {
+						display_name "Korhonen Garage"
+						theme ghost
+						show_details true
+					}
+				}
+			}
+
+			reverse_proxy lubelogger:8080
 		}
 
 		@mosquitto host mqtt.korhonen.cc
@@ -283,22 +288,22 @@ korhonen.cc, *.korhonen.cc {
 		reverse_proxy forgejo:3000
 	}
 
-	@garage host garage.korhonen.cc
-	handle @garage {
-		route /* {
-			sablier http://sablier:10000 {
-				group lubelogger
-				session_duration 15m
-				dynamic {
-					display_name "Korhonen Garage"
-					theme ghost
-					show_details true
-				}
-			}
-		}
-
-		reverse_proxy lubelogger:8080
-	}
+	# @garage host garage.korhonen.cc
+	# handle @garage {
+	# 	route /* {
+	# 		sablier http://sablier:10000 {
+	# 			group lubelogger
+	# 			session_duration 15m
+	# 			dynamic {
+	# 				display_name "Korhonen Garage"
+	# 				theme ghost
+	# 				show_details true
+	# 			}
+	# 		}
+	# 	}
+	#
+	# 	reverse_proxy lubelogger:8080
+	# }
 
 	@index host index.korhonen.cc
 	handle @index {

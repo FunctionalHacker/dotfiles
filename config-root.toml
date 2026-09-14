@@ -269,6 +269,7 @@ dotfiles = [
   "f_ssh_config",
   "d_polkit-rules",
   "f_beacondb.conf",
+  "f_timesyncd.conf",
 ]
 include = ["locale", "pacman", "arch_boot"]
 

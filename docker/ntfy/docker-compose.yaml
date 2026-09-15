@@ -1,24 +1,25 @@
 volumes:
   ntfy: {}
+
 services:
   ntfy:
     container_name: ntfy
     image: binwiederhier/ntfy
+    command: serve
     restart: unless-stopped
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ntfy:/var/cache/ntfy
     environment:
-      NTFY_BASE_URL: http://ntfy.example.com
-      NTFY_CACHE_FILE: /var/lib/ntfy/cache.db
-      NTFY_AUTH_FILE: /var/lib/ntfy/auth.db
+      NTFY_BASE_URL: https://ntfy.korhonen.cc
       NTFY_AUTH_DEFAULT_ACCESS: deny-all
-      NTFY_AUTH_USERS: 'phil:$2a$10$YLiO8U21sX1uhZamTLJXHuxgVC0Z/GKISibrKCLohPgtG7yIxSk4C:admin'
+      NTFY_DATABASE_URL: 'postgresql://ntfy:${POSTGRES_PASS}@postgres/ntfy'
       NTFY_BEHIND_PROXY: true
-      NTFY_ATTACHMENT_CACHE_DIR: /var/lib/ntfy/attachments
       NTFY_ENABLE_LOGIN: true
+      NTFY_ATTACHMENT_CACHE_DIR: /var/lib/ntfy/attachments
     networks:
       - proxy
+      - postgres
     healthcheck:
       test:
         [
@@ -29,8 +30,9 @@ services:
       timeout: 10s
       retries: 3
       start_period: 40s
+
 networks:
-  postgres:
-    external: true
   proxy:
+    external: true
+  postgres:
     external: true

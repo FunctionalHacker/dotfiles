@@ -178,11 +178,6 @@ korhonen.cc, *.korhonen.cc {
 			respond {remote_host}
 		}
 
-		# @garage host garage.korhonen.cc
-		# handle @garage {
-		# 	import anubis
-		# }
-
 		@garage host garage.korhonen.cc
 		handle @garage {
 			route /* {
@@ -199,6 +194,11 @@ korhonen.cc, *.korhonen.cc {
 
 			reverse_proxy lubelogger:8080
 		}
+
+    @ntfy host ntfy.korhonen.cc
+    handle @ntfy {
+      reverse_proxy ntfy:80
+    }
 
 		@mosquitto host mqtt.korhonen.cc
 		handle @mosquitto {
@@ -287,23 +287,6 @@ korhonen.cc, *.korhonen.cc {
 		redir /user/login /user/oauth2/Korhonen%20ID
 		reverse_proxy forgejo:3000
 	}
-
-	# @garage host garage.korhonen.cc
-	# handle @garage {
-	# 	route /* {
-	# 		sablier http://sablier:10000 {
-	# 			group lubelogger
-	# 			session_duration 15m
-	# 			dynamic {
-	# 				display_name "Korhonen Garage"
-	# 				theme ghost
-	# 				show_details true
-	# 			}
-	# 		}
-	# 	}
-	#
-	# 	reverse_proxy lubelogger:8080
-	# }
 
 	@index host index.korhonen.cc
 	handle @index {

@@ -225,6 +225,7 @@ korhonen.cc, *.korhonen.cc {
 			# Forward synapse endpoints
 			reverse_proxy /_matrix/* synapse:8008
 			reverse_proxy /_synapse/client/* synapse:8008
+			reverse_proxy /health synapse:8008
 
 			# Allow Synapse admin API only from local network
 			@synapse_admin {

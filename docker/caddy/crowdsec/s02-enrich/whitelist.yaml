@@ -8,3 +8,5 @@ whitelist:
   cidr:
     # Local LAN
     - 10.0.2.0/24
+    # Caddy Docker gateway
+    - 172.18.0.1

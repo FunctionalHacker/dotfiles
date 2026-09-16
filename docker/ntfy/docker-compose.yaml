@@ -17,6 +17,9 @@ services:
       NTFY_BEHIND_PROXY: true
       NTFY_ENABLE_LOGIN: true
       NTFY_ATTACHMENT_CACHE_DIR: /var/lib/ntfy/attachments
+      NTFY_WEB_PUSH_EMAIL_ADDRESS: ${WEB_PUSH_EMAIL_ADDRESS}
+      NTFY_WEB_PUSH_PUBLIC_KEY: ${WEB_PUSH_PUBLIC_KEY}
+      NTFY_WEB_PUSH_PRIVATE_KEY: ${WEB_PUSH_PRIVATE_KEY}
     networks:
       - proxy
       - postgres

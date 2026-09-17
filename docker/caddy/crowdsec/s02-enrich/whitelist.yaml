@@ -5,8 +5,8 @@ whitelist:
     # Evendim
     - 2a01:4f8:c0c:89f9::2
     - 91.107.237.150
+    # Caddy Docker gateway
+    - 172.18.0.1
   cidr:
     # Local LAN
     - 10.0.2.0/24
-    # Caddy Docker gateway
-    - 172.18.0.1

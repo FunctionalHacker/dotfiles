@@ -1,6 +1,7 @@
 volumes:
   data: {}
   runner: {}
+
 services:
   forgejo:
     image: git.korhonen.cc/functionalhacker/forgejo-asciidoc
@@ -12,11 +13,13 @@ services:
     networks:
       - postgres
       - proxy
+      - msmtpd
     ports:
       - '2882:22'
     volumes:
       - data:/data
       - /etc/localtime:/etc/localtime:ro
+
   runner:
     image: code.forgejo.org/forgejo/runner:13
     container_name: forgejo-runner
@@ -30,8 +33,11 @@ services:
       - SOCKFILE=/var/run/docker.sock
     restart: unless-stopped
     command: forgejo-runner daemon -c /data/config.yaml
+
 networks:
   postgres:
     external: true
   proxy:
+    external: true
+  msmtpd:
     external: true

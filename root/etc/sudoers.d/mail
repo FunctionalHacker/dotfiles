@@ -1,0 +1,4 @@
+Defaults mailerpath="/usr/bin/sendmail"
+Defaults mailto="root"
+Defaults mail_no_user
+Defaults mail_badpass

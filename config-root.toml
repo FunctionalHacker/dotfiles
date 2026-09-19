@@ -164,6 +164,10 @@ dst = "/etc/systemd/timesyncd.conf"
 src = "etc/sudoers.d/pacman"
 dst = "/etc/sudoers.d/pacman"
 
+[dotfiles.f_sudoers_mail]
+src = "etc/sudoers.d/mail"
+dst = "/etc/sudoers.d/mail"
+
 [dotfiles."f_doas.conf"]
 src = "etc/doas.conf"
 dst = "/etc/doas.conf"
@@ -185,7 +189,7 @@ src = "etc/aliases"
 dst = "/etc/aliases"
 
 [profiles.email]
-dotfiles = ["f_msmtprc", "f_aliases"]
+dotfiles = ["f_msmtprc", "f_aliases", "f_sudoers_mail"]
 
 [profiles.locale]
 dotfiles = ["f_locale.conf", "f_locale.gen"]

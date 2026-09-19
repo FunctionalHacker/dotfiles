@@ -1,0 +1,29 @@
+name: msmtpd
+
+services:
+  msmtpd:
+    image: crazymax/msmtpd
+    container_name: msmtpd
+    restart: unless-stopped
+    ports:
+      - '127.0.0.1:2500:2500'
+    networks:
+      - msmtpd
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      SMTP_HOST: mail.korhonen.cc
+      SMTP_PORT: 465
+      SMTP_TLS: on
+      SMTP_STARTTLS: on
+      SMTP_TLS_CHECKCERT: on
+      SMTP_AUTH: on
+      SMTP_USER: ${SMTP_USER}
+      SMTP_PASSWORD: ${SMTP_PASSWORD}
+      SMTP_DOMAIN: moria.korhonen.cc
+      SMTP_FROM: moria@korhonen.cc
+      SMTP_ALLOW_FROM_OVERRIDE: on
+
+networks:
+  msmtpd:
+    external: true

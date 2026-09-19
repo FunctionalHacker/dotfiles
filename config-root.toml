@@ -271,7 +271,7 @@ dotfiles = [
   "f_beacondb.conf",
   "f_timesyncd.conf",
 ]
-include = ["locale", "pacman", "arch_boot"]
+include = ["locale", "pacman", "arch_boot", "email"]
 
 [profiles.Tirion]
 dotfiles = ["f_doas.conf", "f_ignore", "f_sshd_config"]
@@ -299,4 +299,4 @@ include = ["locale", "pacman", "arch_boot"]
 
 [profiles.Evendim]
 include = ["locale", "pacman"]
-dotfiles = ["f_doas.conf", "f_sshd_config", "d_polkit-rules"]
+dotfiles = ["f_doas.conf", "f_sshd_config", "d_polkit-rules", "email"]

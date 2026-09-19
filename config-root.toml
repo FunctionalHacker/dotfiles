@@ -298,5 +298,5 @@ dotfiles = [
 include = ["locale", "pacman", "arch_boot"]
 
 [profiles.Evendim]
-include = ["locale", "pacman"]
-dotfiles = ["f_doas.conf", "f_sshd_config", "d_polkit-rules", "email"]
+dotfiles = ["f_doas.conf", "f_sshd_config", "d_polkit-rules"]
+include = ["locale", "pacman", "email"]

@@ -160,6 +160,10 @@ actions = ["mkinitcpio"]
 src = "etc/systemd/timesyncd.conf"
 dst = "/etc/systemd/timesyncd.conf"
 
+[dotfiles.f_sudoers_wheel]
+src = "etc/sudoers.d/wheel"
+dst = "/etc/sudoers.d/wheel"
+
 [dotfiles.f_sudoers_pacman]
 src = "etc/sudoers.d/pacman"
 dst = "/etc/sudoers.d/pacman"
@@ -209,6 +213,7 @@ dotfiles = ["f_cmdline", "f_mkinitcpio.conf", "f_plymouthd.conf"]
 
 [profiles.Mirkwood]
 dotfiles = [
+  "f_sudoers_wheel",
   "d_bin",
   "f_20-quiet-printk.conf",
   "f_adb.service",
@@ -231,6 +236,7 @@ include = ["locale", "pacman", "arch_boot", "email"]
 
 [profiles.VentoyArch]
 dotfiles = [
+  "f_sudoers_wheel",
   "d_bin",
   "f_doas.conf",
   "f_fonts.conf",
@@ -245,6 +251,7 @@ include = ["locale", "pacman", "arch_boot"]
 
 [profiles.Shire]
 dotfiles = [
+  "f_sudoers_wheel",
   "d_bin",
   "f_20-quiet-printk.conf",
   "f_adb.service",
@@ -263,6 +270,7 @@ include = ["locale", "pacman", "arch_boot"]
 
 [profiles.Moria]
 dotfiles = [
+  "f_sudoers_wheel",
   "f_99-sysctl.conf",
   "f_cpupower",
   "f_bluetooth.conf",
@@ -302,5 +310,5 @@ dotfiles = [
 include = ["locale", "pacman", "arch_boot"]
 
 [profiles.Evendim]
-dotfiles = ["f_doas.conf", "f_sshd_config", "d_polkit-rules"]
+dotfiles = ["f_sudoers_wheel", "f_doas.conf", "f_sshd_config", "d_polkit-rules"]
 include = ["locale", "pacman", "email"]

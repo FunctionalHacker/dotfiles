@@ -15,6 +15,7 @@ services:
       - default
       - postgres
       - proxy
+      - msmtpd
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - nextcloud_app:/var/www/html
@@ -35,12 +36,10 @@ services:
       ofelia.job-exec.nextcloud.schedule: 0 */5 * * * *
       ofelia.job-exec.nextcloud.command: php /var/www/html/cron.php
       ofelia.job-exec.nextcloud.user: www-data
-      ofelia.job-exec.nextcloud.smtp-host: ${SMTP_HOST}
-      ofelia.job-exec.nextcloud.smtp-port: ${SMTP_PORT}
-      ofelia.job-exec.nextcloud.smtp-user: ${SMTP_USER}
-      ofelia.job-exec.nextcloud.smtp-password: ${SMTP_PASSWORD}
-      ofelia.job-exec.nextcloud.email-to: ${EMAIL_TO}
-      ofelia.job-exec.nextcloud.email-from: ${EMAIL_FROM}
+      ofelia.job-exec.nextcloud.smtp-host: msmtpd
+      ofelia.job-exec.nextcloud.smtp-port: 2500
+      ofelia.job-exec.nextcloud.email-from: ofelia-nextcloud@korhonen.cc
+      ofelia.job-exec.nextcloud.email-to: admin@korhonen.cc
       ofelia.job-exec.nextcloud.mail-only-on-error: true
 
   redis:
@@ -55,4 +54,6 @@ networks:
   postgres:
     external: true
   proxy:
+    external: true
+  msmtpd:
     external: true

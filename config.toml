@@ -168,28 +168,9 @@ dst = "~/.config/lazydocker/config.yml"
 src = ".config/wezterm"
 dst = "~/.config/wezterm"
 
-[dotfiles.d_goimapnotify]
-src = ".config/goimapnotify"
-dst = "~/.config/goimapnotify"
-
-[dotfiles.f_isyncrc]
-src = ".config/isyncrc"
-dst = "~/.config/isyncrc"
-
-[dotfiles.f_notmuch]
-src = ".config/notmuch/default/config"
-dst = "~/.config/notmuch/default/config"
-
 [dotfiles.d_aerc]
 src = ".config/aerc"
 dst = "~/.config/aerc"
-
-[profiles.email]
-dotfiles = [
-    "d_goimapnotify",
-    "f_isyncrc",
-    "f_notmuch",
-]
 
 [profiles.pacman]
 dotfiles = [
@@ -240,7 +221,6 @@ include = [
     "terminal",
     "media",
     "gpg",
-    "email",
 ]
 dotfiles = [
     "f_dconf.ini",

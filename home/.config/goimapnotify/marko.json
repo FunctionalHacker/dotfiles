@@ -1,9 +1,0 @@
-{
-  "host": "imap.migadu.com",
-  "port": 993,
-  "tls": true,
-  "username": "marko@korhonen.cc",
-  "passwordCmd": "cat ~/.mail_cred/marko",
-  "boxes": ["INBOX"],
-  "onNewMail": "~/.scripts/mail-sync marko"
-}

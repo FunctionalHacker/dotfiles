@@ -15,6 +15,7 @@ services:
     networks:
       - proxy
       - postgres
+      - msmtpd
     labels:
       - sablier.enable=true
       - sablier.group=lubelogger
@@ -23,4 +24,6 @@ networks:
   postgres:
     external: true
   proxy:
+    external: true
+  msmtpd:
     external: true

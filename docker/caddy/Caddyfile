@@ -195,10 +195,10 @@ korhonen.cc, *.korhonen.cc {
 			reverse_proxy lubelogger:8080
 		}
 
-    @ntfy host ntfy.korhonen.cc
-    handle @ntfy {
-      reverse_proxy ntfy:80
-    }
+		@ntfy host ntfy.korhonen.cc
+		handle @ntfy {
+			reverse_proxy ntfy:80
+		}
 
 		@mosquitto host mqtt.korhonen.cc
 		handle @mosquitto {

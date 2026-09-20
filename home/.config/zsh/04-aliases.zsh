@@ -449,3 +449,6 @@ chext() {
 
   mv "$file" "$dest"
 }
+
+# Open offline Arch Wiki pages
+alias arch-wiki="fd -t f . '/usr/share/doc/arch-wiki/html/en' | fzf | xargs -d '\n' -n 1 xdg-open"

@@ -10,11 +10,11 @@ services:
   jellyfin:
     image: jellyfin/jellyfin
     container_name: jellyfin
+    restart: unless-stopped
     ports:
       - 8096:8096
     networks:
       - proxy
-    restart: no
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - config:/config

@@ -1,5 +1,6 @@
 volumes:
   data: {}
+
 services:
   postgres:
     container_name: postgres
@@ -13,6 +14,10 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - data:/var/lib/postgresql
     restart: unless-stopped
+    labels:
+      docker-volume-backup.archive-pre: >-
+        pg_dumpall -U postgres > /tmp/dumps/dump.sql
+
 networks:
   postgres:
     external: true

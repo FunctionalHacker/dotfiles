@@ -61,6 +61,10 @@ src = ".config/beets/whitelist"
 dst = "~/.config/git/config"
 src = ".config/git/config"
 
+[dotfiles.f_pass-git-helper-mapping]
+dst ="~/.config/pass-git-helper/git-pass-mapping.ini"
+src =".config/pass-git-helper/git-pass-mapping.ini"
+
 [dotfiles."f_makepkg.conf"]
 dst = "~/.config/pacman/makepkg.conf"
 src = ".config/pacman/makepkg.conf"
@@ -191,6 +195,7 @@ dotfiles = [
     "f_zshrc",
     "f_zlogin",
     "f_gitconfig",
+    "f_pass-git-helper-mapping",
     "f_hushlogin",
     "f_ignore",
     "f_zellij",

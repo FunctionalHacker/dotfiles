@@ -102,7 +102,10 @@ korhonen.cc, *.korhonen.cc {
 
 		@index host index.korhonen.cc
 		handle @index {
-			import anubis
+			root * /var/www/index.korhonen.cc
+			file_server {
+				browse /templates/file_server.html
+			}
 		}
 
 		@home-assistant host home.korhonen.cc
@@ -287,14 +290,6 @@ korhonen.cc, *.korhonen.cc {
 		# Redirect login page to PocketID
 		redir /user/login /user/oauth2/Korhonen%20ID
 		reverse_proxy forgejo:3000
-	}
-
-	@index host index.korhonen.cc
-	handle @index {
-		root * /var/www/index.korhonen.cc
-		file_server {
-			browse /templates/file_server.html
-		}
 	}
 }
 

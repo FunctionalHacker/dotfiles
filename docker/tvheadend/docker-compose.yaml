@@ -13,6 +13,9 @@ services:
       - PUID=1000
       - PGID=985
       - RUN_OPTS=--ipv6
+    restart: unless-stopped
+    networks:
+      - proxy
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - config:/config
@@ -24,9 +27,6 @@ services:
     devices:
       - /dev/dvb:/dev/dvb
       - /dev/dri/renderD128:/dev/dri/renderD128
-    restart: unless-stopped
-    networks:
-      - proxy
 
 networks:
   proxy:

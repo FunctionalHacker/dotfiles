@@ -7,7 +7,7 @@ return {
       chat = {
         adapter = {
           name = "copilot",
-          model = "gpt-4.1",
+          model = "auto",
         },
         slash_commands = {
           ["file"] = {

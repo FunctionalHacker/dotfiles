@@ -120,7 +120,10 @@ korhonen.cc, *.korhonen.cc {
 
 		@forgejo host git.korhonen.cc
 		handle @forgejo {
-			import anubis
+			# import anubis
+
+			redir /user/login /user/oauth2/Korhonen%20ID
+			reverse_proxy forgejo:3000
 		}
 
 		@searxng host dsearch.korhonen.cc
@@ -284,14 +287,14 @@ korhonen.cc, *.korhonen.cc {
 }
 
 # Internal handler for traffic that has passed the Anubis challenge
-:3001 {
-	@forgejo host git.korhonen.cc
-	handle @forgejo {
-		# Redirect login page to PocketID
-		redir /user/login /user/oauth2/Korhonen%20ID
-		reverse_proxy forgejo:3000
-	}
-}
+# :3001 {
+# 	@forgejo host git.korhonen.cc
+# 	handle @forgejo {
+# 		# Redirect login page to PocketID
+# 		redir /user/login /user/oauth2/Korhonen%20ID
+# 		reverse_proxy forgejo:3000
+# 	}
+# }
 
 http://moria.korhonen.lan {
 	redir /pacman_cache /pacman_cache/ 308

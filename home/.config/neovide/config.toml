@@ -1,1 +1,1 @@
-# neovim-bin = "{{@@ env['HOME'] @@}}/.scripts/fhackeditor"
+startup-message-capture = false
